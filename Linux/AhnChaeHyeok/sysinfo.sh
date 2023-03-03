@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#시스템 정보
 logwatch >> sysinfo.txt
 
 dmesg >> sysinfo.txt
