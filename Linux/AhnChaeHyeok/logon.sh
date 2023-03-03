@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#로그온 정보
 echo Login user information
 who >> user_info.txt
 
