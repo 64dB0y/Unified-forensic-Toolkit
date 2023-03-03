@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#네트워크 정보
 echo Network Information
 ifconfig >> network_info.txt
 lsof -i -n >> network_info.txt
