@@ -1,0 +1,27 @@
+01 BluetoothLogView	- 지원되는 OS(Windows XP/Vista/Windows 7/Windows 8) 제한이 있으며, GUI 툴이어서 따로 명령으로 옵션을 줘서 정보를 수집할 수 없다.
+02 browsinghistoryview	- .\BrowsingHistoryView.exe /stext example1.txt 혹은 GUI를 통해서 결과물을 만들 수 있다.
+03 chromecacheview	- .\ChromeCacheView.exe /stext example.txt 혹은 GUI를 통해서 결과물을 만들 수 있다.
+04 ChromeCookiesview	- .\ChromeCookiesView.exe /stext example.txt 혹은 GUI를 통해서 결과물을 만들 수 있다.
+05 chromehistoryview	- .\ChromeHistoryView.exe /stext exmaple.txt 혹은 GUI를 통해서 결과물을 만들 수 있다.
+06 currports		- .\cports.exe /stext example.txt GUI 혹은 GUI를 통해서 결과물을 만들 수 있다.
+07 EdgeCookiesView	- EdgeCookiesView.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+08 faview			- (firefox 가 제대로 안나타난다) .\faview.exe /stext example.txt 혹은 GUI를 통해서 결과물을 만들 수 있다.
+09 IECacheView		- .\IECacheView.exe /stext example1.txt 혹은 GUI를 통해서 결과물을 만들 수 있다.
+10 LSASecretsDump	- 지원되는 OS(Windows 2000/XP/2003/2008/Vista/7).\LSASecretsDump.exe -empty > example.txt 혹은 외부 Windows 설치 인스턴스에서 덤프 뜰때 LSASecretsDump.exe -external p:\windows
+11 MozillaHistoryView	- .\MozillaHistoryView.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+12 MyLastSearch		- .\MyLastSearch.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+13 MZCacheView		- .\MZCacheView.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+14 mzcv			- (딱히 보이는게 없다).\mzcv.exe /stext example.txt
+15 outlookaddressbookview	- (outlook 환경이 아니어서 테스트는 못해봤다 하지만 특이하게 이 툴은 두 번 실행해야 한다) 
+				1. 주소록의 이름 저장 - .\OutlookAddressBookView.exe /SaveAddressBooks "c:\temp\AddressBooks.txt"
+				2. 주소록의 레코드 저장 - .\OutlookAddressBookView.exe /stext "c:\temp\AddressBookRecords.txt"
+16 ShellBagsView		- .\ShellBagsView.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+17 URLStringGrabber	- (딱히 보이는게 없다).\URLStringGrabber.exe /stext example.txt
+18 USBDeview		- .\USBDeview.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+{19번 whoistd 툴은 라이브포렌식 툴에서 제외한다}
+19 whoistd		- 1. 파일로부터 도메인명 받기(list.txt에는 도메인 명만 적혀있습니다) 혹은 GUI을 통해서 결과물을 만들 수 있다.
+			.\Whoistd.exe /domainsfile .\list.txt
+			  2. 도메인 명 직접 입력
+			.\Whoistd.exe /domainslist "yahoo.com google.com youtube.com"
+20 WinPrefetchView	.\WinPrefetchView /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
+21 WirelessNetView	.\WirelessNetView.exe /stext example.txt 혹은 GUI을 통해서 결과물을 만들 수 있다.
