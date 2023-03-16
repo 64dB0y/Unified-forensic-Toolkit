@@ -1,13 +1,55 @@
 #!/bin/bash
 
-#스크립트 파일을 실행하는 쉘 스크립트
+uname -m
 
-echo "Active Data Forensics Start"
+PS3='Please Select the section You want to Forensic : '
 
-sh auto.sh    #자동 실행 정보
-sh logon.sh   #로그온 정보
-sh network.sh #네트워크 정보
-sh proc.sh    #프로세스 정보
-sh sysinfo.sh #시스템 정보 
-
-echo "Active Data Forensics Finished"
+select section in "Autorun" "Logon user" "Network" "Processor" "System Info" "Exit"
+do
+	if [ "$section" = "Autorun" ];then
+		echo "Running forensic for $section"
+		chmod +x auto.sh
+		./auto.sh
+		date >> hash.txt
+		echo    >> hash.txt
+	fi
+	
+	if [ "$section" = "Logon user" ];then
+		echo "Running forensic for $section"
+		chmod +x logon.sh
+		./logon.sh
+		date >> hash.txt
+		echo    >> hash.txt
+	fi
+	
+	if [ "$section" = "Network" ];then
+		echo "Running forensic for $section"
+		chmod +x network.sh
+		./network.sh
+		date >> hash.txt
+		echo    >> hash.txt
+	fi
+	
+	if [ "$section" = "Processor" ];then
+		echo "Running forensic for $section"
+		chmod +x proc.sh
+		./proc.sh
+		date >> hash.txt
+		echo    >> hash.txt
+	fi
+	
+	if [ "$section" = "System Info" ];then
+		echo "Running forensic for $section"
+		chmod +x sysinfo.sh
+		./sysinfo.sh
+		date >> hash.txt
+		echo    >> hash.txt
+	fi
+	
+	if [ "$section" = "Exit" ];then
+		echo Exit the Forensic Program
+		break
+	fi
+	
+	continue
+done
