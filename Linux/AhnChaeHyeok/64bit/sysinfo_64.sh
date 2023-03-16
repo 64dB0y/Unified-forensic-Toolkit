@@ -11,4 +11,5 @@ grep "error" /var/log/syslog >> sysinfo.txt   # 에러 메시지를 탐색, root
 # 결과물 해시 값 저장
 echo System information hash >> hash.txt
 ./hash/hash.exe sysinfo.txt >> hash.txt
+date >> hash.txt
 echo    >> hash.txt
