@@ -23,4 +23,5 @@ lastlog >> user_info.txt
 #결과물에 대한 해시 값
 echo user information hash >> hash.txt
 ./hash/hash.exe user_info.txt >> hash.txt
+date >> hash.txt
 echo    >> hash.txt
