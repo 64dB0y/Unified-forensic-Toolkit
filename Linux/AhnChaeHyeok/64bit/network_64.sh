@@ -25,4 +25,5 @@ echo Network Information Collecting Finished
 # 결과물 해시 값 저장
 echo Network information hash >> hash.txt
 ./hash/hash.exe network_info.txt >> hash.txt
+date >> hash.txt
 echo    >> hash.txt
