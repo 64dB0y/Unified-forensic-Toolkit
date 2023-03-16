@@ -8,10 +8,20 @@ set NETWORK_INFO_PATH=%SCRIPT_DIR%%COMPUTER_NAME%\network_info
 set PROCESS_DUMP_PATH=%SCRIPT_DIR%%COMPUTER_NAME%\process_dump
 set LOGIN_USER_INFO_PATH=%SCRIPT_DIR%%COMPUTER_NAME%\login_user_info
 
-
 set /a current_step=0
 set /a final_step=4
-
+echo.
+echo.
+echo -----------------Architecture Detection-----------------
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+    echo 64-bit operating system detected.
+) else if "%PROCESSOR_ARCHITECTURE%"=="x86" (
+    echo 32-bit operating system detected.
+) else (
+    echo Unknown architecture detected.
+)
+echo --------------------------------------------------------
+echo.
 :display_menu
 echo.
 echo Select the step you want to perform:
@@ -75,8 +85,16 @@ mkdir "%NETWORK_INFO_PATH%" && echo Created directory: "%NETWORK_INFO_PATH%"
 ) else (
 echo Directory already exists: "%NETWORK_INFO_PATH%"
 )
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
 "%SCRIPT_DIR%SysinternalsSuite\tcpvcon64.exe" -a -c /accepteula > "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\tcpvcon.txt"
+) else (
+"%SCRIPT_DIR%SysinternalsSuite\tcpvcon.exe" -a -c /accepteula > "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\tcpvcon.txt"
+)
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
 "%SCRIPT_DIR%Nirsoft\cports-x64\cports.exe" /stext "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\currports.txt"
+) else (
+"%SCRIPT_DIR%Nirsoft\cports\cports.exe" /stext "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\currports.txt"
+)
 route print > "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\route.txt"
 netsh interface ipv4 show neighbors > "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\ipv4_neighbors.txt"
 nbtstat -c > "%SCRIPT_DIR%%COMPUTER_NAME%\network_info\nbtstat.txt"
@@ -117,8 +135,13 @@ mkdir "%PROCESS_DUMP_PATH%" && echo Created directory: "%PROCESS_DUMP_PATH%"
 ) else (
 echo Directory already exists: "%PROCESS_DUMP_PATH%"
 )
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+"%SCRIPT_DIR%\SysinternalsSuite\pslist64.exe" /accepteula> "%PROCESS_DUMP_PATH%\pslist.txt" && echo Process list dumped to: "%PROCESS_DUMP_PATH%\pslist.txt"
+) else (
 "%SCRIPT_DIR%\SysinternalsSuite\pslist.exe" /accepteula> "%PROCESS_DUMP_PATH%\pslist.txt" && echo Process list dumped to: "%PROCESS_DUMP_PATH%\pslist.txt"
+)
 "%SCRIPT_DIR%\SysinternalsSuite\psloglist.exe" -d 30 -s -t * /accepteula> "%PROCESS_DUMP_PATH%\psloglist.txt" && echo Process log dumped to: "%PROCESS_DUMP_PATH%\psloglist.txt"
+
 echo ---------3. Creating Process information hash file----------
 mkdir %PROCESS_DUMP_PATH%\hash
 certutil -hashfile "%PROCESS_DUMP_PATH%\pslist.txt" md5 > %PROCESS_DUMP_PATH%\hash\pslist_hash.txt
