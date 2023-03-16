@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#로그온 정보
 echo Login user information
 who >> user_info.txt
 
@@ -15,3 +14,6 @@ last >> user_info.txt
 
 echo Last Login history
 lastlog >> user_info.txt
+
+echo user information hash >> hash.txt
+./hash/hash.exe user_info.txt >> hash.txt

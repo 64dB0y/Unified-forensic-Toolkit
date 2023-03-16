@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#자동실행 프로그램 항목
 #List of autorun programs
 echo Collecting autorun programs...
 ls -l /etc/init.d/ >> auto.txt
@@ -9,4 +8,7 @@ ls -l /etc/init.d/ >> auto.txt
 echo Collecting autorunning programs...
 systemctl list-unit-files --type=service --state=enabled >> auto.txt
 
-echo Collecting finished
+echo Autorun program Information Collecting finished
+
+echo Autorun program Information hash >> hash.txt
+./hash/hash.exe auto.txt >> hash.txt

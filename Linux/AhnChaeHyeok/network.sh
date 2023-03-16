@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#네트워크 정보
 echo Network Information
 ifconfig >> network_info.txt
 lsof -i -n >> network_info.txt
@@ -21,3 +20,6 @@ cat /proc/net/arp | while read line; do
 done >> network_info.txt
 
 echo Network Information Collecting Finished
+
+echo Network information hash >> hash.txt
+./hash/hash.exe network_info.txt >> hash.txt
