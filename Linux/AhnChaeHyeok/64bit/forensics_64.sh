@@ -14,41 +14,35 @@ do
 	if [ "$section" = "Autorun" ];then		# 자동실행 항목
 		echo "Running forensic for $section"
 		./auto_64.sh
-		date >> hash.txt
 	fi
 	
 	if [ "$section" = "Logon user" ];then		# 로그온 정보
 		echo "Running forensic for $section"
 		./logon_64.sh
-		date >> hash.txt
 	fi
 	
 	if [ "$section" = "Network" ];then		# 네트워크 정보
 		echo "Running forensic for $section"
 		./network_64.sh
-		date >> hash.txt
 	fi
 	
 	if [ "$section" = "Processor" ];then		# 프로세서 정보
 		echo "Running forensic for $section"
 		./proc_64.sh
-		date >> hash.txt
 	fi
 	
 	if [ "$section" = "System Info" ];then		# 시스템 정보
 		echo "Running forensic for $section"
 		./sysinfo_64.sh
-		date >> hash.txt
 	fi
 	
-	if [ "$section" = "Run all steps" ];then
+	if [ "$section" = "Run all steps" ];then	# 전체 
 		echo "Run all steps"
 		./auto_64.sh
 		./logon_64.sh
 		./network_64.sh
 		./proc_64.sh
 		./sysinfo_64.sh
-		date >> hash.txt
 		
 	if [ "$section" = "Exit" ];then			# 프로그램 종료
 		echo Exit the Forensic Program
