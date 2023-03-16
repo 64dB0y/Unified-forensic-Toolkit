@@ -12,4 +12,5 @@ echo Autorun program Information Collecting finished
 
 echo Autorun program Information hash >> hash.txt
 ./hash/hash.exe auto.txt >> hash.txt
+date >> hash.txt
 echo    >> hash.txt
