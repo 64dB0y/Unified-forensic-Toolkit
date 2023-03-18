@@ -1,8 +1,15 @@
 #!/bin/bash
 
-logwatch >> sysinfo.txt
+mkdir System
+cd System
+mkdir hash
+cd ..
 
-dmesg >> sysinfo.txt
+echo Collecting System Information ...
+
+logwatch >> logwatch.txt
+
+dmesg >> dmesg.txt
 
 journalctl >> sysinfo.txt
 
