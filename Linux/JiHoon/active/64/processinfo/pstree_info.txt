@@ -1,0 +1,552 @@
+systemd,1 splash
+  |-ModemManager,761
+  |   |-{ModemManager},770
+  |   `-{ModemManager},782
+  |-NetworkManager,658 --no-daemon
+  |   |-{NetworkManager},748
+  |   `-{NetworkManager},749
+  |-accounts-daemon,651
+  |   |-{accounts-daemon},678
+  |   `-{accounts-daemon},744
+  |-acpid,652
+  |-avahi-daemon,655,avahi
+  |   `-avahi-daemon,711
+  |-colord,1287,colord
+  |   |-{colord},1301
+  |   `-{colord},1303
+  |-cron,656 -f -P
+  |-cups-browsed,905
+  |   |-{cups-browsed},922
+  |   `-{cups-browsed},923
+  |-cupsd,751 -l
+  |-dbus-daemon,657,messagebus --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  |-gdm3,823
+  |   |-gdm-session-wor,1315
+  |   |   |-gdm-wayland-ses,1407,lee env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
+  |   |   |   |-gnome-session-b,1410 --session=ubuntu
+  |   |   |   |   |-{gnome-session-b},1450
+  |   |   |   |   `-{gnome-session-b},1451
+  |   |   |   |-{gdm-wayland-ses},1408
+  |   |   |   `-{gdm-wayland-ses},1409
+  |   |   |-{gdm-session-wor},1316
+  |   |   `-{gdm-session-wor},1318
+  |   |-{gdm3},829
+  |   `-{gdm3},830
+  |-gnome-keyring-d,1374,lee --daemonize --login
+  |   |-{gnome-keyring-d},1375
+  |   |-{gnome-keyring-d},1377
+  |   `-{gnome-keyring-d},1462
+  |-irqbalance,676 --foreground
+  |   `-{irqbalance},701
+  |-kerneloops,836,kernoops --test
+  |-kerneloops,838,kernoops
+  |-networkd-dispat,679 /usr/bin/networkd-dispatcher --run-startup-triggers
+  |-packagekitd,1123
+  |   |-{packagekitd},1199
+  |   `-{packagekitd},1200
+  |-polkitd,680 --no-debug
+  |   |-{polkitd},705
+  |   `-{polkitd},743
+  |-power-profiles-,681
+  |   |-{power-profiles-},698
+  |   `-{power-profiles-},742
+  |-rsyslogd,682,syslog -n -iNONE
+  |   |-{rsyslogd},722
+  |   |-{rsyslogd},723
+  |   `-{rsyslogd},724
+  |-rtkit-daemon,952,rtkit
+  |   |-{rtkit-daemon},953
+  |   `-{rtkit-daemon},954
+  |-snapd,683
+  |   |-{snapd},882
+  |   |-{snapd},883
+  |   |-{snapd},884
+  |   |-{snapd},885
+  |   |-{snapd},886
+  |   |-{snapd},889
+  |   |-{snapd},888
+  |   |-{snapd},906
+  |   |-{snapd},924
+  |   |-{snapd},950
+  |   |-{snapd},986
+  |   `-{snapd},1097
+  |-switcheroo-cont,684
+  |   |-{switcheroo-cont},703
+  |   `-{switcheroo-cont},745
+  |-systemd,1326,lee --user
+  |   |-(sd-pam),1327
+  |   |-at-spi2-registr,1612 --use-gnome-session
+  |   |   |-{at-spi2-registr},1614
+  |   |   `-{at-spi2-registr},1616
+  |   |-dbus-daemon,1347 --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  |   |-dconf-service,1530
+  |   |   |-{dconf-service},1541
+  |   |   `-{dconf-service},1542
+  |   |-evolution-addre,1867
+  |   |   |-{evolution-addre},1875
+  |   |   |-{evolution-addre},1876
+  |   |   |-{evolution-addre},1878
+  |   |   |-{evolution-addre},1879
+  |   |   `-{evolution-addre},1881
+  |   |-evolution-calen,1776
+  |   |   |-{evolution-calen},1804
+  |   |   |-{evolution-calen},1805
+  |   |   |-{evolution-calen},1858
+  |   |   |-{evolution-calen},1859
+  |   |   |-{evolution-calen},1864
+  |   |   |-{evolution-calen},1865
+  |   |   |-{evolution-calen},1870
+  |   |   `-{evolution-calen},1872
+  |   |-evolution-sourc,1578
+  |   |   |-{evolution-sourc},1598
+  |   |   |-{evolution-sourc},1599
+  |   |   `-{evolution-sourc},1601
+  |   |-gedit,3661 --gapplication-service
+  |   |   |-{gedit},3662
+  |   |   |-{gedit},3663
+  |   |   |-{gedit},3665
+  |   |   `-{gedit},3824
+  |   |-gjs,1613 /usr/share/gnome-shell/org.gnome.Shell.Notifications
+  |   |   |-{gjs},1617
+  |   |   |-{gjs},1618
+  |   |   |-{gjs},1619
+  |   |   |-{gjs},1620
+  |   |   `-{gjs},1621
+  |   |-gjs,1824 /usr/share/gnome-shell/org.gnome.ScreenSaver
+  |   |   |-{gjs},1826
+  |   |   |-{gjs},1827
+  |   |   |-{gjs},1828
+  |   |   |-{gjs},1829
+  |   |   `-{gjs},1830
+  |   |-gnome-session-b,1471 --systemd-service --session=ubuntu
+  |   |   |-at-spi-bus-laun,1497 --launch-immediately
+  |   |   |   |-dbus-daemon,1505 --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus
+  |   |   |   |-{at-spi-bus-laun},1500
+  |   |   |   |-{at-spi-bus-laun},1501
+  |   |   |   `-{at-spi-bus-laun},1503
+  |   |   |-evolution-alarm,1717
+  |   |   |   |-{evolution-alarm},1777
+  |   |   |   |-{evolution-alarm},1779
+  |   |   |   |-{evolution-alarm},1780
+  |   |   |   |-{evolution-alarm},1847
+  |   |   |   `-{evolution-alarm},1857
+  |   |   |-gsd-disk-utilit,1655
+  |   |   |   |-{gsd-disk-utilit},1720
+  |   |   |   `-{gsd-disk-utilit},1723
+  |   |   |-update-notifier,3377
+  |   |   |   |-{update-notifier},3385
+  |   |   |   |-{update-notifier},3387
+  |   |   |   `-{update-notifier},3388
+  |   |   |-{gnome-session-b},1472
+  |   |   |-{gnome-session-b},1473
+  |   |   |-{gnome-session-b},1475
+  |   |   `-{gnome-session-b},3825
+  |   |-gnome-session-c,1455 --monitor
+  |   |   `-{gnome-session-c},1463
+  |   |-gnome-shell,1496
+  |   |   |-Xwayland,2060 :0 -rootless -noreset -accessx -core -auth /run/user/1000/.mutter-Xwaylandauth.1PTD01 -listen 4 -listen 5 -displayfd 6 -initfd 7
+  |   |   |-firefox,1967
+  |   |   |   |-Isolated Web Co,3219 -contentproc -childID 4 -isForBrowser -prefsLen 30332 -prefMapSize 223472 -jsInitLen 267752 -parentBuildID 20220730053005 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true tab
+  |   |   |   |   |-{Isolated Web Co},3226
+  |   |   |   |   |-{Isolated Web Co},3230
+  |   |   |   |   |-{Isolated Web Co},3231
+  |   |   |   |   |-{Isolated Web Co},3232
+  |   |   |   |   |-{Isolated Web Co},3233
+  |   |   |   |   |-{Isolated Web Co},3234
+  |   |   |   |   |-{Isolated Web Co},3235
+  |   |   |   |   |-{Isolated Web Co},3236
+  |   |   |   |   |-{Isolated Web Co},3237
+  |   |   |   |   |-{Isolated Web Co},3238
+  |   |   |   |   |-{Isolated Web Co},3241
+  |   |   |   |   |-{Isolated Web Co},3252
+  |   |   |   |   |-{Isolated Web Co},3253
+  |   |   |   |   |-{Isolated Web Co},3276
+  |   |   |   |   |-{Isolated Web Co},3279
+  |   |   |   |   |-{Isolated Web Co},3284
+  |   |   |   |   |-{Isolated Web Co},3285
+  |   |   |   |   `-{Isolated Web Co},3323
+  |   |   |   |-Privileged Cont,2187 -contentproc -childID 1 -isForBrowser -prefsLen 24874 -prefMapSize 223472 -jsInitLen 267752 -parentBuildID 20220730053005 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true tab
+  |   |   |   |   |-{Privileged Cont},2194
+  |   |   |   |   |-{Privileged Cont},2196
+  |   |   |   |   |-{Privileged Cont},2199
+  |   |   |   |   |-{Privileged Cont},2201
+  |   |   |   |   |-{Privileged Cont},2202
+  |   |   |   |   |-{Privileged Cont},2203
+  |   |   |   |   |-{Privileged Cont},2204
+  |   |   |   |   |-{Privileged Cont},2205
+  |   |   |   |   |-{Privileged Cont},2206
+  |   |   |   |   |-{Privileged Cont},2207
+  |   |   |   |   |-{Privileged Cont},2208
+  |   |   |   |   |-{Privileged Cont},2209
+  |   |   |   |   |-{Privileged Cont},2210
+  |   |   |   |   |-{Privileged Cont},2211
+  |   |   |   |   |-{Privileged Cont},2355
+  |   |   |   |   |-{Privileged Cont},2361
+  |   |   |   |   `-{Privileged Cont},2362
+  |   |   |   |-Socket Process,2148 -contentproc -parentBuildID 20220730053005 -prefsLen 24798 -prefMapSize 223472 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true socket
+  |   |   |   |   |-{Socket Process},2154
+  |   |   |   |   |-{Socket Process},2155
+  |   |   |   |   |-{Socket Process},2156
+  |   |   |   |   |-{Socket Process},2168
+  |   |   |   |   `-{Socket Process},2169
+  |   |   |   |-Web Content,3289 -contentproc -childID 6 -isForBrowser -prefsLen 30517 -prefMapSize 223472 -jsInitLen 267752 -parentBuildID 20220730053005 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true tab
+  |   |   |   |   |-{Web Content},3298
+  |   |   |   |   |-{Web Content},3300
+  |   |   |   |   |-{Web Content},3301
+  |   |   |   |   |-{Web Content},3306
+  |   |   |   |   |-{Web Content},3307
+  |   |   |   |   |-{Web Content},3308
+  |   |   |   |   |-{Web Content},3316
+  |   |   |   |   |-{Web Content},3317
+  |   |   |   |   |-{Web Content},3318
+  |   |   |   |   |-{Web Content},3319
+  |   |   |   |   |-{Web Content},3320
+  |   |   |   |   |-{Web Content},3321
+  |   |   |   |   `-{Web Content},3322
+  |   |   |   |-Web Content,3291 -contentproc -childID 7 -isForBrowser -prefsLen 30517 -prefMapSize 223472 -jsInitLen 267752 -parentBuildID 20220730053005 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true tab
+  |   |   |   |   |-{Web Content},3297
+  |   |   |   |   |-{Web Content},3299
+  |   |   |   |   |-{Web Content},3302
+  |   |   |   |   |-{Web Content},3303
+  |   |   |   |   |-{Web Content},3304
+  |   |   |   |   |-{Web Content},3305
+  |   |   |   |   |-{Web Content},3309
+  |   |   |   |   |-{Web Content},3310
+  |   |   |   |   |-{Web Content},3311
+  |   |   |   |   |-{Web Content},3312
+  |   |   |   |   |-{Web Content},3313
+  |   |   |   |   |-{Web Content},3314
+  |   |   |   |   `-{Web Content},3315
+  |   |   |   |-Web Content,3329 -contentproc -childID 8 -isForBrowser -prefsLen 30517 -prefMapSize 223472 -jsInitLen 267752 -parentBuildID 20220730053005 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true tab
+  |   |   |   |   |-{Web Content},3333
+  |   |   |   |   |-{Web Content},3334
+  |   |   |   |   |-{Web Content},3335
+  |   |   |   |   |-{Web Content},3336
+  |   |   |   |   |-{Web Content},3337
+  |   |   |   |   |-{Web Content},3338
+  |   |   |   |   |-{Web Content},3339
+  |   |   |   |   |-{Web Content},3340
+  |   |   |   |   |-{Web Content},3341
+  |   |   |   |   |-{Web Content},3342
+  |   |   |   |   |-{Web Content},3343
+  |   |   |   |   |-{Web Content},3344
+  |   |   |   |   `-{Web Content},3345
+  |   |   |   |-WebExtensions,2478 -contentproc -childID 2 -isForBrowser -prefsLen 29544 -prefMapSize 223472 -jsInitLen 267752 -parentBuildID 20220730053005 -appDir /snap/firefox/1635/usr/lib/firefox/browser 1967 true tab
+  |   |   |   |   |-{WebExtensions},2483
+  |   |   |   |   |-{WebExtensions},2484
+  |   |   |   |   |-{WebExtensions},2485
+  |   |   |   |   |-{WebExtensions},2486
+  |   |   |   |   |-{WebExtensions},2487
+  |   |   |   |   |-{WebExtensions},2488
+  |   |   |   |   |-{WebExtensions},2489
+  |   |   |   |   |-{WebExtensions},2490
+  |   |   |   |   |-{WebExtensions},2491
+  |   |   |   |   |-{WebExtensions},2492
+  |   |   |   |   |-{WebExtensions},2493
+  |   |   |   |   |-{WebExtensions},2494
+  |   |   |   |   |-{WebExtensions},2495
+  |   |   |   |   |-{WebExtensions},2496
+  |   |   |   |   |-{WebExtensions},2497
+  |   |   |   |   |-{WebExtensions},2499
+  |   |   |   |   `-{WebExtensions},2500
+  |   |   |   |-{firefox},2095
+  |   |   |   |-{firefox},2096
+  |   |   |   |-{firefox},2097
+  |   |   |   |-{firefox},2098
+  |   |   |   |-{firefox},2099
+  |   |   |   |-{firefox},2103
+  |   |   |   |-{firefox},2105
+  |   |   |   |-{firefox},2106
+  |   |   |   |-{firefox},2107
+  |   |   |   |-{firefox},2108
+  |   |   |   |-{firefox},2109
+  |   |   |   |-{firefox},2113
+  |   |   |   |-{firefox},2114
+  |   |   |   |-{firefox},2115
+  |   |   |   |-{firefox},2116
+  |   |   |   |-{firefox},2117
+  |   |   |   |-{firefox},2118
+  |   |   |   |-{firefox},2134
+  |   |   |   |-{firefox},2135
+  |   |   |   |-{firefox},2136
+  |   |   |   |-{firefox},2137
+  |   |   |   |-{firefox},2138
+  |   |   |   |-{firefox},2139
+  |   |   |   |-{firefox},2140
+  |   |   |   |-{firefox},2141
+  |   |   |   |-{firefox},2142
+  |   |   |   |-{firefox},2143
+  |   |   |   |-{firefox},2144
+  |   |   |   |-{firefox},2145
+  |   |   |   |-{firefox},2146
+  |   |   |   |-{firefox},2147
+  |   |   |   |-{firefox},2153
+  |   |   |   |-{firefox},2157
+  |   |   |   |-{firefox},2170
+  |   |   |   |-{firefox},2185
+  |   |   |   |-{firefox},2186
+  |   |   |   |-{firefox},2189
+  |   |   |   |-{firefox},2191
+  |   |   |   |-{firefox},2192
+  |   |   |   |-{firefox},2193
+  |   |   |   |-{firefox},2195
+  |   |   |   |-{firefox},2197
+  |   |   |   |-{firefox},2198
+  |   |   |   |-{firefox},2200
+  |   |   |   |-{firefox},2213
+  |   |   |   |-{firefox},2214
+  |   |   |   |-{firefox},2216
+  |   |   |   |-{firefox},2217
+  |   |   |   |-{firefox},2218
+  |   |   |   |-{firefox},2219
+  |   |   |   |-{firefox},2348
+  |   |   |   |-{firefox},2349
+  |   |   |   |-{firefox},2350
+  |   |   |   |-{firefox},2351
+  |   |   |   |-{firefox},2359
+  |   |   |   |-{firefox},2480
+  |   |   |   |-{firefox},2950
+  |   |   |   |-{firefox},2979
+  |   |   |   |-{firefox},3208
+  |   |   |   |-{firefox},3214
+  |   |   |   |-{firefox},3223
+  |   |   |   |-{firefox},3239
+  |   |   |   |-{firefox},3271
+  |   |   |   |-{firefox},3273
+  |   |   |   |-{firefox},3280
+  |   |   |   |-{firefox},3288
+  |   |   |   |-{firefox},3293
+  |   |   |   |-{firefox},3294
+  |   |   |   |-{firefox},3331
+  |   |   |   |-{firefox},3346
+  |   |   |   |-{firefox},3347
+  |   |   |   |-{firefox},3348
+  |   |   |   |-{firefox},3349
+  |   |   |   |-{firefox},3594
+  |   |   |   `-{firefox},3746
+  |   |   |-gjs,1835 /usr/share/gnome-shell/extensions/ding@rastersoft.com/ding.js -E -P /usr/share/gnome-shell/extensions/ding@rastersoft.com -M 0 -D 0:0:1680:1050:1:27:0:74:0:0
+  |   |   |   |-{gjs},1838
+  |   |   |   |-{gjs},1839
+  |   |   |   |-{gjs},1840
+  |   |   |   |-{gjs},1841
+  |   |   |   |-{gjs},1842
+  |   |   |   `-{gjs},1866
+  |   |   |-{gnome-shell},1507
+  |   |   |-{gnome-shell},1509
+  |   |   |-{gnome-shell},1512
+  |   |   |-{gnome-shell},1515
+  |   |   |-{gnome-shell},1517
+  |   |   |-{gnome-shell},1518
+  |   |   |-{gnome-shell},1519
+  |   |   |-{gnome-shell},2094
+  |   |   `-{gnome-shell},3775
+  |   |-gnome-shell-cal,1527
+  |   |   |-{gnome-shell-cal},1571
+  |   |   |-{gnome-shell-cal},1573
+  |   |   |-{gnome-shell-cal},1576
+  |   |   |-{gnome-shell-cal},1577
+  |   |   `-{gnome-shell-cal},1772
+  |   |-gnome-terminal-,3719
+  |   |   |-bash,3737
+  |   |   |   `-processinfo.bas,3826 ./processinfo.bash
+  |   |   |       `-pstree,3830 -paul
+  |   |   |-{gnome-terminal-},3720
+  |   |   |-{gnome-terminal-},3722
+  |   |   `-{gnome-terminal-},3723
+  |   |-goa-daemon,1540
+  |   |   |-{goa-daemon},1543
+  |   |   |-{goa-daemon},1545
+  |   |   `-{goa-daemon},1546
+  |   |-goa-identity-se,1549
+  |   |   |-{goa-identity-se},1550
+  |   |   `-{goa-identity-se},1552
+  |   |-gsd-a11y-settin,1624
+  |   |   |-{gsd-a11y-settin},1632
+  |   |   |-{gsd-a11y-settin},1639
+  |   |   `-{gsd-a11y-settin},1647
+  |   |-gsd-color,1627
+  |   |   |-{gsd-color},1672
+  |   |   |-{gsd-color},1674
+  |   |   `-{gsd-color},1687
+  |   |-gsd-datetime,1629
+  |   |   |-{gsd-datetime},1649
+  |   |   |-{gsd-datetime},1683
+  |   |   `-{gsd-datetime},1738
+  |   |-gsd-housekeepin,1630
+  |   |   |-{gsd-housekeepin},1634
+  |   |   |-{gsd-housekeepin},1645
+  |   |   `-{gsd-housekeepin},1659
+  |   |-gsd-keyboard,1631
+  |   |   |-{gsd-keyboard},1661
+  |   |   |-{gsd-keyboard},1671
+  |   |   `-{gsd-keyboard},1686
+  |   |-gsd-media-keys,1633
+  |   |   |-{gsd-media-keys},1691
+  |   |   |-{gsd-media-keys},1693
+  |   |   `-{gsd-media-keys},1698
+  |   |-gsd-power,1637
+  |   |   |-{gsd-power},1664
+  |   |   |-{gsd-power},1668
+  |   |   `-{gsd-power},1689
+  |   |-gsd-print-notif,1643
+  |   |   |-{gsd-print-notif},1656
+  |   |   `-{gsd-print-notif},1684
+  |   |-gsd-printer,1748
+  |   |   |-{gsd-printer},1749
+  |   |   `-{gsd-printer},1750
+  |   |-gsd-rfkill,1646
+  |   |   |-{gsd-rfkill},1650
+  |   |   `-{gsd-rfkill},1652
+  |   |-gsd-screensaver,1651
+  |   |   |-{gsd-screensaver},1666
+  |   |   `-{gsd-screensaver},1685
+  |   |-gsd-sharing,1653
+  |   |   |-{gsd-sharing},1657
+  |   |   |-{gsd-sharing},1660
+  |   |   `-{gsd-sharing},1682
+  |   |-gsd-smartcard,1654
+  |   |   |-{gsd-smartcard},1670
+  |   |   |-{gsd-smartcard},1695
+  |   |   `-{gsd-smartcard},1737
+  |   |-gsd-sound,1658
+  |   |   |-{gsd-sound},1677
+  |   |   |-{gsd-sound},1688
+  |   |   `-{gsd-sound},1742
+  |   |-gsd-wacom,1663
+  |   |   |-{gsd-wacom},1678
+  |   |   |-{gsd-wacom},1680
+  |   |   `-{gsd-wacom},1697
+  |   |-gsd-xsettings,2064
+  |   |   |-{gsd-xsettings},2066
+  |   |   |-{gsd-xsettings},2067
+  |   |   `-{gsd-xsettings},2069
+  |   |-gvfs-afc-volume,1560
+  |   |   |-{gvfs-afc-volume},1561
+  |   |   |-{gvfs-afc-volume},1562
+  |   |   `-{gvfs-afc-volume},1564
+  |   |-gvfs-goa-volume,1536
+  |   |   |-{gvfs-goa-volume},1537
+  |   |   `-{gvfs-goa-volume},1538
+  |   |-gvfs-gphoto2-vo,1565
+  |   |   |-{gvfs-gphoto2-vo},1566
+  |   |   `-{gvfs-gphoto2-vo},1568
+  |   |-gvfs-mtp-volume,1555
+  |   |   |-{gvfs-mtp-volume},1556
+  |   |   `-{gvfs-mtp-volume},1558
+  |   |-gvfs-udisks2-vo,1531
+  |   |   |-{gvfs-udisks2-vo},1532
+  |   |   |-{gvfs-udisks2-vo},1533
+  |   |   `-{gvfs-udisks2-vo},1534
+  |   |-gvfsd,1354
+  |   |   |-gvfsd-trash,1605 --spawner :1.2 /org/gtk/gvfs/exec_spaw/0
+  |   |   |   |-{gvfsd-trash},1606
+  |   |   |   `-{gvfsd-trash},1607
+  |   |   |-{gvfsd},1355
+  |   |   `-{gvfsd},1356
+  |   |-gvfsd-fuse,1360 /run/user/1000/gvfs -f
+  |   |   |-{gvfsd-fuse},1368
+  |   |   |-{gvfsd-fuse},1369
+  |   |   |-{gvfsd-fuse},1370
+  |   |   |-{gvfsd-fuse},1371
+  |   |   `-{gvfsd-fuse},1372
+  |   |-gvfsd-metadata,1937
+  |   |   |-{gvfsd-metadata},1938
+  |   |   `-{gvfsd-metadata},1939
+  |   |-ibus-portal,1719
+  |   |   |-{ibus-portal},1740
+  |   |   `-{ibus-portal},1741
+  |   |-ibus-x11,2089
+  |   |   |-{ibus-x11},2091
+  |   |   `-{ibus-x11},2092
+  |   |-nautilus,3355 --gapplication-service
+  |   |   |-{nautilus},3357
+  |   |   |-{nautilus},3358
+  |   |   |-{nautilus},3360
+  |   |   |-{nautilus},3362
+  |   |   `-{nautilus},3823
+  |   |-pipewire,1335
+  |   |   `-{pipewire},1399
+  |   |-pipewire-media-,1336
+  |   |   `-{pipewire-media-},1378
+  |   |-pulseaudio,1337 --daemonize=no --log-target=journal
+  |   |   |-{pulseaudio},1420
+  |   |   |-{pulseaudio},1425
+  |   |   `-{pulseaudio},1427
+  |   |-sh,1623 -c /usr/bin/ibus-daemon --panel disable $([ "$XDG_SESSION_TYPE" = "x11" ] && echo "--xim")
+  |   |   `-ibus-daemon,1626 --panel disable
+  |   |       |-ibus-dconf,1705
+  |   |       |   |-{ibus-dconf},1707
+  |   |       |   |-{ibus-dconf},1708
+  |   |       |   `-{ibus-dconf},1746
+  |   |       |-ibus-engine-sim,1770
+  |   |       |   |-{ibus-engine-sim},1774
+  |   |       |   `-{ibus-engine-sim},1775
+  |   |       |-ibus-extension-,1706
+  |   |       |   |-{ibus-extension-},1728
+  |   |       |   |-{ibus-extension-},1730
+  |   |       |   `-{ibus-extension-},1735
+  |   |       |-{ibus-daemon},1690
+  |   |       `-{ibus-daemon},1703
+  |   |-snap,2224 userd
+  |   |   |-{snap},2231
+  |   |   |-{snap},2232
+  |   |   |-{snap},2233
+  |   |   |-{snap},2234
+  |   |   |-{snap},2235
+  |   |   |-{snap},2236
+  |   |   |-{snap},2238
+  |   |   `-{snap},2367
+  |   |-snapd-desktop-i,1338
+  |   |   `-snapd-desktop-i,1912
+  |   |       |-{snapd-desktop-i},1913
+  |   |       |-{snapd-desktop-i},1914
+  |   |       `-{snapd-desktop-i},1915
+  |   |-tracker-miner-f,1401
+  |   |   |-{tracker-miner-f},1402
+  |   |   |-{tracker-miner-f},1403
+  |   |   |-{tracker-miner-f},1404
+  |   |   |-{tracker-miner-f},1405
+  |   |   `-{tracker-miner-f},1570
+  |   |-xdg-desktop-por,1836
+  |   |   |-{xdg-desktop-por},1850
+  |   |   |-{xdg-desktop-por},1851
+  |   |   |-{xdg-desktop-por},1904
+  |   |   |-{xdg-desktop-por},1910
+  |   |   `-{xdg-desktop-por},1911
+  |   |-xdg-desktop-por,1854
+  |   |   |-{xdg-desktop-por},1894
+  |   |   |-{xdg-desktop-por},1896
+  |   |   `-{xdg-desktop-por},1897
+  |   |-xdg-desktop-por,1905
+  |   |   |-{xdg-desktop-por},1906
+  |   |   |-{xdg-desktop-por},1908
+  |   |   `-{xdg-desktop-por},1909
+  |   |-xdg-document-po,1376
+  |   |   |-fusermount3,1387,root -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+  |   |   |-{xdg-document-po},1379
+  |   |   |-{xdg-document-po},1380
+  |   |   |-{xdg-document-po},1386
+  |   |   |-{xdg-document-po},1388
+  |   |   `-{xdg-document-po},1389
+  |   `-xdg-permission-,1381
+  |       |-{xdg-permission-},1382
+  |       `-{xdg-permission-},1384
+  |-systemd-journal,249
+  |-systemd-logind,685
+  |-systemd-oomd,607,systemd-oom
+  |-systemd-resolve,608,systemd-resolve
+  |-systemd-timedat,3818
+  |-systemd-timesyn,609,systemd-timesync
+  |   `-{systemd-timesyn},619
+  |-systemd-udevd,307
+  |-udisksd,686
+  |   |-{udisksd},719
+  |   |-{udisksd},741
+  |   |-{udisksd},799
+  |   `-{udisksd},845
+  |-unattended-upgr,754 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+  |   `-{unattended-upgr},925
+  |-upowerd,1090
+  |   |-{upowerd},1092
+  |   `-{upowerd},1093
+  `-wpa_supplicant,687 -u -s -O /run/wpa_supplicant
