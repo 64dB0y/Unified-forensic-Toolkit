@@ -7,17 +7,37 @@ cd ..
 
 echo Collecting System Information ...
 
-logwatch >> logwatch.txt
+echo logwatch >> System/logwatch.txt
+logwatch >> System/logwatch.txt
 
-dmesg >> dmesg.txt
+echo dmesg >> System/dmesg.txt
+dmesg >> System/dmesg.txt
 
-journalctl >> sysinfo.txt
+echo journalctl >> System/journalctl.txt
+journalctl >> System/journalctl.txt
 
 #By syslog find error logs
 sudo service rsyslog start
-grep "error" /var/log/syslog >> sysinfo.txt
+echo Error log from /var/log/syslog
+grep "error" /var/log/syslog >> System/errorlog.txt
 
-echo System information hash >> hash/hash.txt
-./hash.exe sysinfo.txt >> hash/hash.txt
-date >> hash/hash.txt
-echo    >> hash/hash.txt
+echo logwatch.txt >> System/hash.txt
+./hash.exe System/logwatch.txt >> System/hash.txt
+echo    >> System/hash.txt
+
+echo dmesg.txt >> System/hash.txt
+./hash.exe System/dmesg.txt >> System/hash.txt
+echo    >> System/hash.txt
+
+echo journalctl.txt >> System/hash.txt
+./hash.exe System/journalctl.txt >> System/hash.txt
+echo    >> System/hash.txt
+
+echo errorlog.txt >> System/hash.txt
+./hash.exe System/errorlog.txt >> System/hash.txt
+echo    >> System/hash.txt
+
+date >> System/hash.txt
+echo    >> System/hash.txt
+
+echo >> System Information Forensic Finished
