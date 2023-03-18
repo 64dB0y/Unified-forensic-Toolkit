@@ -5,27 +5,25 @@ cd Logon
 mkdir hash
 cd ..
 
-echo Collecting Login user information...
+echo Collecting Logon Information...
+
+#Collecting
 echo Login user information >> Logon/who.txt
 who >> Logon/who.txt
 
-echo Collecting User logged in now...
 echo User logged in now >> Logon/users.txt
 users >> Logon/users.txt
 
-echo Collecting Logged in User and What progress they ar doing...
 echo Logged in User and What progress they ar doing >> Logon/w.txt
 w >> Logon/w.txt
 
-echo Collecting Login history...
 echo Login history >> Logon/last.txt 
 last >> Logon/last.txt
 
-echo Collecting Last Login history...
 echo Last Login history >> Logon/lastlog.txt
 lastlog >> Logon/lastlog.txt
 
-echo who.txt >> Logon/hash/hash.txt
+#Hash
 ./hash.exe Logon/who.txt >> Logon/hash/hash.txt
 echo    >> Logon/hash/hash.txt
 
