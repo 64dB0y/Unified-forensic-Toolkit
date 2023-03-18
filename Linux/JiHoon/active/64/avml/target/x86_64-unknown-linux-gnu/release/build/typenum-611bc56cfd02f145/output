@@ -1,0 +1,3 @@
+cargo:rerun-if-changed=build/main.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/lee/avml/target/x86_64-unknown-linux-gnu/release/build/typenum-611bc56cfd02f145/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/home/lee/avml/target/x86_64-unknown-linux-gnu/release/build/typenum-611bc56cfd02f145/out/op.rs

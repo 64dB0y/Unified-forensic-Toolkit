@@ -1,0 +1,2 @@
+find: ‘/run/user/1000/doc’: 허가 거부
+find: ‘/run/user/1000/gvfs’: 허가 거부

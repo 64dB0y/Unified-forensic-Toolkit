@@ -1,0 +1,11 @@
+prefix=/home/lee/avml/target/x86_64-unknown-linux-gnu/release/build/openssl-sys-77e662a79a88f475/out/openssl-build/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL-libssl
+Description: Secure Sockets Layer and cryptography libraries
+Version: 1.1.1t
+Requires.private: libcrypto
+Libs: -L${libdir} -lssl
+Cflags: -I${includedir}
