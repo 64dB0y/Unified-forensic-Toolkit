@@ -8,29 +8,42 @@ cd ..
 echo Collecting Login user information...
 echo Login user information >> Logon/who.txt
 who >> Logon/who.txt
-echo   >> Logon/who.txt
 
 echo Collecting User logged in now...
 echo User logged in now >> Logon/users.txt
 users >> Logon/users.txt
-echo   >> Logon/users.txt
 
 echo Collecting Logged in User and What progress they ar doing...
 echo Logged in User and What progress they ar doing >> Logon/w.txt
 w >> Logon/w.txt
-echo   >> Logon/w.txt
 
 echo Collecting Login history...
 echo Login history >> Logon/last.txt 
 last >> Logon/last.txt
-echo   >> Logon/last.txt
 
 echo Collecting Last Login history...
 echo Last Login history >> Logon/lastlog.txt
 lastlog >> Logon/lastlog.txt
-echo   >> Logon/lastlog.txt
 
-echo user information hash >> Logon/hash/hash.txt
-./hash.exe user_info.txt >> Logon/hash/hash.txt
+echo who.txt >> Logon/hash/hash.txt
+./hash.exe Logon/who.txt >> Logon/hash/hash.txt
+echo    >> Logon/hash/hash.txt
+
+echo users.txt >> Logon/hash/hash.txt
+./hash.exe Logon/users.txt >> Logon/hash/hash.txt
+echo    >> Logon/hash/hash.txt
+
+echo w.txt >> Logon/hash/hash.txt
+./hash.exe Logon/w.txt >> Logon/hash/hash.txt
+echo    >> Logon/hash/hash.txt
+
+echo last.txt >> Logon/hash/hash.txt
+./hash.exe Logon/last.txt >> Logon/hash/hash.txt
+echo    >> Logon/hash/hash.txt
+
+echo lastlog.txt >> Logon/hash/hash.txt
+./hash.exe Logon/lastlog.txt >> Logon/hash/hash.txt
+echo    >> Logon/hash/hash.txt
+
 date >> Logon/hash/hash.txt
 echo    >> Logon/hash/hash.txt
