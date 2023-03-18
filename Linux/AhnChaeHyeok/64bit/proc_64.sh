@@ -1,10 +1,23 @@
 #!/bin/bash
 
-echo Collecting Information of Acting Process
-ps aux >> proc_info.txt
-lsof -i -n >> proc_info.txt
+mkdir Process
+cd Process
+mkdir hash
+cd ..
 
-echo Process information hash >> hash/hash.txt
-./hash.exe proc_info.txt >> hash/hash.txt
-date >> hash/hash.txt
-echo    >> hash/hash.txt
+echo Collecting Process Information...
+
+echo ps aux >> Process/psaux.txt
+ps aux >> Process/psaux.txt
+
+echo lsof >> Process/lsof.txt
+lsof -i -n >> Process/lsof.txt
+
+echo psaux.txt >> Process/hash.txt
+./hash.exe psaux.txt >> Process/hash.txt
+echo    >> Process/hash.txt
+
+echo lsof.txt >> Process/hash.txt
+./hash.exe lsof.txt >> Process/hash.txt
+date >> Process/hash.txt
+echo    >> Process/hash.txt
