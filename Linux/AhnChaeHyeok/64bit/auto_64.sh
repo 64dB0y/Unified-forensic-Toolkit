@@ -17,11 +17,13 @@ systemctl list-unit-files --type=service --state=enabled >> Autorun/autorunning.
 
 echo Autorun program Information Collecting finished
 
-echo Autorun program Information hash >> Autorun/hash/hash.txt
+echo auto.txt >> Autorun/hash/hash.txt
 ./hash.exe Autorun/auto.txt >> Autorun/hash/hash.txt
-date >> Autorun/hash/hash.txt
 echo    >> Autorun/hash/hash.txt
 
+echo autorunning.txft >> Autorun/hash/hash.txt
 ./hash.exe Autorun/autorunning.txt >> Autorun/hash/hash.txt
+echo    >> Autorun/hash/hash.txt
+
 date >> Autorun/hash/hash.txt
 echo    >> Autorun/hash/hash.txt
