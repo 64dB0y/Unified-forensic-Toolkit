@@ -8,16 +8,11 @@ cd ..
 #List of autorun programs
 echo Collecting autorun programs...
 echo /etc/init.d/ information >> Autorun/auto.txt
-echo collected date >> Autorun/auto.txt
-date >> Autorun/auto.txt
-echo    >> Autorun/auto.txt
 ls -l /etc/init.d/ >> Autorun/auto.txt
 
 #List of autorunning programs
 echo Collecting autorunning programs...
 echo systemctl information >> Autorun/autorunning.txt
-echo collected date >> Autorun/autorunning.txt
-date >> Autorun/autorunning.txt
 systemctl list-unit-files --type=service --state=enabled >> Autorun/autorunning.txt
 
 echo Autorun program Information Collecting finished
