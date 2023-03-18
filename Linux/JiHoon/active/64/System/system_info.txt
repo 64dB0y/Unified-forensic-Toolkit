@@ -1,0 +1,381 @@
+*** System Information ***
+
+--- CPU Info ---
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Address sizes:                   39 bits physical, 48 bits virtual
+Byte Order:                      Little Endian
+CPU(s):                          3
+On-line CPU(s) list:             0-2
+Vendor ID:                       GenuineIntel
+Model name:                      11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz
+CPU family:                      6
+Model:                           167
+Thread(s) per core:              1
+Core(s) per socket:              3
+Socket(s):                       1
+Stepping:                        1
+BogoMIPS:                        5183.99
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase avx2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
+Hypervisor vendor:               KVM
+Virtualization type:             full
+L1d cache:                       144 KiB (3 instances)
+L1i cache:                       96 KiB (3 instances)
+L2 cache:                        1.5 MiB (3 instances)
+L3 cache:                        36 MiB (3 instances)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-2
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Mmio stale data:   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Retbleed:          Vulnerable
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+
+--- Block Devices ---
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0     4K  1 loop /snap/bare/5
+loop1    7:1    0    62M  1 loop /snap/core20/1587
+loop2    7:2    0  63.3M  1 loop /snap/core20/1822
+loop3    7:3    0 163.3M  1 loop /snap/firefox/1635
+loop4    7:4    0 400.8M  1 loop /snap/gnome-3-38-2004/112
+loop5    7:5    0 346.3M  1 loop /snap/gnome-3-38-2004/119
+loop6    7:6    0  91.7M  1 loop /snap/gtk-common-themes/1535
+loop7    7:7    0  45.9M  1 loop /snap/snap-store/582
+loop8    7:8    0  45.9M  1 loop /snap/snap-store/638
+loop9    7:9    0  49.8M  1 loop /snap/snapd/17950
+loop10   7:10   0   284K  1 loop /snap/snapd-desktop-integration/14
+loop11   7:11   0   304K  1 loop /snap/snapd-desktop-integration/49
+loop12   7:12   0  49.8M  1 loop /snap/snapd/18357
+sda      8:0    0 100.8G  0 disk 
+├─sda1   8:1    0     1M  0 part 
+├─sda2   8:2    0   513M  0 part /boot/efi
+└─sda3   8:3    0 100.3G  0 part /
+sr0     11:0    1  1024M  0 rom  
+
+--- Hardware Info ---
+lee-virtualbox
+    description: Computer
+    width: 64 bits
+    capabilities: smp vsyscall32
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-memory
+          description: System memory
+          physical id: 0
+          size: 4224MiB
+     *-cpu
+          product: 11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz
+          vendor: Intel Corp.
+          physical id: 1
+          bus info: cpu@0
+          version: 6.167.1
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp x86-64 constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase avx2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
+     *-display
+          description: VGA compatible controller
+          product: SVGA II Adapter
+          vendor: VMware
+          physical id: 2
+          bus info: pci@0000:00:02.0
+          logical name: /dev/fb0
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+          capabilities: vga_controller bus_master rom fb
+          configuration: depth=32 driver=vmwgfx latency=64 resolution=2048,2048
+          resources: irq:18 ioport:d000(size=16) memory:e0000000-e7ffffff memory:e8000000-e81fffff memory:c0000-dffff
+     *-network
+          description: Ethernet interface
+          product: 82540EM Gigabit Ethernet Controller
+          vendor: Intel Corporation
+          physical id: 3
+          bus info: pci@0000:00:03.0
+          logical name: enp0s3
+          version: 02
+          serial: 08:00:27:2b:6d:5b
+          size: 1Gbit/s
+          capacity: 1Gbit/s
+          width: 32 bits
+          clock: 66MHz
+          capabilities: bus_master cap_list ethernet physical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+          configuration: autonegotiation=on broadcast=yes driver=e1000 driverversion=5.15.0-60-generic duplex=full ip=10.0.2.15 latency=64 link=yes mingnt=255 multicast=yes port=twisted pair speed=1Gbit/s
+          resources: irq:19 memory:e8200000-e821ffff ioport:d010(size=8)
+     *-generic
+          description: System peripheral
+          product: VirtualBox mouse integration
+          vendor: InnoTek Systemberatung GmbH
+          physical id: 4
+          bus info: pci@0000:00:04.0
+          logical name: input7
+          logical name: /dev/input/event6
+          logical name: /dev/input/js1
+          logical name: /dev/input/mouse2
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci
+          configuration: driver=vboxguest latency=0
+          resources: irq:20 ioport:d020(size=32) memory:e8400000-e87fffff memory:e8800000-e8803fff
+     *-multimedia
+          description: Multimedia audio controller
+          product: 82801AA AC'97 Audio Controller
+          vendor: Intel Corporation
+          physical id: 5
+          bus info: pci@0000:00:05.0
+          logical name: card0
+          logical name: /dev/snd/controlC0
+          logical name: /dev/snd/pcmC0D0c
+          logical name: /dev/snd/pcmC0D0p
+          logical name: /dev/snd/pcmC0D1c
+          version: 01
+          width: 32 bits
+          clock: 33MHz
+          capabilities: bus_master
+          configuration: driver=snd_intel8x0 latency=64
+          resources: irq:21 ioport:d100(size=256) ioport:d200(size=64)
+     *-bridge
+          description: Bridge
+          product: 82371AB/EB/MB PIIX4 ACPI
+          vendor: Intel Corporation
+          physical id: 7
+          bus info: pci@0000:00:07.0
+          version: 08
+          width: 32 bits
+          clock: 33MHz
+          capabilities: bridge
+          configuration: driver=piix4_smbus latency=0
+          resources: irq:9
+     *-isa
+          description: ISA bridge
+          product: 82801GBM (ICH7-M) LPC Interface Bridge
+          vendor: Intel Corporation
+          physical id: 1f
+          bus info: pci@0000:00:1f.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+          capabilities: isa bus_master cap_list
+          configuration: driver=lpc_ich latency=0
+          resources: irq:0
+        *-pnp00:00
+             product: PnP device PNP0303
+             physical id: 0
+             capabilities: pnp
+             configuration: driver=i8042 kbd
+        *-pnp00:01
+             product: PnP device PNP0f03
+             physical id: 1
+             capabilities: pnp
+             configuration: driver=i8042 aux
+        *-pnp00:02
+             product: PnP device PNP0b00
+             physical id: 2
+             capabilities: pnp
+             configuration: driver=rtc_cmos
+        *-pnp00:03
+             product: PnP device PNP0103
+             physical id: 3
+             capabilities: pnp
+             configuration: driver=system
+        *-pnp00:04
+             product: PnP device PNP0c02
+             physical id: 4
+             capabilities: pnp
+             configuration: driver=system
+     *-ide
+          description: IDE interface
+          product: 82371AB/EB/MB PIIX4 IDE
+          vendor: Intel Corporation
+          physical id: 1f.1
+          bus info: pci@0000:00:1f.1
+          logical name: scsi1
+          version: 01
+          width: 32 bits
+          clock: 33MHz
+          capabilities: ide isa_compat_mode pci_native_mode bus_master emulated
+          configuration: driver=ata_piix latency=64
+          resources: irq:0 ioport:1f0(size=8) ioport:3f6 ioport:170(size=8) ioport:376 ioport:d240(size=16)
+        *-cdrom
+             description: DVD reader
+             product: CD-ROM
+             vendor: VBOX
+             physical id: 0.0.0
+             bus info: scsi@1:0.0.0
+             logical name: /dev/cdrom
+             logical name: /dev/sr0
+             version: 1.0
+             capabilities: removable audio dvd
+             configuration: ansiversion=5 status=nodisc
+     *-sata
+          description: SATA controller
+          product: 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [AHCI mode]
+          vendor: Intel Corporation
+          physical id: 1f.2
+          bus info: pci@0000:00:1f.2
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+          capabilities: sata ahci_1.0 bus_master cap_list
+          configuration: driver=ahci latency=64
+          resources: irq:26 ioport:d250(size=8) ioport:d258(size=4) ioport:d260(size=8) ioport:d268(size=4) ioport:d270(size=16) memory:e8804000-e8805fff
+     *-usb:0
+          description: USB controller
+          product: KeyLargo/Intrepid USB
+          vendor: Apple Inc.
+          physical id: 1f.4
+          bus info: pci@0000:00:1f.4
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+          capabilities: ohci bus_master cap_list
+          configuration: driver=ohci-pci latency=64
+          resources: irq:25 memory:e8806000-e8806fff
+     *-usb:1
+          description: USB controller
+          product: 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB2 EHCI Controller
+          vendor: Intel Corporation
+          physical id: 1f.5
+          bus info: pci@0000:00:1f.5
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+          capabilities: ehci bus_master cap_list
+          configuration: driver=ehci-pci latency=64
+          resources: irq:24 memory:e8807000-e8807fff
+  *-input:0
+       product: Power Button
+       physical id: 1
+       logical name: input0
+       logical name: /dev/input/event0
+       capabilities: platform
+  *-input:1
+       product: Sleep Button
+       physical id: 2
+       logical name: input1
+       logical name: /dev/input/event1
+       capabilities: platform
+  *-input:2
+       product: AT Translated Set 2 keyboard
+       physical id: 3
+       logical name: input2
+       logical name: /dev/input/event2
+       logical name: input2::capslock
+       logical name: input2::numlock
+       logical name: input2::scrolllock
+       capabilities: i8042
+  *-input:3
+       product: Video Bus
+       physical id: 4
+       logical name: input4
+       logical name: /dev/input/event3
+       capabilities: platform
+  *-input:4
+       product: ImExPS/2 Generic Explorer Mouse
+       physical id: 5
+       logical name: input5
+       logical name: /dev/input/event4
+       logical name: /dev/input/mouse0
+       capabilities: i8042
+  *-input:5
+       product: VirtualBox USB Tablet
+       physical id: 6
+       logical name: input6
+       logical name: /dev/input/event5
+       logical name: /dev/input/js0
+       logical name: /dev/input/mouse1
+       capabilities: usb
+
+--- USB Devices ---
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 002: ID 80ee:0021 VirtualBox USB Tablet
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+
+--- Loaded Kernel Modules ---
+Module                  Size  Used by
+binfmt_misc            24576  1
+nls_iso8859_1          16384  1
+snd_intel8x0           45056  2
+snd_ac97_codec        180224  1 snd_intel8x0
+ac97_bus               16384  1 snd_ac97_codec
+snd_pcm               143360  2 snd_intel8x0,snd_ac97_codec
+snd_seq_midi           20480  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+snd_rawmidi            49152  1 snd_seq_midi
+snd_seq                77824  2 snd_seq_midi,snd_seq_midi_event
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+snd_timer              40960  2 snd_seq,snd_pcm
+snd                   106496  11 snd_seq,snd_seq_device,snd_intel8x0,snd_timer,snd_ac97_codec,snd_pcm,snd_rawmidi
+intel_rapl_msr         20480  0
+soundcore              16384  1 snd
+intel_rapl_common      40960  1 intel_rapl_msr
+joydev                 32768  0
+input_leds             16384  0
+crct10dif_pclmul       16384  1
+serio_raw              20480  0
+ghash_clmulni_intel    16384  0
+aesni_intel           376832  0
+vboxguest              45056  0
+crypto_simd            16384  1 aesni_intel
+cryptd                 24576  2 crypto_simd,ghash_clmulni_intel
+mac_hid                16384  0
+sch_fq_codel           20480  2
+vmwgfx                368640  7
+ttm                    86016  1 vmwgfx
+drm_kms_helper        311296  1 vmwgfx
+cec                    61440  1 drm_kms_helper
+rc_core                65536  1 cec
+fb_sys_fops            16384  1 drm_kms_helper
+syscopyarea            16384  1 drm_kms_helper
+sysfillrect            20480  1 drm_kms_helper
+sysimgblt              16384  1 drm_kms_helper
+ipmi_devintf           20480  0
+ipmi_msghandler       122880  1 ipmi_devintf
+msr                    16384  0
+parport_pc             49152  0
+ppdev                  24576  0
+lp                     28672  0
+drm                   622592  8 vmwgfx,drm_kms_helper,ttm
+mtd                    77824  0
+parport                69632  3 parport_pc,lp,ppdev
+ramoops                32768  0
+reed_solomon           28672  1 ramoops
+efi_pstore             16384  0
+pstore_blk             16384  0
+pstore_zone            32768  1 pstore_blk
+ip_tables              32768  0
+x_tables               53248  1 ip_tables
+autofs4                49152  2
+hid_generic            16384  0
+usbhid                 65536  0
+hid                   151552  2 usbhid,hid_generic
+crc32_pclmul           16384  0
+ahci                   45056  2
+psmouse               176128  0
+i2c_piix4              32768  0
+e1000                 159744  0
+lpc_ich                28672  0
+video                  65536  0
+libahci                45056  1 ahci
+pata_acpi              16384  0
+
+--- Disk Space Info ---
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           393M  1.6M  391M   1% /run
+/dev/sda3        99G   13G   81G  14% /
+tmpfs           2.0G     0  2.0G   0% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+/dev/sda2       512M  6.1M  506M   2% /boot/efi
+tmpfs           393M  2.4M  390M   1% /run/user/1000
+
+--- Memory Info ---
+               total        used        free      shared  buff/cache   available
+Mem:            3921        1280         896          78        1745        2338
+Swap:           3897           0        3897
+
