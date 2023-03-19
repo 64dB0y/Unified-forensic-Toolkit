@@ -105,14 +105,30 @@ reg save HKEY_LOCAL_MACHINE\SECURITY "%REG_DUMP_PATH%\SECURITY.reg" &&  echo SEC
 
 echo ---------1. Creating Registry and Cache hash file----------
 mkdir "%REG_DUMP_PATH%\hash"
-certutil -hashfile "%REG_DUMP_PATH%\hklm.reg" md5 > "%REG_DUMP_PATH%\hash\hklm_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\hklm.reg" sha1 >> "%REG_DUMP_PATH%\hash\hklm_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\hkcu.reg" md5 > "%REG_DUMP_PATH%\hash\hkcu_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\hkcu.reg" sha1 >> "%REG_DUMP_PATH%\hash\hkcu_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\cached_credentials.txt" md5 > "%REG_DUMP_PATH%\hash\cached_credentials_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\cached_credentials.txt" sha1 >> "%REG_DUMP_PATH%\hash\cached_credentials_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\profiles.txt" md5 > "%REG_DUMP_PATH%\hash\profiles_hash.txt"
-certutil -hashfile "%REG_DUMP_PATH%\profiles.txt" sha1 >> "%REG_DUMP_PATH%\hash\profiles_hash.txt"
+
+:: --------------------
+:: |SOFTWARE FILE HASH|
+:: --------------------
+certutil -hashfile "%REG_DUMP_PATH%\SOFTWARE" md5 > "%REG_DUMP_PATH%\hash\SOFTWARE.txt"
+certutil -hashfile "%REG_DUMP_PATH%\SOFTWARE" sha1 >> "%REG_DUMP_PATH%\hash\SOFTWARE.txt"
+
+:: ---------------
+:: |SAM FILE HASH|
+:: ---------------
+certutil -hashfile "%REG_DUMP_PATH%\SAM" md5 > "%REG_DUMP_PATH%\hash\SAM.txt"
+certutil -hashfile "%REG_DUMP_PATH%\SAM" sha1 >> "%REG_DUMP_PATH%\hash\SAM.txt"
+
+:: ------------------
+:: |SYSTEM FILE HASH|
+:: ------------------
+certutil -hashfile "%REG_DUMP_PATH%\SYSTEM" md5 > "%REG_DUMP_PATH%\hash\SYSTEM.txt"
+certutil -hashfile "%REG_DUMP_PATH%\SYSTEM" sha1 >> "%REG_DUMP_PATH%\hash\SYSTEM.txt"
+
+:: --------------------
+:: |SECURITY FILE HASH|
+:: --------------------
+certutil -hashfile "%REG_DUMP_PATH%\SECURITY" md5 > "%REG_DUMP_PATH%\hash\SECURITY.txt"
+certutil -hashfile "%REG_DUMP_PATH%\SECURITY" sha1 >> "%REG_DUMP_PATH%\hash\SECURITY.txt"
 echo.
 ) else if %1==2 (
 echo ---------------------------------------
