@@ -5,8 +5,6 @@ cd Network
 mkdir hash
 cd ..
 
-echo Collecting Network Information...
-
 echo ifconfig >> Network/ifconfig.txt
 ifconfig >> Network/ifconfig.txt
 
@@ -34,31 +32,11 @@ done >> Network/ARP.txt
 echo DNS Cache >> Network/DNS.txt
 killall -USR1 systemd-resolved && journalctl -u systemd-resolved | grep -A 100000 "CACHE:" >> Network/DNS.txt
 
-echo Network Information Collecting Finished
-
-echo ifconfig.txt >> Network/hash/hash.txt
-./hash.exe Network/ifconfig.txt >> Network/hash/hash.txt
-echo    >> Network/hash/hash.txt
-
-echo lsof.txt >> Network/hash/hash.txt
-./hash.exe Network/lsof.txt >> Network/hash/hash.txt
-echo    >> Network/hash/hash.txt
-
-echo netstat.txt >> Network/hash/hash.txt
-./hash.exe Network/netstat.txt >> Network/hash/hash.txt
-echo    >> Network/hash/hash.txt
-
-echo Route.txt >> Network/hash/hash.txt
-./hash.exe Network/Route.txt >> Network/hash/hash.txt
-echo    >> Network/hash/hash.txt
-
-echo ARP.txt >> Network/hash/hash.txt
-./hash.exe Network/ARP.txt >> Network/hash/hash.txt
-echo    >> Network/hash/hash.txt
-
-echo DNS.txt >> Network/hash/hash.txxt
-./hash.exe Network/DNS.txt >> Network/hash/hash.txt
-echo    >> Network/hash/hash.txt
+for file in Network/*.txt
+do
+	./hash.exe "$file" >> Network/hash/hash.txt
+	echo >> Network/hash/hash.txt
+done
 
 date >> Network/hash/hash.txt
 echo    >> Network/hash/hash.txt
