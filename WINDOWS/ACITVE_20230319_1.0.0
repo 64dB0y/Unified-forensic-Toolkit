@@ -356,6 +356,17 @@ winlogonview /scomma %Logon_Dir%\winlogonview.txt
 
 echo Logon Data collection is complete.
 echo.
+echo Make Hash File
+
+set LOGON_HASH=%Logon_Dir%\HASH
+mkdir %LOGON_HASH%
+
+hashdeep64 "%Logon_Dir%\psloggedon.txt" > "%LOGON_HASH%\psloggedon_hash.txt"
+hashdeep64 "%Logon_Dir%\logonsessions.txt" > "%LOGON_HASH%\logonsessions_hash.txt"
+hashdeep64 "%Logon_Dir%\net_user.txt" > "%LOGON_HASH%\net_user_hash.txt"
+hashdeep64 "%Logon_Dir%\winlogonview.txt" > "%LOGON_HASH%\winlogonview_hash.txt"
+
+
 set /a current_step+=1
 echo %current_step%
 
