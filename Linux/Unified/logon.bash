@@ -6,7 +6,7 @@ cd Logon
 mkdir hash
 cd ..
 
-exec > logon.txt
+exec > Logon/logon.txt
 
 # 로그온 사용자 정보 출력 스크립트
 echo Collecting Logon user Information...
@@ -33,5 +33,6 @@ last -x | grep down
 echo "---------------------------------------------"
 
 ./hash.exe Logon/logon.txt > Logon/hash/hash.txt
+date >> Logon/hash/hash.txt
 
 echo Logon user Information Collecting Finished
