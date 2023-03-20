@@ -1,0 +1,322 @@
+@echo off
+
+setlocal 
+:: 초기 설정
+echo -------------
+echo PATH Settings
+echo -------------
+echo.
+echo.
+
+
+set /a current_step=0
+set /a final_step=4
+set "nirsoft=%~dp0nirsoft"
+set "sysinternals=%~dp0sysinternals"
+set "etc=%~dp0etc"
+set "hash=%~dp0hash"
+set "PATH=%PATH%;%nirsoft%;%sysinternals%;%etc%;%hash%"
+
+
+echo -----------------Architecture Detection-----------------
+if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+    echo 64-bit operating system detected.
+    set "path=%path%;%~dp0x64"
+) else if "%PROCESSOR_ARCHITECTURE%"=="x86" (
+    echo 32-bit operating system detected.
+    set "path=%path%;%~dp0x86"
+) else (
+    echo Unknown architecture detected.
+)
+echo --------------------------------------------------------
+echo.
+
+:: 현재 시각을 구하기 
+set year=%date:~0,4%
+set month=%date:~5,2%
+set day=%date:~8,2%
+set hour=%time:~0,2%
+if "%hour:~0,1%" == " " set hour=0%hour:~1,1%
+set minute=%time:~3,2%
+set second=%time:~6,2%
+set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
+
+:: 현재 시간과 컴퓨터 이름으로 새로운 폴더를 생성함
+set foldername=%computername%_%timestamp%
+mkdir "%foldername%"
+echo "%foldername%"
+echo.
+
+
+:: 활성데이터 수집을 위한 준비 
+set "volatile_dir=%foldername%\Volatile_Information"
+mkdir "%volatile_dir%"
+echo Created Volatile_DIR
+echo.
+
+:Display_Menu
+echo.
+echo ------------------------------------
+echo Select the step you want to perform:
+echo ------------------------------------
+echo.
+echo 1. Dump registry and cache
+echo 2. Collect network connection information
+echo 3. Collect process information
+echo 4. Collect login user information
+echo a. Perform all steps
+echo q. Quit
+echo.
+echo Example: 2,3,4
+
+echo.
+:prompt
+set execute_all_labels=0
+set /p choice="Enter your choice: "
+echo.
+echo You entered %choice%
+
+if /i "%choice%"=="q" (
+    exit /b
+)
+
+if /i "%choice%"=="a" (
+    set execute_all_labels=1
+)
+
+if "%execute_all_labels%"=="1" (
+    call :run_step_1
+    call :run_step_2
+    call :run_step_3
+    call :run_step_4
+) else (
+    call :run_step_%choice%
+)
+
+goto :prompt
+
+:run_step_1
+:: 1. Register, Cache
+echo -----------------------------
+echo 1. Dumping registry and cache...
+echo -----------------------------
+echo.
+
+set "RegisterCache_dir=%volatile_dir%\RegisterCache"
+mkdir %RegisterCache_dir%
+echo --------------------------
+echo Created RegisterCache Dir
+echo Acquiring Information
+echo --------------------------
+echo.
+
+reg save HKEY_LOCAL_MACHINE\SOFTWARE "%RegisterCache_dir%\SOFTWARE" && echo SOFTWARE registry file dumped to : "%RegisterCache_dir%"
+reg save HKEY_LOCAL_MACHINE\SAM "%RegisterCache_dir%\SAM" && echo SAM registry file dumped to : "%RegisterCache_dir%"
+reg save HKEY_LOCAL_MACHINE\SYSTEM "%RegisterCache_dir%\SYSTEM" && echo SYSTEM registry file dumped to : "%RegisterCache_dir%"
+reg save HKEY_LOCAL_MACHINE\SECURITY "%RegisterCache_dir%\SECURITY" &&  echo SECURITY registry file dumped to : "%RegisterCache_dir%"
+
+:: BLUESCREENVIEW
+bluescreenview.exe /stext %RegisterCache_dir%\bluescreenview.txt
+
+echo Make Hash File
+set "REGISTRY_HASH=%RegisterCache_dir%\HASH"
+mkdir %REGISTRY_HASH%
+
+:: --------------------
+:: SAM FILE HASH
+:: --------------------
+hashdeep64 "%RegisterCache_dir%\SAM" > "%REGISTRY_HASH%\SAM_HASH.txt"
+:: --------------------
+:: SOFTWARE FILE HASH
+:: --------------------
+hashdeep64 "%RegisterCache_dir%\SOFTWARE" > "%REGISTRY_HASH%\SOFTWARE_HASH.txt"
+:: --------------------
+:: SYSTEM FILE HASH
+:: --------------------
+hashdeep64 "%RegisterCache_dir%\SYSTEM" > "%REGISTRY_HASH%\SYSTEM_HASH.txt"
+:: --------------------
+:: SECURITY FILE HASH
+:: --------------------
+hashdeep64 "%RegisterCache_dir%\SECURITY" > "%REGISTRY_HASH%SECURITY_HASH.txt"
+
+:: BLUESCREENVIEW_HASH
+hashdeep64 "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%BLUESCREENVIEW_HASH.txt"
+
+
+echo Registry Information Clear
+echo.
+set /a current_step+=1
+echo %current_step%
+
+if %current_step%==%final_step% (
+    echo All steps completed.
+    goto end_script
+)
+exit /b 
+
+:run_step_2
+:: 2. Network Information
+echo -----------------------------
+echo 2. NETWORK INFORMATION
+echo -----------------------------
+echo.
+
+set "Network_dir=%volatile_dir%\Network_Information"
+mkdir "%Network_dir%"
+echo --------------------------
+echo Created NETWORK Directory
+echo Acquiring Information
+echo --------------------------
+
+arp -a > "%Network_dir%\arp_result.txt"
+
+route PRINT > "%Network_dir%\route_result.txt"
+
+netstat -ano > "%Network_dir%\netstat_result.txt"
+
+:: net command 
+net sessions > "%Network_dir%\net_sessions.txt"
+net file > "%Network_dir%\net_file.txt"
+net share > "%Network_dir%\net_share.txt"
+
+:: nbtstat command 
+nbtstat -c > "%Network_dir%\nbtstat_c.txt"
+nbtstat -s > "%Network_dir%\nbtstat_s.txt"
+
+:: ifconfig command
+ipconfig /all > "%Network_dir%\ipconfig.txt"
+
+:: urlprotocolview  /stext <Filename>	
+urlprotocolview.exe /stext "%Network_dir%\urlprotocolview.txt"
+
+:: cports
+cports /stext "%Network_dir%\cports.txt"
+
+:: TCPLOGVIEW
+tcplogview /stext "%Network_dir%\tcplogview.txt"
+
+WifiInfoView.exe /stext "%Network_dir%\wifiInfoView.txt
+
+WirelessNetView /stext "%Network_dir%\WirelessNetView.txt
+
+echo Network Data collection is complete.
+
+echo.
+set /a current_step+=1
+echo %current_step%
+
+if %current_step%==%final_step% (
+    echo All steps completed.
+    goto end_script
+)
+exit /b
+
+:run_step_3
+echo -----------------------------
+echo 3. PROCESS INFORMATION
+echo -----------------------------
+:: 3. Process Information
+set PROCESS_Dir=%volatile_dir%\Process_Information
+mkdir %PROCESS_Dir%
+echo Process Directory Create
+
+:: psloglist 
+psloglist -d 30 -s -t * /accepteula > %PROCESS_Dir%\psloglist.txt
+
+:: tasklist - ok 
+tasklist -V > %PROCESS_Dir%\tasklist.txt
+
+:: pslist 
+pslist /accepteula > %PROCESS_Dir%\pslist.txt
+
+:: listdlls - ok
+Listdlls /accepteula > %PROCESS_Dir%\listdll.txt 
+
+::handle - ok 
+handle /accepteula > %PROCESS_Dir%\handle.txt
+
+:: tasklist /FO TABLE /NH > process_list.txt 
+tasklist /FO TABLE /NH > %PROCESS_Dir%\tasklist.txt
+
+:: regdllview64 /stext
+regdllview /stext %PROCESS_Dir%\regdllview.txt
+
+:: loadeddllsview /stext - ok 
+loadeddllsview64 /stext %PROCESS_Dir%\loadeddllsview.txt
+
+:: driverview /stext - ok
+driveview64 /stext %PROCESS_Dir%\driveview.txt
+
+:: cprocess - ok 
+cprocess /stext %PROCESS_Dir%\cprocess.txt
+
+:: openedfilesview /scomma
+openedfilesview /stext %PROCESS_Dir%\openedfilesview.txt
+
+:: opensavefilesview
+opensavefilesview /stext %PROCESS_Dir%\opensavefilesview.txt
+
+:: executedprogramslist
+executedprogramslist /stext %PROCESS_Dir%\executedprogramslist.txt
+
+:: installedpackagesview
+installedpackagesview /stext %PROCESS_Dir%\installedpackagesview.txt
+
+:: uninstallview
+uninstallview /stext %PROCESS_Dir%\uninstallview.txt
+
+:: mylastsearch
+mylastsearch /stext %PROCESS_Dir%\mylastsearch.txt
+
+:: browsers 
+browseraddonsview /stext %PROCESS_Dir%\browseraddonsview.txt
+browserdownloadsview /stext %PROCESS_Dir%\browserdownloadsview.txt
+browsinghistoryview /stext %PROCESS_Dir%\browsinghistoryview.txt
+
+echo Process Data collection is completed
+echo.
+set /a current_step+=1
+echo %current_step%
+
+if %current_step%==%final_step% (
+    echo All steps completed.
+    goto end_script
+)
+exit /b
+
+:run_step_4
+echo -----------------------------
+echo 4. LOGON USER INFORMATION
+echo -----------------------------
+echo.
+set Logon_Dir=%volatile_dir%\Logon_Information
+mkdir %Logon_Dir%
+echo Logon Information Acquiring...
+echo.
+:: psloggedon - ok 
+psloggedon /accepteula > %Logon_Dir%\psloggedon.txt 
+
+:: logonsessions /accepteula - ok
+logonsessions /accepteula > %Logon_Dir%\logonsessions.txt 
+
+:: net user - ok 
+net user > %Logon_Dir%\net_user.txt
+
+:: winlogonview - ok
+winlogonview /scomma %Logon_Dir%\winlogonview.txt
+
+echo Logon Data collection is complete.
+echo.
+set /a current_step+=1
+echo %current_step%
+
+if %current_step%==%final_step% (
+    echo All steps completed.
+    goto end_script
+)
+exit /b
+
+:end_script
+echo Script finished.
+exit 
+endlocal
