@@ -5,8 +5,6 @@ cd Process
 mkdir hash
 cd ..
 
-echo Collecting Process Information...
-
 echo ps aux >> Process/psaux.txt
 ps aux >> Process/psaux.txt
 
@@ -24,11 +22,11 @@ pgrep -a bash > pgrep_info.txt
 echo lsof >> Process/lsof.txt
 lsof -i -n >> Process/lsof.txt
 
-echo psaux.txt >> Process/hash/hash.txt
-./hash.exe psaux.txt >> Process/hash/hash.txt
-echo    >> Process/hash/hash.txt
+for file in Process/*.txt
+do
+	./hash.exe "$file" >> Process/hash/hash.txt
+	echo >> Process/hash/hash.txt
+done
 
-echo lsof.txt >> Process/hash/hash.txt
-./hash.exe lsof.txt >> Process/hash/hash.txt
 date >> Process/hash/hash.txt
 echo    >> Process/hash/hash.txt
