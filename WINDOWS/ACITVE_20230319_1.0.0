@@ -102,7 +102,7 @@ echo 1. Dumping registry and cache...
 echo -----------------------------
 echo.
 
-set "RegisterCache_dir=%volatile_dir%\RegisterCache"
+set RegisterCache_dir=%volatile_dir%\RegisterCache
 mkdir %RegisterCache_dir%
 echo --------------------------
 echo Created RegisterCache Dir
@@ -119,7 +119,7 @@ reg save HKEY_LOCAL_MACHINE\SECURITY "%RegisterCache_dir%\SECURITY" &&  echo SEC
 bluescreenview.exe /stext %RegisterCache_dir%\bluescreenview.txt
 
 echo Make Hash File
-set "REGISTRY_HASH=%RegisterCache_dir%\HASH"
+set REGISTRY_HASH=%RegisterCache_dir%\HASH
 mkdir %REGISTRY_HASH%
 
 :: --------------------
@@ -137,10 +137,10 @@ hashdeep64 "%RegisterCache_dir%\SYSTEM" > "%REGISTRY_HASH%\SYSTEM_HASH.txt"
 :: --------------------
 :: SECURITY FILE HASH
 :: --------------------
-hashdeep64 "%RegisterCache_dir%\SECURITY" > "%REGISTRY_HASH%SECURITY_HASH.txt"
+hashdeep64 "%RegisterCache_dir%\SECURITY" > "%REGISTRY_HASH%\SECURITY_HASH.txt"
 
 :: BLUESCREENVIEW_HASH
-hashdeep64 "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%BLUESCREENVIEW_HASH.txt"
+hashdeep64 "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%\BLUESCREENVIEW_HASH.txt"
 
 
 echo Registry Information Clear
@@ -168,11 +168,11 @@ echo Created NETWORK Directory
 echo Acquiring Information
 echo --------------------------
 
-arp -a > "%Network_dir%\arp_result.txt"
+arp -a > "%Network_dir%\arp.txt"
 
-route PRINT > "%Network_dir%\route_result.txt"
+route PRINT > "%Network_dir%\route.txt"
 
-netstat -ano > "%Network_dir%\netstat_result.txt"
+netstat -ano > "%Network_dir%\netstat.txt"
 
 :: net command 
 net sessions > "%Network_dir%\net_sessions.txt"
@@ -200,8 +200,32 @@ WifiInfoView.exe /stext "%Network_dir%\wifiInfoView.txt
 WirelessNetView /stext "%Network_dir%\WirelessNetView.txt
 
 echo Network Data collection is complete.
-
 echo.
+echo Make Hash File
+
+set NETWORK_HASH=%Network_dir%\HASH
+mkdir %NETWORK_HASH%
+
+::Hash 
+::--------------------------------------------------------------
+hashdeep64 "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+hashdeep64 "%Network_dir%\route.txt" > "%NETWORK_HASH%\route_hash.txt"
+hashdeep64 "%Network_dir%\netstat.txt" > "%NETWORK_HASH%\netstat_hash.txt"
+hashdeep64 "%Network_dir%\net_sessions.txt" > "%NETWORK_HASH%\net_sessions_hash.txt"
+hashdeep64 "%Network_dir%\net_file.txt" > "%NETWORK_HASH%\net_file_hash.txt"
+hashdeep64 "%Network_dir%\net_share.txt" > "%NETWORK_HASH%\net_share_hash.txt"
+hashdeep64 "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+hashdeep64 "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+hashdeep64 "%Network_dir%\nbtstat_c.txt" > "%NETWORK_HASH%\nbtstat_c_hash.txt"
+hashdeep64 "%Network_dir%\nbtstat_s.txt" > "%NETWORK_HASH%\nbtstat_s_hash.txt"
+hashdeep64 "%Network_dir%\ipconfig.txt" > "%NETWORK_HASH%\ipconfig_hash.txt"
+hashdeep64 "%Network_dir%\urlprotocolview.txt" > "%NETWORK_HASH%\urlprotocolview_hash.txt"
+hashdeep64 "%Network_dir%\cports.txt" > "%NETWORK_HASH%\cports_hash.txt"
+hashdeep64 "%Network_dir%\tcplogview.txt" > "%NETWORK_HASH%\tcplogview_hash.txt"
+hashdeep64 "%Network_dir%\wifiInfoView.txt" > "%NETWORK_HASH%\wifiInfoView_hash.txt"
+hashdeep64 "%Network_dir%\WirelessNetView.txt" > "%NETWORK_HASH%\WirelessNetView_hash.txt"
+::--------------------------------------------------------------
+
 set /a current_step+=1
 echo %current_step%
 
@@ -275,6 +299,12 @@ browsinghistoryview /stext %PROCESS_Dir%\browsinghistoryview.txt
 
 echo Process Data collection is completed
 echo.
+echo Make Hash File
+
+set PROCESS_HASH=%PROCESS_Dir%\HASH
+mkdir %PROCESS_HASH%
+
+
 set /a current_step+=1
 echo %current_step%
 
