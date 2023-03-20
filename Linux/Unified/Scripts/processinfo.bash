@@ -5,6 +5,7 @@ cd Process
 mkdir hash
 cd ..
 
+# Running Process Information
 echo ps aux > Process/psaux.txt
 ps aux >> Process/psaux.txt
 
@@ -19,8 +20,21 @@ pstree -paul > Process/pstree_info.txt
 # 실행중인 프로세스의 ID를 찾는 명령어
 pgrep -a bash > Process/pgrep_info.txt
 
-echo lsof > Process/lsof.txt
-lsof -i -n >> Process/lsof.txt
+
+# List of all network-related processes
+lsof -i -n > Process/lsof.txt
+
+# List of all open network connections
+lsof -i -n | grep ESTABLISHED > Process/established.txt
+
+# List of all UDP network connections
+lsof -i -n | grep UDP > Process/udp.txt
+
+# List of all listening TCP ports
+lsof -i -n | grep LISTEN | grep TCP > Process/tcpports.txt
+
+# List of all listening UDP ports
+lsof -i -n | grep LISTEN | grep UDP > Process/udpports.txt
 
 # Display process status information
 echo "Process status information: "
@@ -39,6 +53,7 @@ done > Process/status_info.txt
 
 for file in Process/*.txt
 do
+    echo "$file" >> Process/hash/hash.txt
 	./hash.exe "$file" >> Process/hash/hash.txt
 	echo >> Process/hash/hash.txt
 done
