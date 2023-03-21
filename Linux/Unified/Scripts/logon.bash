@@ -30,7 +30,10 @@ users
 echo "---------------------------------------------"
 echo "5. Recently logged out user information"
 last -x | grep down 
+
 echo "---------------------------------------------"
+echo "6. Log in more than 5 failed logins"
+sudo lastb
 
 ./hash.exe Logon/logon.txt > Logon/hash/hash.txt
 date >> Logon/hash/hash.txt
