@@ -1,6 +1,7 @@
 #!/bin/bash
 
 chmod +x Scripts/*.bash
+chmod 777 hash.exe
 
 # Selective statement that selects the area you want to forensics
 PS3='Please Select the section You want to Forensic : '
