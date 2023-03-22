@@ -5,17 +5,17 @@ cd Network
 mkdir hash
 cd ..
 
-echo ifconfig >> Network/ifconfig.txt		# Network Interface Configuration Information
-ifconfig >> Network/ifconfig.txt
+echo ipaddr >> Network/netinterface.txt		# Network Interface Configuration Information
+ip addr >> Network/netinterface.txt
 
 echo lsof -i -n >> Network/lsof.txt			# Every Opened Network Connection Information
 lsof -i -n >> Network/lsof.txt
 
-echo netstat -tuln >> Network/netstat.txt	# Every TCP, UDP Connection Information
-netstat -tuln >> Network/netstat.txt
+echo ss -tulw >> Network/protocolconnection.txt	# Every TCP, UDP Connection Information
+ss -tulw >> Network/protocolconnection.txt
 
 echo Route Cache >> Network/Route.txt		# Routing Table Information
-route -n >> Network/Route.txt
+ip route >> Network/Route.txt
 
 echo ARP Cache >> Network/ARP.txt			# ARP Cache Information
 cat /proc/net/arp | while read line; do
@@ -31,6 +31,7 @@ done >> Network/ARP.txt
 
 echo DNS Cache >> Network/DNS.txt			# DNS Cache Information
 killall -USR1 systemd-resolved && journalctl -u systemd-resolved | grep -A 100000 "CACHE:" >> Network/DNS.txt
+# For normal execution obtain administrator privileges
 
 for file in Network/*.txt					# Obtain the hash value for each result file
 do
