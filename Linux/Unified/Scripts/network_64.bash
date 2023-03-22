@@ -34,6 +34,7 @@ killall -USR1 systemd-resolved && journalctl -u systemd-resolved | grep -A 10000
 
 for file in Network/*.txt					# Obtain the hash value for each result file
 do
+	echo "$file" >> Network/hash/hash.txt
 	./hash.exe "$file" >> Network/hash/hash.txt
 	echo >> Network/hash/hash.txt
 done
