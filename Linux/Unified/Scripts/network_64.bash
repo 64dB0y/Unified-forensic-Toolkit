@@ -6,16 +6,38 @@ mkdir hash
 cd ..
 
 echo ipaddr >> Network/netinterface.txt		# Network Interface Configuration Information
-ip addr >> Network/netinterface.txt
+if ! ifconfig; then
+	echo "Command failed"
+	echo "Execute alternate command"
+	ip addr >> Network/netinterface.txt
+else
+	ifconfig >> Network/netinterface.txt
+	continue
+fi
 
 echo lsof -i -n >> Network/lsof.txt			# Every Opened Network Connection Information
 lsof -i -n >> Network/lsof.txt
 
 echo ss -tulw >> Network/protocolconnection.txt	# Every TCP, UDP Connection Information
-ss -tulw >> Network/protocolconnection.txt
+if ! netstat -tuln; then
+	echo "Command failed"
+	echo "Execute alternate command"
+	ss -tulw >> Network/protocolconnection.txt
+else
+	netstat -tuln >> Network/protocolconnection.txt
+	continue;
+fi
+	
 
 echo Route Cache >> Network/Route.txt		# Routing Table Information
-ip route >> Network/Route.txt
+if ! route -n; then
+	echo "Command failed"
+	echo "Execute alternate command"
+	ip route >> Network/Route.txt
+else
+	route -n >> Network/Route.txt
+	continue;
+fi
 
 echo ARP Cache >> Network/ARP.txt			# ARP Cache Information
 cat /proc/net/arp | while read line; do
