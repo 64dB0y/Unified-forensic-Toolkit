@@ -53,10 +53,10 @@ done > Process/status_info.txt
 
 for file in Process/*.txt
 do
-    echo "$file" >> Process/hash/hash.txt
+    	echo "$file" >> Process/hash/hash.txt
 	./hash.exe "$file" >> Process/hash/hash.txt
 	echo >> Process/hash/hash.txt
 done
 
 date >> Process/hash/hash.txt
-echo    >> Process/hash/hash.txt
+echo >> Process/hash/hash.txt
