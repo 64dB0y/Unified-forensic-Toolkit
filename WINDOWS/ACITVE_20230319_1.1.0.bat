@@ -8,9 +8,13 @@ echo -------------
 echo.
 echo.
 
+set CASE=""
+set NAME=""
+
 
 set /a current_step=0
 set /a final_step=4
+
 set "nirsoft=%~dp0nirsoft"
 set "sysinternals=%~dp0sysinternals"
 set "etc=%~dp0etc"
@@ -47,11 +51,31 @@ mkdir "%foldername%"
 echo "%foldername%"
 echo.
 
+:: 타임스탬프 저장을 위한 폴더를 생성 
+set TimeStamp=%foldername%\TimeStamp.log
+echo START TIME : %timestamp%
+echo [%timestamp%]START TIME >> %TimeStamp%
+
+:: 케이스 입력을 받음
+:: 입력하지 않았다면 계속 입력을 받도록 대기 
+:INPUT_CASE
+set /p CASE= CASE INPUT : || GOTO:INPUT_CASE
+echo [%timestamp%]%CASE% >> %TimeStamp%
+
+:INPUT_NAME
+set /p NAME= NAME INPUT : || GOTO:INPUT_NAME
+echo [%timestamp%]%NAME% >> %TimeStamp%
+
+:START
+echo %CASE% - %NAME% Digital Forensic START
+echo .
+
 
 :: 활성데이터 수집을 위한 준비 
 set "volatile_dir=%foldername%\Volatile_Information"
 mkdir "%volatile_dir%"
-echo Created Volatile_DIR
+echo Created VOLATILE DIRECTORY 
+echo [%timestamp%]Created VOLATILE DIRECTORY >> %TimeStamp%
 echo.
 
 :Display_Menu
@@ -75,12 +99,16 @@ set execute_all_labels=0
 set /p choice="Enter your choice: "
 echo.
 echo You entered %choice%
+echo [%timestamp%] CHOICE SELECTED %choice% >> %TimeStamp%
+
 
 if /i "%choice%"=="q" (
+    echo [%timestamp%] SELECT CHOICE Q >> %TimeStamp%
     exit /b
 )
 
 if /i "%choice%"=="a" (
+    echo [%timestamp%] SELECT CHOICE A >> %TimeStamp%
     set execute_all_labels=1
 )
 
@@ -99,6 +127,7 @@ goto :prompt
 :: 1. Register, Cache
 echo -----------------------------
 echo 1. Dumping registry and cache...
+echo [%timestamp%] Dumping registry and cache... >> %TimeStamp%
 echo -----------------------------
 echo.
 
@@ -106,44 +135,58 @@ set RegisterCache_dir=%volatile_dir%\RegisterCache
 mkdir %RegisterCache_dir%
 echo --------------------------
 echo Created RegisterCache Dir
+echo [%timestamp%] Created RegisterCache Dir >> %TimeStamp%
 echo Acquiring Information
 echo --------------------------
 echo.
 
 reg save HKEY_LOCAL_MACHINE\SOFTWARE "%RegisterCache_dir%\SOFTWARE" && echo SOFTWARE registry file dumped to : "%RegisterCache_dir%"
+echo [%timestamp%] REG SAVE SOFTWARE >> %TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SAM "%RegisterCache_dir%\SAM" && echo SAM registry file dumped to : "%RegisterCache_dir%"
+echo [%timestamp%] REG SAVE SAM >> %TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SYSTEM "%RegisterCache_dir%\SYSTEM" && echo SYSTEM registry file dumped to : "%RegisterCache_dir%"
+echo [%timestamp%] REG SAVE SYSTEM >> %TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SECURITY "%RegisterCache_dir%\SECURITY" &&  echo SECURITY registry file dumped to : "%RegisterCache_dir%"
+echo [%timestamp%] REG SAVE SECURITY >> %TimeStamp%
 
 :: BLUESCREENVIEW
+echo ACQUIRING BLUESCREEN INFORMATION
+echo [%timestamp%]ACQUIRING BLUESCREEN INFORMATION >> %TimeStamp%
 bluescreenview.exe /stext %RegisterCache_dir%\bluescreenview.txt
 
 echo Make Hash File
 set REGISTRY_HASH=%RegisterCache_dir%\HASH
+echo [%timestamp%]REGISTRY HASH DIRECTORY CREATE >> %TimeStamp%
 mkdir %REGISTRY_HASH%
 
 :: --------------------
 :: SAM FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SAM" > "%REGISTRY_HASH%\SAM_HASH.txt"
+echo [%timestamp%]CREATE SAM HASH >> %TimeStamp%
 :: --------------------
 :: SOFTWARE FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SOFTWARE" > "%REGISTRY_HASH%\SOFTWARE_HASH.txt"
+echo [%timestamp%]CREATE SOFTWARE HASH >> %TimeStamp%
 :: --------------------
 :: SYSTEM FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SYSTEM" > "%REGISTRY_HASH%\SYSTEM_HASH.txt"
+echo [%timestamp%]CREATE SYSTEM HASH >> %TimeStamp%
+
 :: --------------------
 :: SECURITY FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SECURITY" > "%REGISTRY_HASH%\SECURITY_HASH.txt"
+echo [%timestamp%]CREATE SECURITY HASH >> %TimeStamp%
 
 :: BLUESCREENVIEW_HASH
 hashdeep64 "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%\BLUESCREENVIEW_HASH.txt"
-
+echo [%timestamp%]CREATE BLUESCREENVIEW HASH >> %TimeStamp%
 
 echo Registry Information Clear
+echo [%timestamp%]Registry Information Clear >> %TimeStamp%
 echo.
 set /a current_step+=1
 echo %current_step%
