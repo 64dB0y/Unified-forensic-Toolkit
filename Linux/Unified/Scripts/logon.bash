@@ -2,9 +2,9 @@
 # 출력 결과를 logon.txt 파일로 저장
 
 mkdir Logon
-cd Logon
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Logon Directory Timestamp : $timestamp" >> "../Forensic_Info.txt"
+cd Logon
 
 mkdir hash
 timestamp=$(date +"%Y-%m-%d %T")
