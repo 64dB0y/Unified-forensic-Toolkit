@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# Enter name and description of the task
+read -p "Enter your name : " name
+read -p "Enter a description of the task to be performed : " task_desc
+
+# Create a Timestamp
+timestamp=$(date +"%Y-%m-%d %T)
+
+# Create a filename based on the timestamp
+filename="Forensic_Info.txt"
+
+# Write the user name, task description, timestamp, and hostname(device name) to the file
+echo "Name: $name" > "$filename"
+echo "Task Description: $task_desc" >> "$filename"
+echo "Timestamp: $timestamp" >> "$filename"
+echo hostname >> "$filename"
+
+# Permission for scripts and hash value program
 chmod +x Scripts/*.bash
 chmod 777 hash.exe
 
