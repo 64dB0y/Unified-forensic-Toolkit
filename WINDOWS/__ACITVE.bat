@@ -332,7 +332,6 @@ if %current_step%==%final_step% (
 exit /b
 
 :run_step_3
-:: 3. Process Information
 echo -----------------------------
 echo 3. PROCESS INFORMATION
 echo [%timestamp%] PROCESS INFORMATION START >> %TimeStamp%
@@ -341,7 +340,7 @@ echo.
 
 set PROCESS_Dir=%volatile_dir%\Process_Information
 mkdir %PROCESS_Dir%
-echo [%timestamp%] CREATE PROCESS DIRECTION >> %TimeStamp%
+echo [%timestamp%] CREATE PROCESS DIRECTORY >> %TimeStamp%
 echo --------------------------
 echo CREATE PROCESS DIRECTORY
 echo.
@@ -498,36 +497,57 @@ exit /b
 :run_step_4
 echo -----------------------------
 echo 4. LOGON USER INFORMATION
+echo [%timestamp%] LOGON USER INFORMATION START >> %TimeStamp%
 echo -----------------------------
 echo.
+
 set Logon_Dir=%volatile_dir%\Logon_Information
 mkdir %Logon_Dir%
-echo Logon Information Acquiring...
+echo [%timestamp%] CREATE LOGON DIRECTORY >> %TimeStamp%
+echo --------------------------
+echo CREATE LOGON DIRECTORY
 echo.
+echo ACQUIRING INFORMATION
+echo --------------------------
+
 :: psloggedon - ok 
 psloggedon /accepteula > %Logon_Dir%\psloggedon.txt 
+echo [%timestamp%] PSLOGGEDON >> %TimeStamp%
 
 :: logonsessions /accepteula - ok
 logonsessions /accepteula > %Logon_Dir%\logonsessions.txt 
+echo [%timestamp%] LOGONSESSIONS >> %TimeStamp%
 
 :: net user - ok 
 net user > %Logon_Dir%\net_user.txt
+echo [%timestamp%] NET USER >> %TimeStamp%
 
 :: winlogonview - ok
 winlogonview /scomma %Logon_Dir%\winlogonview.txt
+echo [%timestamp%] WINLOGONVIEW >> %TimeStamp%
 
-echo Logon Data collection is complete.
-echo.
-echo Make Hash File
+::echo Logon Data collection is complete.
+::echo.
+::echo Make Hash File
 
 set LOGON_HASH=%Logon_Dir%\HASH
 mkdir %LOGON_HASH%
+echo [%timestamp%] CREATE LOGON HASH DIRECTORY >> %TimeStamp%
 
 hashdeep64 "%Logon_Dir%\psloggedon.txt" > "%LOGON_HASH%\psloggedon_hash.txt"
-hashdeep64 "%Logon_Dir%\logonsessions.txt" > "%LOGON_HASH%\logonsessions_hash.txt"
-hashdeep64 "%Logon_Dir%\net_user.txt" > "%LOGON_HASH%\net_user_hash.txt"
-hashdeep64 "%Logon_Dir%\winlogonview.txt" > "%LOGON_HASH%\winlogonview_hash.txt"
+echo [%timestamp%] PSLOGGEDON HASH >> %TimeStamp%
 
+hashdeep64 "%Logon_Dir%\logonsessions.txt" > "%LOGON_HASH%\logonsessions_hash.txt"
+echo [%timestamp%] LOGONSESSIONS HASH >> %TimeStamp%
+
+hashdeep64 "%Logon_Dir%\net_user.txt" > "%LOGON_HASH%\net_user_hash.txt"
+echo [%timestamp%] NET USER HASH >> %TimeStamp%
+
+hashdeep64 "%Logon_Dir%\winlogonview.txt" > "%LOGON_HASH%\winlogonview_hash.txt"
+echo [%timestamp%] WINLOGONVIEW HASH >> %TimeStamp%
+
+echo LOGON INFORMATION CLEAR
+echo [%timestamp%] LOGON INFORMATION CLEAR >> %TimeStamp%
 
 set /a current_step+=1
 echo %current_step%
@@ -539,6 +559,6 @@ if %current_step%==%final_step% (
 exit /b
 
 :end_script
-echo Script finished.
+echo SCRIPT FINISHED
 exit 
 endlocal
