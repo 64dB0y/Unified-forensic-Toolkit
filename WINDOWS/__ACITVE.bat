@@ -127,16 +127,16 @@ goto :prompt
 :: 1. Register, Cache
 echo -----------------------------
 echo 1. Dumping registry and cache...
-echo [%timestamp%] Dumping registry and cache... >> %TimeStamp%
+echo [%timestamp%] REGISTRY CACHE INFORMATION START >> %TimeStamp%
 echo -----------------------------
 echo.
 
 set RegisterCache_dir=%volatile_dir%\RegisterCache
 mkdir %RegisterCache_dir%
 echo --------------------------
-echo Created RegisterCache Dir
-echo [%timestamp%] Created RegisterCache Dir >> %TimeStamp%
-echo Acquiring Information
+echo CREATED REGISTERCACHE DIRECTORY
+echo [%timestamp%] CREATED REGISTERCACHE DIRECTORY >> %TimeStamp%
+echo ACQUIRING INFORMATION
 echo --------------------------
 echo.
 
@@ -185,8 +185,8 @@ echo [%timestamp%]CREATE SECURITY HASH >> %TimeStamp%
 hashdeep64 "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%\BLUESCREENVIEW_HASH.txt"
 echo [%timestamp%]CREATE BLUESCREENVIEW HASH >> %TimeStamp%
 
-echo Registry Information Clear
-echo [%timestamp%]Registry Information Clear >> %TimeStamp%
+echo REGISTRY INFORMATION CLEAR 
+echo [%timestamp%]REGISTRY INFORMATION CLEAR >> %TimeStamp%
 echo.
 set /a current_step+=1
 echo %current_step%
@@ -201,72 +201,122 @@ exit /b
 :: 2. Network Information
 echo -----------------------------
 echo 2. NETWORK INFORMATION
+echo [%timestamp%] NETWORK INFORMATION START >> %TimeStamp%
 echo -----------------------------
 echo.
 
 set "Network_dir=%volatile_dir%\Network_Information"
 mkdir "%Network_dir%"
+echo [%timestamp%] CREATED NETWORK DIRECTORY >> %TimeStamp%
 echo --------------------------
-echo Created NETWORK Directory
-echo Acquiring Information
+echo CREATED NETWORK DIRECTORY
+echo.
+echo ACQUIRING INFORMATION
 echo --------------------------
 
 arp -a > "%Network_dir%\arp.txt"
+echo [%timestamp%] arp  >> %TimeStamp%
 
 route PRINT > "%Network_dir%\route.txt"
+echo [%timestamp%] route >> %TimeStamp%
 
 netstat -ano > "%Network_dir%\netstat.txt"
+echo [%timestamp%] netstat >> %TimeStamp%
 
 :: net command 
 net sessions > "%Network_dir%\net_sessions.txt"
+echo [%timestamp%] net sessions >> %TimeStamp%
+
 net file > "%Network_dir%\net_file.txt"
+echo [%timestamp%] net file >> %TimeStamp%
+
 net share > "%Network_dir%\net_share.txt"
+echo [%timestamp%] net share >> %TimeStamp%
+
 
 :: nbtstat command 
 nbtstat -c > "%Network_dir%\nbtstat_c.txt"
+echo [%timestamp%] nbtstat -c >> %TimeStamp%
+
 nbtstat -s > "%Network_dir%\nbtstat_s.txt"
+echo [%timestamp%] nbtstat -s >> %TimeStamp%
 
 :: ifconfig command
 ipconfig /all > "%Network_dir%\ipconfig.txt"
+echo [%timestamp%] ipconfig >> %TimeStamp%
 
 :: urlprotocolview  /stext <Filename>	
-urlprotocolview.exe /stext "%Network_dir%\urlprotocolview.txt"
+urlprotocolview /stext "%Network_dir%\urlprotocolview.txt"
+echo [%timestamp%] urlprotocolview >> %TimeStamp%
 
 :: cports
 cports /stext "%Network_dir%\cports.txt"
+echo [%timestamp%] cports >> %TimeStamp%
 
 :: TCPLOGVIEW
 tcplogview /stext "%Network_dir%\tcplogview.txt"
+echo [%timestamp%] tcplogview >> %TimeStamp%
 
 WifiInfoView.exe /stext "%Network_dir%\wifiInfoView.txt
+echo [%timestamp%] WifiInfoView >> %TimeStamp%
 
 WirelessNetView /stext "%Network_dir%\WirelessNetView.txt
+echo [%timestamp%] WirelessNetView >> %TimeStamp%
 
-echo Network Data collection is complete.
-echo.
-echo Make Hash File
+:: echo Network Data collection is complete.
+:: echo.
+:: echo Make Hash File
 
 set NETWORK_HASH=%Network_dir%\HASH
 mkdir %NETWORK_HASH%
-
+echo [%timestamp%] CREATE NETWORK HASH DIRECTORY >> %TimeStamp%
 ::Hash 
 ::--------------------------------------------------------------
 hashdeep64 "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+echo [%timestamp%] ARP HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\route.txt" > "%NETWORK_HASH%\route_hash.txt"
+echo [%timestamp%] ROUTE HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\netstat.txt" > "%NETWORK_HASH%\netstat_hash.txt"
+echo [%timestamp%] NETSTAT HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\net_sessions.txt" > "%NETWORK_HASH%\net_sessions_hash.txt"
+echo [%timestamp%] NETSESSION HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\net_file.txt" > "%NETWORK_HASH%\net_file_hash.txt"
+echo [%timestamp%] NET FILE HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\net_share.txt" > "%NETWORK_HASH%\net_share_hash.txt"
+echo [%timestamp%] NET SHARE HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
-hashdeep64 "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+echo [%timestamp%] ARP HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\nbtstat_c.txt" > "%NETWORK_HASH%\nbtstat_c_hash.txt"
+echo [%timestamp%] NBTSTAT_C HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\nbtstat_s.txt" > "%NETWORK_HASH%\nbtstat_s_hash.txt"
+echo [%timestamp%] NBTSTAT_S HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\ipconfig.txt" > "%NETWORK_HASH%\ipconfig_hash.txt"
+echo [%timestamp%] IPCONFIG HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\urlprotocolview.txt" > "%NETWORK_HASH%\urlprotocolview_hash.txt"
+echo [%timestamp%] URLPROTOCOLVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\cports.txt" > "%NETWORK_HASH%\cports_hash.txt"
+echo [%timestamp%] CPORTS HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\tcplogview.txt" > "%NETWORK_HASH%\tcplogview_hash.txt"
+echo [%timestamp%] TCPLOGVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\wifiInfoView.txt" > "%NETWORK_HASH%\wifiInfoView_hash.txt"
+echo [%timestamp%] WIFIINFOVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%Network_dir%\WirelessNetView.txt" > "%NETWORK_HASH%\WirelessNetView_hash.txt"
+echo [%timestamp%] WIRELESSNETVIEW HASH >> %TimeStamp%
+
 ::--------------------------------------------------------------
 
 set /a current_step+=1
