@@ -3,7 +3,12 @@
 
 mkdir Logon
 cd Logon
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Logon Directory Timestamp : $timestamp" >> "../Forensic_Info.txt"
+
 mkdir hash
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Logon Hash Directory Timtestamp : $timestamp" >> "../../Forensic_Info.txt"
 cd ..
 
 exec > Logon/logon.txt
@@ -37,5 +42,9 @@ sudo lastb
 
 ./hash.exe Logon/logon.txt > Logon/hash/hash.txt
 date >> Logon/hash/hash.txt
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Logon Hash txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 
 echo Logon user Information Collecting Finished
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Logon txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
