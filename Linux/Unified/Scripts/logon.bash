@@ -15,9 +15,6 @@ timestamp=$(date +"%Y-%m-%d %T")
 echo "Logon Hash Directory Timtestamp : $timestamp" >> ../Forensic_Info.txt
 cd ..
 
-# 로그온 사용자 정보 출력 스크립트
-echo Collecting Logon user Information...
-
 # Recently logged in user information
 lastlog > /Logon/lastlog.txt
 timestamp=$(date +"%Y-%m-%d %T")
@@ -56,5 +53,7 @@ do
 done
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Logon hash.txt Timtestamp : $timestamp" >> Forensic_Info.txt
+date >> Logon/hash/hash.txt
+echo    >> Logon/hash/hash.txt
 
-echo Logon user Information Collecting Finished
+echo Collecting Logon user Information Finished

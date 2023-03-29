@@ -62,8 +62,6 @@ timestamp=$(date +"%Y-%m-%d %T")
 echo "udpports.txt Timtestamp : $timestamp" >> Forensic_Info.txt
 
 # Display process status information
-echo "Process status information: "
-echo "----------------------------------------------"
 for i in $(ls /proc/ | grep -E '^[0-9]+$'); do
     pid=$i
     process_name=$(ps -p $pid -o comm=)
@@ -89,3 +87,5 @@ echo "Network hash.txt Timtestamp : $timestamp" >> Forensic_Info.txt
 
 date >> Process/hash/hash.txt
 echo >> Process/hash/hash.txt
+
+echo Collecting Process Info Finished

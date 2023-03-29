@@ -91,4 +91,4 @@ echo "Network hash.txt Timtestamp : $timestamp" >> Forensic_Info.txt
 date >> Network/hash/hash.txt
 echo    >> Network/hash/hash.txt
 
-echo Network Info Collecting Finished
+echo Collecting Network Info Finished
