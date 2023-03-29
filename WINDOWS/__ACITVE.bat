@@ -134,8 +134,8 @@ echo.
 set RegisterCache_dir=%volatile_dir%\RegisterCache
 mkdir %RegisterCache_dir%
 echo --------------------------
-echo CREATED REGISTERCACHE DIRECTORY
-echo [%timestamp%] CREATED REGISTERCACHE DIRECTORY >> %TimeStamp%
+echo CREATE REGISTERCACHE DIRECTORY
+echo [%timestamp%] CREATE REGISTERCACHE DIRECTORY >> %TimeStamp%
 echo ACQUIRING INFORMATION
 echo --------------------------
 echo.
@@ -150,11 +150,11 @@ reg save HKEY_LOCAL_MACHINE\SECURITY "%RegisterCache_dir%\SECURITY" &&  echo SEC
 echo [%timestamp%] REG SAVE SECURITY >> %TimeStamp%
 
 :: BLUESCREENVIEW
-echo ACQUIRING BLUESCREEN INFORMATION
-echo [%timestamp%]ACQUIRING BLUESCREEN INFORMATION >> %TimeStamp%
+:: echo ACQUIRING BLUESCREEN INFORMATION
 bluescreenview.exe /stext %RegisterCache_dir%\bluescreenview.txt
+echo [%timestamp%]ACQUIRING BLUESCREEN INFORMATION >> %TimeStamp%
 
-echo Make Hash File
+:: echo Make Hash File
 set REGISTRY_HASH=%RegisterCache_dir%\HASH
 echo [%timestamp%]REGISTRY HASH DIRECTORY CREATE >> %TimeStamp%
 mkdir %REGISTRY_HASH%
@@ -163,30 +163,30 @@ mkdir %REGISTRY_HASH%
 :: SAM FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SAM" > "%REGISTRY_HASH%\SAM_HASH.txt"
-echo [%timestamp%]CREATE SAM HASH >> %TimeStamp%
+echo [%timestamp%] SAM HASH >> %TimeStamp%
 :: --------------------
 :: SOFTWARE FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SOFTWARE" > "%REGISTRY_HASH%\SOFTWARE_HASH.txt"
-echo [%timestamp%]CREATE SOFTWARE HASH >> %TimeStamp%
+echo [%timestamp%] SOFTWARE HASH >> %TimeStamp%
 :: --------------------
 :: SYSTEM FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SYSTEM" > "%REGISTRY_HASH%\SYSTEM_HASH.txt"
-echo [%timestamp%]CREATE SYSTEM HASH >> %TimeStamp%
+echo [%timestamp%] SYSTEM HASH >> %TimeStamp%
 
 :: --------------------
 :: SECURITY FILE HASH
 :: --------------------
 hashdeep64 "%RegisterCache_dir%\SECURITY" > "%REGISTRY_HASH%\SECURITY_HASH.txt"
-echo [%timestamp%]CREATE SECURITY HASH >> %TimeStamp%
+echo [%timestamp%] SECURITY HASH >> %TimeStamp%
 
 :: BLUESCREENVIEW_HASH
 hashdeep64 "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%\BLUESCREENVIEW_HASH.txt"
-echo [%timestamp%]CREATE BLUESCREENVIEW HASH >> %TimeStamp%
+echo [%timestamp%] BLUESCREENVIEW HASH >> %TimeStamp%
 
 echo REGISTRY INFORMATION CLEAR 
-echo [%timestamp%]REGISTRY INFORMATION CLEAR >> %TimeStamp%
+echo [%timestamp%] REGISTRY INFORMATION CLEAR >> %TimeStamp%
 echo.
 set /a current_step+=1
 echo %current_step%
@@ -207,9 +207,9 @@ echo.
 
 set "Network_dir=%volatile_dir%\Network_Information"
 mkdir "%Network_dir%"
-echo [%timestamp%] CREATED NETWORK DIRECTORY >> %TimeStamp%
+echo [%timestamp%] CREATE NETWORK DIRECTORY >> %TimeStamp%
 echo --------------------------
-echo CREATED NETWORK DIRECTORY
+echo CREATE NETWORK DIRECTORY
 echo.
 echo ACQUIRING INFORMATION
 echo --------------------------
@@ -319,6 +319,9 @@ echo [%timestamp%] WIRELESSNETVIEW HASH >> %TimeStamp%
 
 ::--------------------------------------------------------------
 
+echo NETWORK INFORMATION CLEAR
+echo [%timestamp%]NETWORK INFORMATION CLEAR >> %TimeStamp%
+echo.
 set /a current_step+=1
 echo %current_step%
 
@@ -329,93 +332,159 @@ if %current_step%==%final_step% (
 exit /b
 
 :run_step_3
+:: 3. Process Information
 echo -----------------------------
 echo 3. PROCESS INFORMATION
+echo [%timestamp%] PROCESS INFORMATION START >> %TimeStamp%
 echo -----------------------------
-:: 3. Process Information
+echo.
+
 set PROCESS_Dir=%volatile_dir%\Process_Information
 mkdir %PROCESS_Dir%
-echo Process Directory Create
+echo [%timestamp%] CREATE PROCESS DIRECTION >> %TimeStamp%
+echo --------------------------
+echo CREATE PROCESS DIRECTORY
+echo.
+echo ACQUIRING INFORMATION
+echo --------------------------
 
 :: psloglist 
 psloglist -d 30 -s -t * /accepteula > %PROCESS_Dir%\psloglist.txt
+echo [%timestamp%] PSLOGLIST >> %TimeStamp%
 
 :: tasklist - ok 
 tasklist -V > %PROCESS_Dir%\tasklist.txt
+echo [%timestamp%] TASKLIST >> %TimeStamp%
 
 :: pslist 
 pslist /accepteula > %PROCESS_Dir%\pslist.txt
+echo [%timestamp%] PSLIST >> %TimeStamp%
 
 :: listdlls - ok
 Listdlls /accepteula > %PROCESS_Dir%\listdll.txt 
+echo [%timestamp%] LISTDLLS >> %TimeStamp%
 
 ::handle - ok 
 handle /accepteula > %PROCESS_Dir%\handle.txt
+echo [%timestamp%] HANDLE >> %TimeStamp%
 
 :: tasklist /FO TABLE /NH > process_list.txt 
 tasklist /FO TABLE /NH > %PROCESS_Dir%\tasklist.txt
+echo [%timestamp%] TASKLIST >> %TimeStamp%
 
 :: regdllview64 /stext
 regdllview /stext %PROCESS_Dir%\regdllview.txt
+echo [%timestamp%] REGDLLVIEW >> %TimeStamp%
 
 :: loadeddllsview /stext - ok 
-loadeddllsview64 /stext %PROCESS_Dir%\loadeddllsview.txt
+loadeddllsview /stext %PROCESS_Dir%\loadeddllsview.txt
+echo [%timestamp%] LOADEDDLLSVIEW >> %TimeStamp%
 
 :: driverview /stext - ok
-driveview64 /stext %PROCESS_Dir%\driveview.txt
+driveview /stext %PROCESS_Dir%\driveview.txt
+echo [%timestamp%] DRIVEVIEW >> %TimeStamp%
 
 :: cprocess - ok 
 cprocess /stext %PROCESS_Dir%\cprocess.txt
+echo [%timestamp%] CPROCESS >> %TimeStamp%
 
 :: openedfilesview /scomma
 openedfilesview /stext %PROCESS_Dir%\openedfilesview.txt
+echo [%timestamp%] OPENEDFILESVIEW >> %TimeStamp%
 
 :: opensavefilesview
 opensavefilesview /stext %PROCESS_Dir%\opensavefilesview.txt
+echo [%timestamp%] OPENSAVEFILESVIEW >> %TimeStamp%
 
 :: executedprogramslist
 executedprogramslist /stext %PROCESS_Dir%\executedprogramslist.txt
+echo [%timestamp%] EXECUTEDPROGRAMSLIST >> %TimeStamp%
 
 :: installedpackagesview
 installedpackagesview /stext %PROCESS_Dir%\installedpackagesview.txt
+echo [%timestamp%] INSTALLEDPACKAGESVIEW >> %TimeStamp%
 
 :: uninstallview
 uninstallview /stext %PROCESS_Dir%\uninstallview.txt
+echo [%timestamp%] UNINSTALLVIEW >> %TimeStamp%
 
 :: mylastsearch
 mylastsearch /stext %PROCESS_Dir%\mylastsearch.txt
+echo [%timestamp%] MYLASTSEARCH >> %TimeStamp%
 
 :: browsers 
 browseraddonsview /stext %PROCESS_Dir%\browseraddonsview.txt
-browserdownloadsview /stext %PROCESS_Dir%\browserdownloadsview.txt
-browsinghistoryview /stext %PROCESS_Dir%\browsinghistoryview.txt
+echo [%timestamp%] BROWSERADDONSVIEW >> %TimeStamp%
 
-echo Process Data collection is completed
-echo.
-echo Make Hash File
+browserdownloadsview /stext %PROCESS_Dir%\browserdownloadsview.txt
+echo [%timestamp%] BROWSERDOWNLOADSVIEW >> %TimeStamp%
+
+browsinghistoryview /stext %PROCESS_Dir%\browsinghistoryview.txt
+echo [%timestamp%] BROWSINGHISTORYVIEW >> %TimeStamp%
+
+::echo Process Data collection is completed
+::echo.
+::echo Make Hash File
 
 set PROCESS_HASH=%PROCESS_Dir%\HASH
 mkdir %PROCESS_HASH%
+echo [%timestamp%] CREATE PROCESS HASH DIRECTORY >> %TimeStamp%
 
 hashdeep64 "%PROCESS_Dir%\psloglist.txt" > "%PROCESS_HASH%\psloglist_hash.txt"
+echo [%timestamp%] PSLOGLIST HASH >> %TimeStamp%
 hashdeep64 "%PROCESS_Dir%\tasklist.txt" > "%PROCESS_HASH%\tasklist_hash.txt"
+echo [%timestamp%] TASKLIST HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\pslist.txt" > "%PROCESS_HASH%\pslist_hash.txt"
+echo [%timestamp%] PSLIST HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\listdll.txt" > "%PROCESS_HASH%\listdll_hash.txt"
+echo [%timestamp%] LISTDLL HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\handle.txt" > "%PROCESS_HASH%\handle_hash.txt"
-hashdeep64 "%PROCESS_Dir%\tasklist.txt" > "%PROCESS_HASH%\tasklist_hash.txt"
+echo [%timestamp%] HANDLE HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\regdllview.txt" > "%PROCESS_HASH%\regdllview_hash.txt"
+echo [%timestamp%] REGDLLVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\loadeddllsview.txt" > "%PROCESS_HASH%\loadeddllsview_hash.txt"
+echo [%timestamp%] LOADEDDLLSVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\driveview.txt" > "%PROCESS_HASH%\driveview_hash.txt"
+echo [%timestamp%] DRIVEVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\cprocess.txt" > "%PROCESS_HASH%\cprocess_hash.txt"
+echo [%timestamp%] CPROCESS HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\openedfilesview.txt" > "%PROCESS_HASH%\openedfilesview_hash.txt"
+echo [%timestamp%] OPENEDFILESVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\opensavefilesview.txt" > "%PROCESS_HASH%\opensavefilesview_hash.txt"
+echo [%timestamp%] OPENSAVEFILESVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\executedprogramslist.txt" > "%PROCESS_HASH%\executedprogramslist_hash.txt"
+echo [%timestamp%] EXECUTEDPROGRAMSLIST HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\installedpackagesview.txt" > "%PROCESS_HASH%\installedpackagesview_hash.txt"
+echo [%timestamp%] INSTALLEDPACKAGESVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\uninstallview.txt" > "%PROCESS_HASH%\uninstallview_hash.txt"
+echo [%timestamp%] UNINSTALLVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\mylastsearch.txt" > "%PROCESS_HASH%\mylastsearch_hash.txt"
+echo [%timestamp%] MYLASTSEARCH HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\browseraddonsview.txt" > "%PROCESS_HASH%\browseraddonsview_hash.txt"
+echo [%timestamp%] BROWSERADDONSVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\browserdownloadsview.txt" > "%PROCESS_HASH%\browserdownloadsview_hash.txt"
+echo [%timestamp%] BROWSERDOWNLOADSVIEW HASH >> %TimeStamp%
+
 hashdeep64 "%PROCESS_Dir%\browsinghistoryview.txt" > "%PROCESS_HASH%\browsinghistoryview_hash.txt"
+echo [%timestamp%] BROWSINGHISTORYVIEW HASH >> %TimeStamp%
+
+echo PROCESS INFORMATION CLEAR
+echo [%timestamp%] PROCESS INFORMATION CLEAR >> %TimeStamp%
 
 set /a current_step+=1
 echo %current_step%
