@@ -31,7 +31,7 @@ chmod 777 hash.exe
 
 # Selective statement that selects the area you want to forensics
 PS3='Please Select the section You want to Forensic : '
-select section in "ALL" "Logon Info" "Network Info" "Processor Info" "Exit"
+select section in "ALL" "Logon Info" "Network Info" "Processor Info" "Autorun" "System Info" "Exit"
 do
 	if [ "$section" = "ALL" ];then              # Forensic ALL section
 		echo "Collecting $section..."
@@ -40,6 +40,7 @@ do
 		do
 			echo "-------------------------------------------------------------" >> Forensic_Info.txt
 			./"$file"
+			echo "-------------------------------------------------------------"
 		done
 		echo "Collection Finished"
 	fi
@@ -65,6 +66,22 @@ do
 		echo
 		echo "-------------------------------------------------------------" >> Forensic_Info.txt
 		./Scripts/processinfo.bash
+		echo "Collection Finished"
+	fi
+	
+	if [ "$section" = "Autorun" ];then          # Forensic Network section
+		echo "Collecting $section..."
+		echo
+		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		./Scripts/auto_64.bash
+		echo "Collection Finished"
+	fi
+	
+	if [ "$section" = "System Info" ];then          # Forensic Network section
+		echo "Collecting $section..."
+		echo
+		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		./Scripts/sysinfo_64.bash
 		echo "Collection Finished"
 	fi
 	
