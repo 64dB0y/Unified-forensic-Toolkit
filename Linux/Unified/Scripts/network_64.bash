@@ -2,10 +2,17 @@
 
 mkdir Network
 cd Network
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Network Directory Timtestamp : $timestamp" >> "../Forensic_Info.txt"
+
 mkdir hash
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Network Hash Directory Timtestamp : $timestamp" >> "../../Forensic_Info.txt"
 cd ..
 
 echo ipaddr >> Network/netinterface.txt		# Network Interface Configuration Information
+timestamp=$(date +"%Y-%m-%d %T")
+echo "ipaddr.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 if ! ifconfig; then
 	echo "Command failed"
 	echo "Execute alternate command"
@@ -16,9 +23,13 @@ else
 fi
 
 echo lsof -i -n >> Network/lsof.txt			# Every Opened Network Connection Information
+timestamp=$(date +"%Y-%m-%d %T")
+echo "lsof.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 lsof -i -n >> Network/lsof.txt
 
 echo ss -tulw >> Network/protocolconnection.txt	# Every TCP, UDP Connection Information
+timestamp=$(date +"%Y-%m-%d %T")
+echo "protocolconnection.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 if ! netstat -tuln; then
 	echo "Command failed"
 	echo "Execute alternate command"
@@ -30,6 +41,8 @@ fi
 	
 
 echo Route Cache >> Network/Route.txt		# Routing Table Information
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Route.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 if ! route -n; then
 	echo "Command failed"
 	echo "Execute alternate command"
@@ -40,6 +53,8 @@ else
 fi
 
 echo ARP Cache >> Network/ARP.txt			# ARP Cache Information
+timestamp=$(date +"%Y-%m-%d %T")
+echo "ARP.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 cat /proc/net/arp | while read line; do
 	interface=$(echo "$line" | awk '{print $6}')
 	ip_address=$(echo "$line" | awk '{print $1}')
@@ -52,6 +67,8 @@ cat /proc/net/arp | while read line; do
 done >> Network/ARP.txt
 
 echo DNS Cache >> Network/DNS.txt			# DNS Cache Information
+timestamp=$(date +"%Y-%m-%d %T")
+echo "DNS.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 killall -USR1 systemd-resolved && journalctl -u systemd-resolved | grep -A 100000 "CACHE:" >> Network/DNS.txt
 # For normal execution obtain administrator privileges
 
@@ -61,6 +78,8 @@ do
 	./hash.exe "$file" >> Network/hash/hash.txt
 	echo >> Network/hash/hash.txt
 done
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Network hash.txt Timtestamp : $timestamp" >> "../Forensic_Info.txt"
 
 date >> Network/hash/hash.txt
 echo    >> Network/hash/hash.txt
