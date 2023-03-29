@@ -1,9 +1,9 @@
 #!/bin/bash
 
 mkdir Network
-cd Network
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Network Directory Timtestamp : $timestamp" >> "../Forensic_Info.txt"
+cd Network
 
 mkdir hash
 timestamp=$(date +"%Y-%m-%d %T")
