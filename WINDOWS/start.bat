@@ -31,7 +31,7 @@ echo Select which drive to save future results on
 echo.
 echo Partitioned storage devices have the same last 12 digits in their Volume Name GUIDs.
 echo For example, if your Volume Name is {01234567-0000-0000-0000-123456789012},
-echo '123456789012' in its Volume Name GUID but a different Mount Point."
+echo '123456789012' in its Volume Name GUID but a different Mount Point.
 echo.
 echo.
 call Check_USB_c\Check_USB_64.exe
