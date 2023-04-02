@@ -18,7 +18,8 @@ set "nirsoft=%~dp0nirsoft"
 set "sysinternals=%~dp0sysinternalsSuite"
 set "etc=%~dp0etc"
 set "hash=%~dp0hash"
-set "PATH=%PATH%;%nirsoft%;%sysinternals%;%etc%;%hash%"
+set "dump=%~dp0Memory_Dump_Tool"
+set "PATH=%PATH%;%nirsoft%;%sysinternals%;%etc%;%hash%;%dump%"
 
 
 echo -----------------Architecture Detection-----------------
@@ -80,13 +81,13 @@ echo.
 echo ====================================
 echo Select the step you want to perform:
 echo ====================================
-echo [1] SYSTEM INFORMATION		- Collects system information, including hardware, operating system, and installed software		
-echo [2] NETWORK INFORMATION		- Collects network configuration and connection status
-echo [3] PROCESS INFORMATION		- Collects information about running processes and their resource usage
-echo [4] LOGON USER INFORMATION	- Collects information about the currently logged in user
-echo [5] SYSTEM INFORMATION		- Collects system event logs and registry information
-echo [6] AUTORUNS LIST		- Collects a list of programs configured to start automatically during boot
-echo [7] TASK SCHEDULAR & CLIPBOARD(TSCB)	- Collects information about scheduled tasks and clipboard history
+echo [1] RAM, REGISTER, CACHE DUMP		- Creates Ram, Register, cache dump		
+echo [2] NETWORK INFORMATION			- Collects network configuration and connection status
+echo [3] PROCESS INFORMATION			- Collects information about running processes and their resource usage
+echo [4] LOGON USER INFORMATION		- Collects information about the currently logged in user
+echo [5] SYSTEM INFORMATION			- Collects system event logs and registry information
+echo [6] AUTORUNS LIST			- Collects a list of programs configured to start automatically during boot
+echo [7] TASK SCHEDULAR, CLIPBOARD(TSCB)	- Collects information about scheduled tasks and clipboard history
 echo [a] RUN ALL STEPS
 echo [q] QUIT
 echo ====================================
@@ -136,7 +137,23 @@ echo [%timestamp%] CREATE REGISTERCACHE DIRECTORY >> %TimeStamp%
 echo ACQUIRING INFORMATION
 echo --------------------------
 echo.
+echo.
+:RAM_DUMP
+set /p "ram_dump=Do you want to create RAM dump? (Y/N): "
+if /i "%ram_dump%"=="Y" (
+    echo Dumping RAM...
 
+    set /p "ram_dump_tool=Which RAM dump tool to use? (1=RamCapture, 2=Winpmem): "
+    if "%ram_dump_tool%"=="1" (
+        start cmd /k "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
+    ) else if "%ram_dump_tool%"=="2" (
+        start /b cmd /k "%dump%\Winpmem\winpmem_mini_x64_rc2.exe %RegisterCache_dir%\physmem.raw"
+    )
+) else (
+    echo RAM dump skipped.
+)
+echo.
+echo.
 reg save HKEY_LOCAL_MACHINE\SOFTWARE "%RegisterCache_dir%\SOFTWARE" && echo SOFTWARE registry file dumped to : "%RegisterCache_dir%"
 echo [%timestamp%] REG SAVE SOFTWARE >> %TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SAM "%RegisterCache_dir%\SAM" && echo SAM registry file dumped to : "%RegisterCache_dir%"

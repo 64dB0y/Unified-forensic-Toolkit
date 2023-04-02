@@ -1,0 +1,20 @@
+# This is for WDK7600 compilation
+# For those who want WinXP support, too.
+# Compile for target "WinXP" and it works for WinxP - Win10.
+
+TARGETNAME=winpmem
+TARGETTYPE=DRIVER
+TARGETPATH=release
+
+TARGETLIBS=$(DDK_LIB_PATH)\wdmsec.lib
+DDKROOT=$(BASEDIR)
+LINKER_FLAGS=$(LINKER_FLAGS) /PDBALTPATH:x.pdb
+INCLUDES=$(DDK_INC_PATH);
+
+SOURCES= winpmem.c \
+         read.c \
+         api.c \
+         kd.c \
+         pte_mmap.c \
+         pte_mmap_windows.c \
+         pci.c

@@ -1,0 +1,35 @@
+baseURL = "https://winpmem.velocidex.com/"
+languageCode = "en-us"
+title = "WinPmem memory imager"
+theme = "hugo-whisper-theme"
+publishDir = "../docs"
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Docs"
+    url = "/docs/"
+    weight = 2
+
+[[menu.main]]
+    name = "Github"
+    url = "https://github.com/Velocidex/WinPmem"
+    weight = 3
+
+[params]
+  [params.homepage_meta_tags]
+    meta_description = "WinPmem memory imager."
+    meta_og_title = "WinPmem memory imager"
+    meta_og_type = "website"
+    meta_og_url = "https://github.com/Velocidex/WinPmem"
+    meta_og_description = "The WinPmem suite of memory acquisition tools support Windows, macOS and Linux."
+
+  [params.logo]
+      mobile = "https://avatars1.githubusercontent.com/u/36671444?s=200"
+      standard  =  "https://avatars1.githubusercontent.com/u/36671444?s=200"
