@@ -1,5 +1,0 @@
-#
-# This is a file for the WDK7600.
-#
-
-!INCLUDE $(NTMAKEENV)\makefile.def

@@ -81,7 +81,8 @@ echo.
 echo ====================================
 echo Select the step you want to perform:
 echo ====================================
-echo [1] RAM, REGISTER, CACHE DUMP		- Creates Ram, Register, cache dump		
+echo [0] MEMORY DUMP				- Creates Memory dump
+echo [1] REGISTER, CACHE DUMP		- Creates Register, cache dump		
 echo [2] NETWORK INFORMATION			- Collects network configuration and connection status
 echo [3] PROCESS INFORMATION			- Collects information about running processes and their resource usage
 echo [4] LOGON USER INFORMATION		- Collects information about the currently logged in user
@@ -105,7 +106,7 @@ if not defined choice (
         if /i "%%x"=="q" (
             exit /b
         ) else if /i "%%x"=="a" (
-            for /l %%i in (1, 1, %final_step%) do (
+            for /l %%i in (0, 1, %final_step%) do (
                 set "steps=!steps! %%i"
             )
         ) else (
@@ -119,6 +120,49 @@ if not defined choice (
 )
 
 goto :Display_Menu
+
+:run_step_0
+:: 0. Memory Dump
+echo -----------------------------
+echo 0. Dumping Memory...
+echo [%timestamp%] Creating Memory Dump START >> %TimeStamp%
+echo -----------------------------
+echo.
+
+set Memory_Dump_dir=%volatile_dir%\Memory_Dump
+mkdir %Memory_Dump_dir%
+echo --------------------------
+echo CREATE MEMORY_DUMP DIRECTORY
+echo [%timestamp%] CREATE MEMORY_DUMP DIRECTORY >> %TimeStamp%
+echo ACQUIRING INFORMATION
+echo --------------------------
+echo.
+echo.
+echo Dumping RAM...
+set /p "ram_dump_tool=Which RAM dump tool to use? (R=RamCapture, W=Winpmem, C=CyLR): "
+set "ram_dump_tool=%ram_dump_tool:~,1%"
+set /p "UserName=Please Input User_Name which has Administrator priviledge: "
+if /I "%ram_dump_tool%"=="R" (
+	start "RamCapture" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe -Verb runAs"
+	REM start "RamCapture" cmd /c runas /user:%UserName% "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
+	REM start "RamCapture" cmd /c "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
+	timeout /t 10
+) else if /I "%ram_dump_tool%"=="W" (
+	REM start /wait "Winpmem" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw -Verb runAs"
+	REM start /wait "Winpmem" cmd /c runas /user:%UserName% "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
+	start /wait "Winpmem" cmd /c "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
+	timeout /t 10
+) else if /I "%ram_dump_tool%"=="C" (
+	REM set /p "result_password=Please Input CyLR result password: "
+	REM start "CyLR" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\CyLR\CyLR_64.exe -Verb runAs -ArgumentList '-od %Memory_Dump_dir% -of memory_dump.zip -zp %result_password% -zl 9'"
+	REM start /wait "CyLR" cmd /c "%dump%\CyLR\CyLR_64.exe -od %Memory_Dump_dir% -of memory_dump.zip -zp %result_password% -zl 9
+	start /wait "CyLR" cmd /c "%dump%\CyLR\CyLR_64.exe -od %Memory_Dump_dir% -of memory_dump.zip -zp L!veF0rens!c -zl 9
+	timeout
+) else (
+	echo There's no other option to dump Memory
+)
+echo Step completed: %choice%
+exit /b
 
 
 :run_step_1
@@ -136,22 +180,6 @@ echo CREATE REGISTERCACHE DIRECTORY
 echo [%timestamp%] CREATE REGISTERCACHE DIRECTORY >> %TimeStamp%
 echo ACQUIRING INFORMATION
 echo --------------------------
-echo.
-echo.
-:RAM_DUMP
-set /p "ram_dump=Do you want to create RAM dump? (Y/N): "
-if /i "%ram_dump%"=="Y" (
-    echo Dumping RAM...
-
-    set /p "ram_dump_tool=Which RAM dump tool to use? (1=RamCapture, 2=Winpmem): "
-    if "%ram_dump_tool%"=="1" (
-        start cmd /k "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
-    ) else if "%ram_dump_tool%"=="2" (
-        start /b cmd /k "%dump%\Winpmem\winpmem_mini_x64_rc2.exe %RegisterCache_dir%\physmem.raw"
-    )
-) else (
-    echo RAM dump skipped.
-)
 echo.
 echo.
 reg save HKEY_LOCAL_MACHINE\SOFTWARE "%RegisterCache_dir%\SOFTWARE" && echo SOFTWARE registry file dumped to : "%RegisterCache_dir%"
@@ -638,8 +666,8 @@ echo Step completed: %choice%
 exit /b
 :run_step_7
 echo -----------------------------------------------
-echo 7. TASK SCHEDULAR & CLIPBOARD(TSCB)
-echo [%timestamp%] "TASK SCHEDULAR & CLIPBOARD START" >> %TimeStamp%
+echo 7. TASK SCHEDULAR and CLIPBOARD(TSCB)
+echo [%timestamp%] "TASK SCHEDULAR and CLIPBOARD START" >> %TimeStamp%
 echo -----------------------------------------------
 echo.
 
@@ -660,6 +688,7 @@ echo Scheduled tasks information collected successfully.
 echo.
 echo Step completed: %choice%
 exit /b
+
 :end_script
 echo SCRIPT FINISHED
 endlocal
