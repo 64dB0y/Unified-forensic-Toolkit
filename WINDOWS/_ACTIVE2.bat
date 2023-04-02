@@ -1,6 +1,6 @@
 @echo off
+setlocal enabledelayedexpansion
 
-setlocal 
 :: 초기 설정
 echo -------------
 echo PATH Settings
@@ -11,8 +11,8 @@ echo.
 set CASE=%1
 set NAME=%2
 
-set /a current_step=0
-set /a final_step=4
+set final_step=7
+set choice=
 
 set "nirsoft=%~dp0nirsoft"
 set "sysinternals=%~dp0sysinternalsSuite"
@@ -34,7 +34,7 @@ if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
 echo --------------------------------------------------------
 echo.
 
-:: 현재 시각을 구하기 
+:: Timestamp
 set year=%date:~0,4%
 set month=%date:~5,2%
 set day=%date:~8,2%
@@ -43,6 +43,7 @@ if "%hour:~0,1%" == " " set hour=0%hour:~1,1%
 set minute=%time:~3,2%
 set second=%time:~6,2%
 set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
+
 
 :: 현재 시간과 컴퓨터 이름으로 새로운 폴더를 생성함
 set foldername=%3%computername%_%timestamp%
@@ -55,8 +56,7 @@ set TimeStamp=%foldername%\TimeStamp.log
 echo START TIME : %timestamp%
 echo [%timestamp%]START TIME >> %TimeStamp%
 
-:: 케이스 입력을 받음
-:: 입력하지 않았다면 계속 입력을 받도록 대기 
+:: Input CASE, NAME
 :INPUT_CASE
 echo [%timestamp%]%CASE% >> %TimeStamp%
 
@@ -68,7 +68,7 @@ echo %CASE% - %NAME% Digital Forensic START
 echo .
 
 
-:: 활성데이터 수집을 위한 준비 
+:: Prepare to collect Active Data
 set "volatile_dir=%foldername%\Volatile_Information"
 mkdir "%volatile_dir%"
 echo Created VOLATILE DIRECTORY 
@@ -77,48 +77,48 @@ echo.
 
 :Display_Menu
 echo.
-echo ------------------------------------
+echo ====================================
 echo Select the step you want to perform:
-echo ------------------------------------
+echo ====================================
+echo [1] SYSTEM INFORMATION		- Collects system information, including hardware, operating system, and installed software		
+echo [2] NETWORK INFORMATION		- Collects network configuration and connection status
+echo [3] PROCESS INFORMATION		- Collects information about running processes and their resource usage
+echo [4] LOGON USER INFORMATION	- Collects information about the currently logged in user
+echo [5] SYSTEM INFORMATION		- Collects system event logs and registry information
+echo [6] AUTORUNS LIST		- Collects a list of programs configured to start automatically during boot
+echo [7] TASK SCHEDULAR & CLIPBOARD(TSCB)	- Collects information about scheduled tasks and clipboard history
+echo [a] RUN ALL STEPS
+echo [q] QUIT
+echo ====================================
+echo Input Example: 2,3,4
 echo.
-echo 1. Dump registry and cache
-echo 2. Collect network connection information
-echo 3. Collect process information
-echo 4. Collect login user information
-echo a. Perform all steps
-echo q. Quit
 echo.
-echo Example: 2,3,4
+set /p choice="You entered : "
 
-echo.
-:prompt
-set execute_all_labels=0
-set /p choice="Enter your choice: "
-echo.
-echo You entered %choice%
-echo [%timestamp%] CHOICE SELECTED %choice% >> %TimeStamp%
-
-
-if /i "%choice%"=="q" (
-    echo [%timestamp%] SELECT CHOICE Q >> %TimeStamp%
-    exit /b
-)
-
-if /i "%choice%"=="a" (
-    echo [%timestamp%] SELECT CHOICE A >> %TimeStamp%
-    set execute_all_labels=1
-)
-
-if "%execute_all_labels%"=="1" (
-    call :run_step_1
-    call :run_step_2
-    call :run_step_3
-    call :run_step_4
+if not defined choice (
+    goto :Display_Menu
 ) else (
-    call :run_step_%choice%
+    setlocal enabledelayedexpansion
+    set "steps="
+    for %%x in (%choice%) do (
+        if /i "%%x"=="q" (
+            exit /b
+        ) else if /i "%%x"=="a" (
+            for /l %%i in (1, 1, %final_step%) do (
+                set "steps=!steps! %%i"
+            )
+        ) else (
+            set "steps=!steps! %%x"
+        )
+    )
+
+    for %%x in (!steps!) do (
+        call :run_step_%%x
+    )
 )
 
-goto :prompt
+goto :Display_Menu
+
 
 :run_step_1
 :: 1. Register, Cache
@@ -185,13 +185,8 @@ echo [%timestamp%] BLUESCREENVIEW HASH >> %TimeStamp%
 echo REGISTRY INFORMATION CLEAR 
 echo [%timestamp%] REGISTRY INFORMATION CLEAR >> %TimeStamp%
 echo.
-set /a current_step+=1
-echo %current_step%
 
-if %current_step%==%final_step% (
-    echo All steps completed.
-    goto end_script
-)
+echo Step completed: %choice%
 exit /b 
 
 :run_step_2
@@ -319,13 +314,7 @@ echo [%timestamp%] WIRELESSNETVIEW HASH >> %TimeStamp%
 echo NETWORK INFORMATION CLEAR
 echo [%timestamp%]NETWORK INFORMATION CLEAR >> %TimeStamp%
 echo.
-set /a current_step+=1
-echo %current_step%
-
-if %current_step%==%final_step% (
-    echo All steps completed.
-    goto end_script
-)
+echo Step completed: %choice%
 exit /b
 
 :run_step_3
@@ -345,8 +334,9 @@ echo ACQUIRING INFORMATION
 echo --------------------------
 
 :: psloglist 
-%sysinternals%\psloglist64.exe -d 30 -s -t * /accepteula > %PROCESS_Dir%\psloglist.txt
+%sysinternals%\psloglist.exe -d 30 -s -t * /accepteula > %PROCESS_Dir%\psloglist.txt
 echo [%timestamp%] PSLOGLIST >> %TimeStamp%
+
 
 :: tasklist - ok 
 tasklist -V > %PROCESS_Dir%\tasklist.txt
@@ -482,13 +472,8 @@ echo [%timestamp%] BROWSINGHISTORYVIEW HASH >> %TimeStamp%
 echo PROCESS INFORMATION CLEAR
 echo [%timestamp%] PROCESS INFORMATION CLEAR >> %TimeStamp%
 
-set /a current_step+=1
-echo %current_step%
+echo Step completed: %choice%
 
-if %current_step%==%final_step% (
-    echo All steps completed.
-    goto end_script
-)
 exit /b
 
 :run_step_4
@@ -546,15 +531,118 @@ echo [%timestamp%] WINLOGONVIEW HASH >> %TimeStamp%
 echo LOGON INFORMATION CLEAR
 echo [%timestamp%] LOGON INFORMATION CLEAR >> %TimeStamp%
 
-set /a current_step+=1
-echo %current_step%
-
-if %current_step%==%final_step% (
-    echo All steps completed.
-    goto end_script
-)
+echo Step completed: %choice%
 exit /b
 
+:run_step_5
+echo -----------------------------
+echo 5. SYSTEM INFORMATION
+echo [%timestamp%] SYSTEM INFORMATION START >> %TimeStamp%
+echo -----------------------------
+echo.
+
+set SYTEM_INFO_Dir=%volatile_dir%\System_Information
+mkdir %SYTEM_INFO_Dir%
+echo [%timestamp%] CREATE SYTEM Information Directory >> %TimeStamp%
+echo ------------------------------------------
+echo CREATE SYTEM Information Directory
+echo.
+echo ACQUIRING INFORMATION
+echo ------------------------------------------
+REM Collect system information
+systeminfo > "%SYTEM_INFO_Dir%\systeminfo.txt"
+echo.
+echo.
+echo.
+echo Start the necessary services required for executing subsequent commands
+echo.
+net start "Windows Event Collector"
+net start "Windows Event Log"
+net start "Windows Management Instrumentation"
+
+REM Collect registry information
+reg save HKEY_LOCAL_MACHINE\SOFTWARE "%SYTEM_INFO_Dir%\HKLM-Software.hiv"
+reg save HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control "%SYTEM_INFO_Dir%\HKLM-System-Control.hiv"
+reg save HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services "%SYTEM_INFO_Dir%\HKLM-System-Services.hiv"
+reg save HKEY_LOCAL_MACHINE\SECURITY "%SYTEM_INFO_Dir%\HKLM-Security.hiv"
+for /f "delims=" %%a in ('reg query HKEY_USERS ^| findstr /v "HKEY_USERS"') do (
+    set "subkey=%%a"
+    echo Saving !subkey!
+    reg save "!subkey!" "%SYSTEM_INFO_Dir%\!subkey:.=!_%timestamp%.hiv" /y
+    echo !subkey! registry file dumped to : "%SYSTEM_INFO_Dir%" at [%timestamp%] >> %SYSTEM_INFO_Dir%\%timestamp%_RegistryBackup.log
+    echo !subkey! registry file dumped to : "%SYSTEM_INFO_Dir%" at [%timestamp%]
+)
+echo Above registry files have been saved successfully.
+
+
+
+echo Step completed: %choice%
+exit /b
+:run_step_6
+echo -----------------------------
+echo 6. AUTORUNS
+echo [%timestamp%] AUTORUNS START >> %TimeStamp%
+echo -----------------------------
+echo.
+
+set Autoruns_Dir=%volatile_dir%\Autoruns_Information
+mkdir %Autoruns_Dir%
+echo [%timestamp%] CREATE Autoruns DIRECTORY >> %TimeStamp%
+echo ----------------------------------
+echo CREATE Autoruns DIRECTORY
+echo.
+echo ACQUIRING INFORMATION
+echo ----------------------------------
+REM Collect startup programs
+reg save HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Autoruns_Dir%\HKLM-Run.reg"
+reg save HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Autoruns_Dir%\HKCU-Run.reg"
+
+REM Collect auto start services
+sc query type= service state= all > "%Autoruns_Dir%\services.txt"
+
+REM Collect event forwarding subscriptions
+wecutil es > "%Autoruns_Dir%\wecutil-es.txt"
+
+:: AutoRunsc 실행 (Sysinternals)
+"%sysinternals%\autorunsc.exe" /accepteula -a * -c -ct csv -nobanner > "%SYSTEM_INFO_Dir%\AutoRuns.csv"
+
+:: ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 경로의 파일 나열
+dir /b /a "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp" > "%Autoruns_Dir%\Startup_ProgramData.txt"
+
+:: 사용자별 Startup 경로의 파일 나열
+for /d %%A in (C:\Users\*) do (
+    set "user_startup_path=%%A\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+    if exist "!user_startup_path!" (
+        echo Listing files in !user_startup_path! >> "%Autoruns_Dir%\Startup_UserPaths.txt"
+        dir /b /a "!user_startup_path!" >> "%Autoruns_Dir%\Startup_UserPaths.txt"
+    )
+)
+echo Step completed: %choice%
+exit /b
+:run_step_7
+echo -----------------------------------------------
+echo 7. TASK SCHEDULAR & CLIPBOARD(TSCB)
+echo [%timestamp%] "TASK SCHEDULAR & CLIPBOARD START" >> %TimeStamp%
+echo -----------------------------------------------
+echo.
+
+set TSCB_Dir=%volatile_dir%\TSCB_Information
+mkdir %TSCB_Dir%
+echo [%timestamp%] CREATE TSCB DIRECTORY >> %TimeStamp%
+echo -------------------------------
+echo CREATE TSCB DIRECTORY
+echo.
+echo ACQUIRING INFORMATION
+echo -------------------------------
+REM Collect clipboard information
+clip > "%SystemInfo_dir%\clipboard.txt"
+REM Collect scheduled tasks information using schtasks
+echo Collecting scheduled tasks information...
+schtasks /query /fo CSV /v > "%TSCB_Dir%\ScheduledTasks.csv"
+echo Scheduled tasks information collected successfully.
+echo.
+echo Step completed: %choice%
+exit /b
 :end_script
 echo SCRIPT FINISHED
 endlocal
