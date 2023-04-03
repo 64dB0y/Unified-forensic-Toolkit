@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.openide.util.ui.svg">
+    <module_version install_time="1644595777872" last="true" origin="Ant" specification_version="1.0">
+        <file crc="1311932316" name="config/Modules/org-openide-util-ui-svg.xml"/>
+        <file crc="952359015" name="modules/org-openide-util-ui-svg.jar"/>
+    </module_version>
+</module>

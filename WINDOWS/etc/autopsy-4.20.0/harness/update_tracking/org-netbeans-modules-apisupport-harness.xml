@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.apisupport.harness">
+    <module_version install_time="1644595757988" last="true" origin="Ant" specification_version="1.49">
+        <file crc="964231627" name="README"/>
+        <file crc="2361081766" name="antlib/bindex-2.2.jar"/>
+        <file crc="2419390860" name="build.xml"/>
+        <file crc="3090091634" name="common.xml"/>
+        <file crc="2967796174" name="config/Modules/org-netbeans-modules-apisupport-harness.xml"/>
+        <file crc="3596721181" name="etc/Info.plist"/>
+        <file crc="3529190731" name="etc/app.conf"/>
+        <file crc="2195682192" name="etc/applicationIcon.icns"/>
+        <file crc="3739640547" name="jdk.xml"/>
+        <file crc="2965842666" name="jnlp.xml"/>
+        <file crc="2450236186" name="jnlp/jnlp-launcher.jar"/>
+        <file crc="1453492993" name="launchers/app.exe"/>
+        <file crc="2273117109" name="launchers/app.sh"/>
+        <file crc="345163298" name="launchers/app64.exe"/>
+        <file crc="1618502330" name="launchers/pre7_app.exe"/>
+        <file crc="2223057369" name="launchers/pre7_app_w.exe"/>
+        <file crc="2343169313" name="modules/org-netbeans-modules-apisupport-harness.jar"/>
+        <file crc="1994575623" name="no-testcoverage.xml"/>
+        <file crc="3105643375" name="osgi.xml"/>
+        <file crc="2123073144" name="run.xml"/>
+        <file crc="1615460432" name="suite.xml"/>
+        <file crc="3591574455" name="tasks.jar"/>
+    </module_version>
+</module>

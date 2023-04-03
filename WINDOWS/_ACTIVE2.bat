@@ -148,9 +148,9 @@ if /I "%ram_dump_tool%"=="R" (
 	REM start "RamCapture" cmd /c "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
 	timeout /t 10
 ) else if /I "%ram_dump_tool%"=="W" (
-	REM start /wait "Winpmem" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw -Verb runAs"
+	start /wait "Winpmem" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw -Verb runAs"
 	REM start /wait "Winpmem" cmd /c runas /user:%UserName% "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
-	start /wait "Winpmem" cmd /c "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
+	REM start /wait "Winpmem" cmd /c "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
 	timeout /t 10
 ) else if /I "%ram_dump_tool%"=="C" (
 	REM set /p "result_password=Please Input CyLR result password: "

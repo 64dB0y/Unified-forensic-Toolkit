@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.libs.asm">
+    <module_version install_time="1644595741137" last="true" origin="Ant" specification_version="5.10">
+        <file crc="1440506371" name="core/asm-7.2.jar"/>
+        <file crc="1731602247" name="core/asm-commons-7.2.jar"/>
+        <file crc="182869611" name="core/asm-tree-7.2.jar"/>
+        <file crc="3857487284" name="core/org-netbeans-libs-asm.jar"/>
+    </module_version>
+</module>

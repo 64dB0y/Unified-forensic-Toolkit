@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.sleuthkit.autopsy.coretestlibs">
+    <module_version install_time="1673713334888" last="true" origin="installer" specification_version="1.0">
+        <file crc="2729217006" name="config/Modules/org-sleuthkit-autopsy-coretestlibs.xml"/>
+        <file crc="381284721" name="modules/ext/byte-buddy-1.10.13.jar"/>
+        <file crc="3586865903" name="modules/ext/byte-buddy-agent-1.10.13.jar"/>
+        <file crc="2893489971" name="modules/ext/hamcrest-core-1.3.jar"/>
+        <file crc="1161534166" name="modules/ext/junit-4.13.2.jar"/>
+        <file crc="2748947416" name="modules/ext/mockito-core-3.5.7.jar"/>
+        <file crc="295753045" name="modules/ext/objenesis-3.1.jar"/>
+        <file crc="3283364394" name="modules/org-sleuthkit-autopsy-coretestlibs.jar"/>
+    </module_version>
+</module>

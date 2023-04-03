@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.sleuthkit.autopsy.experimental/1">
+    <module_version install_time="1673713452644" last="true" origin="installer" specification_version="1.0.1">
+        <file crc="3053587940" name="config/Modules/org-sleuthkit-autopsy-experimental.xml"/>
+        <file crc="3992120430" name="modules/ext/jtidy-r938.jar"/>
+        <file crc="3541364816" name="modules/org-sleuthkit-autopsy-experimental.jar"/>
+    </module_version>
+</module>
