@@ -2,12 +2,12 @@
 
 echo "Linux_Forensic_64.bash for forensics in a Linux 64-bit environment"
 echo "by Team_Bocchi_The_Forensic"
-echo "Version 0.02a"
+echo "Version 0.02b"
 echo
 
 # Create a Timestamp
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Timestamp : $timestamp" > Forensic_Info.txt
+echo "Timestamp : $timestamp" > ../mnt2/Forensic_Info.txt
 echo "Timestamp has been saved in Forensic_Info.txt"
 echo
 
@@ -17,12 +17,12 @@ read -p "Enter a description of the task to be performed : " task_desc
 hostname=$(hostname)
 
 # Write the user name, task description, timestamp, and hostname(device name) to the file
-echo "Name : $name" >> Forensic_Info.txt
-echo "Task Description : $task_desc" >> Forensic_Info.txt
-echo "Hostname : $hostname" >> Forensic_Info.txt
+echo "Name : $name" >> ../mnt2/Forensic_Info.txt
+echo "Task Description : $task_desc" >> ../mnt2/Forensic_Info.txt
+echo "Hostname : $hostname" >> ../mnt2/Forensic_Info.txt
 echo "Name, task description and hostname has been saved"
 echo
-cat Forensic_Info.txt
+cat ../mnt2/Forensic_Info.txt
 echo
 
 # Permission for scripts and hash value program
@@ -38,7 +38,7 @@ do
 		echo
 		for file in Scripts/*.bash
 		do
-			echo "-------------------------------------------------------------" >> Forensic_Info.txt
+			echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 			./"$file"
 			echo "-------------------------------------------------------------"
 		done
@@ -48,7 +48,7 @@ do
 	if [ "$section" = "Logon Info" ];then       # Forensic Logon section
 		echo "Collecting $section..."
 		echo
-		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 		./Scripts/logon.bash
 		echo "Collection Finished"
 	fi
@@ -56,7 +56,7 @@ do
 	if [ "$section" = "Network" ];then          # Forensic Network section
 		echo "Collecting $section..."
 		echo
-		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 		./Scripts/network_64.bash
 		echo "Collection Finished"
 	fi
@@ -64,7 +64,7 @@ do
 	if [ "$section" = "Processor Info" ];then   # Forensic Processor section
 		echo "Collecting $section..."
 		echo
-		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 		./Scripts/processinfo.bash
 		echo "Collection Finished"
 	fi
@@ -72,7 +72,7 @@ do
 	if [ "$section" = "Autorun" ];then          # Forensic Network section
 		echo "Collecting $section..."
 		echo
-		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 		./Scripts/auto_64.bash
 		echo "Collection Finished"
 	fi
@@ -80,7 +80,7 @@ do
 	if [ "$section" = "System Info" ];then          # Forensic Network section
 		echo "Collecting $section..."
 		echo
-		echo "-------------------------------------------------------------" >> Forensic_Info.txt
+		echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 		./Scripts/sysinfo_64.bash
 		echo "Collection Finished"
 	fi
