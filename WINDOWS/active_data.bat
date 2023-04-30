@@ -82,7 +82,7 @@ echo ====================================
 echo Select the step you want to perform:
 echo ====================================
 echo [0] MEMORY DUMP				- Creates Memory dump
-echo [1] REGISTER, CACHE DUMP		- Creates Register, cache dump		
+echo [1] Virtual Memory DUMP		        - Creates Virtual Memory dump		
 echo [2] NETWORK INFORMATION			- Collects network configuration and connection status
 echo [3] PROCESS INFORMATION			- Collects information about running processes and their resource usage
 echo [4] LOGON USER INFORMATION		- Collects information about the currently logged in user
@@ -139,96 +139,101 @@ echo --------------------------
 echo.
 echo.
 echo Dumping RAM...
-set /p "ram_dump_tool=Which RAM dump tool to use? (R=RamCapture, W=Winpmem, C=CyLR): "
+:choose_ram_dump_tool
+set /p "ram_dump_tool=Which RAM dump tool to use? (R=RamCapture, W=Winpmem, C=CyLR, Q=quit): "
 set "ram_dump_tool=%ram_dump_tool:~,1%"
-set /p "UserName=Please Input User_Name which has Administrator priviledge: "
 if /I "%ram_dump_tool%"=="R" (
-	start "RamCapture" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe -Verb runAs"
-	REM start "RamCapture" cmd /c runas /user:%UserName% "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
-	REM start "RamCapture" cmd /c "%dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
-	timeout /t 10
+    "%sysinternals%\PsExec64.exe" -accepteula -i -s cmd.exe /c "call %dump%\Belkasoft-RamCapturer\x64\RamCapture64.exe"
+    timeout /t 10
 ) else if /I "%ram_dump_tool%"=="W" (
-	start /wait "Winpmem" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw -Verb runAs"
-	REM start /wait "Winpmem" cmd /c runas /user:%UserName% "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
-	REM start /wait "Winpmem" cmd /c "%dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
-	timeout /t 10
+    set /p "user_id=Please input the user ID of someone with administrator privileges: "
+    set /p "user_pw=Please input the password for the user with administrator privileges (leave empty if none): "
+    if not defined user_pw (
+        "%sysinternals%\PsExec64.exe" -u %user_id% -accepteula -i -s cmd.exe /c "call %dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
+    ) else (
+        "%sysinternals%\PsExec64.exe" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "call %dump%\winpmem\winpmem_mini_x64_rc2.exe %Memory_Dump_dir%\physmem.raw"
+    )
+    timeout /t 10
+
 ) else if /I "%ram_dump_tool%"=="C" (
-	REM set /p "result_password=Please Input CyLR result password: "
-	REM start "CyLR" cmd /c runas /user:%UserName% "powershell Start-Process %dump%\CyLR\CyLR_64.exe -Verb runAs -ArgumentList '-od %Memory_Dump_dir% -of memory_dump.zip -zp %result_password% -zl 9'"
-	REM start /wait "CyLR" cmd /c "%dump%\CyLR\CyLR_64.exe -od %Memory_Dump_dir% -of memory_dump.zip -zp %result_password% -zl 9
-	start /wait "CyLR" cmd /c "%dump%\CyLR\CyLR_64.exe -od %Memory_Dump_dir% -of memory_dump.zip -zp L!veF0rens!c -zl 9
-	timeout
+    setlocal enabledelayedexpansion
+    set "result_password="
+    echo You must not input following symbols: ^< ^> ^^ ^& ^| '^ ^" ^` 
+    :set_password
+    set /p "result_password=Please Input CyLR result password: "
+    set invalid=0
+    if "!result_password!"=="" (
+        set invalid=1
+    ) else (
+    for /l %%i in (0,1,9) do (
+        set "char=!result_password:~%%i,1!"
+        if "!char!"=="<" set invalid=1
+        if "!char!"==">" set invalid=1
+        if "!char!"=="^" set invalid=1
+        if "!char!"=="&" set invalid=1
+        if "!char!"=="|" set invalid=1
+        if "!char!"=="'" set invalid=1
+        if "!char!"=="`" set invalid=1
+        if "!char!"=="""" set invalid=1
+        if !invalid!==1 goto check_password
+        )
+    )
+    :check_password
+    if !invalid!==1 (
+        echo "There's unacceptable symbols or empty password, plz retype"
+        goto set_password
+    ) else (
+        echo Currently Password entered: !result_password!
+    )
+
+    :confirm_password
+    set "confirm_password="
+    set /p "confirm_password=Please Confirm CyLR result password: "
+    if "!confirm_password!"=="!result_password!" (
+        echo Passwords match
+    ) else (
+        echo Passwords do not match, please try again
+        goto set_password
+    )
+
+    "%sysinternals%\PsExec64.exe" -accepteula -i -s cmd.exe /c "call %dump%\CyLR\CyLR_64.exe -od %Memory_Dump_dir% -of memory_dump.zip -zp !result_password! -zl 9"
+    timeout /t 10
+) else if /i "%ram_dump_tool%"=="Q" (
+    echo You chose to quit: Q
+    echo There's no other option to dump Memory
 ) else (
-	echo There's no other option to dump Memory
+    echo Invalid choice, please try again
+    goto choose_ram_dump_tool
 )
 echo Step completed: %choice%
 exit /b
 
 
+
 :run_step_1
-:: 1. Register, Cache
+:: 1. Virtual Memory Dump
 echo -----------------------------
-echo 1. Dumping registry and cache...
-echo [%timestamp%] REGISTRY CACHE INFORMATION START >> %TimeStamp%
+echo 1. Dumping Virtual memory...
+echo [%timestamp%] Virtual memory START >> %TimeStamp%
 echo -----------------------------
 echo.
 
-set RegisterCache_dir=%volatile_dir%\RegisterCache
-mkdir %RegisterCache_dir%
+set Virtual_Memory_dir=%volatile_dir%\Virtual_Memory
+mkdir %Virtual_Memory_dir%
 echo --------------------------
-echo CREATE REGISTERCACHE DIRECTORY
-echo [%timestamp%] CREATE REGISTERCACHE DIRECTORY >> %TimeStamp%
+echo CREATE Virtual_Memory DIRECTORY
+echo [%timestamp%] CREATE Virtual_Memory DIRECTORY >> %TimeStamp%
 echo ACQUIRING INFORMATION
 echo --------------------------
 echo.
 echo.
-reg save HKEY_LOCAL_MACHINE\SOFTWARE "%RegisterCache_dir%\SOFTWARE" && echo SOFTWARE registry file dumped to : "%RegisterCache_dir%"
-echo [%timestamp%] REG SAVE SOFTWARE >> %TimeStamp%
-reg save HKEY_LOCAL_MACHINE\SAM "%RegisterCache_dir%\SAM" && echo SAM registry file dumped to : "%RegisterCache_dir%"
-echo [%timestamp%] REG SAVE SAM >> %TimeStamp%
-reg save HKEY_LOCAL_MACHINE\SYSTEM "%RegisterCache_dir%\SYSTEM" && echo SYSTEM registry file dumped to : "%RegisterCache_dir%"
-echo [%timestamp%] REG SAVE SYSTEM >> %TimeStamp%
-reg save HKEY_LOCAL_MACHINE\SECURITY "%RegisterCache_dir%\SECURITY" &&  echo SECURITY registry file dumped to : "%RegisterCache_dir%"
-echo [%timestamp%] REG SAVE SECURITY >> %TimeStamp%
+echo [%timestamp%] Dumping Virtual Memory >> %TimeStamp%
 
-:: BLUESCREENVIEW
-:: echo ACQUIRING BLUESCREEN INFORMATION
-%nirsoft%\bluescreenview\BlueScreenView.exe /stext %RegisterCache_dir%\bluescreenview.txt
-echo [%timestamp%]ACQUIRING BLUESCREEN INFORMATION >> %TimeStamp%
+:: To get the session ID
+for /f "tokens=4" %%i in ('tasklist /nh /fi "imagename eq cmd.exe" /fi "sessionname eq console"') do set sessionId=%%i
 
-:: echo Make Hash File
-set REGISTRY_HASH=%RegisterCache_dir%\HASH
-echo [%timestamp%]REGISTRY HASH DIRECTORY CREATE >> %TimeStamp%
-mkdir %REGISTRY_HASH%
+"%sysinternals%\PsExec64.exe" -accepteula -i %sessionId% -s cmd.exe /c "call %dump%\Virtual_Memory_dump.bat %sysinternals% %Virtual_Memory_dir% %TimeStamp% %hash%"
 
-:: --------------------
-:: SAM FILE HASH
-:: --------------------
-%hash%\hashdeep64.exe "%RegisterCache_dir%\SAM" > "%REGISTRY_HASH%\SAM_HASH.txt"
-echo [%timestamp%] SAM HASH >> %TimeStamp%
-:: --------------------
-:: SOFTWARE FILE HASH
-:: --------------------
-%hash%\hashdeep64.exe "%RegisterCache_dir%\SOFTWARE" > "%REGISTRY_HASH%\SOFTWARE_HASH.txt"
-echo [%timestamp%] SOFTWARE HASH >> %TimeStamp%
-:: --------------------
-:: SYSTEM FILE HASH
-:: --------------------
-%hash%\hashdeep64.exe "%RegisterCache_dir%\SYSTEM" > "%REGISTRY_HASH%\SYSTEM_HASH.txt"
-echo [%timestamp%] SYSTEM HASH >> %TimeStamp%
-
-:: --------------------
-:: SECURITY FILE HASH
-:: --------------------
-%hash%\hashdeep64.exe "%RegisterCache_dir%\SECURITY" > "%REGISTRY_HASH%\SECURITY_HASH.txt"
-echo [%timestamp%] SECURITY HASH >> %TimeStamp%
-
-:: BLUESCREENVIEW_HASH
-%hash%\hashdeep64.exe "%RegisterCache_dir%\bluescreenview.txt" > "%REGISTRY_HASH%\BLUESCREENVIEW_HASH.txt"
-echo [%timestamp%] BLUESCREENVIEW HASH >> %TimeStamp%
-
-echo REGISTRY INFORMATION CLEAR 
-echo [%timestamp%] REGISTRY INFORMATION CLEAR >> %TimeStamp%
 echo.
 
 echo Step completed: %choice%
@@ -586,16 +591,21 @@ echo [%timestamp%] SYSTEM INFORMATION START >> %TimeStamp%
 echo -----------------------------
 echo.
 
-set SYTEM_INFO_Dir=%volatile_dir%\System_Information
-mkdir %SYTEM_INFO_Dir%
+set SYSTEM_INFO_Dir=%volatile_dir%\System_Information
+mkdir %SYSTEM_INFO_Dir%
 echo [%timestamp%] CREATE SYTEM Information Directory >> %TimeStamp%
+
+:: echo Make Hash File
+set SYSTEM_INFO_HASH=%SYSTEM_INFO_Dir%\HASH
+echo [%timestamp%]REGISTRY HASH DIRECTORY CREATE >> %TimeStamp%
+mkdir %SYSTEM_INFO_HASH%
 echo ------------------------------------------
 echo CREATE SYTEM Information Directory
 echo.
 echo ACQUIRING INFORMATION
 echo ------------------------------------------
 REM Collect system information
-systeminfo > "%SYTEM_INFO_Dir%\systeminfo.txt"
+systeminfo > "%SYSTEM_INFO_Dir%\systeminfo.txt"
 echo.
 echo.
 echo.
@@ -606,20 +616,51 @@ net start "Windows Event Log"
 net start "Windows Management Instrumentation"
 
 REM Collect registry information
-reg save HKEY_LOCAL_MACHINE\SOFTWARE "%SYTEM_INFO_Dir%\HKLM-Software.hiv"
-reg save HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control "%SYTEM_INFO_Dir%\HKLM-System-Control.hiv"
-reg save HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services "%SYTEM_INFO_Dir%\HKLM-System-Services.hiv"
-reg save HKEY_LOCAL_MACHINE\SECURITY "%SYTEM_INFO_Dir%\HKLM-Security.hiv"
-for /f "delims=" %%a in ('reg query HKEY_USERS ^| findstr /v "HKEY_USERS"') do (
-    set "subkey=%%a"
-    echo Saving !subkey!
-    reg save "!subkey!" "%SYSTEM_INFO_Dir%\!subkey:.=!_%timestamp%.hiv" /y
-    echo !subkey! registry file dumped to : "%SYSTEM_INFO_Dir%" at [%timestamp%] >> %SYSTEM_INFO_Dir%\%timestamp%_RegistryBackup.log
-    echo !subkey! registry file dumped to : "%SYSTEM_INFO_Dir%" at [%timestamp%]
-)
-echo Above registry files have been saved successfully.
+reg save HKEY_LOCAL_MACHINE\SAM "%SYSTEM_INFO_Dir%\SAM.hiv" && echo SAM registry file dumped to : "%SYSTEM_INFO_Dir%"
+echo [%timestamp%] REG SAVE SAM >> %TimeStamp%
+reg save HKEY_LOCAL_MACHINE\SOFTWARE "%SYSTEM_INFO_Dir%\HKLM-Software.hiv" && echo SOFTWARE registry file dumped to : "%SYSTEM_INFO_Dir%"
+echo [%timestamp%] REG SAVE SOFTWARE >> %TimeStamp%
+reg save HKEY_LOCAL_MACHINE\SYSTEM "%SYSTEM_INFO_Dir%\SYSTEM.hiv" && echo SYSTEM registry file dumped to : "%SYSTEM_INFO_Dir%"
+echo [%timestamp%] REG SAVE SYSTEM >> %TimeStamp%
+reg save HKEY_LOCAL_MACHINE\SECURITY "%SYSTEM_INFO_Dir%\SECURITY.hiv" &&  echo SECURITY registry file dumped to : "%SYSTEM_INFO_Dir%"
+echo [%timestamp%] REG SAVE SECURITY >> %TimeStamp%
+echo Starting HKEY_USERS Batch Script...
+call .\HKEY_USERS.bat
 
+:: BLUESCREENVIEW
+echo ACQUIRING BLUESCREEN INFORMATION
+%nirsoft%\bluescreenview\BlueScreenView.exe /stext %SYSTEM_INFO_Dir%\bluescreenview.txt
+echo [%timestamp%]ACQUIRING BLUESCREEN INFORMATION >> %TimeStamp%
 
+:: --------------------
+:: SAM FILE HASH
+:: --------------------
+%hash%\hashdeep64.exe "%SYSTEM_INFO_Dir%\SAM.hiv" > "%SYSTEM_INFO_HASH%\SAM_HASH.txt"
+echo [%timestamp%] SAM HASH >> %TimeStamp%
+:: --------------------
+:: SOFTWARE FILE HASH
+:: --------------------
+%hash%\hashdeep64.exe "%SYSTEM_INFO_Dir%\SOFTWARE.hiv" > "%SYSTEM_INFO_HASH%\SOFTWARE_HASH.txt"
+echo [%timestamp%] SOFTWARE HASH >> %TimeStamp%
+:: --------------------
+:: SYSTEM FILE HASH
+:: --------------------
+%hash%\hashdeep64.exe "%SYSTEM_INFO_Dir%\SYSTEM.hiv" > "%SYSTEM_INFO_HASH%\SYSTEM_HASH.txt"
+echo [%timestamp%] SYSTEM HASH >> %TimeStamp%
+
+:: --------------------
+:: SECURITY FILE HASH
+:: --------------------
+%hash%\hashdeep64.exe "%SYSTEM_INFO_Dir%\SECURITY.hiv" > "%SYSTEM_INFO_HASH%\SECURITY_HASH.txt"
+echo [%timestamp%] SECURITY HASH >> %TimeStamp%
+
+:: BLUESCREENVIEW_HASH
+%hash%\hashdeep64.exe "%SYSTEM_INFO_Dir%\bluescreenview.txt" > "%SYSTEM_INFO_HASH%\BLUESCREENVIEW_HASH.txt"
+echo [%timestamp%] BLUESCREENVIEW HASH >> %TimeStamp%
+
+echo SYSTEM INFORMATION CLEAR 
+echo [%timestamp%] SYSTEM INFORMATION CLEAR >> %TimeStamp%
+echo.
 
 echo Step completed: %choice%
 exit /b

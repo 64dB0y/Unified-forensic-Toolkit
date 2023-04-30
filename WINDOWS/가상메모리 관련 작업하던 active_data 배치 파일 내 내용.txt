@@ -1,0 +1,40 @@
+:run_step_1
+:: 1. Virtual Memory
+echo -----------------------------
+echo 1. Dumping Virtual memory...
+echo [%timestamp%] Virtual memory START >> %TimeStamp%
+echo -----------------------------
+echo.
+
+set Virtual_Memory_dir=%volatile_dir%\Virtual_Memory
+mkdir %Virtual_Memory_dir%
+echo --------------------------
+echo CREATE Virtual_Memory DIRECTORY
+echo [%timestamp%] CREATE Virtual_Memory DIRECTORY >> %TimeStamp%
+echo ACQUIRING INFORMATION
+echo --------------------------
+echo.
+echo.
+echo [%timestamp%] Dumping Virtual Memory >> %TimeStamp%
+
+:: Loop through all the processes
+:: echo [%timestamp%] Dumping Virtual Memory >> %TimeStamp%
+:: for /f "tokens=2" %%a in ('tasklist ^| findstr /r /b "[A-Za-z]"') do (
+::     echo [%timestamp%] Starting procdump for process: %%a >> %TimeStamp%
+::     echo Creating memory dump for process: %%a
+::     "%sysinternals%\procdump64.exe" -ma "%%a" "%Virtual_Memory_dir%\%%a_memory_dump.dmp"
+::     echo [%timestamp%] Finished procdump for process: %%a >> %TimeStamp%
+::     echo Calculating hash for process: %%a
+::     %hash%\hashdeep64.exe "%Virtual_Memory_dir%\%%a_memory_dump.dmp" > "%Virtual_Memory_dir%\%%a_memory_dump_hash.txt"
+::     echo [%timestamp%] HASH for process %%a >> %TimeStamp%
+:: )
+REM "%sysinternals%\PsExec64.exe" -accepteula -s -d -i cmd.exe /c "%dump%\Virtual_Memory_dump.bat" "%sysinternals%" "%Virtual_Memory_dir%" "%TimeStamp%" "%hash%"
+
+REM Add this line to get the session ID
+for /f "tokens=4" %%i in ('tasklist /nh /fi "imagename eq cmd.exe" /fi "sessionname eq console"') do set sessionId=%%i
+
+REM Modify the PsExec command to include the session ID
+REM start "Virtual Memory Dump" /wait "%sysinternals%\PsExec64.exe" -accepteula -i %sessionId% cmd.exe /c "%dump%\Virtual_Memory_dump.bat" "%sysinternals%" "%Virtual_Memory_dir%" "%TimeStamp%" "%hash%"
+
+start "Virtual_Memory_Dump" cmd.exe /k "%dump%\Virtual_Memory_dump.bat" "%sysinternals%" "%Virtual_Memory_dir%" "%TimeStamp%" "%hash%"
+echo cmd.exe /c "%dump%\Virtual_Memory_dump.bat" "%sysinternals%" "%Virtual_Memory_dir%" "%TimeStamp%" "%hash%"

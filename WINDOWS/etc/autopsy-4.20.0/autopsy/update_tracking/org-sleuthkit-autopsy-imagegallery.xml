@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><module codename="org.sleuthkit.autopsy.imagegallery/2">
-    <module_version install_time="1673713407263" last="true" origin="installer" specification_version="2.0.6">
-        <file crc="2021927315" name="config/Modules/org-sleuthkit-autopsy-imagegallery.xml"/>
-        <file crc="101458449" name="modules/org-sleuthkit-autopsy-imagegallery.jar"/>
-    </module_version>
-</module>
