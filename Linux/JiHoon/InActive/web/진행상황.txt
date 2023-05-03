@@ -1,0 +1,4 @@
+sudo apt-get install sqlite3
+설치해야함
+
+경로를 다르게 설정한 웹프로그램은 어떻게 해야할지 생각필요
