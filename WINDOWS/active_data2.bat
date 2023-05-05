@@ -225,97 +225,111 @@ mkdir %PHYSICAL_MEMORY_HASH%
 echo [%timestamp%] CREATE PHYSICAL MEMORY HASH DIRECTORY >> %TimeStamp%
 echo.
 echo Dumping RAM...
-:choose_ram_dump_tool
-set /p "ram_dump_tool=Which RAM dump tool to use? (R=RamCapture, W=Winpmem, C=CyLR, Q=quit): "
+
+:ram_dump_loop
 echo.
 echo.
+
+echo Which RAM dump tool to use?
+echo R - RamCapture
+echo W - Winpmem
+echo C - CyLR
+echo Q - quit
+
+choice /C RWCQ /N /M "Select one of the options: "
+
+if errorlevel 4 goto quit_ram_dump
+if errorlevel 3 goto cylr_ram_dump
+if errorlevel 2 goto winpmem_ram_dump
+if errorlevel 1 goto ramcapture_ram_dump
+
+:ramcapture_ram_dump
 :: To Hash RamCapture result file
 set current_date=%date:~0,4%%date:~5,2%%date:~8,2%
+echo ***********************************************************************
+echo.
+echo Attention - Please input following path on RamCapture:
+echo.
+echo %Memory_Dump_dir%
+echo (Make sure to input the path without line breaks)
+echo.
+echo ***********************************************************************
+echo.
+"%psexec%" -accepteula -i -s cmd.exe /c "call cd %Memory_Dump_dir% & %RamCapture%"
+echo [%timestamp%] RamCapture Finished >> %TimeStamp%
+echo Please wait, this may take some time - Calculating the hash values for the recently created dump file
+%hashdeep% "%Memory_Dump_dir%\%current_date%.mem" > "%PHYSICAL_MEMORY_HASH%\RamCapture_hash.txt"
+echo [%timestamp%] RamCapture HASH >> %TimeStamp%
+timeout /t 10
+goto ram_dump_loop
 
-if /I "%ram_dump_tool%"=="R" (
-    echo ***********************************************************************
-    echo.
-    echo Attention - Please input following path on RamCapture:
-    echo.
-    echo %Memory_Dump_dir%
-    echo (Make sure to input the path without line breaks)
-    echo.
-    echo ***********************************************************************
-    echo.
-    "%psexec%" -accepteula -i -s cmd.exe /c "call cd %Memory_Dump_dir% & %RamCapture%"
-    
-    echo [%timestamp%] RamCapture Finished >> %TimeStamp%
-    echo Please wait, this may take some time - Calculating the hash values for the recently created dump file
-    %hashdeep% "%Memory_Dump_dir%\%current_date%.mem" > "%PHYSICAL_MEMORY_HASH%\RamCapture_hash.txt"
-    echo [%timestamp%] RamCapture HASH >> %TimeStamp%
-    timeout /t 10
-    goto choose_ram_dump_tool
-) else if /I "%ram_dump_tool%"=="W" (
-    set /p "user_id=Please input the user ID of someone with administrator privileges: "
-    set /p "user_pw=Please input the password for the user with administrator privileges (leave empty if none): "
-    if not defined user_pw (
+:winpmem_ram_dump
+set /p "user_id=Please input the user ID of someone with administrator privileges: "
+set /p "user_pw=Please input the password for the user with administrator privileges (leave empty if none): "
+if not defined user_pw (
         "%psexec%" -u %user_id% -accepteula -i -s cmd.exe /c "call %Winpmem% %Memory_Dump_dir%\physmem.raw"
-    ) else (
-        "%psexec%" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "call %Winpmem% %Memory_Dump_dir%\physmem.raw"
-    )
-    echo [%timestamp%] Winpmem Finished >> %TimeStamp%
-    %hashdeep% "%Memory_Dump_dir%\physmem.raw" > "%PHYSICAL_MEMORY_HASH%\physmem_hash.txt"
-    echo [%timestamp%] Winpmem HASH >> %TimeStamp%
-    timeout /t 10
-    goto choose_ram_dump_tool
-) else if /I "%ram_dump_tool%"=="C" (
-    setlocal enabledelayedexpansion
-    set "result_password="
-    echo You must not input following symbols: ^< ^> ^^ ^& ^| '^ ^" ^` 
-    :set_password
-    set /p "result_password=Please Input CyLR result password: "
-    set invalid=0
-    if "!result_password!"=="" (
-        set invalid=1
-    ) else (
-    for /l %%i in (0,1,9) do (
-        set "char=!result_password:~%%i,1!"
-        if "!char!"=="<" set invalid=1
-        if "!char!"==">" set invalid=1
-        if "!char!"=="^" set invalid=1
-        if "!char!"=="&" set invalid=1
-        if "!char!"=="|" set invalid=1
-        if "!char!"=="'" set invalid=1
-        if "!char!"=="`" set invalid=1
-        if "!char!"=="""" set invalid=1
-        if !invalid!==1 goto check_password
-        )
-    )
-    :check_password
-    if !invalid!==1 (
-        echo "There's unacceptable symbols or empty password, plz retype"
-        goto set_password
-    ) else (
-        echo Currently Password entered: !result_password!
-    )
-
-    :confirm_password
-    set "confirm_password="
-    set /p "confirm_password=Please Confirm CyLR result password: "
-    if "!confirm_password!"=="!result_password!" (
-        echo Passwords match
-    ) else (
-        echo Passwords do not match, please try again
-        goto set_password
-    )
-    "%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% -od %Memory_Dump_dir% -of memory_dump.zip -zp !result_password! -zl 9"
-    echo [%timestamp%] CyLR Finished >> %TimeStamp%
-    %hashdeep% "%Memory_Dump_dir%\memory_dump.zip" > "%PHYSICAL_MEMORY_HASH%\memory_dump_hash.txt"
-    echo [%timestamp%] CyLR HASH >> %TimeStamp%
-    timeout /t 10
-    goto choose_ram_dump_tool
-) else if /i "%ram_dump_tool%"=="Q" (
-    echo You chose to quit: Q
-    echo There's no other option to dump Memory
 ) else (
-    echo Invalid choice, please try again
-    goto choose_ram_dump_tool
+    "%psexec%" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "call %Winpmem% %Memory_Dump_dir%\physmem.raw"
 )
+echo [%timestamp%] Winpmem Finished >> %TimeStamp%
+%hashdeep% "%Memory_Dump_dir%\physmem.raw" > "%PHYSICAL_MEMORY_HASH%\physmem_hash.txt"
+echo [%timestamp%] Winpmem HASH >> %TimeStamp%
+timeout /t 10
+goto ram_dump_loop
+
+:cylr_ram_dump
+setlocal enabledelayedexpansion
+set "result_password="
+echo You must not input following symbols: ^< ^> ^^ ^& ^| '^ ^" ^` 
+:set_password
+set /p "result_password=Please Input CyLR result password: "
+set invalid=0
+if "!result_password!"=="" (
+    set invalid=1
+) else (
+for /l %%i in (0,1,9) do (
+    set "char=!result_password:~%%i,1!"
+    if "!char!"=="<" set invalid=1
+    if "!char!"==">" set invalid=1
+    if "!char!"=="^" set invalid=1
+    if "!char!"=="&" set invalid=1
+    if "!char!"=="|" set invalid=1
+    if "!char!"=="'" set invalid=1
+    if "!char!"=="`" set invalid=1
+    if "!char!"=="""" set invalid=1
+    if !invalid!==1 goto check_password
+    )
+)
+:check_password
+if !invalid!==1 (
+    echo "There's unacceptable symbols or empty password, plz retype"
+    goto set_password
+) else (
+    echo Currently Password entered: !result_password!
+)
+
+:confirm_password
+set "confirm_password="
+set /p "confirm_password=Please Confirm CyLR result password: "
+if "!confirm_password!"=="!result_password!" (
+    echo Passwords match
+) else (
+    echo Passwords do not match, please try again
+    goto set_password
+)
+"%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% -od %Memory_Dump_dir% -of memory_dump.zip -zp !result_password! -zl 9"
+echo [%timestamp%] CyLR Finished >> %TimeStamp%
+%hashdeep% "%Memory_Dump_dir%\memory_dump.zip" > "%PHYSICAL_MEMORY_HASH%\memory_dump_hash.txt"
+echo [%timestamp%] CyLR HASH >> %TimeStamp%
+timeout /t 10
+goto ram_dump_loop
+
+:quit_ram_dump
+echo You chose to quit: Q
+echo There's no other option to dump Memory
+goto memory_dump_finished
+
+:memory_dump_finished
 echo [%timestamp%] Memory Dump Finished >> %TimeStamp%
 
 exit /b
