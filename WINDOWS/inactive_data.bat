@@ -114,19 +114,20 @@ if not defined choice (
 )
 goto :Display_Menu
 
-
-
 :: MBR
 :run_step_1
 set MBR_DIR=%NONVOLATILE_DIR%\MBR
 mkdir %MBR_DIR%
 echo [%timestamp%] Create MBR Directory >> %TimeStamp%
-
 dd if=\\.\PhysicalDrive0 of=%MBR_DIR%\MBR bs=512 count=1
 echo [%timestamp%] MBR >> %TimeStamp%
 
 :: MBR HASH 
-
+set MBR_HASH=%MBR_DIR%\HASH
+mkdir %MBR_HASH%
+echo [%timestamp%] CREATE MBR HASH Directory >> %TimeStamp%
+hashdeep "%MBR_DIR%\MBR" > "%MBR_HASH%\MBR_HASH.txt"
+echo [%timestamp%] MBR HASH >> %TIMESTAMP%
 
 :: VBR 
 :run_step_2
@@ -135,19 +136,41 @@ mkdir %VBR_DIR%
 forecopy_handy -f %SystemDrive%\$Boot %VBR_DIR%
 echo [%timestamp%] VBR >> %TimeStamp%
 
+:: VBR HASH 
+set VBR_HASH=%VBR_DIR%\HASH
+mkdir %VBR_HASH%
+echo [%timestamp%] CREATE VBR HASH Directory >> %TimeStamp%
+hashdeep "%VBR_DIR%\$Boot" > "%VBR_HASH%\BOOT_HASH.txt"
+echo [%timestamp%] VBR HASH >> %TIMESTAMP%
+
 :: $MFT
 :run_step_3
-set MFT_DIR=%NONVOLATILE_DIR%\MFT_DIR
+set MFT_DIR=%NONVOLATILE_DIR%\MFT
 mkdir %MFT_DIR%
 forecopy_handy -m %MFT_DIR%
 echo [%timestamp%] MFT >> %TimeStamp%
+
+:: MFT HASH
+set MFT_HASH=%MFT_DIR%\HASH
+mkdir %MFT_HASH%
+echo [%timestamp%] CREATE MFT HASH Directory >> %TimeStamp%
+hashdeep "%MFT_DIR%\mft\$MFT" > "%MFT_HASH%\MFT_HASH.txt"
+echo [%timestamp%] MFT HASH >> %TIMESTAMP%
 
 :: $LogFile
 :run_step_4
 set FileSystemLog=%NONVOLATILE_DIR%\FSLOG
 mkdir %FileSystemLog% 
+echo [%timestamp%] Create FILE SYSTEM LOG Directory >> %TimeStamp%
 forecopy_handy -f %SystemDrive%\$LogFile %FileSystemLog%
 echo [%timestamp%] FILE SYSTEM LOG >> %TimeStamp%
+
+:: FSLOG HASH
+set FSLOG_HASH=%FileSystemLog%\HASH
+mkdir FSLOG_HASH
+echo [%timestamp%] Create File System Log Hash >> %TimeStamp%
+hashdeep "%FileSystemLog%\$LogFile" > "%FSLOG_HASH%\FSLOG_HASH.txt"
+echo [%timestamp%] FILE SYSTEM LOG HASH >> %TimeStamp%
 
 :: REGISTRY
 :: -g option : SAM, SYSTEM, SECURITY, SOFTWARE, DEFAULT, NTUSER.DAT 획득 
