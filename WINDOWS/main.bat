@@ -34,13 +34,17 @@ echo For example, if your Volume Name is {01234567-0000-0000-0000-123456789012},
 echo '123456789012' in its Volume Name GUID but a different Mount Point."
 echo.
 echo.
-call Check_USB_c\Check_USB_64.exe
+if /I "%PROCESSOR_ARCHITECTURE%" == "AMD64" (
+	call ".\Check_USB_c\%PROCESSOR_ARCHITECTURE%\Check_USB_64.exe"
+) else (
+	call ".\Check_USB_c\%PROCESSOR_ARCHITECTURE%\Check_USB_32.exe"
+)
 echo.
 echo.
 echo please input your value ex) F:\
 echo.
 echo Your Current Working Directory is %~dp0
-set /p Target_drive=Your Target Drive:
+set /p Target_drive=Your Target Drive: 
 
 echo.
 echo.
@@ -55,7 +59,7 @@ echo.
 set /p choice="Enter your choice: "
 
 if "%choice%"=="1" (
-    call %~dp0\active_data.bat %CASE% %NAME% %Target_drive%
+    call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%
 ) else (
     echo Invalid choice, please try again.
     goto choice
