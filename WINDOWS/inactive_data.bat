@@ -13,18 +13,19 @@ echo PATH Settings
 echo -------------------------------
 echo.
 SET "ETC=%~dp0etc"
-SET "PATH=%ETC%;%PATH%"
-SET hashdeep=
+SET "HASH=%~dp0HASH"
+SET "PATH=%ETC%;%HASH%;%PATH%"
+SET username=
 
 echo -----------------Architecture Detection-----------------
-if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+if %PROCESSOR_ARCHITECTURE%==AMD64 (
     echo 64-bit operating system detected.
-    set hashdeep=hashdeep64.exe
-) else if "%PROCESSOR_ARCHITECTURE%"=="x86" (
+    set hashdeep=%HASH%\hashdeep64.exe
+) else if %PROCESSOR_ARCHITECTURE%==x86 (
     echo 32-bit operating system detected.
-    set hashdeep=hashdeep.exe
-) else (
-    echo Unknown architecture detected.
+    set hashdeep=%HASH%\hashdeep.exe
+) else (i
+    echo Unknown archtecture detected.
 )
 :: 사용 도구 dd, forecopy_handy(v1.2)
 
@@ -56,7 +57,7 @@ echo.
 :: LOG TIMESTAMP
 set TimeStamp=%foldername%\TimeStamp.log
 echo START TIME : %timestamp%
-echo [%timestamp%]START TIME >> %TimeStamp%
+echo [%timestamp%] START TIME >> %TimeStamp%
 
 
 :: CREATE NONACTIVE DATA DIRECTORY
@@ -77,7 +78,7 @@ echo.
 echo ====================================
 echo Select the step you want to perform:
 echo ====================================
-echo [1] File System MetaData - MFT
+echo [1] File System MetaData - MFT, VBR, MBR
 echo [2] Registry File - SAM, SYSTEM, SOFTWARE, SECURITY
 echo [3] Prefetch OR SuperFetch
 echo [4] Log Files - *.evt Files
@@ -126,11 +127,10 @@ echo [%timestamp%] MBR >> %TimeStamp%
 set MBR_HASH=%MBR_DIR%\HASH
 mkdir %MBR_HASH%
 echo [%timestamp%] CREATE MBR HASH Directory >> %TimeStamp%
-hashdeep "%MBR_DIR%\MBR" > "%MBR_HASH%\MBR_HASH.txt"
+%hashdeep% -e "%MBR_DIR%\MBR" > "%MBR_HASH%\MBR_HASH.txt"
 echo [%timestamp%] MBR HASH >> %TIMESTAMP%
 
-:: VBR 
-:run_step_2
+::VBR
 set VBR_DIR=%NONVOLATILE_DIR%\VBR
 mkdir %VBR_DIR%
 forecopy_handy -f %SystemDrive%\$Boot %VBR_DIR%
@@ -140,11 +140,9 @@ echo [%timestamp%] VBR >> %TimeStamp%
 set VBR_HASH=%VBR_DIR%\HASH
 mkdir %VBR_HASH%
 echo [%timestamp%] CREATE VBR HASH Directory >> %TimeStamp%
-hashdeep "%VBR_DIR%\$Boot" > "%VBR_HASH%\BOOT_HASH.txt"
+%hashdeep% -e "%VBR_DIR%\$Boot" > "%VBR_HASH%\BOOT_HASH.txt"
 echo [%timestamp%] VBR HASH >> %TIMESTAMP%
 
-:: $MFT
-:run_step_3
 set MFT_DIR=%NONVOLATILE_DIR%\MFT
 mkdir %MFT_DIR%
 forecopy_handy -m %MFT_DIR%
@@ -154,82 +152,70 @@ echo [%timestamp%] MFT >> %TimeStamp%
 set MFT_HASH=%MFT_DIR%\HASH
 mkdir %MFT_HASH%
 echo [%timestamp%] CREATE MFT HASH Directory >> %TimeStamp%
-hashdeep "%MFT_DIR%\mft\$MFT" > "%MFT_HASH%\MFT_HASH.txt"
+%hashdeep% -e "%MFT_DIR%\mft\$MFT" > "%MFT_HASH%\MFT_HASH.txt"
 echo [%timestamp%] MFT HASH >> %TIMESTAMP%
 
-:: $LogFile
-:run_step_4
-set FileSystemLog=%NONVOLATILE_DIR%\FSLOG
-mkdir %FileSystemLog% 
-echo [%timestamp%] Create FILE SYSTEM LOG Directory >> %TimeStamp%
-forecopy_handy -f %SystemDrive%\$LogFile %FileSystemLog%
-echo [%timestamp%] FILE SYSTEM LOG >> %TimeStamp%
-
-:: FSLOG HASH
-set FSLOG_HASH=%FileSystemLog%\HASH
-mkdir FSLOG_HASH
-echo [%timestamp%] Create File System Log Hash >> %TimeStamp%
-hashdeep "%FileSystemLog%\$LogFile" > "%FSLOG_HASH%\FSLOG_HASH.txt"
-echo [%timestamp%] FILE SYSTEM LOG HASH >> %TimeStamp%
+echo Step completed: %choice%
+exit /b
 
 :: REGISTRY
 :: -g option : SAM, SYSTEM, SECURITY, SOFTWARE, DEFAULT, NTUSER.DAT 획득 
-:run_step_5
+:run_step_2
 set Registry=%NONVOLATILE_DIR%\Registry
 mkdir %Registry%
-forecopy_handy -g %NONVOLATILE_DIR% %Registry%
-echo [%timestamp%] REGISTRY FILE >> %TimeStamp%
+forecopy_handy -g %Registry%
+echo [%timestamp%] REGISTRY >> %TimeStamp%
 
-:: EVENT LOGS - ok 
-:: -e option : Event Log 획득 
-:run_step_6
-set EventLog=%NONVOLATILE_DIR%\EventLog
-mkdir %EventLog%
-echo [%timestamp%] Create EventLog Directory >> %TimeStamp%
-forecopy_handy -e %NONVOLATILE_DIR% %EventLog%
-echo [%timestamp%] EVENT LOG >> %TimeStamp%
+:: HASH
+set REGISTRY_HASH=%Registry%\Hash
+mkdir %REGISTRY_HASH%
+echo [%timestamp%] Create Registry Hash Directory >> %TimeStamp%
+%hashdeep% -e -r %Registry%\registry  > %REGISTRY_HASH%\REGISTRY_HASH.txt
+echo [%timestamp%] REGISTRY FILE HASH >> %TimeStamp%
 
-:: Prefetch or Superfetch
-:run_step_7
+echo Step completed: %choice%
+exit /b
+
+:: PreFetch OR SuperFetch
+:run_step_3
 set fetch=%NONVOLATILE_DIR%\FetchFile
 mkdir %fetch%
 echo [%timestamp%] Create Fetch Directory >> %TimeStamp%
-forecopy_handy -p %NONVOLATILE_DIR% %fetch%
-echo [%timestamp%] PREFATCH OR SUPERFATCH >> %TimeStamp%
+forecopy_handy -p  %fetch%
+echo [%timestamp%] Fetch File >> %TimeStamp%
 
-:run_step_8
-::SET GUID
-set guid=
-for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
-    set guid=%%g
-)
-set _restore = %NONVOLATILE_DIR%\Restore
-mkdir %_restore%
-echo [%timestamp%] Create Restore Directory >> %TimeStamp%
-forecopy_handy -r %SYSTEMROOT%\system32\Restore %_restore%
-echo [%timestamp%] Restore File >> %TimeStamp%
-forecopy_handy -r %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
+:: HASH
+set fetchHash=%fetch%\Hash
+mkdir %fetchHash%
+echo [%timestamp%] Create Fetch Hash Directory >> %TimeStamp%
+%hashdeep% -e -r %fetch%\prefetch > %fetchHash%\fetchHash.txt
+echo [%timestamp%] Fetch File Hash >> %TimeStamp%
 
+echo Step completed: %choice%
+exit /b
 
-:: SYSTEM32/drivers/etc files
-:run_step_9
-set Driver=%NONVOLATILE_DIR%\Driver
-mkdir %Driver%
-echo [%timestamp%] Create Driver Directory >> %TimeStamp%
-forecopy_handy -t %Driver%
-echo [%timestamp%] Driver Files >> %TimeStamp%
+:: $LogFile
+:run_step_4
+:: -e option : Event Log 획득 
+set eventLog=%NONVOLATILE_DIR%\EventLog
+mkdir %eventLog%
+echo [%timestamp%] Create EventLog Directory >> %TimeStamp%
+forecopy_handy -e  %eventLog%
+echo [%timestamp%] EVENT LOG >> %TimeStamp%
 
-:: RECENT LNKs and JUMPLIST
-:run_step_10
-set Recent=%NONVOLATILE_DIR%\Recent
-mkdir %Recent%
-echo [%timestamp%] Create Recent Data Directory >> %TimeStamp%
-forecopy_handy -r "%AppData%\microsoft\windows\recent" %Lnk%
-echo [%timestamp%] Recent Files >> %TimeStamp%
+set eventHash=%eventLog%\Hash
+mkdir %eventHash%
+echo [%timestamp%] Create EventLog Hash Directory >> %TimeStamp%
+%hashdeep% -e -r %eventLog%\eventlogs\Logs > %eventHash%\eventHash.txt
 
-:: systemprofile (\Windows\system32\config\systemprofile)
-forecopy_handy -r "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
+echo Step completed: %choice%
+exit /b
 
+:run_step_5
+::휴지통 정보 
+
+:run_step_6
+::브라우저 사용 흔적
 :: IE Artifacts
 forecopy_handy -i %NONVOLATILE_DIR%
 	
@@ -262,6 +248,57 @@ forecopy_handy -r "%LocalAppData%\ConnectedDevicesPlatform" %NONVOLATILE_DIR%
 	
 :: Windows Search Database
 forecopy_handy -r "%ProgramData%\Microsoft\Search\Data\Applications\Windows" %NONVOLATILE_DIR%
+
+:: 임시파일 
+:run_step_7
+set FileSystemLog=%NONVOLATILE_DIR%\FSLOG
+mkdir %FileSystemLog% 
+echo [%timestamp%] Create FILE SYSTEM LOG Directory >> %TimeStamp%
+forecopy_handy -f %SystemDrive%\$LogFile %FileSystemLog%
+echo [%timestamp%] FILE SYSTEM LOG >> %TimeStamp%
+
+:: FSLOG HASH
+set FSLOG_HASH=%FileSystemLog%\HASH
+mkdir FSLOG_HASH
+echo [%timestamp%] Create File System Log Hash >> %TimeStamp%
+%hashdeep% "%FileSystemLog%\$LogFile" > "%FSLOG_HASH%\FSLOG_HASH.txt"
+echo [%timestamp%] FILE SYSTEM LOG HASH >> %TimeStamp%
+
+
+:run_step_8
+::SET GUID
+set guid=
+for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
+    set guid=%%g
+)
+set _restore = %NONVOLATILE_DIR%\Restore
+mkdir %_restore%
+echo [%timestamp%] Create Restore Directory >> %TimeStamp%
+forecopy_handy -r %SYSTEMROOT%\system32\Restore %_restore%
+echo [%timestamp%] Restore File >> %TimeStamp%
+forecopy_handy -r %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
+
+
+:: SYSTEM32/drivers/etc files
+:run_step_9
+set Driver=%NONVOLATILE_DIR%\Driver
+mkdir %Driver%
+echo [%timestamp%] Create Driver Directory >> %TimeStamp%
+forecopy_handy -t %Driver%
+echo [%timestamp%] Driver Files >> %TimeStamp%
+
+
+:: RECENT LNKs and JUMPLIST
+:run_step_10
+set Recent=%NONVOLATILE_DIR%\Recent
+mkdir %Recent%
+echo [%timestamp%] Create Recent Data Directory >> %TimeStamp%
+forecopy_handy -r "%AppData%\microsoft\windows\recent" %Lnk%
+echo [%timestamp%] Recent Files >> %TimeStamp%
+
+:: systemprofile (\Windows\system32\config\systemprofile)
+forecopy_handy -r "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
+
 
 
 echo ----------------------
