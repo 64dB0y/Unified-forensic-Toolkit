@@ -15,7 +15,7 @@ echo.
 SET "ETC=%~dp0etc"
 SET "HASH=%~dp0HASH"
 SET "PATH=%ETC%;%HASH%;%PATH%"
-SET username=
+
 
 echo -----------------Architecture Detection-----------------
 if %PROCESSOR_ARCHITECTURE%==AMD64 (
