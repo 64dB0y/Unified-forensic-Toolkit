@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# 사용자 이름 입력
-read -p "사용자 이름을 입력하세요: " USERNAME
-
 # 사용자의 홈 디렉토리 찾기
-USER_HOME_DIR=$(getent passwd "$USERNAME" | cut -d: -f6)
+USER_HOME_DIR=$(getent passwd $(logname) | cut -d: -f6)
 
 # 휴지통 디렉토리 설정
 TRASH_DIR="$USER_HOME_DIR/.local/share/Trash/files"
