@@ -10,7 +10,7 @@ echo "Metadata Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 mkdir ../mnt2/Metadata/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Metadata Hash Directory Timtestamp : $timestamp" >> ../mnt2/Metadata/Forensic_Info.txt
+echo "Metadata Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # 수집할 디렉토리 경로
 DIR="/"
