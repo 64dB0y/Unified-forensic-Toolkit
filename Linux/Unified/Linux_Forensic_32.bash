@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Linux_Forensic_64.bash for forensics in a Linux 64-bit environment"
+echo "Linux_Forensic_32.bash for forensics in a Linux 32-bit environment"
 echo "by Team_Bocchi_The_Forensic"
-echo "Version 0.03b"
+echo "Version 0.01a"
 echo
 
 # Create a Timestamp
@@ -33,14 +33,14 @@ PS3='Please Select the section You Want to Forensic : '
 select section in "ALL" "Active Data" "Inactive Data" "Exit"
 do
 	if [ "$section" = "ALL" ];then
-		for file in Inactive_Scripts/*64.bash
+		for file in Inactive_Scripts/*32.bash
 			do
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 				./"$file"
 				echo "-------------------------------------------------------------"
 			done
 		
-		for file in Active_Scripts/*64.bash
+		for file in Active_Scripts/*32.bash
 			do
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 				./"$file"
@@ -55,7 +55,7 @@ do
 			if [ "$inact_section" = "ALL" ];then
 				echo "Collection $inact_section..."
 				echo
-				for file in Inactive_Scripts/*64.bash
+				for file in Inactive_Scripts/*32.bash
 				do
 					echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 					./"$file"
@@ -68,7 +68,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/a_metadata_64.bash
+				./Scripts/a_metadata_32.bash
 				echo "Collection Finished"
 			fi
 
@@ -76,7 +76,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/b_log_64.bash
+				./Scripts/b_log_32.bash
 				echo "Collection Finished"
 			fi
 
@@ -84,7 +84,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/c_systeminfo_64.bash
+				./Scripts/c_systeminfo_32.bash
 				echo "Collection Finished"
 			fi
 
@@ -92,7 +92,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/c_trash_64.bash
+				./Scripts/c_trash_32.bash
 				echo "Collection Finished"
 			fi
 
@@ -100,7 +100,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/d_webhistory_64.bash
+				./Scripts/d_webhistory_32.bash
 				echo "Collection Finished"
 			fi
 		done
@@ -114,7 +114,7 @@ do
 			if [ "$act_section" = "ALL" ];then              # Forensic ALL section
 				echo "Collecting $act_section..."
 				echo
-				for file in Active_Scripts/*64.bash
+				for file in Active_Scripts/*32.bash
 				do
 					echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
 					./"$file"
@@ -127,7 +127,7 @@ do
 				echo "Collecting $act_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/b_logon_64.bash
+				./Scripts/b_logon_32.bash
 				echo "Collection Finished"
 			fi
 		
@@ -135,7 +135,7 @@ do
 				echo "Collecting $act_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/c_network_64.bash
+				./Scripts/c_network_32.bash
 				echo "Collection Finished"
 			fi
 			
@@ -143,7 +143,7 @@ do
 				echo "Collecting $act_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/d_processinfo_64.bash
+				./Scripts/d_processinfo_32.bash
 				echo "Collection Finished"
 			fi
 			
@@ -151,7 +151,7 @@ do
 				echo "Collecting $act_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/e_auto_64.bash
+				./Scripts/e_auto_32.bash
 				echo "Collection Finished"
 			fi
 		
@@ -159,7 +159,7 @@ do
 				echo "Collecting $act_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/f_sysinfo_64.bash
+				./Scripts/f_sysinfo_32.bash
 				echo "Collection Finished"
 			fi
 			
