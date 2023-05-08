@@ -94,7 +94,7 @@ cat ../mnt2/SysInfo_Inactive/system_info.txt
 
 #각 명령어의 실행 결과를 변수에 저장하고, 해당 변수를 이용하여 결과를 출력합니다. 위의 예제 코드를 실행하면 CPU 정보, 블록 디바이스 정보, 하드웨어 정보, USB 디바이스 정보, 로드된 커널 모듈 정보, 디스크 사용량 정보, 메모리 사용량 정보를 모두 출력합니다.
 
-for file in ../mnt2/SysInfo_Inactive/*.txt					# Obtain the hash value for each result file
+for file in ../mnt2/SysInfo_Inactive/*.txt				# Obtain the hash value for each result file
 do
 	echo "$file" >> ../mnt2/SysInfo_Inactive/hash/hash.txt
 	./hash.exe "$file" >> ../mnt2/SysInfo_Inactive/hash/hash.txt
