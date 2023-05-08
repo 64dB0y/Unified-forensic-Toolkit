@@ -39,7 +39,7 @@ do
 done
 timestamp=$(date +"%Y-%m-%d %T")
 echo "System hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-date >> ../mnt2/System/hash.txt
+date -u >> ../mnt2/System/hash.txt
 echo    >> ../mnt2/System/hash.txt
 
 echo Collecting System Information Finished

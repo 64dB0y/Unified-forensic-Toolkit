@@ -39,9 +39,9 @@ timestamp=$(date +"%Y-%m-%d %T")
 echo "lastdown.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # Log in more than 5 failed logins
-sudo lastb > ../mnt2/Logon/lastb.txt
+sudo last -f /var/log/btmp > ../mnt2/Logon/lastb.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "lastb.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "LoginFailed.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 for file in ../mnt2/Logon/*.txt					# Obtain the hash value for each result file
 do
@@ -51,7 +51,7 @@ do
 done
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Logon hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-date >> ../mnt2/Logon/hash/hash.txt
+date -u >> ../mnt2/Logon/hash/hash.txt
 echo    >> ../mnt2/Logon/hash/hash.txt
 
 echo Collecting Logon user Information Finished
