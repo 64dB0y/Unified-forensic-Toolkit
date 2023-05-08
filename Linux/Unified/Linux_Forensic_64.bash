@@ -92,7 +92,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/c_trash_64.bash
+				./Scripts/d_trash_64.bash
 				echo "Collection Finished"
 			fi
 
@@ -100,7 +100,7 @@ do
 				echo "Collecting $inact_section..."
 				echo
 				echo "-------------------------------------------------------------" >> ../mnt2/Forensic_Info.txt
-				./Scripts/d_webhistory_64.bash
+				./Scripts/e_webhistory_64.bash
 				echo "Collection Finished"
 			fi
 		done
