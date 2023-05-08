@@ -8,32 +8,55 @@ echo **********************************
 echo.
 
 :: 초기설정
-echo -------------------------------
-echo PATH Settings
-echo -------------------------------
-echo.
-SET "ETC=%~dp0etc"
-SET "HASH=%~dp0HASH"
-SET "PATH=%ETC%;%HASH%;%PATH%"
-
-
-echo -----------------Architecture Detection-----------------
-if %PROCESSOR_ARCHITECTURE%==AMD64 (
-    echo 64-bit operating system detected.
-    set hashdeep=%HASH%\hashdeep64.exe
-) else if %PROCESSOR_ARCHITECTURE%==x86 (
-    echo 32-bit operating system detected.
-    set hashdeep=%HASH%\hashdeep.exe
-) else (i
-    echo Unknown archtecture detected.
-)
+:: -------------------------------
+:: PATH Settings
+:: -------------------------------
 :: 사용 도구 dd, forecopy_handy(v1.2)
-
 set CASE=%1
 set NAME=%2
 
 set final_step=10
 set choice=
+
+SET "curDir=%~dp0"
+SET "ETC=%~dp0etc"
+SET "HASH=%~dp0HASH"
+SET "PATH=%ETC%;%HASH%;%PATH%"
+echo %curDir%
+
+:: Check .NET Framework4 or 6
+reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" >nul 2>&1
+if %errorlevel%==0 (
+    echo .NET Framework version 4 is installed. >>%curDir%\basic_info.txt
+    set "net=4"
+    set "rbcmd=%curDir%\net4\RBCmd.exe"
+    goto Check_Architecture
+)
+
+reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v6.0" >nul 2>&1
+if %errorlevel%==0 (
+    echo .NET Framework version 6 is installed. >> %curDir%\basic_info.txt
+    set "net=6"
+    set "rbcmd=%curDir%\net6\RBCmd.exe"
+    echo %rbcmd%
+    goto Check_Architecture
+)
+
+echo .NET Framework is not installed. >> %curDir%\basic_info.txt
+goto Check_Architecture
+
+
+:Check_Architecture
+:: -----------------Architecture Detection-----------------
+if %PROCESSOR_ARCHITECTURE%==AMD64 (
+    echo 64-bit operating system detected. >> %curDir%\basic_info.txt
+    set hashdeep=%HASH%\hashdeep64.exe
+) else if %PROCESSOR_ARCHITECTURE%==x86 (
+    echo 32-bit operating system detected. >> %curDir%\basic_info.txt
+    set hashdeep=%HASH%\hashdeep.exe
+) else (
+    echo Unknown archtecture detected. >> %curDir%\basic_info.txt
+)
 
 
 :: SET DATE AND TIME
@@ -51,27 +74,24 @@ set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 :: FOLDER SET
 set foldername=%3%computername%_%timestamp%
 mkdir "%foldername%"
-echo CREATE %foldername% DIRECTORY
-echo.
+echo CREATE %foldername% DIRECTORY 
 
 :: LOG TIMESTAMP
-set TimeStamp=%foldername%\TimeStamp.log
-echo START TIME : %timestamp%
-echo [%timestamp%] START TIME >> %TimeStamp%
-
+set _TimeStamp=%foldername%\TimeStamp.log
+::echo START TIME : %timestamp%
+echo [%timestamp%] START TIME >> %_TimeStamp%
 
 :: CREATE NONACTIVE DATA DIRECTORY
-ECHO CREATE NONVOLATILE DIRECTORY 
-SET NONVOLATILE_DIR=%foldername%\NONVOLATILE
-MKDIR %NONVOLATILE_DIR%
-echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %TimeStamp%
+set NONVOLATILE_DIR=%foldername%\NONVOLATILE
+mkdir %NONVOLATILE_DIR%
+echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :: INPUT CASE, NAME
 :INPUT_CASE
-echo [%timestamp%]%CASE% >> %TimeStamp%
+echo [%timestamp%]%CASE% >> %_TimeStamp%
 
 :INPUT_NAME
-echo [%timestamp%]%NAME% >> %TimeStamp%
+echo [%timestamp%]%NAME% >> %_TimeStamp%
 
 :Display_Menu
 echo.
@@ -119,41 +139,41 @@ goto :Display_Menu
 :run_step_1
 set MBR_DIR=%NONVOLATILE_DIR%\MBR
 mkdir %MBR_DIR%
-echo [%timestamp%] Create MBR Directory >> %TimeStamp%
+echo [%timestamp%] Create MBR Directory >> %_TimeStamp%
 dd if=\\.\PhysicalDrive0 of=%MBR_DIR%\MBR bs=512 count=1
-echo [%timestamp%] MBR >> %TimeStamp%
+echo [%timestamp%] MBR >> %_TimeStamp%
 
 :: MBR HASH 
 set MBR_HASH=%MBR_DIR%\HASH
 mkdir %MBR_HASH%
-echo [%timestamp%] CREATE MBR HASH Directory >> %TimeStamp%
+echo [%timestamp%] CREATE MBR HASH Directory >> %_TimeStamp%
 %hashdeep% -e "%MBR_DIR%\MBR" > "%MBR_HASH%\MBR_HASH.txt"
-echo [%timestamp%] MBR HASH >> %TIMESTAMP%
+echo [%timestamp%] MBR HASH >> %_TimeStamp%
 
 ::VBR
 set VBR_DIR=%NONVOLATILE_DIR%\VBR
 mkdir %VBR_DIR%
 forecopy_handy -f %SystemDrive%\$Boot %VBR_DIR%
-echo [%timestamp%] VBR >> %TimeStamp%
+echo [%timestamp%] VBR >> %_TimeStamp%
 
 :: VBR HASH 
 set VBR_HASH=%VBR_DIR%\HASH
 mkdir %VBR_HASH%
-echo [%timestamp%] CREATE VBR HASH Directory >> %TimeStamp%
+echo [%timestamp%] CREATE VBR HASH Directory >> %_TimeStamp%
 %hashdeep% -e "%VBR_DIR%\$Boot" > "%VBR_HASH%\BOOT_HASH.txt"
-echo [%timestamp%] VBR HASH >> %TIMESTAMP%
+echo [%timestamp%] VBR HASH >> %_TimeStamp%
 
 set MFT_DIR=%NONVOLATILE_DIR%\MFT
 mkdir %MFT_DIR%
 forecopy_handy -m %MFT_DIR%
-echo [%timestamp%] MFT >> %TimeStamp%
+echo [%timestamp%] MFT >> %_TimeStamp%
 
 :: MFT HASH
 set MFT_HASH=%MFT_DIR%\HASH
 mkdir %MFT_HASH%
-echo [%timestamp%] CREATE MFT HASH Directory >> %TimeStamp%
+echo [%timestamp%] CREATE MFT HASH Directory >> %_TimeStamp%
 %hashdeep% -e "%MFT_DIR%\mft\$MFT" > "%MFT_HASH%\MFT_HASH.txt"
-echo [%timestamp%] MFT HASH >> %TIMESTAMP%
+echo [%timestamp%] MFT HASH >> %_TimeStamp%
 
 echo Step completed: %choice%
 exit /b
@@ -164,14 +184,14 @@ exit /b
 set Registry=%NONVOLATILE_DIR%\Registry
 mkdir %Registry%
 forecopy_handy -g %Registry%
-echo [%timestamp%] REGISTRY >> %TimeStamp%
+echo [%timestamp%] REGISTRY >> %_TimeStamp%
 
 :: HASH
 set REGISTRY_HASH=%Registry%\Hash
 mkdir %REGISTRY_HASH%
-echo [%timestamp%] Create Registry Hash Directory >> %TimeStamp%
+echo [%timestamp%] Create Registry Hash Directory >> %_TimeStamp%
 %hashdeep% -e -r %Registry%\registry  > %REGISTRY_HASH%\REGISTRY_HASH.txt
-echo [%timestamp%] REGISTRY FILE HASH >> %TimeStamp%
+echo [%timestamp%] REGISTRY FILE HASH >> %_TimeStamp%
 
 echo Step completed: %choice%
 exit /b
@@ -180,16 +200,16 @@ exit /b
 :run_step_3
 set fetch=%NONVOLATILE_DIR%\FetchFile
 mkdir %fetch%
-echo [%timestamp%] Create Fetch Directory >> %TimeStamp%
+echo [%timestamp%] Create Fetch Directory >> %_TimeStamp%
 forecopy_handy -p  %fetch%
-echo [%timestamp%] Fetch File >> %TimeStamp%
+echo [%timestamp%] Fetch File >> %_TimeStamp%
 
 :: HASH
 set fetchHash=%fetch%\Hash
 mkdir %fetchHash%
-echo [%timestamp%] Create Fetch Hash Directory >> %TimeStamp%
+echo [%timestamp%] Create Fetch Hash Directory >> %_TimeStamp%
 %hashdeep% -e -r %fetch%\prefetch > %fetchHash%\fetchHash.txt
-echo [%timestamp%] Fetch File Hash >> %TimeStamp%
+echo [%timestamp%] Fetch File Hash >> %_TimeStamp%
 
 echo Step completed: %choice%
 exit /b
@@ -199,20 +219,48 @@ exit /b
 :: -e option : Event Log 획득 
 set eventLog=%NONVOLATILE_DIR%\EventLog
 mkdir %eventLog%
-echo [%timestamp%] Create EventLog Directory >> %TimeStamp%
+echo [%timestamp%] Create EventLog Directory >> %_TimeStamp%
 forecopy_handy -e  %eventLog%
-echo [%timestamp%] EVENT LOG >> %TimeStamp%
+echo [%timestamp%] EVENT LOG >> %_TimeStamp%
 
 set eventHash=%eventLog%\Hash
 mkdir %eventHash%
-echo [%timestamp%] Create EventLog Hash Directory >> %TimeStamp%
+echo [%timestamp%] Create EventLog Hash Directory >> %_TimeStamp%
 %hashdeep% -e -r %eventLog%\eventlogs\Logs > %eventHash%\eventHash.txt
 
 echo Step completed: %choice%
 exit /b
 
 :run_step_5
-::휴지통 정보 
+set recycleBin=%NONVOLATILE_DIR%\recycleBin
+mkdir %recycleBin%
+echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
+
+if  "%net%"=="4" (
+    goto RecycleBin_net4
+) else if "%net%"=="6" (
+    goto RecycleBin_net6
+) else (
+    goto RecycleBin_fore
+)
+
+:RecycleBin_net4
+%rbcmd% -d %SystemDrive%\$Recycle.bin --csv %recycleBin%
+echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
+exit /b
+
+:RecycleBin_net6
+%rbcmd% -d %SystemDrive%\$Recycle.bin --csv %recycleBin%
+echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
+exit /b
+
+:RecycleBin_fore
+forecopy_handy -r %SystemDrive%$Recycle.Bin %recycleBin%
+echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
+exit /b
+
+
+
 
 :run_step_6
 ::브라우저 사용 흔적
@@ -253,16 +301,16 @@ forecopy_handy -r "%ProgramData%\Microsoft\Search\Data\Applications\Windows" %NO
 :run_step_7
 set FileSystemLog=%NONVOLATILE_DIR%\FSLOG
 mkdir %FileSystemLog% 
-echo [%timestamp%] Create FILE SYSTEM LOG Directory >> %TimeStamp%
+echo [%timestamp%] Create FILE SYSTEM LOG Directory >> %_TimeStamp%
 forecopy_handy -f %SystemDrive%\$LogFile %FileSystemLog%
-echo [%timestamp%] FILE SYSTEM LOG >> %TimeStamp%
+echo [%timestamp%] FILE SYSTEM LOG >> %_TimeStamp%
 
 :: FSLOG HASH
 set FSLOG_HASH=%FileSystemLog%\HASH
 mkdir FSLOG_HASH
-echo [%timestamp%] Create File System Log Hash >> %TimeStamp%
+echo [%timestamp%] Create File System Log Hash >> %_TimeStamp%
 %hashdeep% "%FileSystemLog%\$LogFile" > "%FSLOG_HASH%\FSLOG_HASH.txt"
-echo [%timestamp%] FILE SYSTEM LOG HASH >> %TimeStamp%
+echo [%timestamp%] FILE SYSTEM LOG HASH >> %_TimeStamp%
 
 
 :run_step_8
@@ -273,9 +321,9 @@ for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v Mac
 )
 set _restore = %NONVOLATILE_DIR%\Restore
 mkdir %_restore%
-echo [%timestamp%] Create Restore Directory >> %TimeStamp%
+echo [%timestamp%] Create Restore Directory >> %Tim_TimeStampeStamp%
 forecopy_handy -r %SYSTEMROOT%\system32\Restore %_restore%
-echo [%timestamp%] Restore File >> %TimeStamp%
+echo [%timestamp%] Restore File >> %_TimeStamp%
 forecopy_handy -r %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
 
 
@@ -283,18 +331,18 @@ forecopy_handy -r %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore
 :run_step_9
 set Driver=%NONVOLATILE_DIR%\Driver
 mkdir %Driver%
-echo [%timestamp%] Create Driver Directory >> %TimeStamp%
+echo [%timestamp%] Create Driver Directory >> %_TimeStamp%
 forecopy_handy -t %Driver%
-echo [%timestamp%] Driver Files >> %TimeStamp%
+echo [%timestamp%] Driver Files >> %_TimeStamp%
 
 
 :: RECENT LNKs and JUMPLIST
 :run_step_10
 set Recent=%NONVOLATILE_DIR%\Recent
 mkdir %Recent%
-echo [%timestamp%] Create Recent Data Directory >> %TimeStamp%
+echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
 forecopy_handy -r "%AppData%\microsoft\windows\recent" %Lnk%
-echo [%timestamp%] Recent Files >> %TimeStamp%
+echo [%timestamp%] Recent Files >> %_TimeStamp%
 
 :: systemprofile (\Windows\system32\config\systemprofile)
 forecopy_handy -r "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
