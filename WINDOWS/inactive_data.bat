@@ -245,17 +245,20 @@ if  "%net%"=="4" (
 )
 
 :RecycleBin_net4
+echo now execute net4
 %rbcmd% -d %SystemDrive%\$Recycle.bin --csv %recycleBin%
 echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
 exit /b
 
 :RecycleBin_net6
+echo now execute net6
 %rbcmd% -d %SystemDrive%\$Recycle.bin --csv %recycleBin%
 echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
 exit /b
 
 :RecycleBin_fore
-forecopy_handy -r %SystemDrive%$Recycle.Bin %recycleBin%
+echo now execute fore
+forecopy_handy -r %SystemDrive%\$Recycle.Bin %recycleBin%
 echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
 exit /b
 
