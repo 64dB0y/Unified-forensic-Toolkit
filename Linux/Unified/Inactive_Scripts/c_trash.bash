@@ -34,6 +34,8 @@ fi
 # 휴지통 디렉토리에서 파일 및 폴더 정보 추출
 echo "휴지통의 정보를 수집 중입니다..."
 find "$TRASH_DIR" -mindepth 1 -exec stat '{}' \; > "$OUTPUT_FILE" 2>/dev/null
+timestamp=$(date +"%Y-%m-%d %T")
+echo "trash_info.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 for file in ../mnt2/Trash/*.txt					# Obtain the hash value for each result file
 do

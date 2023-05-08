@@ -20,6 +20,8 @@ OUTPUT_FILE="../mnt2/metadata.txt"
 
 # find 명령어를 사용하여 지정된 디렉토리 아래의 모든 파일에 대해 stat 명령어를 실행하고 결과를 파일에 저장
 find "$DIR" -exec stat {} \; > "$OUTPUT_FILE"
+timestamp=$(date +"%Y-%m-%d %T")
+echo "metadata.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # 수집 결과에서 필요한 정보 추출하여 새로운 파일에 저장 << 이 부분 때문에 생성 시간과 더불어 메타데이터 스크립트 실행 시간이 오래 걸리는게 아닌지?
 awk '{
@@ -30,6 +32,8 @@ awk '{
     printf "%s ", $0 # 필요한 정보 출력
   }
 }' "$OUTPUT_FILE" > "formatted_metadata.txt"
+timestamp=$(date +"%Y-%m-%d %T")
+echo "formatted_metadata.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 for file in ../mnt2/Logon/*.txt					# Obtain the hash value for each result file
 do

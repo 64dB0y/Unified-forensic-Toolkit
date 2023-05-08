@@ -25,6 +25,8 @@ fi
 
 # 로그 파일을 collected_log_dir 디렉토리로 복사
 sudo cp -R "$log_dir"/*.log "$collected_log_dir"
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Log file copy Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 for file in ../mnt2/Logon/*.log					# Obtain the hash value for each result file
 do
