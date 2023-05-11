@@ -10,7 +10,7 @@ echo "Temporary file Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.
 
 mkdir ../mnt2/TMP/metadata
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Temporary file metadata Directory Timestamp : $timestamp" >> ../mnt2/Foresnci_Info.txt
+echo "Temporary file metadata Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 mkdir ../mnt2/TMP/hash
 timestamp=$(date +"%Y-%m-%d %T")
@@ -32,7 +32,7 @@ do
     stat $file > ../mnt2/TMP/metadata/$(basename $file).metadata.txt
 done
 
-for file in ../mnt2/TMP/*.txt					# Obtain the hash value for each result file
+for file in ../mnt2/TMP/*					# Obtain the hash value for each result file
 do
 	echo "$file" >> ../mnt2/TMP/hash/hash.txt
 	sudo ./hash.exe "$file" >> ../mnt2/TMP/hash/hash.txt
@@ -41,14 +41,14 @@ done
 
 for file in ../mnt2/TMP/metatdata/*.txt
 do
-	echo "$file" >> ../mnt2/TMP/has/hash.txt
+	echo "$file" >> ../mnt2/TMP/hash/hash.txt
 	sudo ./hash.exe "$file" >> ../mnt2/TMP/hash/hash.txt
 	echo >> ../mnt2/TMP/hash/hash.txt
 done
 
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Web hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-date >> ../mnt2/Web/hash/hash.txt
-echo    >> ../mnt2/Web/hash/hash.txt
+echo "Temporary hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+date >> ../mnt2/TMP/hash/hash.txt
+echo    >> ../mnt2/TMP/hash/hash.txt
 
 echo "Forensic collection for temporary files completed."
