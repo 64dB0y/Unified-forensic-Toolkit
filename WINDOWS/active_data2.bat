@@ -967,7 +967,7 @@ echo.
 echo ACQUIRING INFORMATION
 echo -------------------------------
 REM Collect clipboard information
-clip > "%SystemInfo_dir%\clipboard.txt"
+%etc%\pclip.exe > "%TSCB_Dir%\clipboard.txt"
 REM Collect scheduled tasks information using schtasks
 echo Collecting scheduled tasks information...
 schtasks /query /fo CSV /v > "%TSCB_Dir%\ScheduledTasks.csv"
