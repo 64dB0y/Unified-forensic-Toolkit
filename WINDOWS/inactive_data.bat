@@ -262,43 +262,54 @@ forecopy_handy -r %SystemDrive%\$Recycle.Bin %recycleBin%
 echo [%timestamp%] Recycle Bin Data >> %_TimeStamp%
 exit /b
 
-
-
-
 :run_step_6
-::브라우저 사용 흔적
+::BrowserArtifacts
+set BrowserArtifacts=%NONVOLATILE_DIR%\BrowserArtifacts
+mkdir %BrowserArtifacts%
 :: IE Artifacts
-forecopy_handy -i %NONVOLATILE_DIR%
+forecopy_handy -i %BrowserArtifacts%
 	
 :: Firefox Artifacts
-forecopy_handy -x %NONVOLATILE_DIR%	
+forecopy_handy -x %BrowserArtifacts%
 
 :: Chrome Artifacts
-forecopy_handy -c %NONVOLATILE_DIR%
+forecopy_handy -c %BrowserArtifacts%
+
+set NonVolatile_ETC=%NONVOLATILE_DIR%\NonVolatile_ETC
+mkdir %NonVolatile_ETC%
 
 :: IconCache
-set ICONCACHE=%NONVOLATILE_DIR%\iconcache
+set ICONCACHE=%%NonVolatile_ETC%%\iconcache
 mkdir %ICONCACHE%
 
 forecopy_handy -f %LocalAppData%\IconCache.db %ICONCACHE%	
 	
 :: Thumbcache
-forecopy_handy -r "%LocalAppData%\microsoft\windows\explorer" %NONVOLATILE_DIR%	
+forecopy_handy -r "%LocalAppData%\microsoft\windows\explorer" %NonVolatile_ETC%
 	
 :: Downloaded Program Files
-forecopy_handy -r "%SystemRoot%\Downloaded Program Files" %NONVOLATILE_DIR%	
+forecopy_handy -r "%SystemRoot%\Downloaded Program Files" %NonVolatile_ETC%
 	
 :: Java IDX cache
-forecopy_handy -r "%UserProfile%\AppData\LocalLow\Sun\Java\Deployment" %NONVOLATILE_DIR%	
+forecopy_handy -r "%UserProfile%\AppData\LocalLow\Sun\Java\Deployment" %NonVolatile_ETC%
 	
 :: WER (Windows Error Reporting)
-forecopy_handy -r "%LocalAppData%\Microsoft\Windows\WER" %NONVOLATILE_DIR%
+forecopy_handy -r "%LocalAppData%\Microsoft\Windows\WER" %NonVolatile_ETC%
 	
 :: Windows Timeline
-forecopy_handy -r "%LocalAppData%\ConnectedDevicesPlatform" %NONVOLATILE_DIR%
+forecopy_handy -r "%LocalAppData%\ConnectedDevicesPlatform" %NonVolatile_ETC%
 	
 :: Windows Search Database
-forecopy_handy -r "%ProgramData%\Microsoft\Search\Data\Applications\Windows" %NONVOLATILE_DIR%
+forecopy_handy -r "%ProgramData%\Microsoft\Search\Data\Applications\Windows" %NonVolatile_ETC%
+
+:: Create HASH
+set BA_HASH=%BrowserArtifacts%\HASH
+mkdir %BA_HASH%
+%hashdeep% -r %BA_HASH% > "%BA_HASH%\BA_HASH.txt"
+
+set NonVolatile_ETC_HASH=%NonVolatile_ETC%\HASH
+mkdir %NonVolatile_ETC_HASH%
+%hashdeep% -r %NonVolatile_ETC% > "%NonVolatile_ETC_HASH%\NonVolatile_ETC_HASH.txt"
 
 :: 임시파일 
 :run_step_7
@@ -310,11 +321,10 @@ echo [%timestamp%] FILE SYSTEM LOG >> %_TimeStamp%
 
 :: FSLOG HASH
 set FSLOG_HASH=%FileSystemLog%\HASH
-mkdir FSLOG_HASH
+mkdir %FSLOG_HASH%
 echo [%timestamp%] Create File System Log Hash >> %_TimeStamp%
 %hashdeep% "%FileSystemLog%\$LogFile" > "%FSLOG_HASH%\FSLOG_HASH.txt"
 echo [%timestamp%] FILE SYSTEM LOG HASH >> %_TimeStamp%
-
 
 :run_step_8
 ::SET GUID
@@ -322,33 +332,66 @@ set guid=
 for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
     set guid=%%g
 )
-set _restore = %NONVOLATILE_DIR%\Restore
+set _restore=%NONVOLATILE_DIR%\Restore
 mkdir %_restore%
-echo [%timestamp%] Create Restore Directory >> %Tim_TimeStampeStamp%
+echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
 forecopy_handy -r %SYSTEMROOT%\system32\Restore %_restore%
-echo [%timestamp%] Restore File >> %_TimeStamp%
-forecopy_handy -r %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
+echo [%timestamp%] Restore Dump created >> %_TimeStamp%
+forecopy_handy -r "%HOMEDRIVE%\System Volume Information\_restore{%guid%}" %_restore%
+echo [%timestamp%] System Volume Information Dump created >> %_TimeStamp%
 
+set _restore_HASH=%NONVOLATILE_DIR%\Restore\HASH
+mkdir %_restore_HASH%
+%hashdeep% -r %_restore% > "%_restore_HASH%\_restore_HASH.txt"
+echo [%timestamp%] Create HASH FILE FOR All Restore File >> %_TimeStamp%
 
-:: SYSTEM32/drivers/etc files
 :run_step_9
+:: SYSTEM32/drivers/etc files
 set Driver=%NONVOLATILE_DIR%\Driver
 mkdir %Driver%
 echo [%timestamp%] Create Driver Directory >> %_TimeStamp%
 forecopy_handy -t %Driver%
 echo [%timestamp%] Driver Files >> %_TimeStamp%
 
+:: Create HASH
+set Driver_HASH=%Driver%\HASH
+mkdir %Driver_HASH%
+echo [%timestamp%] Created HASH Directory >> %TimeStamp%
+%hashdeep% -r %Driver% > "%Driver_HASH%\Driver_hash.txt"
+echo [%timestamp%] Created Driver HASH >> %TimeStamp%
+
 
 :: RECENT LNKs and JUMPLIST
 :run_step_10
 set Recent=%NONVOLATILE_DIR%\Recent
+:: Create Recent Directory
 mkdir %Recent%
 echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
-forecopy_handy -r "%AppData%\microsoft\windows\recent" %Lnk%
-echo [%timestamp%] Recent Files >> %_TimeStamp%
+
+:: Recent File
+mkdir %Recent%\Recent_Files
+echo [%timestamp%] Create Recent_Files Directory >> %_TimeStamp%
+forecopy_handy -r "%AppData%\microsoft\windows\recent" %Recent%\Recent_Files
+echo [%timestamp%] Recent File Dump Created >> %_TimeStamp%
 
 :: systemprofile (\Windows\system32\config\systemprofile)
-forecopy_handy -r "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
+mkdir %Recent%\systemprofile
+echo [%timestamp%] Create systemprofile Directory >> %_TimeStamp%
+forecopy_handy -r "%SystemRoot%\system32\config\systemprofile" %Recent%\systemprofile
+echo [%timestamp%] systemprofile Dump Created >> %_TimeStamp%
+
+:: Create HASH
+set Recent_HASH=%Recent%\HASH
+mkdir %Recent_HASH%
+echo [%timestamp%] Created HASH Directory >> %TimeStamp%
+
+:: Recent File Hash
+%hashdeep% -r "%Recent%\Recent_Files" > "%Recent_HASH%\Recent_hash.txt"
+echo [%timestamp%] Created Recent files HASH >> %TimeStamp%
+
+:: SystemProfile Hahs
+%hashdeep% -r "%Recent%\systemprofile" > "%Recent_HASH%\systemprofile_hash.txt"
+echo [%timestamp%] Created systemprofile files HASH >> %TimeStamp%
 
 
 
