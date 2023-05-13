@@ -114,25 +114,25 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     set /p choice="You entered : "
 
     if not defined choice (
-        goto :Menu
+        goto :Display_Menu
     ) else (
         setlocal enabledelayedexpansion
         set "steps="
         for %%x in (%choice%) do (
-        if /i "%%x"=="q" (
-        exit /b
-    ) else if /i "%%x"=="a" (
-        for /l %%i in (1, 1, %final_step%) do (
-        set "steps=!steps! %%i"
-    )
-    ) else (
-        set "steps=!steps! %%x"
-    )
-    )
+            if /i "%%x"=="q" (
+                exit /b
+            ) else if /i "%%x"=="a" (
+                for /l %%i in (0, 1, %final_step%) do (
+                    set "steps=!steps! %%i"
+                )
+            ) else (
+                set "steps=!steps! %%x"
+            )
+        )
 
-    for %%x in (!steps!) do (
-    call :run_step_%%x
-    )
+        for %%x in (!steps!) do (
+            call :run_step_%%x
+        )
     )
     goto :Menu
 
