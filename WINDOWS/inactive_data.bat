@@ -434,19 +434,28 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :: 임시파일 
 :run_step_7
-set FileSystemLog=%NONVOLATILE_DIR%\FSLOG
-mkdir %FileSystemLog% 
-echo [%timestamp%] Create FILE SYSTEM LOG Directory >> %_TimeStamp%
-forecopy_handy -f %SystemDrive%\$LogFile %FileSystemLog%
-echo [%timestamp%] FILE SYSTEM LOG >> %_TimeStamp%
+    :: $UsnJrnl$J
+    :: $LogFile
+    set _TempFile=%NONVOLATILE_DIR%\_Temp
+    mkdir %_TempFile%
+    echo Create Temp Directory 
+    echo [%timestamp%] Create Temp Directory  >> %_TimeStamp%
+    forecopy_handy -dr %temp% %_TempFile%
+    echo Acquring Temp Data...
+    echo [%timestamp%] Acquring Temp Data... >> %_TimeStamp%
 
-:: FSLOG HASH
-set FSLOG_HASH=%FileSystemLog%\HASH
-mkdir %FSLOG_HASH%
-echo [%timestamp%] Create File System Log Hash >> %_TimeStamp%
-%hashdeep% "%FileSystemLog%\$LogFile" > "%FSLOG_HASH%\FSLOG_HASH.txt"
-echo [%timestamp%] FILE SYSTEM LOG HASH >> %_TimeStamp%
+    set _TempFile_Hash=%_TempFile%\_Hash
+    mkdir %_TempFile_Hash%
+    echo Create TempFile Hash Direcotry
+    echo [%timestamp%] Create TempFile Hash Direcotry >> %_TimeStamp%
+    %hashdeep% -e -r %_TempFile% > %_TempFile_Hash%\_Temp_Hash.txt
+    echo Calculate Temp Hash >> %_TimeStamp%
+    echo [%timestamp%] Calculate Temp Hash >> %_TimeStamp%
 
+    echo RUN_STEP_7 CLEAR
+    echo [%timestamp%] RUN_STEP_7 CLEAR >> %_TimeStamp%
+    exit /b
+    
 :run_step_8
 ::SET GUID
 set guid=
