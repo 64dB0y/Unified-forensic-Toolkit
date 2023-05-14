@@ -317,7 +317,7 @@ if "!confirm_password!"=="!result_password!" (
     echo Passwords do not match, please try again
     goto set_password
 )
-"%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% -od %Memory_Dump_dir% -of memory_dump.zip -zp !result_password! -zl 9"
+"%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% --usnjrnl -od %Memory_Dump_dir% -of memory_dump.zip -zp !result_password! -zl 9"
 echo [%timestamp%] CyLR Finished >> %TimeStamp%
 %hashdeep% "%Memory_Dump_dir%\memory_dump.zip" > "%PHYSICAL_MEMORY_HASH%\memory_dump_hash.txt"
 echo [%timestamp%] CyLR HASH >> %TimeStamp%
