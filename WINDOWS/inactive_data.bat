@@ -524,7 +524,7 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo Acquring Recent File...
     echo [%timestamp%] Acquring Recent File... >> %_TimeStamp%  
 
-    forecopy_handy --dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
+    forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
     echo Acquring Start Data...
     echo [%timestamp%] Acquring Start Data... >> %_TimeStamp%
 
