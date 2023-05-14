@@ -311,11 +311,13 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     set _Whale=%Browser%\Whale
     set _Chrome=%Browser%\Chrome
     set _Firefox=%Browser%\Firefox
+    set _WebCache=%Browser%\WebCache
 
     set _Edge_Hash=%_Edge%\Hash
     set _Whale_Hash=%_Whale%\Hash
     set _Chrome_Hash=%_Chrome%\Hash
     set _Firefox_Hash=%_Firefox%\Hash
+    set _WebCache_Hash=%_WebCache%\Hash
 
     mkdir %Browser%
     echo Create Browser Initial Directory
@@ -328,31 +330,47 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo [%timestamp%] Create Whale Directory >> %_TimeStamp%
     mkdir %_Firefox%
     echo [%timestamp%] Create Firefox Directory >> %_TimeStamp%
+    mkdir %_WebCache%
+    echo [%timestamp%] Create WebCache Directory >> %_TimeStamp%
 
     :: Chrome 
+    echo Acquring Chrome Data...
+    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
+
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
     forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
 
     :: Naver Whale
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale%
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale%
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale%
-    forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale%
+    echo Acquring Whale Data...
+    echo [%timestamp%] Acquring Whale Data... >> %_TimeStamp%
+
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale% 2>> Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale% 2>> Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale% 2>> Error.log
+    forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale% 2>> Error.log
 
     :: Edge
-    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge%
+    echo Acuqring Edge Data...
+    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
+    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
     forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
     forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
     forecopy_handy -f "%LocalAppData%\Microsoft\Edge\User Data\Default\History" %_Edge%
 
     :: Firefox
+    echo Acquring Firefox Data...
+    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
     forecopy_handy -x %_Firefox%
 
+    :: WebCache
+    echo Acquring WebCache.DAT...
+    echo [%timestamp%] Acquring WebCache.DAT... >> %_TimeStamp%
+    forecopy_handy -f "%LocalAppData%\Microsoft\Windows\WebCache\WebCacheV01.DAT" %_WebCache%
 
     :: Hash
-    mkdir %_Edge_Hash%
+    mkdir %_Chrome_Hash%
     echo [%timestamp%] Create Chrome Hash Directory >> %_TimeStamp%
     echo Calculate Chrome Hash
     echo [%timestamp%] Calculate Chrome Hash >> %_TimeStamp%
@@ -363,25 +381,32 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt
+    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 2>> Error.log
 
 
     mkdir %_Edge_Hash%
     echo [%timestamp%] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
     echo [%timestamp%] Calculate Edge Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt
+    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
 
     
     mkdir %_Whale_Hash%
     echo [%timestamp%] Create Whale Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
     echo [%timestamp%] Calculate Whale Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Whale% > %_Whale_Hash%\Whale_Hash.txt
+    %hashdeep% -e -r %_Whale% > %_Whale_Hash%\Whale_Hash.txt 2>> Error.log
+
+    mkdir %_WebCache_Hash%
+    echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
+    echo Calcultae WebCache Hash
+    echo [%timestamp%] Calculate WebCache Hash >> %_TimeStamp%
+    %hashdeep% %_WebCache% > %_WebCache_Hash%\WebCache_Hash.txt
 
     echo RUN_STEP_6_CLEAR
     echo [%timestamp%] RUN_STEP_6_CLEAR >> %_TimeStamp%
     exit /b
+
 
 :: IconCache
 :: set ICONCACHE=%NONVOLATILE_DIR%\iconcache
