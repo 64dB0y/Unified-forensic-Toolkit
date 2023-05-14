@@ -271,7 +271,7 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     set recycleBin=%NONVOLATILE_DIR%\_RecycleBin
     mkdir %recycleBin%
     echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
-    forecopy_handy -d %SystemDrive%\$Recycle.Bin %recycleBin%
+    forecopy_handy -dr %SystemDrive%\$Recycle.Bin %recycleBin% 2>> Error.log
 
     echo.
     echo Acquring RecycleBin 
