@@ -530,12 +530,12 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
     forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" %_QuickLaunch%
     echo Acquring QuickLaunch Data...
-    echo [%timestamp%] Acquring QuickLaunch Data...
+    echo [%timestamp%] Acquring QuickLaunch Data... >> %_TimeStamp%
 
     ::Hash
     mkdir %_Recent_Hash%
     echo Create Recent Hash Directory 
-    echo [%timestamp%] Create Recent Hash Directory
+    echo [%timestamp%] Create Recent Hash Directory >> %_TimeStamp%
 
     %hashdeep% -e -r %_Recent% > %_Recent_Hash%\_Recent_Hash.txt
     ::set _SystemProfile=%NONVOLATILE_DIR%\_SystemProfile
