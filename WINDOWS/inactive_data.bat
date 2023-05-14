@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 setlocal enabledelayedexpansion
 
 REM PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
@@ -462,17 +462,19 @@ set choice=
 
 :run_step_8
 ::SET GUID
-    set guid=
-    for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
-        set guid=%%g
-    )
-    set _restore = %NONVOLATILE_DIR%\_Restore
+::    set guid=
+::    for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
+::        set guid=%%g
+::    )
+    set _restore=%NONVOLATILE_DIR%\_Restore
     mkdir %_restore%
     echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
-    forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
+    ::forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
+    xcopy /E /H /I "%SYSTEMROOT%\system32\Restore" "%_restore%"
     echo [%timestamp%] Restore File >> %_TimeStamp%
-    forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
+    ::forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
 
+    exit /b
 
 :: SYSTEM32/drivers/etc files
 :run_step_9
