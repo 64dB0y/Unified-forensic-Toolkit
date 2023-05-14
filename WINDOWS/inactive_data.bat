@@ -28,6 +28,7 @@ if %errorlevel%==0 (
     set "jlecmd=%curDir%\net4\JLECmd\JLECmd.exe"
     set "pecmd=%curDir%\net4\PECmd\PECmd.exe"
     set "evtxecmd=%curDir%\net4\EvtxeCmd\EvtxECmd.exe"
+    set "mftecmd=%curDir%\net4\MFTECmd\MFTECmd.exe"
     goto Check_Architecture
 )
 
@@ -40,6 +41,7 @@ if %errorlevel%==0 (
     set "jlecmd=%curDir%\net6\JLECmd\JLECmd.exe"
     set "pecmd=%curDir%\net6\PECmd\PECmd.exe"
     set "evtxecmd=%curDir%\net6\EvtxeCmd\EvtxECmd.exe"
+    set "mftecmd=%curDir%\net6\MFTECmd\MFTECmd.exe"
     goto Check_Architecture
 )
 
@@ -99,13 +101,13 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo ====================================
     echo Select the step you want to perform:
     echo ====================================
-    echo [1] File System MetaData - MFT or FAT  
+    echo [1] File System MetaData - MFT, Boot, Amcache
     echo [2] Registry File - SAM, SYSTEM, SOFTWARE, SECURITY
     echo [3] Prefetch File
     echo [4] Event Log File
     echo [5] Recycle Bin Information 
     echo [6] Browser history
-    echo [7] Temporary Files
+    echo [7] Temporary File
     echo [8] System Restore Point
     echo [9] Portable System History
     echo [10] Link File
@@ -114,25 +116,25 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     set /p choice="You entered : "
 
     if not defined choice (
-        goto :Display_Menu
+        goto :Menu
     ) else (
         setlocal enabledelayedexpansion
         set "steps="
         for %%x in (%choice%) do (
-            if /i "%%x"=="q" (
-                exit /b
-            ) else if /i "%%x"=="a" (
-                for /l %%i in (0, 1, %final_step%) do (
-                    set "steps=!steps! %%i"
-                )
-            ) else (
-                set "steps=!steps! %%x"
-            )
-        )
+        if /i "%%x"=="q" (
+        exit /b
+    ) else if /i "%%x"=="a" (
+        for /l %%i in (1, 1, %final_step%) do (
+        set "steps=!steps! %%i"
+    )
+    ) else (
+        set "steps=!steps! %%x"
+    )
+    )
 
-        for %%x in (!steps!) do (
-            call :run_step_%%x
-        )
+    for %%x in (!steps!) do (
+    call :run_step_%%x
+    )
     )
     goto :Menu
 
@@ -173,8 +175,24 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo CREATE $BOOT HASH DIRECTORY
     echo [%timestamp%] CREATE BOOT HASH DIRECTORY >> %_TimeStamp%
     %hashdeep% -e "%_Boot%\$Boot" > "%_Boot_Hash%\_Boot_HASH.txt"
+    
+    if "%net%"=="4" (
+        goto MFTParser_net4
+    ) else if "%net%"=="6" (
+        goto MFTParser_net6
+    ) else (
+        goto RUN_STEP_1_Clear
+    )
 
-    echo.
+:MFTParser_net4
+    %mftecmd% -f %_MFT%\mft\$MFT --csv %_MFT% --csvf "mft_parser.csv"
+    goto RUN_STEP_1_Clear
+
+:MFTParser_net6
+    %mftecmd% -f %_MFT%\mft\$MFT --csv %_MFT% --csvf "mft_parser.csv"
+    goto RUN_STEP_1_Clear
+
+:RUN_STEP_1_Clear
     echo RUN_STEP_1 CLEAR
     exit /b
 
@@ -194,6 +212,7 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :: REGISTRY
 :: -g option : SAM, SYSTEM, SECURITY, SOFTWARE, DEFAULT, NTUSER.DAT 획득 
+
 :run_step_2
     set Registry=%NONVOLATILE_DIR%\_Registry
     mkdir %Registry%
@@ -286,6 +305,7 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo.
     echo Calculate RecycleBin Hash...
     echo [%timestamp%] Calculate RecycleBin Hash... >> %_TimeStamp%
+    
     if "%net%"=="4" (
         goto RecycleBin_net4
     ) else if "%net%"=="6" (
@@ -401,38 +421,12 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
     echo Calcultae WebCache Hash
     echo [%timestamp%] Calculate WebCache Hash >> %_TimeStamp%
-    %hashdeep% %_WebCache% > %_WebCache_Hash%\WebCache_Hash.txt
+    %hashdeep% %_WebCache%\WebCacheV01.DAT > %_WebCache_Hash%\WebCache_Hash.txt
 
-    echo RUN_STEP_6_CLEAR
-    echo [%timestamp%] RUN_STEP_6_CLEAR >> %_TimeStamp%
+    echo RUN_STEP_6 CLEAR
+    echo [%timestamp%] RUN_STEP_6 CLEAR>> %_TimeStamp%
     exit /b
 
-
-:: IconCache
-:: set ICONCACHE=%NONVOLATILE_DIR%\iconcache
-:: mkdir %ICONCACHE%
-::forecopy_handy -f %LocalAppData%\IconCache.db %ICONCACHE%	
-	
-:: Thumbcnale ache
-::forecopy_handy -r "%LocalAppData%\microsoft\windows\explorer" %NONVOLATILE_DIR%	
-	
-:: Downloaded Program Files
-::forecopy_handy -r "%SystemRoot%\Downloaded Program Files" %NONVOLATILE_DIR%	
-	
-:: Java IDX cache
-::forecopy_handy -r "%UserProfile%\AppData\LocalLow\Sun\Java\Deployment" %NONVOLATILE_DIR%	
-	
-:: WER (Windows Error Reporting)
-::forecopy_handy -r "%LocalAppData%\Microsoft\Windows\WER" %NONVOLATILE_DIR%
-	
-:: Windows Timeline
-::forecopy_handy -r "%LocalAppData%\ConnectedDevicesPlatform" %NONVOLATILE_DIR%
-	
-:: Windows Search Database
-::forecopy_handy -r "%ProgramData%\Microsoft\Search\Data\Applications\Windows" %NONVOLATILE_DIR%
-
-
-:: 임시파일 
 :run_step_7
     :: $UsnJrnl$J
     :: $LogFile
@@ -455,78 +449,158 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo RUN_STEP_7 CLEAR
     echo [%timestamp%] RUN_STEP_7 CLEAR >> %_TimeStamp%
     exit /b
-    
+
 :run_step_8
 ::SET GUID
-set guid=
-for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
-    set guid=%%g
-)
-set _restore=%NONVOLATILE_DIR%\Restore
-mkdir %_restore%
-echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
-forecopy_handy -r %SYSTEMROOT%\system32\Restore %_restore%
-echo [%timestamp%] Restore Dump created >> %_TimeStamp%
-forecopy_handy -r "%HOMEDRIVE%\System Volume Information\_restore{%guid%}" %_restore%
-echo [%timestamp%] System Volume Information Dump created >> %_TimeStamp%
+    set guid=
+    for /f "tokens=3" %%g in ('reg query HKLM\SOFTWARE\Microsoft\Cryptography /v MachineGuid') do (
+        set guid=%%g
+    )
+    set _restore = %NONVOLATILE_DIR%\_Restore
+    mkdir %_restore%
+    echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
+    forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
+    echo [%timestamp%] Restore File >> %_TimeStamp%
+    forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
 
-set _restore_HASH=%NONVOLATILE_DIR%\Restore\HASH
-mkdir %_restore_HASH%
-%hashdeep% -r %_restore% > "%_restore_HASH%\_restore_HASH.txt"
-echo [%timestamp%] Create HASH FILE FOR All Restore File >> %_TimeStamp%
 
-:run_step_9
 :: SYSTEM32/drivers/etc files
-set Driver=%NONVOLATILE_DIR%\Driver
-mkdir %Driver%
-echo [%timestamp%] Create Driver Directory >> %_TimeStamp%
-forecopy_handy -t %Driver%
-echo [%timestamp%] Driver Files >> %_TimeStamp%
+:run_step_9
+    set _Driver=%NONVOLATILE_DIR%\_Driver
+    set _Driver_Hash=%_Driver%\_Hash
+    mkdir %_Driver%
+    echo Create Driver Directory
+    echo [%timestamp%] Create Driver Directory >> %_TimeStamp%
+    forecopy_handy -t %_Driver%
+    echo Acquring Driver Information...
+    echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
 
-:: Create HASH
-set Driver_HASH=%Driver%\HASH
-mkdir %Driver_HASH%
-echo [%timestamp%] Created HASH Directory >> %TimeStamp%
-%hashdeep% -r %Driver% > "%Driver_HASH%\Driver_hash.txt"
-echo [%timestamp%] Created Driver HASH >> %TimeStamp%
+    mkdir %_Driver_Hash%
+    echo Create Driver Hash Directory
+    echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
+    
+    %hashdeep% -e -r %_Driver% > %_Driver_Hash%\_Driver_Hash.txt
 
+    echo Calculate Driver Hash...
+    echo [%timestamp%] Calculate Driver Hash... >> %_TimeStamp%
+
+    echo RUN_STEP_9 CLEAR
+    exit /b
 
 :: RECENT LNKs and JUMPLIST
 :run_step_10
-set Recent=%NONVOLATILE_DIR%\Recent
-:: Create Recent Directory
-mkdir %Recent%
-echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
+    set _Recent=%NONVOLATILE_DIR%\_Recent  
+    set _Desktop=%_Recent%\_Desktop
+    set _RecentFolder=%_Recent%\_RecentFolder
+    set _Start=%_Recent%\_Start
+    set _QuickLaunch=%_Recent%\_QuickLaunch
+    set _Recent_Hash = %_Recent%\Hash
 
-:: Recent File
-mkdir %Recent%\Recent_Files
-echo [%timestamp%] Create Recent_Files Directory >> %_TimeStamp%
-forecopy_handy -r "%AppData%\microsoft\windows\recent" %Recent%\Recent_Files
-echo [%timestamp%] Recent File Dump Created >> %_TimeStamp%
+    mkdir %_Recent%
+    echo Create Recent Data Directory 
+    echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
 
-:: systemprofile (\Windows\system32\config\systemprofile)
-mkdir %Recent%\systemprofile
-echo [%timestamp%] Create systemprofile Directory >> %_TimeStamp%
-forecopy_handy -r "%SystemRoot%\system32\config\systemprofile" %Recent%\systemprofile
-echo [%timestamp%] systemprofile Dump Created >> %_TimeStamp%
+    mkdir %_Desktop%
+    echo Create Desktop Directory 
+    echo [%timestamp%] Create Desktop Directory >> %_TimeStamp%
+    
+    mkdir %_RecentFolder%
+    echo Create RecentFolder Directory 
+    echo [%timestamp%] Create RecentFolder Directory >> %_TimeStamp%
+    
+    mkdir %_Start%
+    echo Create Start Directory 
+    echo [%timestamp%] Create Start Directory >> %_TimeStamp%
+    
+    mkdir %_QuickLaunch%
+    echo Create QuickLaunch Directory 
+    echo [%timestamp%] Create QuickLaunch Directory >> %_TimeStamp%
 
-:: Create HASH
-set Recent_HASH=%Recent%\HASH
-mkdir %Recent_HASH%
-echo [%timestamp%] Created HASH Directory >> %TimeStamp%
+    forecopy_handy -dr "%USERPROFILE%\Desktop" %_Desktop%
+    echo Acquring Desktop Icon...
+    echo [%timestamp%] Acquring Desktop Icon... >> %_TimeStamp%
 
-:: Recent File Hash
-%hashdeep% -r "%Recent%\Recent_Files" > "%Recent_HASH%\Recent_hash.txt"
-echo [%timestamp%] Created Recent files HASH >> %TimeStamp%
+    forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_RecentFolder%
+    echo Acquring Recent File...
+    echo [%timestamp%] Acquring Recent File... >> %_TimeStamp%  
 
-:: SystemProfile Hahs
-%hashdeep% -r "%Recent%\systemprofile" > "%Recent_HASH%\systemprofile_hash.txt"
-echo [%timestamp%] Created systemprofile files HASH >> %TimeStamp%
+    forecopy_handy --dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
+    echo Acquring Start Data...
+    echo [%timestamp%] Acquring Start Data... >> %_TimeStamp%
+
+    forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" %_QuickLaunch%
+    echo Acquring QuickLaunch Data...
+    echo [%timestamp%] Acquring QuickLaunch Data...
+
+    ::Hash
+    mkdir %_Recent_Hash%
+    echo Create Recent Hash Directory 
+    echo [%timestamp%] Create Recent Hash Directory
+
+    %hashdeep% -e -r %_Recent% > %_Recent_Hash%\_Recent_Hash.txt
+    ::set _SystemProfile=%NONVOLATILE_DIR%\_SystemProfile
+    ::mkdir %_SystemProfile%
+    ::echo Create System Profile Directory >> %_TimeStamp%
+    ::echo [%timestamp%] Create System Profile Directory >> %_TimeStamp%
+
+    :: systemprofile (\Windows\system32\config\systemprofile)
+    ::forecopy_handy -dr "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
+
+    ::echo Acquring System Profile... >> %_TimeStamp%
+    ::echo [%timestamp%] Acquring System Profile... >> %_TimeStamp%
+
+    if  "%net%"=="4" (
+        goto Recent_net4
+    ) else if "%net%"=="6" (
+        goto Recent_net6
+    ) else (
+        goto RUN_STEP_10_Clear
+    )
+
+:Recent_net4
+    :: Desktop Folder 
+    :: C:\Users\<user name>\Desktop
+    %lecmd% -d %userprofile%\Desktop --csv %Recent%\DesktopFolder --all
+    :: Recent Folder 
+    :: C:\Users<user name>\AppData\Roaming\Microsoft\Windows\Recent
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsfot\Windows\Recent --csv %Recent%\RecentFolder --all
+    :: Start Folder 
+    :: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs --csv %Recent%\StartFolder --all
+    :: QuickLaunch Folder
+    :: C:\Users\<user name>\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch --csv %Recent%\QuickLaunch --all
+
+    :: Jump List 
+    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
+    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
+    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
+    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %Recent%\JumpList --all
+    echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
+    goto RUN_STEP_10_Clear
+
+:Recent_net6
+    :Recent Files
+    %lecmd% -d %userprofile%\Desktop --csv %Recent%\DesktopFolder --all
+    echo [%timestamp%] LECmd Desktop Folder >> %_TimeStamp%
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsfot\Windows\Recent --csv %Recent%\RecentFolder --all
+    echo [%timestamp%] LECmd Recent File >> %_TimeStamp%
+
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs --csv %Recent%\StartFolder --all
+    echo [%timestamp%] LECmd Start Folder  >> %_TimeStamp%
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch --csv %Recent%\QuickLaunch --all
+    echo [%timestamp%] LECmd Quick Launch >> %_TimeStamp%
+
+    ::Jump List 
+    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %Recent%\JumpList --all
+    echo [%timestamp%] LECmd Jump List >> %_TimeStamp%
+    goto RUN_STEP_10_Clear
 
 
+:RUN_STEP_10_Clear
+    echo RUN_STEP_10 CLEAR
+    exit /b
 
-echo ----------------------
-echo End...
-echo ----------------------
 
+echo [%timestamp%] End Time >> %_TimeStamp%
 endlocal
