@@ -5,62 +5,13 @@ REM PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
 
 SET "curDir=%~dp0"
 SET "ETC=%~dp0etc"
+set "sysinternals=%~dp0sysinternalsSuite"
 SET "HASH=%~dp0HASH"
-SET "PATH=%curDir%;%ETC%;%HASH%;%PATH%"
+set "dump=%~dp0Memory_Dump_Tool"
+SET "PATH=%curDir%;%ETC%;%sysinternals%;%HASH%;%dump%;%PATH%"
 
-echo **********************************
-echo NONVOLATILE DATA
-echo **********************************
-echo.
 set CASE=%1
 set NAME=%2
-
-set final_step=10
-set choice=
-
-:: Check .NET Framework4 or 6
-reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" >nul 2>&1
-if %errorlevel%==0 (
-    echo .NET Framework version 4 is installed. >>%curDir%\basic_info.txt
-    set "net=4"
-    set "rbcmd=%curDir%\net4\RBCMD\RBCmd.exe"
-    set "lecmd=%curDir%\net4\LECmd\LECmd.exe"
-    set "jlecmd=%curDir%\net4\JLECmd\JLECmd.exe"
-    set "pecmd=%curDir%\net4\PECmd\PECmd.exe"
-    set "evtxecmd=%curDir%\net4\EvtxeCmd\EvtxECmd.exe"
-    set "mftecmd=%curDir%\net4\MFTECmd\MFTECmd.exe"
-    goto Check_Architecture
-)
-
-reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v6.0" >nul 2>&1
-if %errorlevel%==0 (
-    echo .NET Framework version 6 is installed. >> %curDir%\basic_info.txt
-    set "net=6"
-    set "rbcmd=%curDir%\net6\RBCmd\RBCmd.exe"
-    set "lecmd=%curDir%\net6\LECmd\LECmd.exe"
-    set "jlecmd=%curDir%\net6\JLECmd\JLECmd.exe"
-    set "pecmd=%curDir%\net6\PECmd\PECmd.exe"
-    set "evtxecmd=%curDir%\net6\EvtxeCmd\EvtxECmd.exe"
-    set "mftecmd=%curDir%\net6\MFTECmd\MFTECmd.exe"
-    goto Check_Architecture
-)
-
-echo .NET Framework is not installed. >> %curDir%\basic_info.txt
-goto Check_Architecture
-
-
-:Check_Architecture
-    :: -----------------Architecture Detection-----------------
-    if %PROCESSOR_ARCHITECTURE%==AMD64 (
-        echo 64-bit operating system detected. >> %curDir%\basic_info.txt
-        set "hashdeep=%HASH%\hashdeep64.exe"
-    ) else if %PROCESSOR_ARCHITECTURE%==x86 (
-        echo 32-bit operating system detected. >> %curDir%\basic_info.txt
-        set "hashdeep=%HASH%\hashdeep.exe"
-    ) else (
-        echo Unknown archtecture detected. >> %curDir%\basic_info.txt
-    )
-
 
 :: SET DATE AND TIME
 set year=%date:~0,4%
@@ -95,6 +46,62 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :INPUT_NAME
     echo [%timestamp%]%NAME% >> %_TimeStamp%
+
+:: Check .NET Framework4 or 6
+reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" >nul 2>&1
+if %errorlevel%==0 (
+    echo .NET Framework version 4 is installed. >>%NONVOLATILE_DIR%\basic_info.txt
+    set "net=4"
+    set "rbcmd=%curDir%\net4\RBCMD\RBCmd.exe"
+    set "lecmd=%curDir%\net4\LECmd\LECmd.exe"
+    set "jlecmd=%curDir%\net4\JLECmd\JLECmd.exe"
+    set "pecmd=%curDir%\net4\PECmd\PECmd.exe"
+    set "evtxecmd=%curDir%\net4\EvtxeCmd\EvtxECmd.exe"
+    goto Check_Architecture
+)
+
+reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v6.0" >nul 2>&1
+if %errorlevel%==0 (
+    echo .NET Framework version 6 is installed. >> %NONVOLATILE_DIR%\basic_info.txt
+    set "net=6"
+    set "rbcmd=%curDir%\net6\RBCmd\RBCmd.exe"
+    set "lecmd=%curDir%\net6\LECmd\LECmd.exe"
+    set "jlecmd=%curDir%\net6\JLECmd\JLECmd.exe"
+    set "pecmd=%curDir%\net6\PECmd\PECmd.exe"
+    set "evtxecmd=%curDir%\net6\EvtxeCmd\EvtxECmd.exe"
+    goto Check_Architecture
+)
+
+echo .NET Framework is not installed. >> %NONVOLATILE_DIR%\basic_info.txt
+goto Check_Architecture
+
+:Check_Architecture
+    :: -----------------Architecture Detection-----------------
+    if %PROCESSOR_ARCHITECTURE%==AMD64 (
+        echo 64-bit operating system detected. >> %NONVOLATILE_DIR%\basic_info.txt
+        set "psexec=%sysinternals%\PsExec64.exe"
+        set "CyLR=%dump%\CyLR\CyLR_64.exe"
+        set "hashdeep=%HASH%\hashdeep64.exe"
+
+    ) else if %PROCESSOR_ARCHITECTURE%==x86 (
+        echo 32-bit operating system detected. >> %NONVOLATILE_DIR%\basic_info.txt
+        set "psexec=%sysinternals%\PsExec.exe"
+        set "CyLR=%dump%\CyLR\CyLR_32.exe"
+        set "hashdeep=%HASH%\hashdeep.exe"
+    ) else (
+        echo Unknown archtecture detected. >> %NONVOLATILE_DIR%\basic_info.txt
+    )
+
+echo **********************************
+echo.
+echo NONVOLATILE DATA
+echo.
+echo **********************************
+echo.
+echo.
+
+set final_step=10
+set choice=
 
 :Menu
     echo.
@@ -290,7 +297,8 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     set recycleBin=%NONVOLATILE_DIR%\_RecycleBin
     mkdir %recycleBin%
     echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
-    forecopy_handy -dr %SystemDrive%\$Recycle.Bin %recycleBin% 2>> Error.log
+    ::forecopy_handy -dr %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
+    xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
 
     echo.
     echo Acquring RecycleBin 
@@ -301,11 +309,11 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     mkdir %recycleBinHash%
     echo [%timestamp%] Create RecycleBin Hash Directory >> %_TimeStamp%
     echo.
-    %hashdeep% -e -r %recycleBin%\$Recycle.Bin > %recycleBinHash%\_RecycleBin_Hash.txt
+    ::%hashdeep% -e -r %recycleBin%\$Recycle.Bin > %recycleBinHash%\_RecycleBin_Hash.txt
+    %hashdeep% -e -r %recycleBin% > %recycleBinHash%\_RecycleBin_Hash.txt
     echo.
     echo Calculate RecycleBin Hash...
     echo [%timestamp%] Calculate RecycleBin Hash... >> %_TimeStamp%
-    
     if "%net%"=="4" (
         goto RecycleBin_net4
     ) else if "%net%"=="6" (
@@ -358,9 +366,9 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
 
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
-    forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
+    forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
 
     :: Naver Whale
     echo Acquring Whale Data...
@@ -383,6 +391,7 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     echo Acquring Firefox Data...
     echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
     forecopy_handy -x %_Firefox%
+    ::forecopy_handy -dr "%LocalAppData%\Mozilla\Firefox\Profiles\" %_Firefox%
 
     :: WebCache
     echo Acquring WebCache.DAT...
@@ -434,7 +443,8 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
     mkdir %_TempFile%
     echo Create Temp Directory 
     echo [%timestamp%] Create Temp Directory  >> %_TimeStamp%
-    forecopy_handy -dr %temp% %_TempFile%
+    ::forecopy_handy -dr %temp% %_TempFile%
+    "%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% --usnjrnl -od %FileSystemLog% -of temp_dump.zip"
     echo Acquring Temp Data...
     echo [%timestamp%] Acquring Temp Data... >> %_TimeStamp%
 
