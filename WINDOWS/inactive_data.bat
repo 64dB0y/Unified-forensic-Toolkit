@@ -129,6 +129,7 @@ set choice=
         set "steps="
         for %%x in (%choice%) do (
         if /i "%%x"=="q" (
+            move forecopy_handy.log %NONVOLATILE_DIR%\
         exit /b
     ) else if /i "%%x"=="a" (
         for /l %%i in (1, 1, %final_step%) do (
