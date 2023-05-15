@@ -1,0 +1,36 @@
+Description: Dropbox SFJ Resources
+Author: Andrew Rathbun and Chad Tilbury
+Email: andrew.rathbun@kroll.com and ctilbury@sans.org
+Id: 34366884-7119-4c0f-b252-11457cc8490a
+Version: 1.1
+CSVPrefix: Dropbox
+FileName: home.db
+IdentifyQuery: SELECT count(*) FROM sqlite_master WHERE type='table' AND (name='activity_feed' OR name='recents' OR name='starred_items' OR name='calendar_items' OR name='sfj_resources');
+IdentifyValue: 5
+Queries:
+    -
+        Name: Dropbox SFJ Resources
+        Query: |
+               SELECT
+               datetime( server_fetch_timestamp / 1000 + ( strftime( '%ms', '1601-01-01' ) ), 'unixepoch', 'localtime' ) AS ServerFetchTimestamp,
+               sfj_resources.name AS Name,
+               sfj_resources.cased_server_path AS ServerPath,
+               sfj_resources.resource_type AS ResourceType,
+               sfj_resources.resource_id AS ResourceID,
+               sfj_resources.account_id AS AccountID,
+               sfj_resources.icon_override AS IconOverride
+               FROM
+               sfj_resources
+               ORDER BY
+               sfj_resources.server_fetch_timestamp ASC
+        BaseFileName: SFJResources
+
+# Documentation
+# SFJ likely stands for Server File Journal, the global metadata database for files in Dropbox
+# https://dropbox.tech/infrastructure/introducing-cape
+# https://www.forensicfocus.com/news/new-free-tool-decrypting-the-dropbox-filecache-dbx-file/
+# https://digital-forensics.sans.org/summit-archives/Prague_Summit/Cloud_Storage_Forensics_Mattia_Eppifani.pdf
+# https://www.forensicfocus.com/articles/dropbox-forensics/
+# https://arxiv.org/pdf/1709.10395
+# https://www.researchgate.net/publication/342991973_Forensic_Analysis_of_Dropbox_Data_Remnants_on_Windows_10
+# Use SQLECmd in conjunction with the Dropbox KAPE Target: https://github.com/EricZimmerman/KapeFiles/blob/master/Targets/Apps/Dropbox.tkape
