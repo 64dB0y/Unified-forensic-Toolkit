@@ -374,10 +374,10 @@ set choice=
     echo Acquring Whale Data...
     echo [%timestamp%] Acquring Whale Data... >> %_TimeStamp%
 
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale% 2>> Error.log
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale% 2>> Error.log
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale% 2>> Error.log
-    forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale% 2>> Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale% 2>> %Browser%\Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale% 2>> %Browser%\Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale% 2>> %Browser%\Error.log
+    forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale% 2>> %Browser%\Error.log
 
     :: Edge
     echo Acuqring Edge Data...
@@ -424,7 +424,7 @@ set choice=
     echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 2>> Error.log
+    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 2>> %Browser%\Error.log
 
 
     mkdir %_Edge_Hash%
@@ -438,7 +438,7 @@ set choice=
     echo [%timestamp%] Create Whale Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
     echo [%timestamp%] Calculate Whale Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Whale% > %_Whale_Hash%\Whale_Hash.txt 2>> Error.log
+    %hashdeep% -e -r %_Whale% > %_Whale_Hash%\Whale_Hash.txt 2>> %Browser%\Error.log
 
     mkdir %_WebCache_Hash%
     echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
