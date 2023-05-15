@@ -390,8 +390,22 @@ set choice=
     :: Firefox
     echo Acquring Firefox Data...
     echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
-    forecopy_handy -x %_Firefox%
-    ::forecopy_handy -dr "%LocalAppData%\Mozilla\Firefox\Profiles\" %_Firefox%
+    ::forecopy_handy -x %_Firefox%
+    
+    :: Firefox Cache
+    :: xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles\*.default-release\cache2" "%_Firefox%\Cache"
+    :: Firefox cookies
+    :: xcopy /E /I "%AppData%\Mozilla\Firefox\Profiles\*.default-release\cookies.sqlite" "%_Firefox%\cookies"
+    :: User's environment settings
+    :: xcopy /E /I "%AppData%\Mozilla\Firefox\Profiles\*.default-release\prefs.js" "%_Firefox%\prefs"
+    :: Site-specific permissions
+    :: xcopy /E /I "%AppData%\Mozilla\Firefox\Profiles\*.default-release\permissions.sqlite" "%_Firefox%\permissions"
+    :: Firefox History, Downloads, Network Error Logging
+    :: xcopy /E /I "%AppData%\Mozilla\Firefox\Profiles\*.default-release\places.sqlite" "%_Firefox%\history_downloads_NEL"
+
+    :: Copy entire Firefox profile directories
+    xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles" "%_Firefox%\LocalFirefoxProfiles"
+    xcopy /E /I /EXCLUDE:%ETC%\browser_exclude.txt "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
 
     :: WebCache
     echo Acquring WebCache.DAT...
