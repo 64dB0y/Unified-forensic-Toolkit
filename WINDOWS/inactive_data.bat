@@ -1,7 +1,7 @@
 ﻿@echo off
 setlocal enabledelayedexpansion
 
-REM PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
+:: PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
 
 SET "curDir=%~dp0"
 SET "ETC=%~dp0etc"
@@ -381,7 +381,7 @@ set choice=
     forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale% 2>> %Browser%\Error.log
 
     :: Edge
-    echo Acuqring Edge Data...
+    echo Acquring Edge Data...
     echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
     forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
     forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
