@@ -462,8 +462,18 @@ set choice=
     echo Create Temp Directory 
     echo [%timestamp%] Create Temp Directory  >> %_TimeStamp%
     ::forecopy_handy -dr %temp% %_TempFile%
-    "%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% --usnjrnl -od %FileSystemLog% -of temp_dump.zip"
+    :prompt
+    echo Have you ever run CyLR before? If not, press yes. Otherwise, press no.
+    SET /P _user_input=Please enter yes or no: 
+
+    IF /I "%_user_input%"=="yes" GOTO proceed
+    IF /I "%_user_input%"=="no" GOTO STEP_7_END
+    echo Invalid input. Please try again.
+    GOTO prompt
+
+    :proceed
     echo Acquring Temp Data...
+    "%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% --usnjrnl -od %_TempFile% -of temp_dump.zip"
     echo [%timestamp%] Acquring Temp Data... >> %_TimeStamp%
 
     set _TempFile_Hash=%_TempFile%\_Hash
@@ -474,6 +484,7 @@ set choice=
     echo Calculate Temp Hash >> %_TimeStamp%
     echo [%timestamp%] Calculate Temp Hash >> %_TimeStamp%
 
+    :STEP_7_END
     echo RUN_STEP_7 CLEAR
     echo [%timestamp%] RUN_STEP_7 CLEAR >> %_TimeStamp%
     exit /b
@@ -492,6 +503,7 @@ set choice=
     echo [%timestamp%] Restore File >> %_TimeStamp%
     ::forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
 
+    echo RUN_STEP_8 CLEAR
     exit /b
 
 :: SYSTEM32/drivers/etc files
