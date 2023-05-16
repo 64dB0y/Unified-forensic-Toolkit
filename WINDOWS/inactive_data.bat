@@ -8,6 +8,7 @@ SET "ETC=%~dp0etc"
 set "sysinternals=%~dp0sysinternalsSuite"
 SET "HASH=%~dp0HASH"
 set "dump=%~dp0Memory_Dump_Tool"
+set "kape=%~dp0kape"
 SET "PATH=%curDir%;%ETC%;%sysinternals%;%HASH%;%dump%;%PATH%"
 
 set CASE=%1
@@ -301,38 +302,70 @@ set choice=
     set recycleBin=%NONVOLATILE_DIR%\_RecycleBin
     mkdir %recycleBin%
     echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
-    ::forecopy_handy -dr %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
-    xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
-
+    set kapedir=%recycleBin%\kape
+    mkdir %kapedir%
     echo.
     echo Acquring RecycleBin 
     echo [%timestamp%] Acquring RecycleBin >> %_TimeStamp%
+    
+    echo.
+    :input_prompt
+    echo "After creating the RecycleBin dump, pressing 'q' will generate the hash dump and terminate the current dump process"
+    SET /P _user_input_5=Enter 'r' for rbmcd, 'x' for xcopy, 'k' for kape or 'q' for quit: 
 
-    :: Hash
+    IF /I "%_user_input_5%"=="r" (
+        if "%net%"=="4" (
+            goto RecycleBin_net4
+        ) else if "%net%"=="6" (
+            goto RecycleBin_net6
+        )
+    ) ELSE IF /I "%_user_input_5%"=="x" (
+        GOTO XCopyCommand
+    ) ELSE IF /I "%_user_input_5%"=="k" (
+        GOTO kape
+    ) ELSE IF /I "%_user_input_5%"=="q" (
+        GOTO RUN_STEP_5_HASH
+    )
+     ELSE (
+        echo Invalid input. Please try again.
+        GOTO input_prompt
+    )
+
+    :RecycleBin_net4
+        echo rbcmd for net4 executed(Step5)
+        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv
+        echo [%timestamp%] rbcmd for net4 completed(Step5) >> %_TimeStamp%
+        GOTO input_prompt
+
+    :RecycleBin_net6
+        echo rbcmd for net6 executed(Step5)
+        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv
+        echo [%timestamp%] rbcmd for net6 completed(Step5) >> %_TimeStamp%
+        GOTO input_prompt
+
+    :XCopyCommand
+        echo xcopy executed(Step5)
+        xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
+        echo [%timestamp%] xcopy completed(Step5) >> %_TimeStamp%
+        GOTO input_prompt
+
+    :kape
+        set tsource=C:\
+        set target=RecycleBin_DataFiles, RecycleBin_InfoFiles
+        echo kape executed(Step5)
+        %kape%\kape.exe --tsource %tsource% --target %target% --tdest %kapedir%
+        echo [%timestamp%] kape executed(Step5) >> %_TimeStamp%
+        GOTO input_prompt
+
+    :RUN_STEP_5_HASH
     set recycleBinHash=%recycleBin%\_Hash
     mkdir %recycleBinHash%
     echo [%timestamp%] Create RecycleBin Hash Directory >> %_TimeStamp%
     echo.
-    ::%hashdeep% -e -r %recycleBin%\$Recycle.Bin > %recycleBinHash%\_RecycleBin_Hash.txt
-    %hashdeep% -e -r %recycleBin% > %recycleBinHash%\_RecycleBin_Hash.txt
-    echo.
     echo Calculate RecycleBin Hash...
+    %hashdeep% -e -r %recycleBin% > %recycleBinHash%\_RecycleBin_Hash.txt
     echo [%timestamp%] Calculate RecycleBin Hash... >> %_TimeStamp%
-    if "%net%"=="4" (
-        goto RecycleBin_net4
-    ) else if "%net%"=="6" (
-        goto RecycleBin_net6
-    ) else (
-        goto RUN_STEP_5_Clear
-    )
 
-:RecycleBin_net4
-    %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv
-    goto RUN_STEP_5_Clear
-:RecycleBin_net6
-    %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv
-    goto RUN_STEP_5_Clear
-:RUN_STEP_5_Clear
     echo RUN_STEP_5 CLEAR
     exit /b
 
@@ -464,10 +497,10 @@ set choice=
     ::forecopy_handy -dr %temp% %_TempFile%
     :prompt
     echo Have you ever run CyLR before? If not, press yes. Otherwise, press no.
-    SET /P _user_input=Please enter yes or no: 
+    SET /P _user_input_7=Please enter yes or no: 
 
-    IF /I "%_user_input%"=="yes" GOTO proceed
-    IF /I "%_user_input%"=="no" GOTO STEP_7_END
+    IF /I "%_user_input_7%"=="yes" GOTO proceed
+    IF /I "%_user_input_7%"=="no" GOTO STEP_7_END
     echo Invalid input. Please try again.
     GOTO prompt
 
