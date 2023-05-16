@@ -52,6 +52,7 @@ reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" >nul 2>&1
 if %errorlevel%==0 (
     echo .NET Framework version 4 is installed. >>%NONVOLATILE_DIR%\basic_info.txt
     set "net=4"
+    set "mftecmd=%curDir%\net4\MFTECmd\MFTECmd.exe"
     set "rbcmd=%curDir%\net4\RBCMD\RBCmd.exe"
     set "lecmd=%curDir%\net4\LECmd\LECmd.exe"
     set "jlecmd=%curDir%\net4\JLECmd\JLECmd.exe"
@@ -64,6 +65,7 @@ reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v6.0" >nul 2>&1
 if %errorlevel%==0 (
     echo .NET Framework version 6 is installed. >> %NONVOLATILE_DIR%\basic_info.txt
     set "net=6"
+    set "mftecmd=%curDir%\net6\MFTECmd\MFTECmd.exe"
     set "rbcmd=%curDir%\net6\RBCmd\RBCmd.exe"
     set "lecmd=%curDir%\net6\LECmd\LECmd.exe"
     set "jlecmd=%curDir%\net6\JLECmd\JLECmd.exe"
@@ -128,7 +130,9 @@ set choice=
         set "steps="
         for %%x in (%choice%) do (
             if /i "%%x"=="q" (
-                move forecopy_handy.log %NONVOLATILE_DIR%\
+                IF EXIST forecopy_handy.log (
+                    move forecopy_handy.log %NONVOLATILE_DIR%\
+                )
                 exit /b
             ) else if /i "%%x"=="a" (
                 for /l %%i in (1, 1, %final_step%) do (
