@@ -525,6 +525,7 @@ set choice=
     echo Create Desktop Directory 
     echo [%timestamp%] Create Desktop Directory >> %_TimeStamp%
     
+    :: ok
     forecopy_handy -r %USERPROFILE%\Desktop %_Desktop%
     echo Acquring Desktop Icon...
     echo [%timestamp%] Acquring Desktop Icon... >> %_TimeStamp%
@@ -534,7 +535,8 @@ set choice=
     echo Create Recent File Directory 
     echo [%timestamp%] Create Recent File Directory >> %_TimeStamp%
     
-    forecopy_handy -r %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent %_Recent_File%
+    :: ok 
+    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent_File%
     echo Acquring Recent File...
     echo [%timestamp%] Acquring Recent File... >> %_TimeStamp%  
 
@@ -543,7 +545,8 @@ set choice=
     echo Create Start Directory 
     echo [%timestamp%] Create Start Directory >> %_TimeStamp%
     
-    forecopy_handy -r %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs %_Start%
+    :: ok
+    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
     echo Acquring Start Data...
     echo [%timestamp%] Acquring Start Data... >> %_TimeStamp%
 
@@ -552,7 +555,7 @@ set choice=
     echo Create QuickLaunch Directory 
     echo [%timestamp%] Create QuickLaunch Directory >> %_TimeStamp%
 
-    forecopy_handy -r %USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch %_QuickLaunch%
+    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" %_QuickLaunch%
     echo Acquring QuickLaunch Data...
     echo [%timestamp%] Acquring QuickLaunch Data... >> %_TimeStamp%
 
