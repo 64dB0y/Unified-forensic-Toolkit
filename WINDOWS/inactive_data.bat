@@ -442,7 +442,21 @@ set choice=
 
     :: Copy entire Firefox profile directories
     xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles" "%_Firefox%\LocalFirefoxProfiles"
-    xcopy /E /I /EXCLUDE:%ETC%\browser_exclude.txt "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
+
+    REM The batch script checks if Firefox is currently running. 
+    tasklist /FI "IMAGENAME eq firefox.exe" 2>NUL | find /I /N "firefox.exe">NUL
+    if "%ERRORLEVEL%"=="0" (
+        REM If it is running, the script performs an xcopy operation, excluding the specified file and copying all the others.
+        ::xcopy /E /I /EXCLUDE:%ETC%\browser_exclude.txt "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
+        REM Due to memory shortage errors with xcopy, the operation is performed using robocopy instead
+        robocopy "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles" /E /XF parent.lock
+        echo copied firefox files except parent.lock
+    ) else (
+        ::xcopy /E /I "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
+        robocopy "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles" /E
+        echo copied whole firefox files
+    )
+
 
     :: WebCache
     echo Acquring WebCache.DAT...

@@ -21,11 +21,11 @@ set NAME=""
 
 :START
 echo.
-echo ******************
+echo **********************************
 echo.
 echo LIVE FORENSIC
 echo.
-echo ******************
+echo **********************************
 echo.
 echo.
 
