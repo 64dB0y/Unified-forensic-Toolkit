@@ -366,8 +366,9 @@ set choice=
     mkdir %_Chrome%
     echo [%timestamp%] Create Chrome Directory >> %_TimeStamp%
     mkdir %_Edge%
-    echo [%timestamp%] Create IE Directory >> %_TimeStamp%
+    echo [%timestamp%] Create Edge Directory >> %_TimeStamp%
     mkdir %_IE%
+    echo [%timestamp%] Create IE Directory >> %_TimeStamp%
     echo [%timestamp%] Create Edge Directory >> %_TimeStamp%
     mkdir %_Chromium%
     echo [%timestamp%] Create Chromium Directory >> %_TimeStamp%
@@ -378,7 +379,7 @@ set choice=
 
     :browser_input
     echo "Using forecopy or KAPE ? (input f or k)"
-    set /p _user_input_6=":"
+    set /p _user_input_6=
 
     if /i "%_user_input_6%"=="f" (
         goto Browser_Forecopy
@@ -394,17 +395,17 @@ set choice=
     echo Acquring Chrome Data...
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
 
-    forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
-    forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
-    forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
+    forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
+    forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
+    forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
     forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
 
     :: Edge
     echo Acquring Edge Data...
     echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
-    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
-    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
-    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
+    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
+    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
+    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
     forecopy_handy -f "%LocalAppData%\Microsoft\Edge\User Data\Default\History" %_Edge%
 
     :: Firefox
@@ -432,17 +433,30 @@ set choice=
     echo [%timestamp%] Acquring WebCache.DAT... >> %_TimeStamp%
     forecopy_handy -f "%LocalAppData%\Microsoft\Windows\WebCache\WebCacheV01.DAT" %_WebCache%
 
+    goto Browser_Hash
+
 :Browser_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% 
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% 
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%   
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%  
+    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
+    
     %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% 
-    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% 
-    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% 
-    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%    
-    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%     
-    exit /b
+    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
 
+    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% 
+    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% 
+    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%    
+    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%     
+    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp% 
+
+    goto Browser_Hash
 
 :Browser_Hash
     mkdir %_Chrome_Hash%
@@ -451,12 +465,11 @@ set choice=
     echo [%timestamp%] Calculate Chrome Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Chrome% > %_Chrome_Hash%\Chrome_Hash.txt
 
-
     mkdir %_Firefox_Hash%
     echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 2>> %Browser%\Error.log
+    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
 
 
     mkdir %_Edge_Hash%
@@ -464,19 +477,24 @@ set choice=
     echo Calculate Edge Hash
     echo [%timestamp%] Calculate Edge Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
-
     
-    mkdir %_Whale_Hash%
-    echo [%timestamp%] Create Whale Hash Directory >> %_TimeStamp%
+    mkdir %_IE_Hash%
+    echo [%timestamp%] Create IE Hash Directory >> %_TimeStamp%
+    echo Calculate IE Hash
+    echo [%timestamp%] Calculate IE Hash >> %_TimeStamp%
+    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt 
+    
+    mkdir %_Chromium_Hash%
+    echo [%timestamp%] Create Chromium Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
-    echo [%timestamp%] Calculate Whale Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Whale% > %_Whale_Hash%\Whale_Hash.txt 2>> %Browser%\Error.log
+    echo [%timestamp%] Calculate Chromium Hash >> %_TimeStamp%
+    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt 
 
     mkdir %_WebCache_Hash%
     echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
     echo Calcultae WebCache Hash
     echo [%timestamp%] Calculate WebCache Hash >> %_TimeStamp%
-    %hashdeep% %_WebCache%\WebCacheV01.DAT > %_WebCache_Hash%\WebCache_Hash.txt
+    %hashdeep% -e -r %_WebCache% > %_WebCache_Hash%\WebCache_Hash.txt
 
     echo RUN_STEP_6 CLEAR
     echo [%timestamp%] RUN_STEP_6 CLEAR>> %_TimeStamp%
