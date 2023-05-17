@@ -20,10 +20,6 @@ Targets:
         Name: Windows Firewall Log
         Category: WindowsFirewallLogs
         Path: WindowsFirewall.tkape
-    -
-        Name: USBDevicesLogs
-        Category: USB
-        Path: USBDevicesLogs.tkape
 
 # Documentation
 # v1.1 - Added the USBDevicelogs target

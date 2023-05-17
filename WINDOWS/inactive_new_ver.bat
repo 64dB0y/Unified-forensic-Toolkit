@@ -14,6 +14,9 @@ SET "PATH=%curDir%;%ETC%;%sysinternals%;%HASH%;%dump%;%kape%;%PATH%"
 set CASE=%1
 set NAME=%2
 
+set "_System_Drive=%systemdrive%"
+set "_FirstCharacter=%_System_Drive:~0,1%"
+
 :: SET DATE AND TIME
 set year=%date:~0,4%
 set month=%date:~5,2%
@@ -117,9 +120,10 @@ set choice=
     echo [4] Event Log File
     echo [5] Recycle Bin Information 
     echo [6] Browser history
-    echo [7] System Restore Point
-    echo [8] Portable System History
-    echo [9] Link File
+    echo [7] Temporary File
+    echo [8] System Restore Point
+    echo [9] Portable System History
+    echo [10] Link File
     echo [a] RUN ALL STEPS
     echo [q] QUIT
     set /p choice="You entered : "
@@ -166,39 +170,22 @@ set choice=
     )
 
 :MFTParser_net4
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv"
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv"
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv"
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv"
     goto RUN_STEP_1_Clear
 
 :MFTParser_net6
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv"
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv"
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv"
-    %mftecmd% -f %_FileSystem%\%SystemDrive%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv"
     goto RUN_STEP_1_Clear
 
 :RUN_STEP_1_Clear
     echo RUN_STEP_1 CLEAR
     exit /b
-
-::VBR
-::set VBR_DIR=%NONVOLATILE_DIR%\VBR
-::mkdir %VBR_DIR%
-::forecopy_handy -f %SystemDrive%\$Boot %VBR_DIR%
-::echo [%timestamp%] VBR >> %_TimeStamp%
-
-:: VBR HASH 
-::set VBR_HASH=%VBR_DIR%\HASH
-::mkdir %VBR_HASH%
-::echo [%timestamp%] CREATE VBR HASH Directory >> %_TimeStamp%
-::%hashdeep% -e "%VBR_DIR%\$Boot" > "%VBR_HASH%\BOOT_HASH.txt"
-::echo [%timestamp%] VBR HASH >> %_TimeStamp%
-
-
-:: REGISTRY
-:: -g option : SAM, SYSTEM, SECURITY, SOFTWARE, DEFAULT, NTUSER.DAT 획득 
 
 :run_step_2
     set Registry=%NONVOLATILE_DIR%\_Registry
@@ -208,7 +195,6 @@ set choice=
     echo Acquring Registry...
     echo [%timestamp%] Acquring Registry >> %_TimeStamp%
 
-:: HASH
     set REGISTRY_HASH=%Registry%\_Hash
     mkdir %REGISTRY_HASH%
     echo [%timestamp%] Create Registry Hash Directory >> %_TimeStamp%
@@ -219,7 +205,6 @@ set choice=
     echo RUN_STEP_2 CLEAR
     exit /b
 
-:: PreFetch OR SuperFetch
 :run_step_3
     set fetch=%NONVOLATILE_DIR%\_Prefetch
     mkdir %fetch%
@@ -346,16 +331,14 @@ set choice=
 ::브라우저 사용 흔적
     set Browser=%NONVOLATILE_DIR%\_Browser
     set _Edge=%Browser%\Edge
-    set _Chromium=%Browser%\Chromium
+    set _Whale=%Browser%\Whale
     set _Chrome=%Browser%\Chrome
-    set _IE=%Browser%\IE
     set _Firefox=%Browser%\Firefox
     set _WebCache=%Browser%\WebCache
 
     set _Edge_Hash=%_Edge%\Hash
-    set _Chromium_Hash=%_Chromium%\Hash
+    set _Whale_Hash=%_Whale%\Hash
     set _Chrome_Hash=%_Chrome%\Hash
-    set _IE_Hash=%_IE%\Hash
     set _Firefox_Hash=%_Firefox%\Hash
     set _WebCache_Hash=%_WebCache%\Hash
 
@@ -366,45 +349,37 @@ set choice=
     echo [%timestamp%] Create Chrome Directory >> %_TimeStamp%
     mkdir %_Edge%
     echo [%timestamp%] Create Edge Directory >> %_TimeStamp%
-    mkdir %_IE%
-    echo [%timestamp%] Create IE Directory >> %_TimeStamp%
-    echo [%timestamp%] Create Edge Directory >> %_TimeStamp%
-    mkdir %_Chromium%
-    echo [%timestamp%] Create Chromium Directory >> %_TimeStamp%
+    mkdir %_Whale%
+    echo [%timestamp%] Create Whale Directory >> %_TimeStamp%
     mkdir %_Firefox%
     echo [%timestamp%] Create Firefox Directory >> %_TimeStamp%
     mkdir %_WebCache%
     echo [%timestamp%] Create WebCache Directory >> %_TimeStamp%
 
-    :browser_input
-    echo "Using forecopy or KAPE ? (input f or k)"
-    set /p _user_input_6=
-
-    if /i "%_user_input_6%"=="f" (
-        goto Browser_Forecopy
-    ) else if /i "%_user_input_6%"=="k" (
-        goto Browser_KAPE
-    ) else (
-        echo Invalid input. Please try again.
-        GOTO browser_input
-    )
-
-:Browser_Forecopy
     :: Chrome 
     echo Acquring Chrome Data...
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
 
-    forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
-    forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
-    forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
+    forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
+    forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
+    forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
     forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
+
+    :: Naver Whale
+    echo Acquring Whale Data...
+    echo [%timestamp%] Acquring Whale Data... >> %_TimeStamp%
+
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale% 2>> %Browser%\Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale% 2>> %Browser%\Error.log
+    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale% 2>> %Browser%\Error.log
+    forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale% 2>> %Browser%\Error.log
 
     :: Edge
     echo Acquring Edge Data...
     echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
-    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
-    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
-    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
+    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
+    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
+    forecopy_handy -dr "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
     forecopy_handy -f "%LocalAppData%\Microsoft\Edge\User Data\Default\History" %_Edge%
 
     :: Firefox
@@ -432,67 +407,39 @@ set choice=
     echo [%timestamp%] Acquring WebCache.DAT... >> %_TimeStamp%
     forecopy_handy -f "%LocalAppData%\Microsoft\Windows\WebCache\WebCacheV01.DAT" %_WebCache%
 
-    goto Browser_Hash
-
-:Browser_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% 
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% 
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%  
-    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
-    
-    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% 
-    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
-
-    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% 
-    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp% 
-
-    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% 
-    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp% 
-
-    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%    
-    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp% 
-
-    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%     
-    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp% 
-
-    goto Browser_Hash
-
-:Browser_Hash
+    :: Hash
     mkdir %_Chrome_Hash%
     echo [%timestamp%] Create Chrome Hash Directory >> %_TimeStamp%
     echo Calculate Chrome Hash
     echo [%timestamp%] Calculate Chrome Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Chrome% > %_Chrome_Hash%\Chrome_Hash.txt
 
+
     mkdir %_Firefox_Hash%
     echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
+    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 2>> %Browser%\Error.log
+
 
     mkdir %_Edge_Hash%
     echo [%timestamp%] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
     echo [%timestamp%] Calculate Edge Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
+
     
-    mkdir %_IE_Hash%
-    echo [%timestamp%] Create IE Hash Directory >> %_TimeStamp%
-    echo Calculate IE Hash
-    echo [%timestamp%] Calculate IE Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt 
-    
-    mkdir %_Chromium_Hash%
-    echo [%timestamp%] Create Chromium Hash Directory >> %_TimeStamp%
+    mkdir %_Whale_Hash%
+    echo [%timestamp%] Create Whale Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
-    echo [%timestamp%] Calculate Chromium Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt 
+    echo [%timestamp%] Calculate Whale Hash >> %_TimeStamp%
+    %hashdeep% -e -r %_Whale% > %_Whale_Hash%\Whale_Hash.txt 2>> %Browser%\Error.log
 
     mkdir %_WebCache_Hash%
     echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
     echo Calcultae WebCache Hash
     echo [%timestamp%] Calculate WebCache Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_WebCache% > %_WebCache_Hash%\WebCache_Hash.txt
+    %hashdeep% %_WebCache%\WebCacheV01.DAT > %_WebCache_Hash%\WebCache_Hash.txt
 
     echo RUN_STEP_6 CLEAR
     echo [%timestamp%] RUN_STEP_6 CLEAR>> %_TimeStamp%
@@ -516,52 +463,27 @@ set choice=
     exit /b
 
 :run_step_8
-    set _USBDetective=%NONVOLATILE_DIR%\_USBDetective
-    set _USBDetective_Hash=%_USBDetective%\_Hash
-    mkdir %_USBDetective%
-    echo Create USBDetective Directory
-    echo [%timestamp%] Create USBDetective Directory >> %_TimeStamp%
-    
-    :run_step_8_input
-    echo "Using forecopy or KAPE ? (input f or k)"
-    echo "Quit (input q) "
-    set /p _user_input_8=
-    
-    if /i "%_user_input_8%"=="f" (
-        goto USB_Forecopy
-    ) else if /i "%_user_input_8%"=="k" (
-        goto USB_KAPE
-    ) else if /i "%_user_input_8%"=="q" (
-        exit /b
-    ) else (
-        echo Invalid input. Please try again.
-        GOTO run_step_8_input
-    )
-
-
-:USB_Forecopy  
+    set _Driver=%NONVOLATILE_DIR%\_Driver
+    set _Driver_Hash=%_Driver%\_Hash
+    mkdir %_Driver%
+    echo Create Driver Directory
+    echo [%timestamp%] Create Driver Directory >> %_TimeStamp%
+    forecopy_handy -t %_Driver%
     echo Acquring Driver Information...
     echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
-    forecopy_handy -t %_USBDetective%
-    goto USB_Hash
 
-:USB_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target USBDevicesLogs --tdest %_USBDetective%
-    goto USB_Hash
-
-:USB_Hash
-    mkdir %_USBDetective_Hash%
+    mkdir %_Driver_Hash%
     echo Create Driver Hash Directory
     echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
     
-    %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\_USB_Hash.txt
+    %hashdeep% -e -r %_Driver% > %_Driver_Hash%\_Driver_Hash.txt
 
-    echo Calculate USBDetective Hash...
-    echo [%timestamp%] Calculate USBDetective Hash... >> %_TimeStamp%
+    echo Calculate Driver Hash...
+    echo [%timestamp%] Calculate Driver Hash... >> %_TimeStamp%
 
     echo RUN_STEP_8 CLEAR
     exit /b
-
+:: SYSTEM32/drivers/etc files
 :run_step_9
 set _Recent=%NONVOLATILE_DIR%\_Recent  
     mkdir %_Recent%
@@ -630,7 +552,7 @@ set _Recent=%NONVOLATILE_DIR%\_Recent
     ) else if "%net%"=="6" (
         goto Recent_net6
     ) else (
-        goto RUN_STEP_10_Clear
+        goto RUN_STEP_9_Clear
     )
 
 :Recent_net4
@@ -675,7 +597,7 @@ set _Recent=%NONVOLATILE_DIR%\_Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
     %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_Recent% --all
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
-    goto RUN_STEP_10_Clear
+    goto RUN_STEP_9_Clear
 
 :RUN_STEP_9_Clear
     echo RUN_STEP_9 CLEAR
