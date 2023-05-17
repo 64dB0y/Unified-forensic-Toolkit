@@ -496,11 +496,11 @@ set choice=
     echo [%timestamp%] Create Temp Directory  >> %_TimeStamp%
     ::forecopy_handy -dr %temp% %_TempFile%
     :prompt
-    echo Have you ever run CyLR before? If not, press yes. Otherwise, press no.
-    SET /P _user_input_7=Please enter yes or no: 
+    echo Have you ever run CyLR before? If not, press 1 to execute. Otherwise, press 2.
+    SET /P _user_input_7=Please enter 1 or 2: 
 
-    IF /I "%_user_input_7%"=="yes" GOTO proceed
-    IF /I "%_user_input_7%"=="no" GOTO STEP_7_END
+    IF /I "%_user_input_7%"=="1" GOTO proceed
+    IF /I "%_user_input_7%"=="2" GOTO STEP_7_END
     echo Invalid input. Please try again.
     GOTO prompt
 
