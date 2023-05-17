@@ -117,9 +117,10 @@ set choice=
     echo [4] Event Log File
     echo [5] Recycle Bin Information 
     echo [6] Browser history
-    echo [7] System Restore Point
-    echo [8] Portable System History
-    echo [9] Link File
+    echo [7] Temporary File
+    echo [8] System Restore Point
+    echo [9] Portable System History
+    echo [10] Link File
     echo [a] RUN ALL STEPS
     echo [q] QUIT
     set /p choice="You entered : "
