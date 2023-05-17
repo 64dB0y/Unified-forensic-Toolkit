@@ -347,14 +347,16 @@ set choice=
 ::브라우저 사용 흔적
     set Browser=%NONVOLATILE_DIR%\_Browser
     set _Edge=%Browser%\Edge
-    set _Whale=%Browser%\Whale
+    set _Chromium=%Browser%\Chromium
     set _Chrome=%Browser%\Chrome
+    set _IE=%Browser%\IE
     set _Firefox=%Browser%\Firefox
     set _WebCache=%Browser%\WebCache
 
     set _Edge_Hash=%_Edge%\Hash
-    set _Whale_Hash=%_Whale%\Hash
+    set _Chromium_Hash=%_Chromium%\Hash
     set _Chrome_Hash=%_Chrome%\Hash
+    set _IE_Hash=%_IE%\Hash
     set _Firefox_Hash=%_Firefox%\Hash
     set _WebCache_Hash=%_WebCache%\Hash
 
@@ -364,14 +366,30 @@ set choice=
     mkdir %_Chrome%
     echo [%timestamp%] Create Chrome Directory >> %_TimeStamp%
     mkdir %_Edge%
+    echo [%timestamp%] Create IE Directory >> %_TimeStamp%
+    mkdir %_IE%
     echo [%timestamp%] Create Edge Directory >> %_TimeStamp%
-    mkdir %_Whale%
-    echo [%timestamp%] Create Whale Directory >> %_TimeStamp%
+    mkdir %_Chromium%
+    echo [%timestamp%] Create Chromium Directory >> %_TimeStamp%
     mkdir %_Firefox%
     echo [%timestamp%] Create Firefox Directory >> %_TimeStamp%
     mkdir %_WebCache%
     echo [%timestamp%] Create WebCache Directory >> %_TimeStamp%
 
+    :browser_input
+    echo "Using forecopy or KAPE ? (input f or k)"
+    set /p _user_input_6=":"
+
+    if /i "%_user_input_6%"=="f" (
+        goto Browser_Forecopy
+    ) else if /i "%_user_input_6%"=="k" (
+        goto Browser_KAPE
+    ) else (
+        echo Invalid input. Please try again.
+        GOTO browser_input
+    )
+
+:Browser_Forecopy
     :: Chrome 
     echo Acquring Chrome Data...
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
@@ -380,15 +398,6 @@ set choice=
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
     forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
-
-    :: Naver Whale
-    echo Acquring Whale Data...
-    echo [%timestamp%] Acquring Whale Data... >> %_TimeStamp%
-
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale% 2>> %Browser%\Error.log
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale% 2>> %Browser%\Error.log
-    forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale% 2>> %Browser%\Error.log
-    forecopy_handy -f "%LocalAppData%\Naver\Naver Whale\User Data\Default\History" %_Whale% 2>> %Browser%\Error.log
 
     :: Edge
     echo Acquring Edge Data...
@@ -423,7 +432,19 @@ set choice=
     echo [%timestamp%] Acquring WebCache.DAT... >> %_TimeStamp%
     forecopy_handy -f "%LocalAppData%\Microsoft\Windows\WebCache\WebCacheV01.DAT" %_WebCache%
 
-    :: Hash
+:Browser_KAPE
+    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% 
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% 
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%   
+    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% 
+    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% 
+    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% 
+    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%    
+    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%     
+    exit /b
+
+
+:Browser_Hash
     mkdir %_Chrome_Hash%
     echo [%timestamp%] Create Chrome Hash Directory >> %_TimeStamp%
     echo Calculate Chrome Hash
