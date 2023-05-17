@@ -326,10 +326,8 @@ set choice=
         GOTO input_prompt
 
     :kape
-        set tsource=C:\
-        set target=RecycleBin_DataFiles, RecycleBin_InfoFiles
         echo kape executed(Step5)
-        %kape%\kape.exe --tsource %tsource% --target %target% --tdest %kapedir%
+        %kape%\kape.exe --tsource %systemdrive% --target RecycleBin --tdest %kapedir%
         echo [%timestamp%] kape executed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
