@@ -470,7 +470,6 @@ set choice=
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
 
-
     mkdir %_Edge_Hash%
     echo [%timestamp%] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
@@ -517,27 +516,52 @@ set choice=
     exit /b
 
 :run_step_8
-    set _Driver=%NONVOLATILE_DIR%\_Driver
-    set _Driver_Hash=%_Driver%\_Hash
-    mkdir %_Driver%
-    echo Create Driver Directory
-    echo [%timestamp%] Create Driver Directory >> %_TimeStamp%
-    forecopy_handy -t %_Driver%
+    set _USBDetective=%NONVOLATILE_DIR%\_USBDetective
+    set _USBDetective_Hash=%_USBDetective%\_Hash
+    mkdir %_USBDetective%
+    echo Create USBDetective Directory
+    echo [%timestamp%] Create USBDetective Directory >> %_TimeStamp%
+    
+    :run_step_8_input
+    echo "Using forecopy or KAPE ? (input f or k)"
+    echo "Quit (input q) "
+    set /p _user_input_8=
+    
+    if /i "%_user_input_8%"=="f" (
+        goto USB_Forecopy
+    ) else if /i "%_user_input_8%"=="k" (
+        goto USB_KAPE
+    ) else if /i "%_user_input_8%"=="q" (
+        exit /b
+    ) else (
+        echo Invalid input. Please try again.
+        GOTO run_step_8_input
+    )
+
+
+:USB_Forecopy  
     echo Acquring Driver Information...
     echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
+    forecopy_handy -t %_USBDetective%
+    goto USB_Hash
 
-    mkdir %_Driver_Hash%
+:USB_KAPE
+    %kape%\kape.exe --tsource %SystemDrive% --target USBDevicesLogs --tdest %_USBDetective%
+    goto USB_Hash
+
+:USB_Hash
+    mkdir %_USBDetective_Hash%
     echo Create Driver Hash Directory
     echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
     
-    %hashdeep% -e -r %_Driver% > %_Driver_Hash%\_Driver_Hash.txt
+    %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\_USB_Hash.txt
 
-    echo Calculate Driver Hash...
-    echo [%timestamp%] Calculate Driver Hash... >> %_TimeStamp%
+    echo Calculate USBDetective Hash...
+    echo [%timestamp%] Calculate USBDetective Hash... >> %_TimeStamp%
 
-    echo RUN_STEP_9 CLEAR
+    echo RUN_STEP_8 CLEAR
     exit /b
-:: SYSTEM32/drivers/etc files
+
 :run_step_9
 set _Recent=%NONVOLATILE_DIR%\_Recent  
     mkdir %_Recent%
