@@ -271,23 +271,60 @@ set choice=
     mkdir %_Prefetch%
     echo Create Prefetch Directory 
     echo [%timestamp%] Create Prefetch Directory >> %_TimeStamp%
-    forecopy_handy -p %fetch%
-    echo.
+
+    :RUN_STEP_3_INPUT
+    echo "Using forecopy or KAPE ? (input f or k)"
+    echo "Quit (input q) "
+    set /p _user_input_3=
+    
+    if /i "%_user_input_3%"=="f" (
+        goto RUN_STEP_3_FORE
+    ) else if /i "%_user_input_3%"=="k" (
+        goto RUN_STEP_3_KAPE
+    ) else if /i "%_user_input_3%"=="q" (
+        exit /b
+    ) else (
+        echo Invalid input. Please try again.
+        GOTO RUN_STEP_3_INPUT
+    )
+
+:RUN_STEP_3_FORE
     echo Acquring Prefetch...
     echo [%timestamp%] Acquring Prefetch... >> %_TimeStamp% 
+    forecopy_handy -p %fetch%
+    goto RUN_STEP_3_HASH
 
-    :: HASH
-    set fetchHash=%fetch%\_Hash
-    mkdir %fetchHash%
+:RUN_STEP_3_KAPE
+    %kape%\kape.exe --tsource %SystemDrive% --target Prefetch --tdest %_Prefetch%
+    
+    if "%net%"=="4" (
+        goto RUN_STEP_3_NET4
+    ) else if "%net%"=="6" (
+        goto RUN_STEP_3_NET6
+    ) else (
+        goto RUN_STEP_3_HASH
+    )
+
+:RUN_STEP_3_HASH
+    set Prefetch_Hash=%_Prefetch%\Hash
+    mkdir %Prefetch_Hash%
+    echo Create Prefetch Hash Directory
     echo [%timestamp%] Create Prefetch Hash Directory >> %_TimeStamp%
-    echo.
-    %hashdeep% -e -r %fetch%\prefetch > %fetchHash%\_Prefetch_Hash.txt
-    echo.
+    %hashdeep% -e -r %_Prefetch% > %Prefetch_Hash%\Prefetch_Hash.txt
     echo Calculate Prefetch Hash...
+    echo [%timestamp%] Calculate Prefetch Hash... >> %_TimeStamp%
+    goto RUN_STEP_3_Clear
 
+:RUN_STEP_3_NET4
+    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
+    goto RUN_STEP_3_Clear
+
+:RUN_STEP_3_NET6
+    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
+    goto RUN_STEP_3_Clear
+:RUN_STEP_3_Clear
     echo RUN_STEP_3 CLEAR
     exit /b
-
 ::  $LogFile (C:\Windows\System32\winevt\Logs)
 ::  C:\Windows\System32\winevt\Logs\Application.evtx
 ::  소프트웨어를 비롯해서 사용자의 어플리케이션의 이벤트를 기록
