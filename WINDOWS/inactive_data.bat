@@ -583,6 +583,7 @@ set choice=
     set _RecentFolder="%_Recent%\_RecentFolder"
     set _Start="%_Recent%\_Start"
     set _QuickLaunch="%_Recent%\_QuickLaunch"
+    set _net_Recent="%NONVOLATILE_DIR%\_net_Recent"
     set _Recent_Hash="%_Recent%\Hash"
 
     mkdir %_Recent%
@@ -621,12 +622,6 @@ set choice=
     echo Acquring QuickLaunch Data...
     echo [%timestamp%] Acquring QuickLaunch Data... >> %_TimeStamp%
 
-    ::Hash
-    mkdir %_Recent_Hash%
-    echo Create Recent Hash Directory 
-    echo [%timestamp%] Create Recent Hash Directory >> %_TimeStamp%
-
-    %hashdeep% -e -r %_Recent% > %_Recent_Hash%\_Recent_Hash.txt
     ::set _SystemProfile=%NONVOLATILE_DIR%\_SystemProfile
     ::mkdir %_SystemProfile%
     ::echo Create System Profile Directory >> %_TimeStamp%
@@ -637,6 +632,10 @@ set choice=
 
     ::echo Acquring System Profile... >> %_TimeStamp%
     ::echo [%timestamp%] Acquring System Profile... >> %_TimeStamp%
+
+    mkdir %_net_Recent%
+    echo Create _net_Recent Directory 
+    echo [%timestamp%] Create _net_Recent Directory >> %_TimeStamp%
 
     if  "%net%"=="4" (
         goto Recent_net4
@@ -649,44 +648,50 @@ set choice=
 :Recent_net4
     :: Desktop Folder 
     :: C:\Users\<user name>\Desktop
-    %lecmd% -d %userprofile%\Desktop --csv %Recent%\DesktopFolder --all
+    %lecmd% -d %userprofile%\Desktop --csv %_net_Recent%\DesktopFolder --all
     :: Recent Folder 
     :: C:\Users<user name>\AppData\Roaming\Microsoft\Windows\Recent
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsfot\Windows\Recent --csv %Recent%\RecentFolder --all
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\RecentFolder --all
     :: Start Folder 
     :: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs --csv %Recent%\StartFolder --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all
     :: QuickLaunch Folder
     :: C:\Users\<user name>\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch --csv %Recent%\QuickLaunch --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all
 
     :: Jump List 
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %Recent%\JumpList --all
+    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\JumpList --all
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
     goto RUN_STEP_10_Clear
 
 :Recent_net6
     :Recent Files
-    %lecmd% -d %userprofile%\Desktop --csv %Recent%\DesktopFolder --all
+    %lecmd% -d %userprofile%\Desktop --csv %_net_Recent%\DesktopFolder --all
     echo [%timestamp%] LECmd Desktop Folder >> %_TimeStamp%
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsfot\Windows\Recent --csv %Recent%\RecentFolder --all
+    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\RecentFolder --all
     echo [%timestamp%] LECmd Recent File >> %_TimeStamp%
 
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs --csv %Recent%\StartFolder --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all
     echo [%timestamp%] LECmd Start Folder  >> %_TimeStamp%
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch --csv %Recent%\QuickLaunch --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all
     echo [%timestamp%] LECmd Quick Launch >> %_TimeStamp%
 
     ::Jump List 
-    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %Recent%\JumpList --all
+    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\JumpList --all
     echo [%timestamp%] LECmd Jump List >> %_TimeStamp%
     goto RUN_STEP_10_Clear
 
-
 :RUN_STEP_10_Clear
+    ::Hash
+    mkdir %_Recent_Hash%
+    echo Create Recent Hash Directory 
+    echo [%timestamp%] Create Recent Hash Directory >> %_TimeStamp%
+
+    %hashdeep% -e -r %_Recent% > %_Recent_Hash%\_Recent_Hash.txt
+
     echo RUN_STEP_10 CLEAR
     exit /b
 
