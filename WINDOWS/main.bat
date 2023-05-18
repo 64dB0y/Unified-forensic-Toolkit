@@ -50,7 +50,7 @@ set /p Target_drive=Your Target Drive:
 
 echo.
 echo.
-:: 현재는 1번인 활성데이터만 가능하다
+
 :choice
 echo Which Task do you want to execute?
 echo 1. Collect Active Data
