@@ -1,1 +1,12 @@
 로그파일 원본(원본을 txt)과 txt파일 두개가 수집되게끔 구현
+
+<usb_formatted_logs.txt 정보>
+    Timestamp: 이벤트가 발생한 시간
+    Hostname: 호스트 컴퓨터 이름
+    Event Type: 발생한 이벤트 유형 (여기서는 "New USB device found"로 표시)
+    VendorID: USB 장치의 공급업체 식별자
+    ProductID: USB 장치의 제품 식별자
+    bcdDevice: USB 장치의 bcdDevice 값
+    Product: USB 장치의 제품 이름
+    Manufacturer: USB 장치의 제조사
+    SerialNumber: USB 장치의 일련번호 (있는 경우)
