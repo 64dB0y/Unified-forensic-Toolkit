@@ -304,6 +304,13 @@ set choice=
     ) else (
         goto RUN_STEP_3_HASH
     )
+:RUN_STEP_3_NET4
+    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
+    goto RUN_STEP_3_HASH
+
+:RUN_STEP_3_NET6
+    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
+    goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_HASH
     set Prefetch_Hash=%_Prefetch%\Hash
@@ -315,13 +322,6 @@ set choice=
     echo [%timestamp%] Calculate Prefetch Hash... >> %_TimeStamp%
     goto RUN_STEP_3_Clear
 
-:RUN_STEP_3_NET4
-    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
-    goto RUN_STEP_3_Clear
-
-:RUN_STEP_3_NET6
-    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
-    goto RUN_STEP_3_Clear
 :RUN_STEP_3_Clear
     echo RUN_STEP_3 CLEAR
     exit /b
