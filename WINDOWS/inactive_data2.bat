@@ -1,6 +1,5 @@
 @echo off
 setlocal enabledelayedexpansion
-
 :: PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
 
 SET "curDir=%~dp0"
@@ -126,7 +125,7 @@ set choice=
     set /p choice="You entered : "
 
     if not defined choice (
-        goto :Menu
+        goto Menu
     ) else (
         set "steps="
         for %%x in (%choice%) do (
@@ -158,11 +157,15 @@ set choice=
     )
     goto :Menu
 
-    :get_user_credentials
+:get_user_credentials
     if not defined user_id (
         set /p "user_id=Please input the user ID of someone with administrator privileges: "
         set /p "user_pw=Please input the password for the user with administrator privileges (leave empty if none): "
-        "%psexec%" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "echo account validation verified & pause"
+        "%psexec%" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "echo account validation verified  & pause" 
+        if ERRORLEVEL 1 (
+            echo PsExec failed. Please try again.
+            goto get_user_credentials
+        )
         if defined user_pw (
             set psexec_opt="%psexec%" -u !user_id! -p !user_pw!
         ) else (
@@ -171,8 +174,6 @@ set choice=
         echo psexec_opt is set to: !psexec_opt!
     )
     goto :eof
-
-
 
 :: MFT
 :run_step_1
@@ -292,13 +293,13 @@ set choice=
 
 ::  $LogFile (C:\Windows\System32\winevt\Logs)
 ::  C:\Windows\System32\winevt\Logs\Application.evtx
-::  소프트웨어를 비롯해서 사용자의 어플리케이션의 이벤트를 기록
+:: Records the events of user applications including software
 ::  C:\Windows\System32\winevt\Logs\Security.evtx 
-::  보안 관련된 이벤트 로그, Windows 로그온, 네트워크 등 다양한 로그 기록
+: Records various logs such as security-related event logs, Windows logon, and network
 ::  C:\Windows\System32\winevt\Logs\System.evtx
-::  서비스 실행 여부나 파일 시스템, 디바이스 오류 등의 정보 기록
+:: Records information on service run status, file system, device errors, etc.
 ::  C:\Windows\System32\winevt\Logs\Setup.evtx
-::  어플리케이션 설치 시 발생하는 이벤트를 기록하고 프로그램이 잘 설치되었는지, 호환성 관련 정보 기록
+:: Records the events that occur when an application is installed, whether the program is installed well, compatibility-related information
 
 :run_step_4
     set eventLog=%NONVOLATILE_DIR%\_EventLog
@@ -432,7 +433,6 @@ set choice=
     :: Chrome 
     echo Acquring Chrome Data...
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
-
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
     forecopy_handy -dr "%LocalAppData%\Google\Chrome\User Data\Default\Network" %_Chrome%
@@ -441,7 +441,6 @@ set choice=
     :: Naver Whale
     echo Acquring Whale Data...
     echo [%timestamp%] Acquring Whale Data... >> %_TimeStamp%
-
     forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Cache" %_Whale% 2>> %Browser%\Error.log
     forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Download Service" %_Whale% 2>> %Browser%\Error.log
     forecopy_handy -dr "%LocalAppData%\Naver\Naver Whale\User Data\Default\Network" %_Whale% 2>> %Browser%\Error.log
@@ -478,12 +477,12 @@ set choice=
     :: Copy entire Firefox profile directories
     echo checking if %LocalAppData%\Mozilla\Firefox\Profiles exists
     IF EXIST "%LocalAppData%\Mozilla\Firefox\Profiles" (
-    echo Copying LocalFirefoxProfiles...
-    ::xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles" "%_Firefox%\LocalFirefoxProfiles"
-    !psexec_opt! -accepteula -i -s cmd.exe /c "xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles" "%_Firefox%\LocalFirefoxProfiles" & pause"
-    echo Finished copying LocalFirefoxProfiles.
+        echo Copying LocalFirefoxProfiles...
+        ::xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles" "%_Firefox%\LocalFirefoxProfiles"
+        !psexec_opt! -accepteula -i -s cmd.exe /c "xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles" "%_Firefox%\LocalFirefoxProfiles" && echo %errorlevel%"
+        echo Finished copying LocalFirefoxProfiles.
     ) ELSE (
-        echo specified Firefox directory(LocalAppData) doesn't exist
+        echo specified Firefox directory %LocalAppData%\Mozilla\Firefox\Profiles doesn't exist
         echo "%LocalAppData%\Mozilla\Firefox\Profiles Directory does not exist." >> %Browser%\Error.log
     )
     
@@ -495,17 +494,17 @@ set choice=
             REM If it is running, the script performs an xcopy operation, excluding the specified file and copying all the others.
             ::xcopy /E /I /EXCLUDE:%ETC%\browser_exclude.txt "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
             REM Due to memory shortage errors with xcopy, the operation is performed using robocopy instead
-            echo Copying RoamingFirefoxProfiles...
-            !psexec_opt! -accepteula -i -s cmd.exe /c "robocopy "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles" /E /XF parent.lock & pause"
-            echo Finished copying RoamingFirefoxProfiles without parent.lock.
+            echo Copying Roaming Firefox Profiles...
+            !psexec_opt! -accepteula -i -s cmd.exe /c "robocopy "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles" /E /XF parent.lock"
+            echo Finished copying Roaming Firefox Profiles without parent.lock.
         ) else (
             ::xcopy /E /I "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
-            echo Copying RoamingFirefoxProfiles...
-            !psexec_opt! -accepteula -i -s cmd.exe /c "robocopy "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles" /E & pause"
-            echo Finished copying RoamingFirefoxProfiles.
+            echo Copying Roaming Firefox Profiles...
+            !psexec_opt! -accepteula -i -s cmd.exe /c "robocopy "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles" /E"
+            echo Finished copying Roaming Firefox Profiles.
         )
     ) ELSE (
-            echo specified Firefox directory(AppData) doesn't exist
+            echo specified Firefox directory %AppData%\Mozilla\Firefox\Profiles doesn't exist
             echo "%AppData%\Mozilla\Firefox\Profiles Directory does not exist." >> %Browser%\Error.log
     )
 
@@ -635,106 +634,141 @@ set choice=
     set _RecentFolder="%_Recent%\_RecentFolder"
     set _Start="%_Recent%\_Start"
     set _QuickLaunch="%_Recent%\_QuickLaunch"
-    set _net_Recent="%NONVOLATILE_DIR%\_net_Recent"
+    set _net_Recent="%_Recent%\_net_Recent"
     set _Recent_Hash="%_Recent%\Hash"
 
-    mkdir %_Recent%
-    echo Create Recent Data Directory 
-    echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
 
-    mkdir %_Desktop%
-    echo Create Desktop Directory 
-    echo [%timestamp%] Create Desktop Directory >> %_TimeStamp%
-    
-    mkdir %_RecentFolder%
-    echo Create RecentFolder Directory 
-    echo [%timestamp%] Create RecentFolder Directory >> %_TimeStamp%
-    
-    mkdir %_Start%
-    echo Create Start Directory 
-    echo [%timestamp%] Create Start Directory >> %_TimeStamp%
-    
-    mkdir %_QuickLaunch%
-    echo Create QuickLaunch Directory 
-    echo [%timestamp%] Create QuickLaunch Directory >> %_TimeStamp%
 
-    forecopy_handy -dr "%USERPROFILE%\Desktop" %_Desktop%
-    echo Acquring Desktop Icon...
-    echo [%timestamp%] Acquring Desktop Icon... >> %_TimeStamp%
+    echo.
+    echo.
 
-    forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_RecentFolder%
-    echo Acquring Recent File...
-    echo [%timestamp%] Acquring Recent File... >> %_TimeStamp%  
+:step_10_choice
+    set /p userinput="Enter 'f' for forecopy, 'n' for net, 'q' for quit: "
 
-    forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
-    echo Acquring Start Data...
-    echo [%timestamp%] Acquring Start Data... >> %_TimeStamp%
+    if /i "%userinput%"=="f" (
 
-    forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" %_QuickLaunch%
-    echo Acquring QuickLaunch Data...
-    echo [%timestamp%] Acquring QuickLaunch Data... >> %_TimeStamp%
+        if not exist %_Recent% (
+            mkdir %_Recent%
+            echo Create Recent Data Directory
+            echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
+        )
 
-    ::set _SystemProfile=%NONVOLATILE_DIR%\_SystemProfile
-    ::mkdir %_SystemProfile%
-    ::echo Create System Profile Directory >> %_TimeStamp%
-    ::echo [%timestamp%] Create System Profile Directory >> %_TimeStamp%
+        if not exist %_Desktop% (
+            mkdir %_Desktop%
+            echo Create Desktop Directory
+            echo [%timestamp%] Create Desktop Directory >> %_TimeStamp%
+        )
 
-    :: systemprofile (\Windows\system32\config\systemprofile)
-    ::forecopy_handy -dr "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
+        if not exist %_RecentFolder% (
+            mkdir %_RecentFolder%
+            echo Create RecentFolder Directory 
+            echo [%timestamp%] Create RecentFolder Directory >> %_TimeStamp%
+        )
 
-    ::echo Acquring System Profile... >> %_TimeStamp%
-    ::echo [%timestamp%] Acquring System Profile... >> %_TimeStamp%
+        if not exist %_Start% (
+            mkdir %_Start%
+            echo Create Start Directory 
+            echo [%timestamp%] Create Start Directory >> %_TimeStamp%
+        )
 
-    mkdir %_net_Recent%
-    echo Create _net_Recent Directory 
-    echo [%timestamp%] Create _net_Recent Directory >> %_TimeStamp%
+        if not exist %_QuickLaunch% (
+            mkdir %_QuickLaunch%
+            echo Create QuickLaunch Directory 
+            echo [%timestamp%] Create QuickLaunch Directory >> %_TimeStamp%
+        )
 
-    if  "%net%"=="4" (
-        goto Recent_net4
-    ) else if "%net%"=="6" (
-        goto Recent_net6
-    ) else (
+        echo You selected forecopy
+        forecopy_handy -dr "%USERPROFILE%\Desktop" %_Desktop%
+        echo Acquring Desktop Icon...
+        echo [%timestamp%] Acquring Desktop Icon... >> %_TimeStamp%
+
+        forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_RecentFolder%
+        echo Acquring Recent File...
+        echo [%timestamp%] Acquring Recent File... >> %_TimeStamp%  
+
+        forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
+        echo Acquring Start Data...
+        echo [%timestamp%] Acquring Start Data... >> %_TimeStamp%
+
+        forecopy_handy -dr "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" %_QuickLaunch%
+        echo Acquring QuickLaunch Data...
+        echo [%timestamp%] Acquring QuickLaunch Data... >> %_TimeStamp%
+
+        goto step_10_choice
+
+    ) else if /i "%userinput%"=="n" (
+
+        if not exist %_QuickLaunch% (
+            mkdir %_net_Recent%
+            echo Create _net_Recent Directory 
+            echo [%timestamp%] Create _net_Recent Directory >> %_TimeStamp%
+        )
+
+        echo You selected net
+        if  "%net%"=="4" (
+            goto Recent_net4
+        ) else if "%net%"=="6" (
+            goto Recent_net6
+        ) else (
+            echo unknown Dot Net Framework version
+            goto RUN_STEP_10_Clear
+        )
+
+    ) else if /i "%userinput%"=="q" (
         goto RUN_STEP_10_Clear
+    ) else (
+        echo Invalid input. Please enter 'f', 'n' or 'q'.
+        goto step_10_choice
     )
 
 :Recent_net4
     :: Desktop Folder 
     :: C:\Users\<user name>\Desktop
-    %lecmd% -d %userprofile%\Desktop --csv %_net_Recent%\DesktopFolder --all
+    ::%lecmd% -d %userprofile%\Desktop --csv %_net_Recent%\DesktopFolder --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\Desktop" --csv %_net_Recent%\DesktopFolder --all & pause"
     :: Recent Folder 
     :: C:\Users<user name>\AppData\Roaming\Microsoft\Windows\Recent
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\RecentFolder --all
+    ::%lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\RecentFolder --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_net_Recent%\RecentFolder --all"
     :: Start Folder 
     :: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all"
     :: QuickLaunch Folder
     :: C:\Users\<user name>\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all"
 
     :: Jump List 
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\JumpList --all
+    ::%jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\JumpList --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_net_Recent%\JumpList --all"
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
-    goto RUN_STEP_10_Clear
+    goto step_10_choice
 
 :Recent_net6
     :Recent Files
-    %lecmd% -d %userprofile%\Desktop --csv %_net_Recent%\DesktopFolder --all
+    ::%lecmd% -d %userprofile%\Desktop --csv %_net_Recent%\DesktopFolder --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\Desktop" --csv %_net_Recent%\DesktopFolder --all & pause"
     echo [%timestamp%] LECmd Desktop Folder >> %_TimeStamp%
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\RecentFolder --all
+    ::%lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\RecentFolder --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_net_Recent%\RecentFolder --all"
     echo [%timestamp%] LECmd Recent File >> %_TimeStamp%
 
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_net_Recent%\StartFolder --all"
     echo [%timestamp%] LECmd Start Folder  >> %_TimeStamp%
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_net_Recent%\QuickLaunch --all"
     echo [%timestamp%] LECmd Quick Launch >> %_TimeStamp%
 
     ::Jump List 
-    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\JumpList --all
+    ::%jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_net_Recent%\JumpList --all
+    !psexec_opt! -accepteula -i -s cmd.exe /c "%jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_net_Recent%\JumpList --all"
     echo [%timestamp%] LECmd Jump List >> %_TimeStamp%
-    goto RUN_STEP_10_Clear
+    goto step_10_choice
 
 :RUN_STEP_10_Clear
     ::Hash
