@@ -1,6 +1,5 @@
 @echo off
 setlocal enabledelayedexpansion
-:: PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
 
 SET "curDir=%~dp0"
 SET "ETC=%~dp0etc"
@@ -133,7 +132,7 @@ set choice=
                 IF EXIST forecopy_handy.log (
                     move forecopy_handy.log %NONVOLATILE_DIR%\
                 )
-                exit /b
+                goto END_NONVOLATILE_SCRIPT
             ) else if /i "%%x"=="a" (
                 for /l %%i in (1, 1, %final_step%) do (
                     set "steps=!steps! %%i"
@@ -781,5 +780,8 @@ set choice=
     echo RUN_STEP_10 CLEAR
     exit /b
 
-echo [%timestamp%] End Time >> %_TimeStamp%
-endlocal
+:END_NONVOLATILE_SCRIPT
+    echo Terminating the NONVOLATILE data collection script
+    echo [%timestamp%] End Time >> %_TimeStamp%
+    endlocal
+    exit /b
