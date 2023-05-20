@@ -7,11 +7,11 @@ This Repository is for Live Forenisc Script
 # How To Use Linux Version
 
 1. Go to root directory
-cd / or cd .. twice
+'cd /' or 'cd ..' twice
 
 2. Make directory mnt1 & mnt2
 These directories are for mounting each partition of Forensic USB
-mkdir mnt1, mkdir mnt2
+'mkdir mnt1', 'mkdir mnt2'
 
 3. Mount the USB
 Check which directory your USB has been connected
