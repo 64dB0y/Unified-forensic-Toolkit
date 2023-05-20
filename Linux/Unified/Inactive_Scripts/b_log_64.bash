@@ -40,5 +40,5 @@ date >> ../mnt2/Log/hash/hash.txt
 echo    >> ../mnt2/Log/hash/hash.txt
 
 # 복사가 완료되었음을 알림
-echo "로그 파일 수집이 완료되었습니다."
+echo "Log file Collecting finished"
 
