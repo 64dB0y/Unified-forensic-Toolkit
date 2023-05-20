@@ -16,7 +16,7 @@ echo "Metadata Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.
 DIR="/"
 
 # 수집 결과를 저장할 파일 경로
-OUTPUT_FILE="../mnt2/metadata.txt"
+OUTPUT_FILE="../mnt2/Metadata/metadata.txt"
 
 # find 명령어를 사용하여 지정된 디렉토리 아래의 모든 파일에 대해 stat 명령어를 실행하고 결과를 파일에 저장
 find "$DIR" -exec stat {} \; > "$OUTPUT_FILE"
