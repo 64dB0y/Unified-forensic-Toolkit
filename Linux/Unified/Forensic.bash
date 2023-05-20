@@ -26,30 +26,32 @@ cat ../mnt2/Forensic_Info.txt
 echo
 
 # Permission for scripts and hash value program
-chmod +x *.bash
-chmod +x Scripts/*.bash
-chmod 777 hash.exe
+sudo chmod +x *.bash
+sudo chmod +x Active_Scripts/*.bash
+sudo chmod +x Inactive_Scripts/*.bash
+sudo chmod 777 hash.exe
 
 # Check if the OS is Ubuntu
 if [ -f "/etc/lsb-release" ]; then
     # Check the architecture
     if [ "$(uname -m)" == "x86_64" ]; then
         # 64-bit Ubuntu
-        bash ./Linux_Forensic_64.bash
+        sudo ./Linux_Forensic_64.bash
     else
         # 32-bit Ubuntu
-        bash ./Linux_Forensic_32.bash
+        sudo ./Linux_Forensic_32.bash
     fi
 # Check if the OS is CentOS
 elif [ -f "/etc/centos-release" ]; then
     # Check the architecture
     if [ "$(uname -m)" == "x86_64" ]; then
         # 64-bit CentOS
-        bash ./CentOS_Forensic_64.bash
+        sudo ./CentOS_Forensic_64.bash
     else
         # 32-bit CentOS
-        bash ./CentOS_Forensic_32.bash
+        sudo ./CentOS_Forensic_32.bash
     fi
 else
     echo "Unsupported OS"
 fi
+
