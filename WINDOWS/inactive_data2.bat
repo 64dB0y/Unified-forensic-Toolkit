@@ -154,11 +154,15 @@ set choice=
         )
         call :run_step_%%x
     )
-    goto :Menu
+    goto Menu
 
 :get_user_credentials
     if not defined user_id (
         set /p "user_id=Please input the user ID of someone with administrator privileges: "
+        if not defined user_id (
+            echo you didn't input user ID, plz Input again
+            goto get_user_credentials
+        )
         set /p "user_pw=Please input the password for the user with administrator privileges (leave empty if none): "
         "%psexec%" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "echo account validation verified  & pause" 
         if ERRORLEVEL 1 (
