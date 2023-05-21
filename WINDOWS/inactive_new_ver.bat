@@ -150,8 +150,7 @@ set choice=
     goto :Menu
 
 
-:: MFT
-:: OK
+
 :RUN_STEP_1
     set _FileSystem=%NONVOLATILE_DIR%\FileSystem
     mkdir %_FileSystem% 
@@ -160,7 +159,7 @@ set choice=
     :RUN_STEP_1_INPUT
     echo "Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
-    set /p _user_input_1=
+    set /p _user_input_1=":"
     
     if /i "%_user_input_1%"=="f" (
         goto RUN_STEP_1_Fore
@@ -177,7 +176,7 @@ set choice=
 :RUN_STEP_1_Fore
     forecopy_handy -m %_FileSystem%
     echo Acquring FileSystem Data...
-    echo Acquring FileSystem Data... >> %_TimeStamp%
+    echo [%timestamp%] Acquring FileSystem Data... >> %_TimeStamp%
     goto RUN_STEP_1_Hash
 :RUN_STEP_1_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target FileSystem --tdest %_FileSystem% --tflush
@@ -210,14 +209,16 @@ set choice=
     
     echo CREATE FileSystem HASH DIRECTORY
     echo [%timestamp%] CREATE FileSystem HASH Directory >> %_TimeStamp%
-    %hashdeep% -e -r "%_FileSystem%\%_FirstCharacter%" > "%_FileSystem_Hash%\FileSystem_HASH.txt"
+    %hashdeep% -e -r %_FileSystem% > "%_FileSystem_Hash%\FileSystem_Hash.txt"
 
     echo Acquring FileSystem Hash
     echo [%timestamp%] Acquring FileSystem Hash >> %_TimeStamp%
+    goto RUN_STEP_1_Clear
 
 :RUN_STEP_1_Clear
     echo RUN_STEP_1 CLEAR
     exit /b
+
 :RUN_STEP_2
     set Registry=%NONVOLATILE_DIR%\Registry
     mkdir %Registry%
@@ -227,7 +228,7 @@ set choice=
     :RUN_STEP_2_INPUT
     echo "Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
-    set /p _user_input_2=
+    set /p _user_input_2=":"
     
     if /i "%_user_input_2%"=="f" (
         goto RUN_STEP_2_FORE
@@ -245,6 +246,7 @@ set choice=
     echo [%timestamp%] Acquring Registry >> %_TimeStamp%
     forecopy_handy -g %Registry%
     goto RUN_STEP_2_HASH
+
 :RUN_STEP_2_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target RegistryHives --tdest %Registry%
     goto RUN_STEP_2_HASH
@@ -275,7 +277,7 @@ set choice=
     :RUN_STEP_3_INPUT
     echo "Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
-    set /p _user_input_3=
+    set /p _user_input_3=":"
     
     if /i "%_user_input_3%"=="f" (
         goto RUN_STEP_3_FORE
@@ -291,7 +293,7 @@ set choice=
 :RUN_STEP_3_FORE
     echo Acquring Prefetch...
     echo [%timestamp%] Acquring Prefetch... >> %_TimeStamp% 
-    forecopy_handy -p %fetch%
+    forecopy_handy -p %_Prefetch%
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_KAPE
@@ -325,15 +327,6 @@ set choice=
 :RUN_STEP_3_Clear
     echo RUN_STEP_3 CLEAR
     exit /b
-::  $LogFile (C:\Windows\System32\winevt\Logs)
-::  C:\Windows\System32\winevt\Logs\Application.evtx
-::  소프트웨어를 비롯해서 사용자의 어플리케이션의 이벤트를 기록
-::  C:\Windows\System32\winevt\Logs\Security.evtx 
-::  보안 관련된 이벤트 로그, Windows 로그온, 네트워크 등 다양한 로그 기록
-::  C:\Windows\System32\winevt\Logs\System.evtx
-::  서비스 실행 여부나 파일 시스템, 디바이스 오류 등의 정보 기록
-::  C:\Windows\System32\winevt\Logs\Setup.evtx
-::  어플리케이션 설치 시 발생하는 이벤트를 기록하고 프로그램이 잘 설치되었는지, 호환성 관련 정보 기록
 
 :RUN_STEP_4
     set _eventLog=%NONVOLATILE_DIR%\EventLog
@@ -343,7 +336,7 @@ set choice=
 
     echo Using forecopy or KAPE ? (input f or k)
     echo Quit (input q) 
-    set /p _user_input_4=
+    set /p _user_input_4=":"
     
     :RUN_STEP_INPUT_4
     if /i "%_user_input_4%"=="f" (
@@ -360,9 +353,17 @@ set choice=
 :RUN_STEP_4_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target CombinedLogs --tdest %_eventLog%
 
+    if "%net%"=="4" (
+        goto RUN_STEP_4_NET4
+    ) else if "%net%"=="6" (
+        goto RUN_STEP_4_NET6
+    ) else (
+        goto Want_Server_log
+    )
+
     :Want_Server_log
     echo Want to collect server logs? (y or n)
-    set /p _want_server_log=
+    set /p _want_server_log=":"
     if /i "%_want_server_log%"=="y" (
         goto RUN_STEP_4_SERVER
     ) else if /i "%_want_server_log%"=="n" (
@@ -371,6 +372,20 @@ set choice=
         echo Invalid input. Please try again.
         GOTO Want_Server_log
     )
+
+:RUN_STEP_4_NET4
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv"
+    goto Want_Server_log
+
+:RUN_STEP_4_NET6
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv"
+    goto Want_Server_log
 
 :RUN_STEP_4_SERVER
     set _Webserver=%_eventLog%\WebServer
@@ -383,14 +398,8 @@ set choice=
 :RUN_STEP_4_FORE
     echo Acquring Event Log
     echo [%timestamp%] Acquring Event Log >> %_TimeStamp%
-    forecopy_handy -e  %eventLog%
+    forecopy_handy -e  %_eventLog%
     goto RUN_STEP_4_HASH
-
-    echo Using Parser?
-    set /p _log_parser=
-    if /i "%_log_parser%"=="y" (
-        goto RUN_STEP_4_LOGPARSER
-    )
 
 :RUN_STEP_4_HASH
     set eventHash=%_eventLog%\Hash
@@ -400,7 +409,7 @@ set choice=
 
     echo Calculate Event Hash...
     echo [%timestamp%] Calculate Event Hash... >> %_TimeStamp%
-    %hashdeep% -e -r %_eventLog% > %eventHash%\Event_Hash.txt
+    %hashdeep% -e -r %_eventLog% > %eventHash%\EventLog_Hash.txt
 
     goto RUN_STEP_4_Clear
 
@@ -691,117 +700,60 @@ set choice=
     exit /b
 
 :RUN_STEP_9
-    set _Recent=%NONVOLATILE_DIR%\Recent  
+    set _Recent=%NONVOLATILE_DIR%\Recent
+
     mkdir %_Recent%
-    echo Create Recent Data Directory 
-    echo [%timestamp%] Create Recent Data Directory >> %_TimeStamp%
+    echo Create Recent Directory
+    echo [%timestamp%] Create Recent Directory >> %_TimeStamp%
 
-    set _Desktop=%_Recent%\Desktop
-    mkdir %_Desktop%
-    echo Create Desktop Directory 
-    echo [%timestamp%] Create Desktop Directory >> %_TimeStamp%
-    
-    :: ok
-    forecopy_handy -r %USERPROFILE%\Desktop %_Desktop%
-    echo Acquring Desktop Icon...
-    echo [%timestamp%] Acquring Desktop Icon... >> %_TimeStamp%
-
-    set _Recent_File=%_Recent%/Recent_File
-    mkdir %_Recent_File%
-    echo Create Recent File Directory 
-    echo [%timestamp%] Create Recent File Directory >> %_TimeStamp%
-    
-    :: ok 
-    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent_File%
-    echo Acquring Recent File...
-    echo [%timestamp%] Acquring Recent File... >> %_TimeStamp%  
-
-    set _Start=%_Recent%\_Start    
-    mkdir %_Start%
-    echo Create Start Directory 
-    echo [%timestamp%] Create Start Directory >> %_TimeStamp%
-    
-    :: ok
-    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Start%
-    echo Acquring Start Data...
-    echo [%timestamp%] Acquring Start Data... >> %_TimeStamp%
-
-    set _QuickLaunch=%_Recent%\_QuickLaunch    
-    mkdir %_QuickLaunch%
-    echo Create QuickLaunch Directory 
-    echo [%timestamp%] Create QuickLaunch Directory >> %_TimeStamp%
-
-    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" %_QuickLaunch%
-    echo Acquring QuickLaunch Data...
-    echo [%timestamp%] Acquring QuickLaunch Data... >> %_TimeStamp%
-
-    ::Hash
-    set _Recent_Hash=%_Recent%\Hash
-    mkdir %_Recent_Hash%
-    echo Create Recent Hash Directory 
-    echo [%timestamp%] Create Recent Hash Directory >> %_TimeStamp%
-
-    %hashdeep% -e -r %_Recent% > %_Recent_Hash%\_Recent_Hash.txt
-    ::set _SystemProfile=%NONVOLATILE_DIR%\_SystemProfile
-    ::mkdir %_SystemProfile%
-    ::echo Create System Profile Directory >> %_TimeStamp%
-    ::echo [%timestamp%] Create System Profile Directory >> %_TimeStamp%
-
-    :: systemprofile (\Windows\system32\config\systemprofile)
-    ::forecopy_handy -dr "%SystemRoot%\system32\config\systemprofile" %NONVOLATILE_DIR%
-
-    ::echo Acquring System Profile... >> %_TimeStamp%
-    ::echo [%timestamp%] Acquring System Profile... >> %_TimeStamp%
+    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
+    echo Acquring Recent Data ...
+    echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
 
     if  "%net%"=="4" (
         goto Recent_net4
     ) else if "%net%"=="6" (
         goto Recent_net6
     ) else (
-        goto RUN_STEP_10_Clear
+        goto RUN_STEP_9_Clear
     )
 
 :Recent_net4
-    :: Desktop Folder 
-    :: C:\Users\<user name>\Desktop
-    %lecmd% -d %userprofile%\Desktop --csv %_Desktop% --all
-    :: Recent Folder 
-    :: C:\Users<user name>\AppData\Roaming\Microsoft\Windows\Recent
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsfot\Windows\Recent --csv %_Recent_File% --all
-    :: Start Folder 
-    :: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs --csv %_Start% --all
-    :: QuickLaunch Folder
-    :: C:\Users\<user name>\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch --csv %_QuickLaunch% --all
+    %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
+
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv"
+
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv"
+
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv"
 
     :: Jump List 
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_Recent% --all
+    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv"
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
-    goto RUN_STEP_10_Clear
+    goto RUN_STEP_9_Clear
 
 :Recent_net6
     :: Desktop Folder 
     :: C:\Users\<user name>\Desktop
-    %lecmd% -d %userprofile%\Desktop --csv %_Desktop% --all
+    %lecmd% -d "%userprofile%\Desktop --csv %_Desktop%" --all
     :: Recent Folder 
     :: C:\Users<user name>\AppData\Roaming\Microsoft\Windows\Recent
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsfot\Windows\Recent --csv %_Recent_File% --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsfot\Windows\Recent" --csv %_Recent_File% --all
     :: Start Folder 
     :: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs --csv %_Start% --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Start% --all
     :: QuickLaunch Folder
     :: C:\Users\<user name>\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
-    %lecmd% -d %userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch --csv %_QuickLaunch% --all
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_QuickLaunch% --all
 
     :: Jump List 
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d %userprofile%\AppData\Roaming\Microsoft\Windows\Recent --csv %_Recent% --all
+    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --all
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
     goto RUN_STEP_10_Clear
 
@@ -809,7 +761,6 @@ set choice=
     echo RUN_STEP_9 CLEAR
     exit /b
 
-
 echo [%timestamp%] End Time >> %_TimeStamp%
 endlocal
-:: RECENT LNKs and JUMPLIST
+
