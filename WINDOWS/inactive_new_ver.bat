@@ -250,17 +250,18 @@ set choice=
 :RUN_STEP_2_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target RegistryHives --tdest %Registry%
     goto RUN_STEP_2_HASH
+
 :RUN_STEP_2_HASH
     set _REGISTRY_HASH=%Registry%\Hash
     mkdir %_REGISTRY_HASH%
-    
-    echo Create Registry Hash Directory 
+
+    echo Create Registry Hash Directory
     echo [%timestamp%] Create Registry Hash Directory >> %_TimeStamp%
-    %hashdeep% -e -r %Registry%  > %REGISTRY_HASH%\REGISTRY_Hash.txt  
-    
+    %hashdeep% -e -r %Registry%  > %REGISTRY_HASH%\REGISTRY_Hash.txt
+
     echo Calculate Registry Hash...
     echo [%timestamp%] Calculate Registry Hash... >> %_TimeStamp%
-    
+
     goto RUN_STEP_2_CLEAR
 
 :RUN_STEP_2_CLEAR
@@ -268,17 +269,17 @@ set choice=
     exit /b
 
 :RUN_STEP_3
-    :: Prefetch 
+    :: Prefetch
     set _Prefetch=%NONVOLATILE_DIR%\Prefetch
     mkdir %_Prefetch%
-    echo Create Prefetch Directory 
+    echo Create Prefetch Directory
     echo [%timestamp%] Create Prefetch Directory >> %_TimeStamp%
 
     :RUN_STEP_3_INPUT
     echo "Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
     set /p _user_input_3=":"
-    
+
     if /i "%_user_input_3%"=="f" (
         goto RUN_STEP_3_FORE
     ) else if /i "%_user_input_3%"=="k" (
@@ -292,13 +293,13 @@ set choice=
 
 :RUN_STEP_3_FORE
     echo Acquring Prefetch...
-    echo [%timestamp%] Acquring Prefetch... >> %_TimeStamp% 
+    echo [%timestamp%] Acquring Prefetch... >> %_TimeStamp%
     forecopy_handy -p %_Prefetch%
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target Prefetch --tdest %_Prefetch%
-    
+
     if "%net%"=="4" (
         goto RUN_STEP_3_NET4
     ) else if "%net%"=="6" (
@@ -335,9 +336,9 @@ set choice=
     echo [%timestamp%] Create EventLog Directory >> %_TimeStamp%
 
     echo Using forecopy or KAPE ? (input f or k)
-    echo Quit (input q) 
+    echo Quit (input q)
     set /p _user_input_4=":"
-    
+
     :RUN_STEP_INPUT_4
     if /i "%_user_input_4%"=="f" (
         goto RUN_STEP_4_FORE
@@ -390,7 +391,7 @@ set choice=
 :RUN_STEP_4_SERVER
     set _Webserver=%_eventLog%\WebServer
     mkdir %_Webserver%
-    echo Create WebServer Directory 
+    echo Create WebServer Directory
     echo [%timestamp%] Create WebServer Directory >> %_TimeStamp%
     %kape%\kape.exe --tsource %SystemDrive% --target WebServers --tdest %_Webserver%
     goto RUN_STEP_4_HASH
@@ -424,13 +425,13 @@ set choice=
     set kapedir=%recycleBin%\kape
     mkdir %kapedir%
     echo.
-    echo Acquring RecycleBin 
+    echo Acquring RecycleBin
     echo [%timestamp%] Acquring RecycleBin >> %_TimeStamp%
-    
+
     echo.
     :input_prompt
     echo "After creating the RecycleBin dump, pressing 'q' will generate the hash dump and terminate the current dump process"
-    SET /P _user_input_5=Enter 'r' for rbmcd, 'x' for xcopy, 'k' for kape or 'q' for quit: 
+    SET /P _user_input_5=Enter 'r' for rbmcd, 'x' for xcopy, 'k' for kape or 'q' for quit:
 
     IF /I "%_user_input_5%"=="r" (
         if "%net%"=="4" (
@@ -532,7 +533,7 @@ set choice=
     )
 
 :Browser_Forecopy
-    :: Chrome 
+    :: Chrome
     echo Acquring Chrome Data...
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
 
@@ -544,7 +545,7 @@ set choice=
     :: Edge
     echo Acquring Edge Data...
     echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
-    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
+    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge%
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
     forecopy_handy -f "%LocalAppData%\Microsoft\Edge\User Data\Default\History" %_Edge%
@@ -553,7 +554,7 @@ set choice=
     echo Acquring Firefox Data...
     echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
     ::forecopy_handy -x %_Firefox%
-    
+
     :: Firefox Cache
     :: xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles\*.default-release\cache2" "%_Firefox%\Cache"
     :: Firefox cookies
@@ -577,25 +578,25 @@ set choice=
     goto Browser_Hash
 
 :Browser_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% 
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% 
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%  
-    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
-    
-    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% 
-    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
+    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome%
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome%
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%
+    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
 
-    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% 
-    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp% 
+    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge%
+    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
 
-    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% 
-    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp% 
+    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox%
+    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
 
-    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%    
-    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp% 
+    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE%
+    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp%
 
-    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%     
-    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp% 
+    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%
+    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp%
+
+    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%
+    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp%
 
     goto Browser_Hash
 
@@ -610,25 +611,25 @@ set choice=
     echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
+    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt
 
     mkdir %_Edge_Hash%
     echo [%timestamp%] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
     echo [%timestamp%] Calculate Edge Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
-    
+    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt
+
     mkdir %_IE_Hash%
     echo [%timestamp%] Create IE Hash Directory >> %_TimeStamp%
     echo Calculate IE Hash
     echo [%timestamp%] Calculate IE Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt 
-    
+    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt
+
     mkdir %_Chromium_Hash%
     echo [%timestamp%] Create Chromium Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
     echo [%timestamp%] Calculate Chromium Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt 
+    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt
 
     mkdir %_WebCache_Hash%
     echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
@@ -658,12 +659,12 @@ set choice=
     mkdir %_USBDetective%
     echo Create USBDetective Directory
     echo [%timestamp%] Create USBDetective Directory >> %_TimeStamp%
-    
+
     :run_step_8_input
     echo "Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
     set /p _user_input_8=
-    
+
     if /i "%_user_input_8%"=="f" (
         goto USB_Forecopy
     ) else if /i "%_user_input_8%"=="k" (
@@ -676,7 +677,7 @@ set choice=
     )
 
 
-:USB_Forecopy  
+:USB_Forecopy
     echo Acquring USB Logs Information...
     echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
     forecopy_handy -t %_USBDetective%
@@ -690,7 +691,7 @@ set choice=
     mkdir %_USBDetective_Hash%
     echo Create USBDetect Hash Directory
     echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
-    
+
     %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\_USB_Hash.txt
 
     echo Calculate USBDetective Hash...
@@ -701,11 +702,9 @@ set choice=
 
 :RUN_STEP_9
     set _Recent=%NONVOLATILE_DIR%\Recent
-
     mkdir %_Recent%
     echo Create Recent Directory
     echo [%timestamp%] Create Recent Directory >> %_TimeStamp%
-
     forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
     echo Acquring Recent Data ...
     echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
@@ -720,14 +719,11 @@ set choice=
 
 :Recent_net4
     %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
-
     %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv"
-
     %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv"
-
     %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv"
 
-    :: Jump List 
+    :: Jump List
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
@@ -736,31 +732,21 @@ set choice=
     goto RUN_STEP_9_Clear
 
 :Recent_net6
-    :: Desktop Folder 
-    :: C:\Users\<user name>\Desktop
-    %lecmd% -d "%userprofile%\Desktop --csv %_Desktop%" --all
-    :: Recent Folder 
-    :: C:\Users<user name>\AppData\Roaming\Microsoft\Windows\Recent
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsfot\Windows\Recent" --csv %_Recent_File% --all
-    :: Start Folder 
-    :: C:\Users\<user name>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Start% --all
-    :: QuickLaunch Folder
-    :: C:\Users\<user name>\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_QuickLaunch% --all
+    %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv"
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv"
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv"
 
-    :: Jump List 
+    :: Jump List
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --all
+    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv"
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
-    goto RUN_STEP_10_Clear
-
+    goto RUN_STEP_9_Clear
 :RUN_STEP_9_Clear
     echo RUN_STEP_9 CLEAR
     exit /b
-
 echo [%timestamp%] End Time >> %_TimeStamp%
 endlocal
 
