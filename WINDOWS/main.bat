@@ -1,7 +1,7 @@
 @echo off
 REM clear all remains on cmd
 cls
-chcp 65001 > nul
+::chcp 65001 > nul
 :: -----------------------------------------------------
 :: VARIABLEs
 :: -----------------------------------------------------
@@ -64,10 +64,10 @@ set /p choice="Enter your choice: "
 if "%choice%"=="1" (
     call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%
 ) else if "%choice%"=="2" (
-	call %~dp0\inactive_data.bat %CASE% %NAME% %Target_drive%
+	call %~dp0\inactive_data2.bat %CASE% %NAME% %Target_drive%
 ) else if "%choice%"=="3" (
 	call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%
-	call %~dp0\inactive_data.bat %CASE% %NAME% %Target_drive%
+	call %~dp0\inactive_data2.bat %CASE% %NAME% %Target_drive%
 ) else (
     echo Invalid choice, please try again.
     goto choice

@@ -51,12 +51,12 @@ timestamp=$(date +"%Y-%m-%d %T")
 echo "udp.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # List of all listening TCP ports
-lsof -i -n | grep LISTEN | grep TCP > ../mnt2/Process/tcpports.txt
+lsof -i -n | grep LISTEN | grep TCP >> ../mnt2/Process/tcpports.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "tcpports.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # List of all listening UDP ports
-lsof -i -n | grep LISTEN | grep UDP > ../mnt2/Process/udpports.txt
+lsof -i -n | grep LISTEN | grep UDP >> ../mnt2/Process/udpports.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "udpports.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
