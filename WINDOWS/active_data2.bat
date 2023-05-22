@@ -509,7 +509,9 @@ mkdir %PROCESS_HASH%
 echo [%timestamp%] CREATE PROCESS HASH DIRECTORY >> %TimeStamp%
 
 :: psloglist 
+REM if psloglist64.exe occurs crash use 32bit psloglist.exe
 %psloglist% -d 30 -s -t * /accepteula > %PROCESS_Dir%\psloglist.txt
+REM %sysinternals%\psloglist.exe -d 30 -s -t * /accepteula > %PROCESS_Dir%\psloglist.txt
 echo [%timestamp%] PSLOGLIST >> %TimeStamp%
 
 
