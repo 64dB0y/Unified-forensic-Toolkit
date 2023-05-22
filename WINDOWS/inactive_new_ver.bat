@@ -123,6 +123,7 @@ set choice=
     echo [9] Link File
     echo [a] RUN ALL STEPS
     echo [q] QUIT
+    echo.
     set /p choice="You entered : "
 
     if not defined choice (
@@ -153,13 +154,17 @@ set choice=
 
 :RUN_STEP_1
     set _FileSystem=%NONVOLATILE_DIR%\FileSystem
-    mkdir %_FileSystem% 
+    mkdir %_FileSystem%
+    echo.
+    echo Create FileSystem Data Directory
     echo [%timestamp%] Create FileSystem Data Directory >> %_TimeStamp%
     
     :RUN_STEP_1_INPUT
-    echo "Using forecopy or KAPE ? (input f or k)"
-    echo "Quit (input q) "
-    set /p _user_input_1=":"
+    echo.
+    echo [RUN_STEP_1] Using forecopy or KAPE ? (input f or k)
+    echo Quit (input q)
+    echo.
+    set /p _user_input_1="User Input: "
     
     if /i "%_user_input_1%"=="f" (
         goto RUN_STEP_1_Fore
@@ -172,14 +177,15 @@ set choice=
         GOTO RUN_STEP_1_INPUT
     )
 
-
 :RUN_STEP_1_Fore
-    forecopy_handy -m %_FileSystem%
+    echo.
     echo Acquring FileSystem Data...
     echo [%timestamp%] Acquring FileSystem Data... >> %_TimeStamp%
+    forecopy_handy -m %_FileSystem%
     goto RUN_STEP_1_Hash
+
 :RUN_STEP_1_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target FileSystem --tdest %_FileSystem% --tflush
+    %kape%\kape.exe --tsource %SystemDrive% --target FileSystem --tdest %_FileSystem% >NUL
     
     if "%net%"=="4" (
         goto RUN_STEP_1_NET4
@@ -190,29 +196,30 @@ set choice=
     )
 
 :RUN_STEP_1_NET4
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv"
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv"
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv"
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv" >NUL
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv" >NUL
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv" >NUL
     goto RUN_STEP_1_Hash
 
 :RUN_STEP_1_NET6
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv"
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv"
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv"
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv"
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv" >NUL
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv" >NUL
+    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv" >NUL
     goto RUN_STEP_1_Hash
 
 :RUN_STEP_1_Hash
     set _FileSystem_Hash=%_FileSystem%\Hash
     mkdir %_FileSystem_Hash%
-    
+    echo.
     echo CREATE FileSystem HASH DIRECTORY
     echo [%timestamp%] CREATE FileSystem HASH Directory >> %_TimeStamp%
     %hashdeep% -e -r %_FileSystem% > "%_FileSystem_Hash%\FileSystem_Hash.txt"
-
+    echo.
     echo Acquring FileSystem Hash
     echo [%timestamp%] Acquring FileSystem Hash >> %_TimeStamp%
+    echo.
     goto RUN_STEP_1_Clear
 
 :RUN_STEP_1_Clear
@@ -222,13 +229,16 @@ set choice=
 :RUN_STEP_2
     set Registry=%NONVOLATILE_DIR%\Registry
     mkdir %Registry%
+    echo.
     echo Create Registry Directory 
     echo [%timestamp%] Create Registry Directory >> %_TimeStamp%
 
     :RUN_STEP_2_INPUT
-    echo "Using forecopy or KAPE ? (input f or k)"
-    echo "Quit (input q) "
-    set /p _user_input_2=":"
+    echo.
+    echo [RUN_STEP_2] Using forecopy or KAPE ? (input f or k)
+    echo Quit (input q)
+    echo.
+    set /p _user_input_2="User Input: "
     
     if /i "%_user_input_2%"=="f" (
         goto RUN_STEP_2_FORE
@@ -242,26 +252,26 @@ set choice=
     )
 
 :RUN_STEP_2_FORE
+    echo.
     echo Acquring Registry...
     echo [%timestamp%] Acquring Registry >> %_TimeStamp%
     forecopy_handy -g %Registry%
     goto RUN_STEP_2_HASH
 
 :RUN_STEP_2_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target RegistryHives --tdest %Registry%
+    %kape%\kape.exe --tsource %SystemDrive% --target RegistryHives --tdest %Registry% >NUL
     goto RUN_STEP_2_HASH
 
 :RUN_STEP_2_HASH
     set _REGISTRY_HASH=%Registry%\Hash
     mkdir %_REGISTRY_HASH%
-
-    echo Create Registry Hash Directory
+    echo.
+    echo Create Registry Hash Directory 
     echo [%timestamp%] Create Registry Hash Directory >> %_TimeStamp%
-    %hashdeep% -e -r %Registry%  > %REGISTRY_HASH%\REGISTRY_Hash.txt
-
+    %hashdeep% -e -r %Registry%  > %REGISTRY_HASH%\REGISTRY_Hash.txt  
+    echo.
     echo Calculate Registry Hash...
     echo [%timestamp%] Calculate Registry Hash... >> %_TimeStamp%
-
     goto RUN_STEP_2_CLEAR
 
 :RUN_STEP_2_CLEAR
@@ -269,17 +279,19 @@ set choice=
     exit /b
 
 :RUN_STEP_3
-    :: Prefetch
     set _Prefetch=%NONVOLATILE_DIR%\Prefetch
     mkdir %_Prefetch%
-    echo Create Prefetch Directory
+    echo.
+    echo Create Prefetch Directory 
     echo [%timestamp%] Create Prefetch Directory >> %_TimeStamp%
 
     :RUN_STEP_3_INPUT
-    echo "Using forecopy or KAPE ? (input f or k)"
+    echo.
+    echo "[RUN_STEP_3] Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
-    set /p _user_input_3=":"
-
+    echo.
+    set /p _user_input_3="User Input: "
+    
     if /i "%_user_input_3%"=="f" (
         goto RUN_STEP_3_FORE
     ) else if /i "%_user_input_3%"=="k" (
@@ -292,14 +304,15 @@ set choice=
     )
 
 :RUN_STEP_3_FORE
+    echo.
     echo Acquring Prefetch...
     echo [%timestamp%] Acquring Prefetch... >> %_TimeStamp%
     forecopy_handy -p %_Prefetch%
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target Prefetch --tdest %_Prefetch%
-
+    %kape%\kape.exe --tsource %SystemDrive% --target Prefetch --tdest %_Prefetch% >NUL
+    
     if "%net%"=="4" (
         goto RUN_STEP_3_NET4
     ) else if "%net%"=="6" (
@@ -308,21 +321,24 @@ set choice=
         goto RUN_STEP_3_HASH
     )
 :RUN_STEP_3_NET4
-    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
+    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv >NUL
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_NET6
-    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv
+    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv >NUL
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_HASH
     set Prefetch_Hash=%_Prefetch%\Hash
     mkdir %Prefetch_Hash%
+    echo.
     echo Create Prefetch Hash Directory
     echo [%timestamp%] Create Prefetch Hash Directory >> %_TimeStamp%
+    echo.
     %hashdeep% -e -r %_Prefetch% > %Prefetch_Hash%\Prefetch_Hash.txt
     echo Calculate Prefetch Hash...
     echo [%timestamp%] Calculate Prefetch Hash... >> %_TimeStamp%
+    echo.
     goto RUN_STEP_3_Clear
 
 :RUN_STEP_3_Clear
@@ -332,14 +348,16 @@ set choice=
 :RUN_STEP_4
     set _eventLog=%NONVOLATILE_DIR%\EventLog
     mkdir %_eventLog%
+    echo.
     echo Create EventLog Directory
     echo [%timestamp%] Create EventLog Directory >> %_TimeStamp%
 
-    echo Using forecopy or KAPE ? (input f or k)
-    echo Quit (input q)
-    set /p _user_input_4=":"
-
     :RUN_STEP_INPUT_4
+    echo.
+    echo [RUN_STEP_4] Using forecopy or KAPE ? (input f or k)
+    echo Quit (input q) 
+    set /p _user_input_4="User Input: "
+
     if /i "%_user_input_4%"=="f" (
         goto RUN_STEP_4_FORE
     ) else if /i "%_user_input_4%"=="k" (
@@ -352,7 +370,7 @@ set choice=
     )
 
 :RUN_STEP_4_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target CombinedLogs --tdest %_eventLog%
+    %kape%\kape.exe --tsource %SystemDrive% --target CombinedLogs --tdest %_eventLog% >NUL
 
     if "%net%"=="4" (
         goto RUN_STEP_4_NET4
@@ -363,6 +381,7 @@ set choice=
     )
 
     :Want_Server_log
+    echo.
     echo Want to collect server logs? (y or n)
     set /p _want_server_log=":"
     if /i "%_want_server_log%"=="y" (
@@ -375,28 +394,30 @@ set choice=
     )
 
 :RUN_STEP_4_NET4
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv"
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv"
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv"
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv" >NUL
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv" >NUL
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv" >NUL
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv" >NUL
     goto Want_Server_log
 
 :RUN_STEP_4_NET6
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv"
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv"
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv"
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv"
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv" >NUL
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv" >NUL
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv" >NUL
+    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv" >NUL
     goto Want_Server_log
 
 :RUN_STEP_4_SERVER
     set _Webserver=%_eventLog%\WebServer
     mkdir %_Webserver%
-    echo Create WebServer Directory
+    echo.
+    echo Create WebServer Directory 
     echo [%timestamp%] Create WebServer Directory >> %_TimeStamp%
-    %kape%\kape.exe --tsource %SystemDrive% --target WebServers --tdest %_Webserver%
+    %kape%\kape.exe --tsource %SystemDrive% --target WebServers --tdest %_Webserver% >NUL
     goto RUN_STEP_4_HASH
 
 :RUN_STEP_4_FORE
+    echo.
     echo Acquring Event Log
     echo [%timestamp%] Acquring Event Log >> %_TimeStamp%
     forecopy_handy -e  %_eventLog%
@@ -405,13 +426,13 @@ set choice=
 :RUN_STEP_4_HASH
     set eventHash=%_eventLog%\Hash
     mkdir %eventHash%
+    echo.
     echo Create EventLog Hash Directory
     echo [%timestamp%] Create EventLog Hash Directory >> %_TimeStamp%
-
+    echo.
     echo Calculate Event Hash...
     echo [%timestamp%] Calculate Event Hash... >> %_TimeStamp%
     %hashdeep% -e -r %_eventLog% > %eventHash%\EventLog_Hash.txt
-
     goto RUN_STEP_4_Clear
 
 :RUN_STEP_4_Clear
@@ -419,19 +440,22 @@ set choice=
     exit /b
 
 :RUN_STEP_5
-    set recycleBin=%NONVOLATILE_DIR%\_RecycleBin
+    set recycleBin=%NONVOLATILE_DIR%\RecycleBin
     mkdir %recycleBin%
+    echo.
+    echo Create RecycleBin Directory
     echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
+
     set kapedir=%recycleBin%\kape
     mkdir %kapedir%
     echo.
-    echo Acquring RecycleBin
+    echo Acquring RecycleBin 
     echo [%timestamp%] Acquring RecycleBin >> %_TimeStamp%
-
+    
     echo.
     :input_prompt
     echo "After creating the RecycleBin dump, pressing 'q' will generate the hash dump and terminate the current dump process"
-    SET /P _user_input_5=Enter 'r' for rbmcd, 'x' for xcopy, 'k' for kape or 'q' for quit:
+    SET /P _user_input_5=Enter 'r' for rbmcd, 'x' for xcopy, 'k' for kape or 'q' for quit: 
 
     IF /I "%_user_input_5%"=="r" (
         if "%net%"=="4" (
@@ -453,13 +477,13 @@ set choice=
 
     :RecycleBin_net4
         echo rbcmd for net4 executed(Step5)
-        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv
+        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv >NUL
         echo [%timestamp%] rbcmd for net4 completed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
     :RecycleBin_net6
         echo rbcmd for net6 executed(Step5)
-        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv
+        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv >NUL
         echo [%timestamp%] rbcmd for net6 completed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
@@ -471,24 +495,24 @@ set choice=
 
     :kape
         echo kape executed(Step5)
-        %kape%\kape.exe --tsource %systemdrive% --target RecycleBin --tdest %kapedir%
+        %kape%\kape.exe --tsource %systemdrive% --target RecycleBin --tdest %kapedir% >NUL
         echo [%timestamp%] kape executed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
     :RUN_STEP_5_HASH
-    set recycleBinHash=%recycleBin%\_Hash
+    set recycleBinHash=%recycleBin%\Hash
     mkdir %recycleBinHash%
     echo [%timestamp%] Create RecycleBin Hash Directory >> %_TimeStamp%
     echo.
     echo Calculate RecycleBin Hash...
-    %hashdeep% -e -r %recycleBin% > %recycleBinHash%\_RecycleBin_Hash.txt
+    %hashdeep% -e -r %recycleBin% > %recycleBinHash%\RecycleBin_Hash.txt
     echo [%timestamp%] Calculate RecycleBin Hash... >> %_TimeStamp%
 
     echo RUN_STEP_5 CLEAR
     exit /b
 
 :RUN_STEP_6
-    set Browser=%NONVOLATILE_DIR%\_Browser
+    set Browser=%NONVOLATILE_DIR%\Browser
     set _Edge=%Browser%\Edge
     set _Chromium=%Browser%\Chromium
     set _Chrome=%Browser%\Chrome
@@ -504,6 +528,7 @@ set choice=
     set _WebCache_Hash=%_WebCache%\Hash
 
     mkdir %Browser%
+    echo.
     echo Create Browser Initial Directory
     echo [%timestamp%] Create Browser Directory >> %_TimeStamp%
     mkdir %_Chrome%
@@ -520,8 +545,8 @@ set choice=
     echo [%timestamp%] Create WebCache Directory >> %_TimeStamp%
 
     :browser_input
-    echo "Using forecopy or KAPE ? (input f or k)"
-    set /p _user_input_6=
+    echo "[RUN_STEP_6] Using forecopy or KAPE ? (input f or k)"
+    set /p _user_input_6="User Input: "
 
     if /i "%_user_input_6%"=="f" (
         goto Browser_Forecopy
@@ -534,6 +559,7 @@ set choice=
 
 :Browser_Forecopy
     :: Chrome
+    echo.
     echo Acquring Chrome Data...
     echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
 
@@ -543,18 +569,20 @@ set choice=
     forecopy_handy -f "%LocalAppData%\Google\Chrome\User Data\Default\History" %_Chrome%
 
     :: Edge
+    echo.
     echo Acquring Edge Data...
     echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
-    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge%
+    forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
     forecopy_handy -f "%LocalAppData%\Microsoft\Edge\User Data\Default\History" %_Edge%
 
     :: Firefox
+    echo.
     echo Acquring Firefox Data...
     echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
     ::forecopy_handy -x %_Firefox%
-
+    
     :: Firefox Cache
     :: xcopy /E /I "%LocalAppData%\Mozilla\Firefox\Profiles\*.default-release\cache2" "%_Firefox%\Cache"
     :: Firefox cookies
@@ -571,6 +599,7 @@ set choice=
     xcopy /E /I /EXCLUDE:%ETC%\browser_exclude.txt "%AppData%\Mozilla\Firefox\Profiles" "%_Firefox%\RoamingFirefoxProfiles"
 
     :: WebCache
+    echo.
     echo Acquring WebCache.DAT...
     echo [%timestamp%] Acquring WebCache.DAT... >> %_TimeStamp%
     forecopy_handy -f "%LocalAppData%\Microsoft\Windows\WebCache\WebCacheV01.DAT" %_WebCache%
@@ -578,25 +607,25 @@ set choice=
     goto Browser_Hash
 
 :Browser_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome%
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome%
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome%
-    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
+    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome% >NUL
+    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
+    
+    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% >NUL
+    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
 
-    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge%
-    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
+    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% >NUL
+    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp% 
 
-    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox%
-    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
+    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% >NUL
+    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp% 
 
-    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE%
-    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp%
+    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium% >NUL
+    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp% 
 
-    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium%
-    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp%
-
-    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache%
-    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp%
+    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache% >NUL
+    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp% 
 
     goto Browser_Hash
 
@@ -611,25 +640,25 @@ set choice=
     echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt
+    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
 
     mkdir %_Edge_Hash%
     echo [%timestamp%] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
     echo [%timestamp%] Calculate Edge Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt
-
+    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
+    
     mkdir %_IE_Hash%
     echo [%timestamp%] Create IE Hash Directory >> %_TimeStamp%
     echo Calculate IE Hash
     echo [%timestamp%] Calculate IE Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt
-
+    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt 
+    
     mkdir %_Chromium_Hash%
     echo [%timestamp%] Create Chromium Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
     echo [%timestamp%] Calculate Chromium Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt
+    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt 
 
     mkdir %_WebCache_Hash%
     echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
@@ -644,6 +673,8 @@ set choice=
 :RUN_STEP_7
     set _restore=%NONVOLATILE_DIR%\Restore
     mkdir %_restore%
+    echo.
+    echo Create Restore Directory
     echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
     ::forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
     xcopy /E /H /I "%SYSTEMROOT%\system32\Restore" "%_restore%"
@@ -654,17 +685,19 @@ set choice=
     exit /b
 
 :RUN_STEP_8
-    set _USBDetective=%NONVOLATILE_DIR%\_USBDetective
-    set _USBDetective_Hash=%_USBDetective%\_Hash
+    set _USBDetective=%NONVOLATILE_DIR%\USBDetective
+    set _USBDetective_Hash=%_USBDetective%\Hash
+    echo.
     mkdir %_USBDetective%
     echo Create USBDetective Directory
     echo [%timestamp%] Create USBDetective Directory >> %_TimeStamp%
-
+    
     :run_step_8_input
+    echo.
     echo "Using forecopy or KAPE ? (input f or k)"
     echo "Quit (input q) "
-    set /p _user_input_8=
-
+    set /p _user_input_8="User Input: "
+    
     if /i "%_user_input_8%"=="f" (
         goto USB_Forecopy
     ) else if /i "%_user_input_8%"=="k" (
@@ -676,8 +709,8 @@ set choice=
         GOTO run_step_8_input
     )
 
-
 :USB_Forecopy
+    echo.
     echo Acquring USB Logs Information...
     echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
     forecopy_handy -t %_USBDetective%
@@ -689,25 +722,32 @@ set choice=
 
 :USB_Hash
     mkdir %_USBDetective_Hash%
+    echo.
     echo Create USBDetect Hash Directory
     echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
+    
+    %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\USB_Hash.txt
 
-    %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\_USB_Hash.txt
-
+    echo.
     echo Calculate USBDetective Hash...
     echo [%timestamp%] Calculate USBDetective Hash... >> %_TimeStamp%
+    goto RUN_STEP_8_Clear
 
+:RUN_STEP_8_Clear
     echo RUN_STEP_8 CLEAR
     exit /b
+
 
 :RUN_STEP_9
     set _Recent=%NONVOLATILE_DIR%\Recent
     mkdir %_Recent%
+    echo.
     echo Create Recent Directory
     echo [%timestamp%] Create Recent Directory >> %_TimeStamp%
-    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
+    echo.
     echo Acquring Recent Data ...
     echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
+    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
 
     if  "%net%"=="4" (
         goto Recent_net4
@@ -718,32 +758,46 @@ set choice=
     )
 
 :Recent_net4
-    %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv"
+    %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv" >NUL
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
 
-    :: Jump List
+    :: Jump List 
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv"
+    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
     goto RUN_STEP_9_Clear
 
 :Recent_net6
     %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv"
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
+    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
 
     :: Jump List
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv"
-    echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
+    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
+    echo [%timestamp%] LECmd_net6  >> %_TimeStamp%
     goto RUN_STEP_9_Clear
+
+:Recent_Hash
+    set _Recent_Hash=%_Recent%\Hash
+    mkdir _Recent_Hash
+    echo.
+    echo Create Recent Hash Directory
+    echo [%timestamp%] Create Recent Hash Directory
+    echo.
+    %hashdeep% -e -r %_Recent% > %_Recent_Hash%\Recent_Hash.txt
+    echo Calculate Recent Hash...
+    echo [%timestamp%] Calculate Recent Hash...
+    echo.
+    goto RUN_STEP_9_Clear
+
 :RUN_STEP_9_Clear
     echo RUN_STEP_9 CLEAR
     exit /b
