@@ -28,7 +28,7 @@ sudo cp -R "$log_dir"/*.log "$collected_log_dir"
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Log file copy Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
-for file in ../mnt2/Logon/*.log					# Obtain the hash value for each result file
+for file in ../mnt2/Log/*.log					# Obtain the hash value for each result file
 do
 	echo "$file" >> ../mnt2/Log/hash/hash.txt
 	./hash.exe "$file" >> ../mnt2/Log/hash/hash.txt

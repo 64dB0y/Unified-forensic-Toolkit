@@ -49,7 +49,7 @@ do
 	echo >> ../mnt2/TMP/hash/hash.txt
 done
 
-for file in ../mnt2/TMP/metatdata/*.txt
+for file in ../mnt2/TMP/metadata/*.txt
 do
 	echo "$file" >> ../mnt2/TMP/hash/hash.txt
 	sudo ./hash.exe "$file" >> ../mnt2/TMP/hash/hash.txt
