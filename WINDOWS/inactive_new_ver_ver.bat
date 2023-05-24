@@ -217,6 +217,10 @@ set choice=
     echo Create Registry Directory 
     echo [%timestamp%] Create Registry Directory >> %_TimeStamp%
     echo.
+    set RegistryModule=%Registry%\Module
+    mkdir %RegistryModule%
+    echo [%timestamp%] Create Registry Module Directory >> %_TimeStamp% 
+
     if "%net%"=="4" (
         goto RUN_STEP_2_NET4
     ) else if "%net%"=="6" (
@@ -233,10 +237,12 @@ set choice=
 
 :RUN_STEP_2_NET4
     %kape%\kape.exe --tsource %SystemDrive% --target RegistryHives --tdest %Registry% >NUL
+    %kape%\kape.exe --msource %Registry%\%_FirstCharacter% --module RECmd_AllBatchFiles --mdest %RegistryModule%
     goto RUN_STEP_2_HASH
 
 :RUN_STEP_2_NET6
     %kape%\kape.exe --tsource %SystemDrive% --target RegistryHives --tdest %Registry% >NUL
+    %kape%\kape.exe --msource %Registry%\%_FirstCharacter% --module RECmd_AllBatchFiles --mdest %RegistryModule%
     goto RUN_STEP_2_HASH
 
 :RUN_STEP_2_HASH
@@ -260,8 +266,11 @@ set choice=
     set _Prefetch=%NONVOLATILE_DIR%\Prefetch
     mkdir %_Prefetch%
     echo.
-    echo Create Prefetch Directory 
+    echo [RUN_STEP_3] Create Prefetch Directory 
     echo [%timestamp%] Create Prefetch Directory >> %_TimeStamp%
+    set _Prefetch_Module=%_Prefetch%\Module
+    mkdir %_Prefetch_Module%
+    echo [%timestamp%] Create Prefetch Module Directory >> %_TimeStamp%
 
     if "%net%"=="4" (
         goto RUN_STEP_3_NET4
@@ -279,12 +288,12 @@ set choice=
 
 :RUN_STEP_3_NET4
     %kape%\kape.exe --tsource %SystemDrive% --target Prefetch --tdest %_Prefetch% >NUL
-    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv >NUL
+    %kape%\kape.exe --msource %_Prefetch%\%_FirstCharacter% --module PECmd --mdest %_Prefetch_Module%
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_NET6
     %kape%\kape.exe --tsource %SystemDrive% --target Prefetch --tdest %_Prefetch% >NUL
-    %pecmd% -d %_Prefetch%\%_FirstCharacter% --csv %_Prefetch% --csvf Prefetch.csv >NUL
+    %kape%\kape.exe --msource %_Prefetch%\%_FirstCharacter% --module PECmd --mdest %_Prefetch_Module%
     goto RUN_STEP_3_HASH
 
 :RUN_STEP_3_HASH
@@ -296,7 +305,6 @@ set choice=
     echo Calculate Prefetch Hash...
     echo [%timestamp%] Calculate Prefetch Hash... >> %_TimeStamp%
     %hashdeep% -e -r %_Prefetch% > %Prefetch_Hash%\Prefetch_Hash.txt
-
     goto RUN_STEP_3_Clear
 
 :RUN_STEP_3_Clear
@@ -310,29 +318,12 @@ set choice=
     echo [RUN_STEP_4] Create EventLog Directory
     echo [%timestamp%] Create EventLog Directory >> %_TimeStamp%
 
-    :Want_Server_log
-    echo.
-    echo Want to collect server logs? (y or n)
-    set /p _want_server_log=":"
-
     if "%net%"=="4" (
         goto RUN_STEP_4_NET4
     ) else if "%net%"=="6" (
         goto RUN_STEP_4_NET6
     ) else (
         goto RUN_STEP_4_Fore
-    )
-
-
-:RUN_STEP_4_KAPE
-    %kape%\kape.exe --tsource %SystemDrive% --target CombinedLogs --tdest %_eventLog% >NUL
-
-    if "%net%"=="4" (
-        goto RUN_STEP_4_NET4
-    ) else if "%net%"=="6" (
-        goto RUN_STEP_4_NET6
-    ) else (
-        goto Want_Server_log
     )
 
 :RUN_STEP_4_NET4
@@ -366,7 +357,7 @@ set choice=
 
 :RUN_STEP_4_FORE
     echo.
-    echo Acquring Event Log
+    echo [RUN_STEP_4] Acquring Event Log
     echo [%timestamp%] Acquring Event Log >> %_TimeStamp%
     forecopy_handy -e  %_eventLog%
     goto RUN_STEP_4_HASH
@@ -492,20 +483,15 @@ set choice=
     mkdir %_WebCache%
     echo [%timestamp%] Create WebCache Directory >> %_TimeStamp%
 
-    :browser_input
-    echo "[RUN_STEP_6] Using forecopy or KAPE ? (input f or k)"
-    set /p _user_input_6="User Input: "
-
-    if /i "%_user_input_6%"=="f" (
-        goto Browser_Forecopy
-    ) else if /i "%_user_input_6%"=="k" (
-        goto Browser_KAPE
+    if "%net%"=="4" (
+        goto RUN_STEP_6_NET4
+    ) else if "%net%"=="6" (
+        goto RUN_STEP_6_NET6
     ) else (
-        echo Invalid input. Please try again.
-        GOTO browser_input
+        goto RUN_STEP_6_Fore
     )
 
-:Browser_Forecopy
+:RUN_STEP_6_Fore
     :: Chrome
     echo.
     echo Acquring Chrome Data...
@@ -554,7 +540,30 @@ set choice=
 
     goto Browser_Hash
 
-:Browser_KAPE
+:RUN_STEP_6_NET4
+    %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome% >NUL
+    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
+    
+    %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% >NUL
+    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% >NUL
+    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% >NUL
+    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium% >NUL
+    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp% 
+
+    %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache% >NUL
+    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp% 
+
+    goto Browser_Hash
+
+:RUN_STEP_6_NET6
     %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome% >NUL
@@ -640,35 +649,29 @@ set choice=
     echo Create USBDetective Directory
     echo [%timestamp%] Create USBDetective Directory >> %_TimeStamp%
     
-    :run_step_8_input
-    echo.
-    echo "Using forecopy or KAPE ? (input f or k)"
-    echo "Quit (input q) "
-    set /p _user_input_8="User Input: "
-    
-    if /i "%_user_input_8%"=="f" (
-        goto USB_Forecopy
-    ) else if /i "%_user_input_8%"=="k" (
-        goto USB_KAPE
-    ) else if /i "%_user_input_8%"=="q" (
-        exit /b
+    if "%net%"=="4" (
+        goto RUN_STEP_8_NET4
+    ) else if "%net%"=="6" (
+        goto RUN_STEP_8_NET6
     ) else (
-        echo Invalid input. Please try again.
-        GOTO run_step_8_input
+        goto RUN_STEP_8_Fore
     )
-
-:USB_Forecopy
+:RUN_STEP_8_Fore
     echo.
     echo Acquring USB Logs Information...
     echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
     forecopy_handy -t %_USBDetective%
-    goto USB_Hash
+    goto RUN_STEP_8_Hash
 
-:USB_KAPE
+:RUN_STEP_8_NET4
     %kape%\kape.exe --tsource %SystemDrive% --target USBDevicesLogs --tdest %_USBDetective%
-    goto USB_Hash
+    goto RUN_STEP_8_Hash
 
-:USB_Hash
+:RUN_STEP_8_NET6
+    %kape%\kape.exe --tsource %SystemDrive% --target USBDevicesLogs --tdest %_USBDetective%
+    goto RUN_STEP_8_Hash
+
+:RUN_STEP_8_Hash
     mkdir %_USBDetective_Hash%
     echo.
     echo Create USBDetect Hash Directory
