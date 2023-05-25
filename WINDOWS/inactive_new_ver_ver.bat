@@ -158,8 +158,12 @@ set choice=
     set _FileSystem=%NONVOLATILE_DIR%\FileSystem
     mkdir %_FileSystem%
     echo.
-    echo Create FileSystem Data Directory
+    echo [RUN_STEP_1] Create FileSystem Data Directory
     echo [%timestamp%] Create FileSystem Data Directory >> %_TimeStamp%
+    set _FileSystemModule=%_FileSystem%\FileSystemModule
+    mkdir %_FileSystemModule%
+    echo [%timestamp%] Create FileSystem Module Directory >> %_TimeStamp%
+
     
     echo.
     if "%net%"=="4" (
@@ -179,19 +183,23 @@ set choice=
 :RUN_STEP_1_NET4
     %kape%\kape.exe --tsource %SystemDrive% --target FileSystem --tdest %_FileSystem% 
 
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv" >NUL
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv" >NUL
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv" >NUL
+    %kape%\kape.exe --msource %_FileSystem% --module MFTECmd --mdest %_FileSystemModule% 
+    
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv" >NUL
     goto RUN_STEP_1_Hash
 
 :RUN_STEP_1_NET6
     %kape%\kape.exe --tsource %SystemDrive% --target FileSystem --tdest %_FileSystem%
+    
+    %kape%\kape.exe --msource %_FileSystem% --module MFTECmd --mdest %_FileSystemModule% 
 
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv" >NUL
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv" >NUL
-    %mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Boot --csv %_FileSystem% --csvf "Boot_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Extend\$J --csv %_FileSystem% --csvf "Extend_parser.csv" >NUL
+    ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$Secure_$SDS --csv %_FileSystem% --csvf "SDS_parser.csv" >NUL
     goto RUN_STEP_1_Hash
 
 :RUN_STEP_1_Hash
@@ -318,6 +326,11 @@ set choice=
     echo [RUN_STEP_4] Create EventLog Directory
     echo [%timestamp%] Create EventLog Directory >> %_TimeStamp%
 
+    set _eventLogModule=%_eventLog%\EventRipper
+    mkdir %_eventLogModule%
+    echo [%timestamp%] Create Event Ripper Directory >> %_TimeStamp%
+
+
     if "%net%"=="4" (
         goto RUN_STEP_4_NET4
     ) else if "%net%"=="6" (
@@ -329,10 +342,11 @@ set choice=
 :RUN_STEP_4_NET4
     %kape%\kape.exe --tsource %SystemDrive% --target CombinedLogs --tdest %_eventLog% >NUL
 
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv" >NUL
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv" >NUL
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv" >NUL
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv" >NUL
+    %kape%\kape.exe --msource %_eventLog% --module Events-Ripper --mdest %_eventLogModule%
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv" >NUL
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv" >NUL
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv" >NUL
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv" >NUL
     
     goto RUN_STEP_4_SERVER
 
