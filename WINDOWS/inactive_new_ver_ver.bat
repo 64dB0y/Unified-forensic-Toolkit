@@ -1,11 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: 수정해야할점
-:: NET Framework 4.0 버전 이상이 설치되어있지 않다면
-:: 무조건 forecopy_handy.exe로 실행하도록 해야됨
-:: 처음에 넷프레임워크 서치되었는지 확인하기 위해서 
-
 SET "curDir=%~dp0"
 SET "ETC=%~dp0etc"
 set "sysinternals=%~dp0sysinternalsSuite"
@@ -18,7 +13,6 @@ set CASE=%1
 set NAME=%2
 set "_System_Drive=%systemdrive%"
 set "_FirstCharacter=%_System_Drive:~0,1%"
-:: SET DATE AND TIME
 set year=%date:~0,4%
 set month=%date:~5,2%
 set day=%date:~8,2%
@@ -27,25 +21,19 @@ if "%hour:~0,1%" == " " set hour=0%hour:~1,1%
 set minute=%time:~3,2%
 set second=%time:~6,2%
 
-:: TIMESTAMP SET 
 set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 
-:: FOLDER SET
 set foldername=%3%computername%_%timestamp%
 mkdir "%foldername%"
 echo CREATE %foldername% DIRECTORY 
 
-:: LOG TIMESTAMP
 set _TimeStamp=%foldername%\TimeStamp.log
-::echo START TIME : %timestamp%
 echo [%timestamp%] START TIME >> %_TimeStamp%
 
-:: CREATE NONVOLATILE DATA DIRECTORY
 set NONVOLATILE_DIR=%foldername%\NONVOLATILE
 mkdir %NONVOLATILE_DIR%
 echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
-:: INPUT CASE, NAME
 :INPUT_CASE
     echo [%timestamp%]%CASE% >> %_TimeStamp%
 
@@ -276,6 +264,7 @@ set choice=
     echo.
     echo [RUN_STEP_3] Create Prefetch Directory 
     echo [%timestamp%] Create Prefetch Directory >> %_TimeStamp%
+
     set _Prefetch_Module=%_Prefetch%\Module
     mkdir %_Prefetch_Module%
     echo [%timestamp%] Create Prefetch Module Directory >> %_TimeStamp%
@@ -352,11 +341,11 @@ set choice=
 
 :RUN_STEP_4_NET6
     %kape%\kape.exe --tsource %SystemDrive% --target CombinedLogs --tdest %_eventLog% >NUL
-
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv" >NUL
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv" >NUL
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv" >NUL
-    %evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv" >NUL
+    %kape%\kape.exe --msource %_eventLog% --module Events-Ripper --mdest %_eventLogModule%
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Application.evtx --csv %_eventLog% --csvf "Application_Parser.csv" >NUL
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Security.evtx --csv %_eventLog% --csvf "Security_Parser.csv" >NUL
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\System.evtx --csv %_eventLog% --csvf "System_Parser.csv" >NUL
+    ::%evtxecmd% -f %systemdrive%\Windows\System32\winevt\Logs\Setup.evtx --csv %_eventLog% --csvf "Setup_Parser.csv" >NUL
     
     goto RUN_STEP_4_SERVER
 
@@ -396,63 +385,39 @@ set choice=
     set recycleBin=%NONVOLATILE_DIR%\RecycleBin
     mkdir %recycleBin%
     echo.
-    echo Create RecycleBin Directory
+    echo [RUN_STEP_5] Create RecycleBin Directory
     echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
 
-    set kapedir=%recycleBin%\kape
-    mkdir %kapedir%
-    echo.
-    echo Acquring RecycleBin 
-    echo [%timestamp%] Acquring RecycleBin >> %_TimeStamp%
-    
-    echo.
-    :input_prompt
-    echo "After creating the RecycleBin dump, pressing 'q' will generate the hash dump and terminate the current dump process"
-    SET /P _user_input_5=Enter 'r' for rbmcd, 'x' for xcopy, 'k' for kape or 'q' for quit: 
+    set RecycleBin_Module=%recycleBin%\Module
+    mkdir %RecycleBin_Module%
+    echo [%timestamp%] Create Recycle Bin Module Directory >> %_TimeStamp%
 
-    IF /I "%_user_input_5%"=="r" (
-        if "%net%"=="4" (
-            goto RecycleBin_net4
-        ) else if "%net%"=="6" (
-            goto RecycleBin_net6
-        )
-    ) ELSE IF /I "%_user_input_5%"=="x" (
-        GOTO XCopyCommand
-    ) ELSE IF /I "%_user_input_5%"=="k" (
-        GOTO kape
-    ) ELSE IF /I "%_user_input_5%"=="q" (
-        GOTO RUN_STEP_5_HASH
+    if "%net%"=="4" (
+        goto RUN_STEP_5_NET4
+    ) else if "%net%"=="6" (
+        goto RUN_STEP_5_NET6
+    ) else (
+        goto RUN_STEP_5_Fore
     )
-     ELSE (
-        echo Invalid input. Please try again.
-        GOTO input_prompt
-    )
+:RUN_STEP_5_NET4
+    %kape%\kape.exe --tsource %SystemDrive% --target RecycleBin --tdest %recycleBin%
+    %kape%\kape.exe --msource %recycleBin%\%_FirstCharacter% --module RBCmd --mdest %RecycleBin_Module%
+    goto RUN_STEP_5_HASH
 
-    :RecycleBin_net4
-        echo rbcmd for net4 executed(Step5)
-        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv >NUL
-        echo [%timestamp%] rbcmd for net4 completed(Step5) >> %_TimeStamp%
-        GOTO input_prompt
+:RUN_STEP_5_NET6
+    %kape%\kape.exe --tsource %SystemDrive% --target RecycleBin --tdest %recycleBin%
+    %kape%\kape.exe --msource %recycleBin%\%_FirstCharacter% --module RBCmd --mdest %RecycleBin_Module%
+    goto RUN_STEP_5_HASH
 
-    :RecycleBin_net6
-        echo rbcmd for net6 executed(Step5)
-        %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv >NUL
-        echo [%timestamp%] rbcmd for net6 completed(Step5) >> %_TimeStamp%
-        GOTO input_prompt
+:RUN_STEP_5_Fore
 
-    :XCopyCommand
-        echo xcopy executed(Step5)
-        xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
-        echo [%timestamp%] xcopy completed(Step5) >> %_TimeStamp%
-        GOTO input_prompt
+:XCopyCommand
+    echo xcopy executed(Step5)
+    xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
+    echo [%timestamp%] xcopy completed(Step5) >> %_TimeStamp%
+    GOTO input_prompt
 
-    :kape
-        echo kape executed(Step5)
-        %kape%\kape.exe --tsource %systemdrive% --target RecycleBin --tdest %kapedir% >NUL
-        echo [%timestamp%] kape executed(Step5) >> %_TimeStamp%
-        GOTO input_prompt
-
-    :RUN_STEP_5_HASH
+:RUN_STEP_5_HASH
     set recycleBinHash=%recycleBin%\Hash
     mkdir %recycleBinHash%
     echo [%timestamp%] Create RecycleBin Hash Directory >> %_TimeStamp%
@@ -460,7 +425,9 @@ set choice=
     echo Calculate RecycleBin Hash...
     %hashdeep% -e -r %recycleBin% > %recycleBinHash%\RecycleBin_Hash.txt
     echo [%timestamp%] Calculate RecycleBin Hash... >> %_TimeStamp%
+    goto RUN_STEP_5_Clear
 
+:RUN_STEP_5_Clear
     echo RUN_STEP_5 CLEAR
     exit /b
 
@@ -645,13 +612,36 @@ set choice=
     set _restore=%NONVOLATILE_DIR%\Restore
     mkdir %_restore%
     echo.
-    echo Create Restore Directory
+    echo [RUN_STEP_7] Create Restore Directory
     echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
-    ::forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
+    :: forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
+    :: xcopy /E /H /I "%SYSTEMROOT%\system32\Restore" "%_restore%"
+    :: echo [%timestamp%] Restore File >> %_TimeStamp%
+    :: forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
+    if "%net%"=="4" (
+        goto RUN_STEP_7_NET4
+    ) else if "%net%"=="6" (
+        goto RUN_STEP_7_NET6
+    ) else (
+        goto RUN_STEP_7_COPY
+    )
+:RUN_STEP_7_NET4
+    %kape%\kape.exe --tsource %SystemDrive% --target XPRestorePoints --tdest %_restore%
+    goto RUN_STEP_7_HASH
+:RUN_STEP_7_NET6
+    %kape%\kape.exe --tsource %SystemDrive% --target XPRestorePoints --tdest %_restore%
+    goto RUN_STEP_7_HASH
+:RUN_STEP_7_COPY
     xcopy /E /H /I "%SYSTEMROOT%\system32\Restore" "%_restore%"
-    echo [%timestamp%] Restore File >> %_TimeStamp%
-    ::forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
-
+    goto RUN_STEP_7_HASH
+:RUN_STEP_7_HASH
+    set Restore_Hash=%_restore%\Hash
+    mkdir %Restore_Hash%
+    echo.
+    echo [RUN_STEP_7] Create Restore Hash Directory
+    echo [%timestamp%] Create Restore Hash Directory >> %_TimeStamp%
+    %hashdeep% -e -r %_restore% > %Restore_Hash%\Restore_Hash.txt
+:RUN_STEP_7_Clear
     echo RUN_STEP_7 CLEAR
     exit /b
 
@@ -714,7 +704,7 @@ set choice=
     echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
     forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
 
-    if  "%net%"=="4" (
+    if  "%net%"=="4" (sadasd
         goto Recent_net4
     ) else if "%net%"=="6" (
         goto Recent_net6
