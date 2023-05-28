@@ -10,7 +10,8 @@ echo.
 
 set CASE=%1
 set NAME=%2
-
+set "CASE=%CASE: =_%"
+set "NAME=%NAME: =_%"
 set final_step=7
 set choice=
 

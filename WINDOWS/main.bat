@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 REM clear all remains on cmd
 cls
 ::chcp 65001 > nul
@@ -17,6 +18,11 @@ set NAME=""
 :: -----------------------------------------------------
 :ENTER_NAME
 	set /p NAME=Please enter the your name : || GOTO:ENTER_NAME
+
+
+:: Replace spaces with underscores
+set "CASE=%CASE: =_%"
+set "NAME=%NAME: =_%"
 
 :START
 echo.
