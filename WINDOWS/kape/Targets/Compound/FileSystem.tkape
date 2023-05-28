@@ -28,10 +28,6 @@ Targets:
         Name: $T
         Category: FileSystem
         Path: $T.tkape
-    -
-        Name: Amcache
-        Category: FileSystem
-        Path: Amcache.tkape
 
 # Documentation
 # N/A

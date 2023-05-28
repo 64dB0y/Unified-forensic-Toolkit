@@ -12,10 +12,6 @@ mkdir ../mnt2/System/hash
 timestamp=$(date +"%Y-%m-%d %T")
 echo "System Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
-logwatch > ../mnt2/System/logwatch.txt
-timestamp=$(date +"%Y-%m-%d %T")
-echo "logwatch.txt Timestamp : $timestamp" >> ../mnt2/mnt2/Forensic_Info.txt
-
 dmesg >> ../mnt2/System/dmesg.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "dmesg.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
