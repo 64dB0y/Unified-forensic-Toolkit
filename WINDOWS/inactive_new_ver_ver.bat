@@ -181,7 +181,6 @@ set choice=
 
 :RUN_STEP_1_NET6
     %kape%\kape.exe --tsource %SystemDrive% --target FileSystem --tdest %_FileSystem%
-    
     %kape%\kape.exe --msource %_FileSystem% --module MFTECmd --mdest %_FileSystemModule% 
 
     ::%mftecmd% -f %_FileSystem%\%_FirstCharacter%\$MFT --csv %_FileSystem% --csvf "mft_parser.csv" >NUL
@@ -397,7 +396,7 @@ set choice=
     ) else if "%net%"=="6" (
         goto RUN_STEP_5_NET6
     ) else (
-        goto RUN_STEP_5_Fore
+        goto RUN_STEP_5_FORE
     )
 :RUN_STEP_5_NET4
     %kape%\kape.exe --tsource %SystemDrive% --target RecycleBin --tdest %recycleBin%
@@ -409,13 +408,14 @@ set choice=
     %kape%\kape.exe --msource %recycleBin%\%_FirstCharacter% --module RBCmd --mdest %RecycleBin_Module%
     goto RUN_STEP_5_HASH
 
-:RUN_STEP_5_Fore
-
-:XCopyCommand
-    echo xcopy executed(Step5)
-    xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
+:RUN_STEP_5_FORE
+    echo Acquring Recycle Data ...
+    echo [%timestamp%] Acquring Recycle Data ... >> %_TimeStamp%
+    forecopy_handy -r %SystemDrive%\$Recycle.Bin %recycleBin%
+    echo [RUN_STEP_5] xcopy execute
     echo [%timestamp%] xcopy completed(Step5) >> %_TimeStamp%
-    GOTO input_prompt
+    xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
+    goto RUN_STEP_5_HASH
 
 :RUN_STEP_5_HASH
     set recycleBinHash=%recycleBin%\Hash
@@ -679,9 +679,7 @@ set choice=
     echo.
     echo Create USBDetect Hash Directory
     echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
-    
     %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\USB_Hash.txt
-
     echo.
     echo Calculate USBDetective Hash...
     echo [%timestamp%] Calculate USBDetective Hash... >> %_TimeStamp%
@@ -691,14 +689,15 @@ set choice=
     echo RUN_STEP_8 CLEAR
     exit /b
 
-
 :RUN_STEP_9
     set _Recent=%NONVOLATILE_DIR%\Recent
     mkdir %_Recent%
     echo.
-    echo Create Recent Directory
+    echo [RUN_STEP_9] Create Recent Directory
     echo [%timestamp%] Create Recent Directory >> %_TimeStamp%
-
+    set _Recent_Module=%_Recent%\Module
+    mkdir %_Recent_Module%
+    echo [%timestamp%] Create Recent Module Directory >> %_TimeStamp%
     if  "%net%"=="4" (
         goto RUN_STEP_9_NET4
     ) else if "%net%"=="6" (
@@ -708,30 +707,16 @@ set choice=
     )
 
 :RUN_STEP_9_NET4
-    ::%lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv" >NUL
-    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
-    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
-    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target LNKFilesAndJumpLists --tdest %_Recent%
-    :: Jump List 
-    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
-    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
-    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    :: %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
+    %kape%\kape.exe --msource %_Recent%\%_FirstCharacter% --module LECmd --mdest %_Recent_Module%
+    %kape%\kape.exe --msource %_Recent%\%_FirstCharacter% --module JLECmd --mdest %_Recent_Module%
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
     goto RUN_STEP_9_Hash
 
 :RUN_STEP_9_NET6
-    ::%lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
-    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
-    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
-    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target LNKFilesAndJumpLists --tdest %_Recent%
-    :: Jump List
-    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
-    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
-    :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    ::%jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
+    %kape%\kape.exe --msource %_Recent%\%_FirstCharacter% --module LECmd --mdest %_Recent_Module%
+    %kape%\kape.exe --msource %_Recent%\%_FirstCharacter% --module JLECmd --mdest %_Recent_Module%
     echo [%timestamp%] LECmd_net6  >> %_TimeStamp%
     goto RUN_STEP_9_Hash
 
@@ -739,7 +724,10 @@ set choice=
     echo.
     echo Acquring Recent Data ...
     echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
+    forecopy_handy -r "%userprofile%\Desktop" %_Recent%
     forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
+    forecopy_handy -r "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Recent%
+    forecopy_handy -r "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch"
     goto RUN_STEP_9_Hash
 
 :RUN_STEP_9_Hash
