@@ -548,8 +548,7 @@ set choice=
     %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome% >NUL
-    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
-    
+    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
     %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% >NUL
     echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
 
@@ -699,57 +698,59 @@ set choice=
     echo.
     echo Create Recent Directory
     echo [%timestamp%] Create Recent Directory >> %_TimeStamp%
-    echo.
-    echo Acquring Recent Data ...
-    echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
-    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
 
-    if  "%net%"=="4" (sadasd
-        goto Recent_net4
+    if  "%net%"=="4" (
+        goto RUN_STEP_9_NET4
     ) else if "%net%"=="6" (
-        goto Recent_net6
+        goto RUN_STEP_9_NET6
     ) else (
-        goto RUN_STEP_9_Clear
+        goto RUN_STEP_9_FORE
     )
 
-:Recent_net4
-    %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv" >NUL
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
-
+:RUN_STEP_9_NET4
+    ::%lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv" >NUL
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target LNKFilesAndJumpLists --tdest %_Recent%
     :: Jump List 
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
+    :: %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
     echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
-    goto RUN_STEP_9_Clear
+    goto RUN_STEP_9_Hash
 
-:Recent_net6
-    %lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
-    %lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
-
+:RUN_STEP_9_NET6
+    ::%lecmd% -d "%userprofile%\Desktop" --csv %_Recent% --csvf "Desktop_Parser.csv"
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "Recent_Parser.csv" >NUL
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" --csv %_Recent% --csvf "Startup_Parser.csv" >NUL
+    ::%lecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch" --csv %_Recent% --csvf "QuickLaunch_Parser.csv" >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target LNKFilesAndJumpLists --tdest %_Recent%
     :: Jump List
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
-    %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
+    ::%jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
     echo [%timestamp%] LECmd_net6  >> %_TimeStamp%
-    goto RUN_STEP_9_Clear
+    goto RUN_STEP_9_Hash
 
-:Recent_Hash
+:RUN_STEP_9_FORE
+    echo.
+    echo Acquring Recent Data ...
+    echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
+    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
+    goto RUN_STEP_9_Hash
+
+:RUN_STEP_9_Hash
     set _Recent_Hash=%_Recent%\Hash
-    mkdir _Recent_Hash
+    mkdir %_Recent_Hash%
     echo.
     echo Create Recent Hash Directory
-    echo [%timestamp%] Create Recent Hash Directory
-    echo.
+    echo [%timestamp%] Create Recent Hash Directory >> %_TimeStamp%
     %hashdeep% -e -r %_Recent% > %_Recent_Hash%\Recent_Hash.txt
     echo Calculate Recent Hash...
-    echo [%timestamp%] Calculate Recent Hash...
+    echo [%timestamp%] Calculate Recent Hash... >> %_TimeStamp%
     echo.
     goto RUN_STEP_9_Clear
 
