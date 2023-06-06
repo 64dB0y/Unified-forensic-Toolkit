@@ -105,7 +105,7 @@ set choice=
     echo ====================================
     echo [1] File System MetaData       - Collects MFT, Boot, Amcache
     echo [2] Registry File              - Collects SAM, SYSTEM, SOFTWARE, SECURITY
-    echo [3] Prefetch File              - Collects Prefetch
+    echo [3] Prefetch File              - Collects Prefetch and Superfetch
     echo [4] Event Log File             - Collects Event Log for target host
     echo [5] Recycle Bin Information    - Collects Recycle Bin Info
     echo [6] Browser history            - Collects Browser Cache, Cookie, Browser History, Download History
