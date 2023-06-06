@@ -112,15 +112,15 @@ set choice=
     echo ====================================
     echo Select the step you want to perform:
     echo ====================================
-    echo [1] File System MetaData - MFT, Boot, Amcache
-    echo [2] Registry File - SAM, SYSTEM, SOFTWARE, SECURITY
-    echo [3] Prefetch File
-    echo [4] Event Log File
-    echo [5] Recycle Bin Information 
-    echo [6] Browser history
-    echo [7] System Restore Point
-    echo [8] Portable System History
-    echo [9] Link File
+    echo [1] File System MetaData       - Collects MFT, Boot, Amcache
+    echo [2] Registry File              - Collects SAM, SYSTEM, SOFTWARE, SECURITY
+    echo [3] Prefetch File              - Collects Prefetch
+    echo [4] Event Log File             - Collects Event Log for target host
+    echo [5] Recycle Bin Information    - Collects Recycle Bin Info
+    echo [6] Browser history            - Collects Browser Cache, Cookie, Browser History, Download History
+    echo [7] System Restore Point       - Collects Restore Point (or System Volume Information)
+    echo [8] Portable System History    - Collects Portable Device Information
+    echo [9] Link File                  - Collects Link File and JumpLists
     echo [a] RUN ALL STEPS
     echo [q] QUIT
     echo.

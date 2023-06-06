@@ -1,6 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
-REM clear all remains on cmd
+
 cls
 ::chcp 65001 > nul
 
