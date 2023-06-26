@@ -8,9 +8,31 @@ mkdir ../mnt2/Virtual_memory
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Virtual Memory Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
-mkdir ../mnt2/Virtual_memroy/hash
+mkdir ../mnt2/Virtual_memory/hash
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Virtual_memory Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+
+cd ./Active_Scripts/avml
+sudo ./target/x86_64-unknown-linux-musl/release/avml --compress output.lime.compressed
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Avml Dump Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+
+cd ..
+cd ..
+
+sudo cp ./Active_Scripts/avml/output.lime.compressed ../mnt2/Virtual_memory
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Avml Dump Copy Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+
+for file in ../mnt2/Virtual_memory/*.compressed
+do
+	echo "$file" >> ../mnt2/Virtual_memory/hash/hash.txt
+	./hash.exe "$file" >> ../mnt2/Virtual_memory/hash/hash.txt
+	echo >> ../mnt2/Virtual_memory/hash/hash.txt
+done
+timestamp=$(date +"%Y-%m-%d %T")
+echo "Avml Dump hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+date >> ../mnt2/Virtual_memory/hash/hash.txt
 
 # 가상 메모리 덤프 파일을 저장할 폴더를 생성합니다.
 mkdir -p ../mnt2/Virtual_memory/core-dumps
@@ -37,9 +59,9 @@ for file in ../mnt2/Virtual_memory/core-dumps/core*					# Obtain the hash value 
 do
 	echo "$file" >> ../mnt2/Virtual_memory/hash/hash.txt
 	./hash.exe "$file" >> ../mnt2/Virtual_memory/hash/hash.txt
-	echo >> ../mnt2/Virtual_memroy/hash/hash.txt
+	echo >> ../mnt2/Virtual_memory/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Virtual Memory Dump hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Virtual_memory/hash/hash.txt
-echo    >> ../mnt2/Virtual_memroy/hash/hash.txt
+echo    >> ../mnt2/Virtual_memory/hash/hash.txt

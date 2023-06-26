@@ -40,26 +40,6 @@ lsof -i -n > ../mnt2/Process/lsof.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "Process/lsof.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
-# List of all open network connections
-lsof -i -n | grep ESTABLISHED > ../mnt2/Process/established.txt
-timestamp=$(date +"%Y-%m-%d %T")
-echo "established.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-
-# List of all UDP network connections
-lsof -i -n | grep UDP > ../mnt2/Process/udp.txt
-timestamp=$(date +"%Y-%m-%d %T")
-echo "udp.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-
-# List of all listening TCP ports
-lsof -i -n | grep LISTEN | grep TCP > ../mnt2/Process/tcpports.txt
-timestamp=$(date +"%Y-%m-%d %T")
-echo "tcpports.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-
-# List of all listening UDP ports
-lsof -i -n | grep LISTEN | grep UDP > ../mnt2/Process/udpports.txt
-timestamp=$(date +"%Y-%m-%d %T")
-echo "udpports.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-
 # Display process status information
 for i in $(ls /proc/ | grep -E '^[0-9]+$'); do
     pid=$i
