@@ -61,7 +61,7 @@ do
 	echo >> ../mnt2/shortcut/hash/hash.txt
 done
 
-for file in ../mnt2/shortcut/metatdata/*.txt
+for file in ../mnt2/shortcut/metadata/*.txt
 do
 	echo "$file" >> ../mnt2/shortcut/hash/hash.txt
 	sudo ./hash.exe "$file" >> ../mnt2/shortcut/hash/hash.txt
