@@ -2,7 +2,7 @@
 
 echo "Forensic.bash for forensics in a Linux environment"
 echo "by Team_Bocchi_The_Forensic"
-echo "Version 0.03b"
+echo "Version 0.04c"
 echo
 
 # Create a Timestamp
@@ -33,24 +33,10 @@ sudo chmod 777 hash.exe
 
 # Check if the OS is Ubuntu
 if [ -f "/etc/lsb-release" ]; then
-    # Check the architecture
-    if [ "$(uname -m)" == "x86_64" ]; then
-        # 64-bit Ubuntu
-        sudo ./Linux_Forensic_64.bash
-    else
-        # 32-bit Ubuntu
-        sudo ./Linux_Forensic_32.bash
-    fi
+	sudo ./Ubuntu_Forensic.bash
 # Check if the OS is CentOS
 elif [ -f "/etc/centos-release" ]; then
-    # Check the architecture
-    if [ "$(uname -m)" == "x86_64" ]; then
-        # 64-bit CentOS
-        sudo ./CentOS_Forensic_64.bash
-    else
-        # 32-bit CentOS
-        sudo ./CentOS_Forensic_32.bash
-    fi
+        sudo ./RedHat_Forensic.bash
 else
     echo "Unsupported OS"
 fi
