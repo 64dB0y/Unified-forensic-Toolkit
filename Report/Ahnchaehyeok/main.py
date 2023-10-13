@@ -45,7 +45,7 @@ for line in lines:
     story.append(p)
     story.append(Spacer(1, 12))
 
-text = f"====================================================================<br/>"
+text = f"==============================================================================<br/>"
 styles = getSampleStyleSheet()
 style = styles["Normal"]
 style.leading = 12
@@ -55,7 +55,25 @@ story.append(Spacer(1, 12))
 
 # 결과 출력
 for subdir in subdirectories:
-    #print(os.path.basename(subdir))
+    # 생성물과 관련 없이 드라이브 내에 존재하는 기본 파일은 배제
+    if subdir == os.path.join(current_directory, "test", "System Volume Information"):
+        continue
+
+    for dir in os.listdir(subdir):
+        count = 0
+        if dir.endswith('.txt'):
+            count+=1
+    
+    if count == 0:
+        continue
+    
+    text = f"{subdir}<br/>"
+    styles = getSampleStyleSheet()
+    style = styles["Normal"]
+    style.leading = 12
+    p = Paragraph(text, style)
+    story.append(p)
+    story.append(Spacer(1, 12))
     for dir in os.listdir(subdir):
         if dir == 'Forensic_Info.txt':
             continue
@@ -75,6 +93,14 @@ for subdir in subdirectories:
 
             # 아래에 공간 추가
             story.append(Spacer(1, 12))     
+    
+    text = f"==============================================================================<br/>"
+    styles = getSampleStyleSheet()
+    style = styles["Normal"]
+    style.leading = 12
+    p = Paragraph(text, style)
+    story.append(p)
+    story.append(Spacer(1, 12))
 
 doc.build(story)
 
