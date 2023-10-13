@@ -26,11 +26,9 @@ for root, dirs, files in os.walk(current_directory):
         # 각 하위 디렉토리의 경로를 생성하고 리스트에 추가합니다.
         subdirectory_path = os.path.join(root, dir)
         subdirectories.append(subdirectory_path)
-        print(subdirectory_path)
 
 Info_path = os.path.join(current_directory, 'test', 'Forensic_Info.txt')
 Info_Data = pd.read_csv(Info_path, delimiter=' : ', header=None, names=['Key', 'Value'], engine='python')
-print(Info_Data)
 
 with open(Info_path, 'r') as file:
     lines = file.readlines()[:4]
@@ -43,7 +41,7 @@ for line in lines:
     style.leading = 12
     p = Paragraph(text, style)
     story.append(p)
-    story.append(Spacer(1, 12))
+story.append(Spacer(1, 12)) # 줄 사이 간격을 만드는 코드
 
 text = f"==============================================================================<br/>"
 styles = getSampleStyleSheet()
@@ -66,7 +64,7 @@ for subdir in subdirectories:
     
     if count == 0:
         continue
-    
+
     text = f"{subdir}<br/>"
     styles = getSampleStyleSheet()
     style = styles["Normal"]
@@ -74,6 +72,9 @@ for subdir in subdirectories:
     p = Paragraph(text, style)
     story.append(p)
     story.append(Spacer(1, 12))
+
+    hash_path = os.path.join(subdir, "hash", "hash.txt")
+
     for dir in os.listdir(subdir):
         if dir == 'Forensic_Info.txt':
             continue
@@ -83,8 +84,16 @@ for subdir in subdirectories:
             filtered_rows = Info_Data[Info_Data['Key'].str.contains(dir)]
             timestamp = filtered_rows['Value'].values[0] if not filtered_rows.empty else "N/A"
 
+            if os.path.exists(hash_path):
+                with open(hash_path, 'r', encoding='utf-8') as file:
+                    hash_lines = file.readlines()
+                for i, line in enumerate(hash_lines):
+                    if dir in line:
+                        hash_value1 = hash_lines[i+1]
+                        hash_value2 = hash_lines[i+2]
+
             # 결과를 Paragraph로 추가
-            text = f"File Name: {dir}<br/>Timestamp: {timestamp}<br/>"
+            text = f"File Name: {dir}<br/>Timestamp: {timestamp}<br/>{hash_value1}<br/>{hash_value2}<br/>"
             styles = getSampleStyleSheet()
             style = styles["Normal"]
             style.leading = 12
@@ -104,8 +113,6 @@ for subdir in subdirectories:
 
 doc.build(story)
 
-print("==============================================")
-
 txt_path = os.path.join(current_directory, 'test')
 Index_list = os.listdir(txt_path)
 Original_list = Index_list
@@ -115,8 +122,6 @@ for index in Index_list:
 # for index in Index_list:
     # print(index)
 # print(len(Index_list))
-
-print("==============================================")
 
 # 텍스트로 출력시 필요한 코드
 # txt_path = os.path.join(txt_path, 'Forensic_Info.txt')
