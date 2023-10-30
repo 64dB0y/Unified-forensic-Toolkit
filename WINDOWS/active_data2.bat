@@ -46,7 +46,6 @@ set minute=%time:~3,2%
 set second=%time:~6,2%
 set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 
-
 :: 현재 시간과 컴퓨터 이름으로 새로운 폴더를 생성함
 if "%~3"=="" (
     set foldername=%computername%_%timestamp%
