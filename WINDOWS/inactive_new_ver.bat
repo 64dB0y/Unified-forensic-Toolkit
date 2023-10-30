@@ -44,7 +44,7 @@ echo CREATE %foldername% DIRECTORY
 :: LOG TIMESTAMP
 set _TimeStamp=%foldername%\TimeStamp.log
 ::echo START TIME : %timestamp%
-echo [%timestamp%] START TIME >> %_TimeStamp%
+echo [%timestamp%] Inactive Script START TIME >> %_TimeStamp%
 
 :: CREATE NONVOLATILE DATA DIRECTORY
 set NONVOLATILE_DIR=%foldername%\NONVOLATILE
@@ -170,6 +170,7 @@ set choice=
 
 
 :RUN_STEP_1
+call :LogStep
     set _FileSystem=%NONVOLATILE_DIR%\FileSystem
     mkdir %_FileSystem%
     echo.
@@ -244,6 +245,7 @@ set choice=
     exit /b
 
 :RUN_STEP_2
+call :LogStep
     set Registry=%NONVOLATILE_DIR%\Registry
     mkdir %Registry%
     echo.
@@ -296,6 +298,7 @@ set choice=
     exit /b
 
 :RUN_STEP_3
+call :LogStep
     set _Prefetch=%NONVOLATILE_DIR%\Prefetch
     mkdir %_Prefetch%
     echo.
@@ -363,6 +366,7 @@ set choice=
     exit /b
 
 :RUN_STEP_4
+call :LogStep
     set _eventLog=%NONVOLATILE_DIR%\EventLog
     mkdir %_eventLog%
     echo.
@@ -457,6 +461,7 @@ set choice=
     exit /b
 
 :RUN_STEP_5
+call :LogStep
     set recycleBin=%NONVOLATILE_DIR%\RecycleBin
     mkdir %recycleBin%
     echo.
@@ -529,6 +534,7 @@ set choice=
     exit /b
 
 :RUN_STEP_6
+call :LogStep
     set Browser=%NONVOLATILE_DIR%\Browser
     set _Edge=%Browser%\Edge
     set _Chromium=%Browser%\Chromium
@@ -688,6 +694,7 @@ set choice=
     exit /b
 
 :RUN_STEP_7
+call :LogStep
     set _restore=%NONVOLATILE_DIR%\Restore
     mkdir %_restore%
     echo.
@@ -702,6 +709,7 @@ set choice=
     exit /b
 
 :RUN_STEP_8
+call :LogStep
     set _USBDetective=%NONVOLATILE_DIR%\USBDetective
     set _USBDetective_Hash=%_USBDetective%\Hash
     echo.
@@ -756,6 +764,7 @@ set choice=
 
 
 :RUN_STEP_9
+call :LogStep
     set _Recent=%NONVOLATILE_DIR%\Recent
     mkdir %_Recent%
     echo.
@@ -818,6 +827,11 @@ set choice=
 :RUN_STEP_9_Clear
     echo RUN_STEP_9 CLEAR
     exit /b
+
+:LogStep
+echo ========================== >> %_TimeStamp%
+goto :eof
+
 echo [%timestamp%] End Time >> %_TimeStamp%
 endlocal
 

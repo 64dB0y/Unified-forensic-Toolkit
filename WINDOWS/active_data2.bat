@@ -64,7 +64,7 @@ echo.
 :: 타임스탬프 저장을 위한 폴더를 생성 
 set _TimeStamp=%foldername%\TimeStamp.log
 echo START TIME : %timestamp%
-echo [%timestamp%]START TIME >> %_TimeStamp%
+echo [%timestamp%] Active Script START TIME >> %_TimeStamp%
 
 :: Input CASE, NAME
 :INPUT_CASE
@@ -216,6 +216,7 @@ goto :Display_Menu
 
 :run_step_0
 :: 0. Memory Dump
+call :LogStep
 echo -----------------------------
 echo 0. Dumping Memory...
 echo [%timestamp%] Creating Memory Dump START >> %_TimeStamp%
@@ -346,6 +347,7 @@ exit /b
 
 :run_step_1
 :: 1. Virtual Memory Dump
+call :LogStep
 echo -----------------------------
 echo 1. Dumping Virtual memory...
 echo [%timestamp%] Virtual memory START >> %_TimeStamp%
@@ -374,6 +376,7 @@ exit /b
 
 :run_step_2
 :: 2. Network Information
+call :LogStep
 echo -----------------------------
 echo 2. NETWORK INFORMATION
 echo [%timestamp%] NETWORK INFORMATION START >> %_TimeStamp%
@@ -499,6 +502,7 @@ echo Step completed: %choice%
 exit /b
 
 :run_step_3
+call :LogStep
 echo -----------------------------
 echo 3. PROCESS INFORMATION
 echo [%timestamp%] PROCESS INFORMATION START >> %_TimeStamp%
@@ -728,6 +732,7 @@ echo Step completed: %choice%
 exit /b
 
 :run_step_4
+call :LogStep
 echo -----------------------------
 echo 4. LOGON USER INFORMATION
 echo [%timestamp%] LOGON USER INFORMATION START >> %_TimeStamp%
@@ -786,6 +791,7 @@ echo Step completed: %choice%
 exit /b
 
 :run_step_5
+call :LogStep
 echo -----------------------------
 echo 5. SYSTEM INFORMATION
 echo [%timestamp%] SYSTEM INFORMATION START >> %_TimeStamp%
@@ -922,6 +928,7 @@ echo Step completed: %choice%
 exit /b
 
 :run_step_6
+call :LogStep
 echo -----------------------------
 echo 6. AUTORUNS
 echo [%timestamp%] AUTORUNS START >> %_TimeStamp%
@@ -964,6 +971,7 @@ echo Step completed: %choice%
 exit /b
 
 :run_step_7
+call :LogStep
 echo -----------------------------------------------
 echo 7. TASK SCHEDULAR and CLIPBOARD(TSCB)
 echo [%timestamp%] "TASK SCHEDULAR and CLIPBOARD START" >> %_TimeStamp%
@@ -987,6 +995,10 @@ echo Scheduled tasks information collected successfully.
 echo.
 echo Step completed: %choice%
 exit /b
+
+:LogStep
+echo ========================== >> %_TimeStamp%
+goto :eof
 
 :end_script
 echo SCRIPT FINISHED
