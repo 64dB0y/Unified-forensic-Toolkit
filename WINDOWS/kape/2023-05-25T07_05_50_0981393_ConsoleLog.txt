@@ -1,5 +1,0 @@
-[2023-05-25 16:05:51.4000625 | INF] KAPE directory: C:\Users\SMW\Documents\GitHub\I_HATE_LIVE_FORENSIC\WINDOWS\kape
-[2023-05-25 16:05:51.4144462 | INF] Command line:   --tsource C: --target WebServers --tdest DESKTOP-J2R8OGH_2023-05-25_16-04-44\NONVOLATILE\EventLog\WebServer 
-[2023-05-25 16:05:51.4154451 | INF] System info: Machine name: DESKTOP-J2R8OGH, 64-bit: true, User: SM OS: "Windows10" (10.0.22621)
-[2023-05-25 16:05:52.9980344 | INF] Using Target operations
-[2023-05-25 16:05:53.0175127 | INF] Found 4 targets. Expanding targets to file list...

@@ -3,7 +3,14 @@ setlocal enabledelayedexpansion
 
 cls
 ::chcp 65001 > nul
-
+set year=%date:~0,4%
+set month=%date:~5,2%
+set day=%date:~8,2%
+set hour=%time:~0,2%
+if "%hour:~0,1%" == " " set hour=0%hour:~1,1%
+set minute=%time:~3,2%
+set second=%time:~6,2%
+set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 set CASE=""
 set NAME=""
 
@@ -66,14 +73,14 @@ echo.
 set /p choice="Enter your choice: "
 
 if "%choice%"=="1" (
-    call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%
+    call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 	REM call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Active_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="2" (
-	call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive%
+	call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 	REM call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Inactive_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="3" (
-	call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%
-	call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive%
+	call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+	call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 ) else (
     echo Invalid choice, please try again.
     goto choice

@@ -28,8 +28,17 @@ set second=%time:~6,2%
 set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 
 :: FOLDER SET
-set foldername=%3%computername%_%timestamp%
-mkdir "%foldername%"
+if "%~3"=="" (
+    set foldername=%computername%_%timestamp%
+) else (
+    set foldername=%3
+)
+if not exist "%foldername%" (
+    mkdir "%foldername%"
+    echo "created %foldername%"
+) else (
+    echo Folder "%foldername%" already exists. Skipping creation.
+)
 echo CREATE %foldername% DIRECTORY 
 
 :: LOG TIMESTAMP
@@ -48,6 +57,10 @@ echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :INPUT_NAME
     echo [%timestamp%]%NAME% >> %_TimeStamp%
+
+:START
+echo %CASE% - %NAME% Inactive Data Collection Begins >> %_TimeStamp%
+echo .
 
 :: Check .NET Framework4 or 6
 reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" >nul 2>&1
@@ -135,6 +148,10 @@ set choice=
                 IF EXIST forecopy_handy.log (
                     move forecopy_handy.log %NONVOLATILE_DIR%\
                 )
+                for %%f in ("%kape%\%year%-%month%-%day%T*_ConsoleLog.txt") do (
+                   move "%%f" "!NONVOLATILE_DIR!\"
+                )
+                echo %CASE% - %NAME% Inactive Data Collection finished >> %_TimeStamp%
                 exit /b
             ) else if /i "%%x"=="a" (
                 for /l %%i in (1, 1, %final_step%) do (
