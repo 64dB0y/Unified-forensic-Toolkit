@@ -1,0 +1,8 @@
+  File: ../mnt2/shortcut
+  Size: 4096      	Blocks: 8          IO Block: 4096   directory
+Device: 812h/2066d	Inode: 3309        Links: 4
+Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2023-06-18 09:00:00.000000000 +0900
+Modify: 2023-06-18 15:37:30.000000000 +0900
+Change: 2023-06-18 15:37:30.000000000 +0900
+ Birth: 2023-06-18 15:37:31.320000000 +0900
