@@ -15,21 +15,11 @@ set CASE=%1
 set NAME=%2
 set "_System_Drive=%systemdrive%"
 set "_FirstCharacter=%_System_Drive:~0,1%"
-:: SET DATE AND TIME
-set year=%date:~0,4%
-set month=%date:~5,2%
-set day=%date:~8,2%
-set hour=%time:~0,2%
-if "%hour:~0,1%" == " " set hour=0%hour:~1,1%
-set minute=%time:~3,2%
-set second=%time:~6,2%
-
-:: TIMESTAMP SET 
-set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 
 :: FOLDER SET
+call :GetTimestamp
 if "%~3"=="" (
-    set foldername=%computername%_%timestamp%
+    set foldername=%computername%_!timestamp!
 ) else (
     set foldername=%3
 )
@@ -43,20 +33,20 @@ echo CREATE %foldername% DIRECTORY
 
 :: LOG TIMESTAMP
 set _TimeStamp=%foldername%\TimeStamp.log
-::echo START TIME : %timestamp%
-echo [%timestamp%] Inactive Script START TIME >> %_TimeStamp%
+::echo START TIME : !timestamp!
+echo [!timestamp!] Inactive Script START TIME >> %_TimeStamp%
 
 :: CREATE NONVOLATILE DATA DIRECTORY
 set NONVOLATILE_DIR=%foldername%\NONVOLATILE
 mkdir %NONVOLATILE_DIR%
-echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
+echo [!timestamp!] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :: INPUT CASE, NAME
 :INPUT_CASE
-    echo [%timestamp%]%CASE% >> %_TimeStamp%
+    echo [!timestamp!]%CASE% >> %_TimeStamp%
 
 :INPUT_NAME
-    echo [%timestamp%]%NAME% >> %_TimeStamp%
+    echo [!timestamp!]%NAME% >> %_TimeStamp%
 
 :START
 echo %CASE% - %NAME% Inactive Data Collection Begins >> %_TimeStamp%
@@ -171,11 +161,12 @@ set choice=
 
 :RUN_STEP_1
 call :LogStep
+call :GetTimestamp
     set _FileSystem=%NONVOLATILE_DIR%\FileSystem
     mkdir %_FileSystem%
     echo.
     echo Create FileSystem Data Directory
-    echo [%timestamp%] Create FileSystem Data Directory >> %_TimeStamp%
+    echo [!timestamp!] Create FileSystem Data Directory >> %_TimeStamp%
     
     :RUN_STEP_1_INPUT
     echo.
@@ -198,7 +189,7 @@ call :LogStep
 :RUN_STEP_1_Fore
     echo.
     echo Acquring FileSystem Data...
-    echo [%timestamp%] Acquring FileSystem Data... >> %_TimeStamp%
+    echo [!timestamp!] Acquring FileSystem Data... >> %_TimeStamp%
     forecopy_handy -m %_FileSystem%
     goto RUN_STEP_1_Hash
 
@@ -232,11 +223,11 @@ call :LogStep
     mkdir %_FileSystem_Hash%
     echo.
     echo CREATE FileSystem HASH DIRECTORY
-    echo [%timestamp%] CREATE FileSystem HASH Directory >> %_TimeStamp%
+    echo [!timestamp!] CREATE FileSystem HASH Directory >> %_TimeStamp%
     %hashdeep% -e -r %_FileSystem% > "%_FileSystem_Hash%\FileSystem_Hash.txt"
     echo.
     echo Acquring FileSystem Hash
-    echo [%timestamp%] Acquring FileSystem Hash >> %_TimeStamp%
+    echo [!timestamp!] Acquring FileSystem Hash >> %_TimeStamp%
     echo.
     goto RUN_STEP_1_Clear
 
@@ -246,11 +237,12 @@ call :LogStep
 
 :RUN_STEP_2
 call :LogStep
+call :GetTimestamp
     set Registry=%NONVOLATILE_DIR%\Registry
     mkdir %Registry%
     echo.
     echo Create Registry Directory 
-    echo [%timestamp%] Create Registry Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Registry Directory >> %_TimeStamp%
 
     :RUN_STEP_2_INPUT
     echo.
@@ -273,7 +265,7 @@ call :LogStep
 :RUN_STEP_2_FORE
     echo.
     echo Acquring Registry...
-    echo [%timestamp%] Acquring Registry >> %_TimeStamp%
+    echo [!timestamp!] Acquring Registry >> %_TimeStamp%
     forecopy_handy -g %Registry%
     goto RUN_STEP_2_HASH
 
@@ -286,11 +278,11 @@ call :LogStep
     mkdir %_REGISTRY_HASH%
     echo.
     echo Create Registry Hash Directory 
-    echo [%timestamp%] Create Registry Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Registry Hash Directory >> %_TimeStamp%
     %hashdeep% -e -r %Registry%  > %REGISTRY_HASH%\REGISTRY_Hash.txt  
     echo.
     echo Calculate Registry Hash...
-    echo [%timestamp%] Calculate Registry Hash... >> %_TimeStamp%
+    echo [!timestamp!] Calculate Registry Hash... >> %_TimeStamp%
     goto RUN_STEP_2_CLEAR
 
 :RUN_STEP_2_CLEAR
@@ -299,11 +291,12 @@ call :LogStep
 
 :RUN_STEP_3
 call :LogStep
+call :GetTimestamp
     set _Prefetch=%NONVOLATILE_DIR%\Prefetch
     mkdir %_Prefetch%
     echo.
     echo Create Prefetch Directory 
-    echo [%timestamp%] Create Prefetch Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Prefetch Directory >> %_TimeStamp%
 
     :RUN_STEP_3_INPUT
     echo.
@@ -326,7 +319,7 @@ call :LogStep
 :RUN_STEP_3_FORE
     echo.
     echo Acquring Prefetch...
-    echo [%timestamp%] Acquring Prefetch... >> %_TimeStamp%
+    echo [!timestamp!] Acquring Prefetch... >> %_TimeStamp%
     forecopy_handy -p %_Prefetch%
     goto RUN_STEP_3_HASH
 
@@ -353,11 +346,11 @@ call :LogStep
     mkdir %Prefetch_Hash%
     echo.
     echo Create Prefetch Hash Directory
-    echo [%timestamp%] Create Prefetch Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Prefetch Hash Directory >> %_TimeStamp%
     echo.
     %hashdeep% -e -r %_Prefetch% > %Prefetch_Hash%\Prefetch_Hash.txt
     echo Calculate Prefetch Hash...
-    echo [%timestamp%] Calculate Prefetch Hash... >> %_TimeStamp%
+    echo [!timestamp!] Calculate Prefetch Hash... >> %_TimeStamp%
     echo.
     goto RUN_STEP_3_Clear
 
@@ -367,11 +360,12 @@ call :LogStep
 
 :RUN_STEP_4
 call :LogStep
+call :GetTimestamp
     set _eventLog=%NONVOLATILE_DIR%\EventLog
     mkdir %_eventLog%
     echo.
     echo Create EventLog Directory
-    echo [%timestamp%] Create EventLog Directory >> %_TimeStamp%
+    echo [!timestamp!] Create EventLog Directory >> %_TimeStamp%
 
     :RUN_STEP_INPUT_4
     echo.
@@ -433,14 +427,14 @@ call :LogStep
     mkdir %_Webserver%
     echo.
     echo Create WebServer Directory 
-    echo [%timestamp%] Create WebServer Directory >> %_TimeStamp%
+    echo [!timestamp!] Create WebServer Directory >> %_TimeStamp%
     %kape%\kape.exe --tsource %SystemDrive% --target WebServers --tdest %_Webserver% >NUL
     goto RUN_STEP_4_HASH
 
 :RUN_STEP_4_FORE
     echo.
     echo Acquring Event Log
-    echo [%timestamp%] Acquring Event Log >> %_TimeStamp%
+    echo [!timestamp!] Acquring Event Log >> %_TimeStamp%
     forecopy_handy -e  %_eventLog%
     goto RUN_STEP_4_HASH
 
@@ -449,10 +443,10 @@ call :LogStep
     mkdir %eventHash%
     echo.
     echo Create EventLog Hash Directory
-    echo [%timestamp%] Create EventLog Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create EventLog Hash Directory >> %_TimeStamp%
     echo.
     echo Calculate Event Hash...
-    echo [%timestamp%] Calculate Event Hash... >> %_TimeStamp%
+    echo [!timestamp!] Calculate Event Hash... >> %_TimeStamp%
     %hashdeep% -e -r %_eventLog% > %eventHash%\EventLog_Hash.txt
     goto RUN_STEP_4_Clear
 
@@ -462,17 +456,18 @@ call :LogStep
 
 :RUN_STEP_5
 call :LogStep
+call :GetTimestamp
     set recycleBin=%NONVOLATILE_DIR%\RecycleBin
     mkdir %recycleBin%
     echo.
     echo Create RecycleBin Directory
-    echo [%timestamp%] Create RecycleBin Directory >> %_TimeStamp%
+    echo [!timestamp!] Create RecycleBin Directory >> %_TimeStamp%
 
     set kapedir=%recycleBin%\kape
     mkdir %kapedir%
     echo.
     echo Acquring RecycleBin 
-    echo [%timestamp%] Acquring RecycleBin >> %_TimeStamp%
+    echo [!timestamp!] Acquring RecycleBin >> %_TimeStamp%
     
     echo.
     :input_prompt
@@ -500,41 +495,42 @@ call :LogStep
     :RecycleBin_net4
         echo rbcmd for net4 executed(Step5)
         %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv >NUL
-        echo [%timestamp%] rbcmd for net4 completed(Step5) >> %_TimeStamp%
+        echo [!timestamp!] rbcmd for net4 completed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
     :RecycleBin_net6
         echo rbcmd for net6 executed(Step5)
         %rbcmd% -d "%SystemDrive%\$Recycle.Bin" --csv %recycleBin% --csvf RecycleBin.csv >NUL
-        echo [%timestamp%] rbcmd for net6 completed(Step5) >> %_TimeStamp%
+        echo [!timestamp!] rbcmd for net6 completed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
     :XCopyCommand
         echo xcopy executed(Step5)
         xcopy /e /h /y %SystemDrive%\$Recycle.Bin %recycleBin% 2>> %recycleBin%\recycleBin_collect_Error.log
-        echo [%timestamp%] xcopy completed(Step5) >> %_TimeStamp%
+        echo [!timestamp!] xcopy completed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
     :kape
         echo kape executed(Step5)
         %kape%\kape.exe --tsource %systemdrive% --target RecycleBin --tdest %kapedir% >NUL
-        echo [%timestamp%] kape executed(Step5) >> %_TimeStamp%
+        echo [!timestamp!] kape executed(Step5) >> %_TimeStamp%
         GOTO input_prompt
 
     :RUN_STEP_5_HASH
     set recycleBinHash=%recycleBin%\Hash
     mkdir %recycleBinHash%
-    echo [%timestamp%] Create RecycleBin Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create RecycleBin Hash Directory >> %_TimeStamp%
     echo.
     echo Calculate RecycleBin Hash...
     %hashdeep% -e -r %recycleBin% > %recycleBinHash%\RecycleBin_Hash.txt
-    echo [%timestamp%] Calculate RecycleBin Hash... >> %_TimeStamp%
+    echo [!timestamp!] Calculate RecycleBin Hash... >> %_TimeStamp%
 
     echo RUN_STEP_5 CLEAR
     exit /b
 
 :RUN_STEP_6
 call :LogStep
+call :GetTimestamp
     set Browser=%NONVOLATILE_DIR%\Browser
     set _Edge=%Browser%\Edge
     set _Chromium=%Browser%\Chromium
@@ -553,19 +549,19 @@ call :LogStep
     mkdir %Browser%
     echo.
     echo Create Browser Initial Directory
-    echo [%timestamp%] Create Browser Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Browser Directory >> %_TimeStamp%
     mkdir %_Chrome%
-    echo [%timestamp%] Create Chrome Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Chrome Directory >> %_TimeStamp%
     mkdir %_Edge%
-    echo [%timestamp%] Create Edge Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Edge Directory >> %_TimeStamp%
     mkdir %_IE%
-    echo [%timestamp%] Create IE Directory >> %_TimeStamp%
+    echo [!timestamp!] Create IE Directory >> %_TimeStamp%
     mkdir %_Chromium%
-    echo [%timestamp%] Create Chromium Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Chromium Directory >> %_TimeStamp%
     mkdir %_Firefox%
-    echo [%timestamp%] Create Firefox Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Firefox Directory >> %_TimeStamp%
     mkdir %_WebCache%
-    echo [%timestamp%] Create WebCache Directory >> %_TimeStamp%
+    echo [!timestamp!] Create WebCache Directory >> %_TimeStamp%
 
     :browser_input
     echo "[RUN_STEP_6] Using forecopy or KAPE ? (input f or k)"
@@ -584,7 +580,7 @@ call :LogStep
     :: Chrome
     echo.
     echo Acquring Chrome Data...
-    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp%
+    echo [!timestamp!] Acquring Chrome Data... >> %_TimeStamp%
 
     forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Cache" %_Chrome%
     forecopy_handy -r "%LocalAppData%\Google\Chrome\User Data\Default\Download Service" %_Chrome%
@@ -594,7 +590,7 @@ call :LogStep
     :: Edge
     echo.
     echo Acquring Edge Data...
-    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp%
+    echo [!timestamp!] Acquring Edge Data... >> %_TimeStamp%
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Cache" %_Edge% 
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Download Service" %_Edge%
     forecopy_handy -r "%LocalAppData%\Microsoft\Edge\User Data\Default\Network" %_Edge%
@@ -603,7 +599,7 @@ call :LogStep
     :: Firefox
     echo.
     echo Acquring Firefox Data...
-    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp%
+    echo [!timestamp!] Acquring Firefox Data... >> %_TimeStamp%
     ::forecopy_handy -x %_Firefox%
     
     :: Firefox Cache
@@ -624,7 +620,7 @@ call :LogStep
     :: WebCache
     echo.
     echo Acquring WebCache.DAT...
-    echo [%timestamp%] Acquring WebCache.DAT... >> %_TimeStamp%
+    echo [!timestamp!] Acquring WebCache.DAT... >> %_TimeStamp%
     forecopy_handy -f "%LocalAppData%\Microsoft\Windows\WebCache\WebCacheV01.DAT" %_WebCache%
 
     goto Browser_Hash
@@ -633,76 +629,77 @@ call :LogStep
     %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NUL
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome% >NUL
-    echo [%timestamp%] Acquring Chrome Data... >> %_TimeStamp% 
+    echo [!timestamp!] Acquring Chrome Data... >> %_TimeStamp% 
     
     %kape%\kape.exe --tsource %SystemDrive% --target Edge --tdest %_Edge% >NUL
-    echo [%timestamp%] Acquring Edge Data... >> %_TimeStamp% 
+    echo [!timestamp!] Acquring Edge Data... >> %_TimeStamp% 
 
     %kape%\kape.exe --tsource %SystemDrive% --target Firefox --tdest %_Firefox% >NUL
-    echo [%timestamp%] Acquring Firefox Data... >> %_TimeStamp% 
+    echo [!timestamp!] Acquring Firefox Data... >> %_TimeStamp% 
 
     %kape%\kape.exe --tsource %SystemDrive% --target InternetExplorer --tdest %_IE% >NUL
-    echo [%timestamp%] Acquring InternetExplorer Data... >> %_TimeStamp% 
+    echo [!timestamp!] Acquring InternetExplorer Data... >> %_TimeStamp% 
 
     %kape%\kape.exe --tsource %SystemDrive% --target EdgeChromium --tdest %_Chromium% >NUL
-    echo [%timestamp%] Acquring Chromium Data... >> %_TimeStamp% 
+    echo [!timestamp!] Acquring Chromium Data... >> %_TimeStamp% 
 
     %kape%\kape.exe --tsource %SystemDrive% --target BrowserCache --tdest %_WebCache% >NUL
-    echo [%timestamp%] Acquring BrowserCache Data... >> %_TimeStamp% 
+    echo [!timestamp!] Acquring BrowserCache Data... >> %_TimeStamp% 
 
     goto Browser_Hash
 
 :Browser_Hash
     mkdir %_Chrome_Hash%
-    echo [%timestamp%] Create Chrome Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Chrome Hash Directory >> %_TimeStamp%
     echo Calculate Chrome Hash
-    echo [%timestamp%] Calculate Chrome Hash >> %_TimeStamp%
+    echo [!timestamp!] Calculate Chrome Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Chrome% > %_Chrome_Hash%\Chrome_Hash.txt
 
     mkdir %_Firefox_Hash%
-    echo [%timestamp%] Create Firefox Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
-    echo [%timestamp%] Calculate Firefox Hash >> %_TimeStamp%
+    echo [!timestamp!] Calculate Firefox Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
 
     mkdir %_Edge_Hash%
-    echo [%timestamp%] Create Edge Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
-    echo [%timestamp%] Calculate Edge Hash >> %_TimeStamp%
+    echo [!timestamp!] Calculate Edge Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
     
     mkdir %_IE_Hash%
-    echo [%timestamp%] Create IE Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create IE Hash Directory >> %_TimeStamp%
     echo Calculate IE Hash
-    echo [%timestamp%] Calculate IE Hash >> %_TimeStamp%
+    echo [!timestamp!] Calculate IE Hash >> %_TimeStamp%
     %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt 
     
     mkdir %_Chromium_Hash%
-    echo [%timestamp%] Create Chromium Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Chromium Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
-    echo [%timestamp%] Calculate Chromium Hash >> %_TimeStamp%
+    echo [!timestamp!] Calculate Chromium Hash >> %_TimeStamp%
     %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt 
 
     mkdir %_WebCache_Hash%
-    echo [%timestamp%] Create WebCache Hash Directory >> %_TimeStamp%
+    echo [!timestamp!] Create WebCache Hash Directory >> %_TimeStamp%
     echo Calcultae WebCache Hash
-    echo [%timestamp%] Calculate WebCache Hash >> %_TimeStamp%
+    echo [!timestamp!] Calculate WebCache Hash >> %_TimeStamp%
     %hashdeep% -e -r %_WebCache% > %_WebCache_Hash%\WebCache_Hash.txt
 
     echo RUN_STEP_6 CLEAR
-    echo [%timestamp%] RUN_STEP_6 CLEAR>> %_TimeStamp%
+    echo [!timestamp!] RUN_STEP_6 CLEAR>> %_TimeStamp%
     exit /b
 
 :RUN_STEP_7
 call :LogStep
+call :GetTimestamp
     set _restore=%NONVOLATILE_DIR%\Restore
     mkdir %_restore%
     echo.
     echo Create Restore Directory
-    echo [%timestamp%] Create Restore Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Restore Directory >> %_TimeStamp%
     ::forecopy_handy -dr %SYSTEMROOT%\system32\Restore %_restore%
     xcopy /E /H /I "%SYSTEMROOT%\system32\Restore" "%_restore%"
-    echo [%timestamp%] Restore File >> %_TimeStamp%
+    echo [!timestamp!] Restore File >> %_TimeStamp%
     ::forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
 
     echo RUN_STEP_7 CLEAR
@@ -710,12 +707,13 @@ call :LogStep
 
 :RUN_STEP_8
 call :LogStep
+call :GetTimestamp
     set _USBDetective=%NONVOLATILE_DIR%\USBDetective
     set _USBDetective_Hash=%_USBDetective%\Hash
     echo.
     mkdir %_USBDetective%
     echo Create USBDetective Directory
-    echo [%timestamp%] Create USBDetective Directory >> %_TimeStamp%
+    echo [!timestamp!] Create USBDetective Directory >> %_TimeStamp%
     
     :run_step_8_input
     echo.
@@ -737,7 +735,7 @@ call :LogStep
 :USB_Forecopy
     echo.
     echo Acquring USB Logs Information...
-    echo [%timestamp%] Acquring Driver Information... >> %_TimeStamp%
+    echo [!timestamp!] Acquring Driver Information... >> %_TimeStamp%
     forecopy_handy -t %_USBDetective%
     goto USB_Hash
 
@@ -749,13 +747,13 @@ call :LogStep
     mkdir %_USBDetective_Hash%
     echo.
     echo Create USBDetect Hash Directory
-    echo [%timestamp%] Create Driver Hash Direcotry >> %_TimeStamp%
+    echo [!timestamp!] Create Driver Hash Direcotry >> %_TimeStamp%
     
     %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\USB_Hash.txt
 
     echo.
     echo Calculate USBDetective Hash...
-    echo [%timestamp%] Calculate USBDetective Hash... >> %_TimeStamp%
+    echo [!timestamp!] Calculate USBDetective Hash... >> %_TimeStamp%
     goto RUN_STEP_8_Clear
 
 :RUN_STEP_8_Clear
@@ -765,14 +763,15 @@ call :LogStep
 
 :RUN_STEP_9
 call :LogStep
+call :GetTimestamp
     set _Recent=%NONVOLATILE_DIR%\Recent
     mkdir %_Recent%
     echo.
     echo Create Recent Directory
-    echo [%timestamp%] Create Recent Directory >> %_TimeStamp%
+    echo [!timestamp!] Create Recent Directory >> %_TimeStamp%
     echo.
     echo Acquring Recent Data ...
-    echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
+    echo [!timestamp!] Acquring Recent Data... >> %_Timestamp%
     forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
 
     if  "%net%"=="4" (
@@ -794,7 +793,7 @@ call :LogStep
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
     %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
-    echo [%timestamp%] LECmd_net4  >> %_TimeStamp%
+    echo [!timestamp!] LECmd_net4  >> %_TimeStamp%
     goto RUN_STEP_9_Clear
 
 :Recent_net6
@@ -808,7 +807,7 @@ call :LogStep
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestination
     :: C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Recent\CustomDestination
     %jlecmd% -d "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" --csv %_Recent% --csvf "JumpList.csv" >NUL
-    echo [%timestamp%] LECmd_net6  >> %_TimeStamp%
+    echo [!timestamp!] LECmd_net6  >> %_TimeStamp%
     goto RUN_STEP_9_Clear
 
 :Recent_Hash
@@ -816,11 +815,11 @@ call :LogStep
     mkdir _Recent_Hash
     echo.
     echo Create Recent Hash Directory
-    echo [%timestamp%] Create Recent Hash Directory
+    echo [!timestamp!] Create Recent Hash Directory
     echo.
     %hashdeep% -e -r %_Recent% > %_Recent_Hash%\Recent_Hash.txt
     echo Calculate Recent Hash...
-    echo [%timestamp%] Calculate Recent Hash...
+    echo [!timestamp!] Calculate Recent Hash...
     echo.
     goto RUN_STEP_9_Clear
 
@@ -832,6 +831,18 @@ call :LogStep
 echo ========================== >> %_TimeStamp%
 goto :eof
 
-echo [%timestamp%] End Time >> %_TimeStamp%
+:: Timestamp
+:GetTimestamp
+set year=!date:~0,4!
+set month=!date:~5,2!
+set day=!date:~8,2!
+set hour=!time:~0,2!
+if "!hour:~0,1!" == " " set hour=0!hour:~1,1!
+set minute=!time:~3,2!
+set second=!time:~6,2!
+set timestamp=!year!-!month!-!day!_!hour!-!minute!-!second!
+goto :eof
+
+echo [!timestamp!] End Time >> %_TimeStamp%
 endlocal
 
