@@ -1,0 +1,12 @@
+lsof -i -n
+COMMAND    PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r  603 systemd-resolve   13u  IPv4  30404      0t0  UDP 127.0.0.53:domain 
+systemd-r  603 systemd-resolve   14u  IPv4  30405      0t0  TCP 127.0.0.53:domain (LISTEN)
+avahi-dae  768           avahi   12u  IPv4  32097      0t0  UDP *:mdns 
+avahi-dae  768           avahi   13u  IPv6  32098      0t0  UDP *:mdns 
+avahi-dae  768           avahi   14u  IPv4  32099      0t0  UDP *:51856 
+avahi-dae  768           avahi   15u  IPv6  32100      0t0  UDP *:53710 
+NetworkMa  788            root   25u  IPv4  32759      0t0  UDP 192.168.44.129:bootpc->192.168.44.254:bootps 
+cupsd      992            root    6u  IPv6  33629      0t0  TCP [::1]:ipp (LISTEN)
+cupsd      992            root    7u  IPv4  33630      0t0  TCP 127.0.0.1:ipp (LISTEN)
+cups-brow 1044            root    7u  IPv4  34914      0t0  UDP *:631 
