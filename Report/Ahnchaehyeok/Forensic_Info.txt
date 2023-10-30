@@ -1,0 +1,119 @@
+Timestamp : 2023-06-18 15:36:06
+Name : test
+Task Description : test
+Hostname : ahnchaehyeok-virtual-machine
+-------------------------------------------------------------
+Timestamp for Logon files
+Logon Script Execution Timestamp : 2023-06-18 15:36:19
+Logon Directory Timestamp : 2023-06-18 15:36:19
+Logon Hash Directory Timtestamp : 2023-06-18 15:36:19
+lastlog.txt Timestamp : 2023-06-18 15:36:19
+who.txt Timestamp : 2023-06-18 15:36:19
+w.txt Timestamp : 2023-06-18 15:36:19
+users.txt Timestamp : 2023-06-18 15:36:19
+lastdown.txt Timestamp : 2023-06-18 15:36:19
+lastb.txt Timestamp : 2023-06-18 15:36:19
+Logon hash.txt Timtestamp : 2023-06-18 15:36:19
+-------------------------------------------------------------
+Timestamp for Network files
+Network Script Execution Timestamp : 2023-06-18 15:36:20
+Network Directory Timtestamp : 2023-06-18 15:36:20
+Network Hash Directory Timtestamp : 2023-06-18 15:36:20
+ipaddr.txt Timtestamp : 2023-06-18 15:36:20
+lsof.txt Timtestamp : 2023-06-18 15:36:20
+protocolconnection.txt Timtestamp : 2023-06-18 15:36:20
+Route.txt Timtestamp : 2023-06-18 15:36:20
+ARP.txt Timtestamp : 2023-06-18 15:36:20
+DNS.txt Timtestamp : 2023-06-18 15:36:20
+Network hash.txt Timtestamp : 2023-06-18 15:36:21
+-------------------------------------------------------------
+Timestamp for Process files
+Process Script Execution Timestamp : 2023-06-18 15:36:24
+Proces Directory Timtestamp : 2023-06-18 15:36:24
+Network Hash Directory Timtestamp : 2023-06-18 15:36:24
+psaux.txt Timtestamp : 2023-06-18 15:36:24
+top_info Timtestamp : 2023-06-18 15:36:24
+pstree_info.txt Timtestamp : 2023-06-18 15:36:25
+pgrep_info.txt Timtestamp : 2023-06-18 15:36:25
+Process/lsof.txt Timtestamp : 2023-06-18 15:36:25
+status_info.txt Timtestamp : 2023-06-18 15:36:31
+Network hash.txt Timtestamp : 2023-06-18 15:36:31
+-------------------------------------------------------------
+Timestamp for Autorun files
+Autorun Script Execution Timestamp : 2023-06-18 15:36:32
+Autorun Directory Timestamp : 2023-06-18 15:36:32
+Autorun Hash Directory Timestamp : 2023-06-18 15:36:32
+autoinfo.txt Timestamp : 2023-06-18 15:36:32
+autorunning.txt Timestamp : 2023-06-18 15:36:35
+Autorun hash.txt Timtestamp : 2023-06-18 15:36:35
+-------------------------------------------------------------
+Timestamp for System Info files
+System Info Script Execution Timestamp : 2023-06-18 15:36:36
+System Directory Timestamp : 2023-06-18 15:36:36
+System Hash Directory Timestamp : 2023-06-18 15:36:36
+dmesg.txt Timestamp : 2023-06-18 15:36:36
+journalctl.txt Timestamp : 2023-06-18 15:36:39
+errorlog.txt Timestamp : 2023-06-18 15:36:40
+System hash.txt Timtestamp : 2023-06-18 15:36:40
+-------------------------------------------------------------
+Timestamp for Log files
+Log Script Execution Timestamp : 2023-06-18 15:37:03
+Log Directory Timestamp : 2023-06-18 15:37:03
+Log Hash Directory Timtestamp : 2023-06-18 15:37:03
+Log file copy Timestamp : 2023-06-18 15:37:03
+Log hash.txt Timtestamp : 2023-06-18 15:37:03
+-------------------------------------------------------------
+Timestamp for System Information files
+System Information(Inactive) Script Execution Timestamp : 2023-06-18 15:37:07
+System Information(Inactive) Directory Timestamp : 2023-06-18 15:37:07
+System Information(Inactive) Hash Directory Timtestamp : 2023-06-18 15:37:07
+lscpu(CPU Info) Timestamp : 2023-06-18 15:37:07
+lsblk(Block Devices) Timestamp : 2023-06-18 15:37:08
+lshw(Hardware Info) Timestamp : 2023-06-18 15:37:09
+lsusb(USB Devices) copy Timestamp : 2023-06-18 15:37:09
+lsmod(Loaded Kernel Modules) Timestamp : 2023-06-18 15:37:09
+df -h(Disk Space Info) Timestamp : 2023-06-18 15:37:09
+free -m(Memory Info) Timestamp : 2023-06-18 15:37:09
+login_info.txt Timestamp : 2023-06-18 15:37:09
+Inactive SysInfo hash.txt Timtestamp : 2023-06-18 15:37:09
+-------------------------------------------------------------
+Timestamp for Trash files
+Trash Script Execution Timestamp : 2023-06-18 15:37:25
+Trash Directory Timestamp : 2023-06-18 15:37:25
+Trash Hash Directory Timtestamp : 2023-06-18 15:37:25
+trash_info.txt Timestamp : 2023-06-18 15:37:25
+Trash hash.txt Timtestamp : 2023-06-18 15:37:25
+-------------------------------------------------------------
+Timestamp for Web History files
+Web History Script Execution Timestamp : 2023-06-18 15:37:27
+LogonWeb History Directory Timestamp : 2023-06-18 15:37:27
+Web History Hash Directory Timtestamp : 2023-06-18 15:37:27
+Firefox history Timestamp : 2023-06-18 15:37:27
+Web hash.txt Timtestamp : 2023-06-18 15:37:27
+-------------------------------------------------------------
+Timestamp for Temporary files
+Temporary file Script Execution Timestamp : 2023-06-18 15:37:28
+Temporary file Directory Timestamp : 2023-06-18 15:37:28
+Temporary file metadata Directory Timestamp : 2023-06-18 15:37:28
+Temporary Hash Directory Timtestamp : 2023-06-18 15:37:28
+/tmp Temporary file copy Timestamp : 2023-06-18 15:37:28
+/var/tmp Temporary file copy Timestamp : 2023-06-18 15:37:28
+/dev/shm Temporary file copy Timestamp : 2023-06-18 15:37:28
+Temporary hash.txt Timtestamp : 2023-06-18 15:37:29
+-------------------------------------------------------------
+Timestamp for Shortcut files
+Shortcut file Script Execution Timestamp : 2023-06-18 15:37:31
+Shortcut file Directory Timestamp : 2023-06-18 15:37:31
+Shortcut file metadata Directory Timestamp : 2023-06-18 15:37:31
+Shortcut Hash Directory Timtestamp : 2023-06-18 15:37:31
+ahnchaehyeok/.local/share/applications shortcut file copy Timestamp : 2023-06-18 15:37:31
+ahnchaehyeok/.local/share/recently-used.xbel shortcut file copy Timestamp : 2023-06-18 15:37:31
+ahnchaehyeok/Desktop shortcut file copy Timestamp : 2023-06-18 15:37:31
+shortcut file metadata Timestamp : 2023-06-18 15:37:31
+Temporary hash.txt Timtestamp : 2023-06-18 15:37:31
+-------------------------------------------------------------
+Timestamp for ExStorage files
+ExStorage file Script Execution Timestamp : 2023-06-18 15:37:32
+Exstorage file Directory Timestamp : 2023-06-18 15:37:32
+Exstorage Hash Directory Timtestamp : 2023-06-18 15:37:32
+ExStorage hash.txt Timtestamp : 2023-06-18 15:37:34
