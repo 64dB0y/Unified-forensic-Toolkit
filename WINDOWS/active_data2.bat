@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: 초기 설정
+:: Initial settings
 echo -------------
 echo PATH Settings
 echo -------------
@@ -46,7 +46,7 @@ set minute=%time:~3,2%
 set second=%time:~6,2%
 set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 
-:: 현재 시간과 컴퓨터 이름으로 새로운 폴더를 생성함
+:: Create new directory with current time, host name
 if "%~3"=="" (
     set foldername=%computername%_%timestamp%
 ) else (
@@ -60,7 +60,7 @@ if not exist "%foldername%" (
 )
 echo.
 
-:: 타임스탬프 저장을 위한 폴더를 생성 
+:: create directory to save timestamp
 set _TimeStamp=%foldername%\TimeStamp.log
 echo START TIME : %timestamp%
 echo [%timestamp%] Active Script START TIME >> %_TimeStamp%

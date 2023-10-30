@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: PATH Settings 사용 도구 dd, forecopy_handy(v1.2)
+:: PATH Settings for used tools - dd, forecopy_handy(v1.2)
 
 SET "curDir=%~dp0"
 SET "ETC=%~dp0etc"
