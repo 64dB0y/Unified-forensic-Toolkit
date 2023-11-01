@@ -1,0 +1,27 @@
+[2023-06-08T06:13:48.161Z] [ message] [vmsvc] [579] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-08T06:13:48.161Z] [ message] [vmsvc] [579] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-43-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-08T06:13:48.161Z] [ message] [vmsvc] [579] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-08T06:13:48.161Z] [ message] [vmsvc] [579] Core dump limit set to -1
+[2023-06-08T06:13:48.211Z] [ message] [vmtoolsd] [579] Plugin 'hgfsServer' initialized.
+[2023-06-08T06:13:48.211Z] [ message] [vix] [579] QueryVGAuthConfig: vgauth usage is: 1
+[2023-06-08T06:13:48.211Z] [ message] [vmtoolsd] [579] Plugin 'vix' initialized.
+[2023-06-08T06:13:48.211Z] [ message] [vmtoolsd] [579] Plugin 'appInfo' initialized.
+[2023-06-08T06:13:48.211Z] [ message] [vmtoolsd] [579] Plugin 'componentMgr' initialized.
+[2023-06-08T06:13:48.212Z] [ message] [vmtoolsd] [579] Plugin 'guestInfo' initialized.
+[2023-06-08T06:13:48.212Z] [ message] [vmtoolsd] [579] Plugin 'powerops' initialized.
+[2023-06-08T06:13:48.212Z] [ message] [resolutionCommon] [579] resolutionCheckForKMS: dlopen succeeded.
+[2023-06-08T06:13:48.213Z] [ message] [resolutionCommon] [579] resolutionCheckForKMS: System support available for resolutionKMS.
+[2023-06-08T06:13:48.213Z] [ message] [vmtoolsd] [579] Plugin 'resolutionKMS' initialized.
+[2023-06-08T06:13:48.213Z] [ message] [vmtoolsd] [579] Plugin 'timeSync' initialized.
+[2023-06-08T06:13:48.213Z] [ message] [vmtoolsd] [579] Plugin 'vmbackup' initialized.
+[2023-06-08T06:13:48.242Z] [ message] [vix] [579] VixTools_ProcessVixCommand: command 62
+[2023-06-08T06:20:18.473Z] [ warning] [GLib-GObject] [579] g_object_get_is_valid_property: object class 'ToolsCoreService' has no property named 'tps_prop_gueststore'
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'vmbackup'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'timeSync'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'resolutionKMS'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'powerops'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'guestInfo'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'componentMgr'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'appInfo'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'vix'.
+[2023-06-08T06:20:18.487Z] [ message] [vmtoolsd] [579] Unloading plugin 'hgfsServer'.

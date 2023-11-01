@@ -1,0 +1,367 @@
+systemd,1 auto noprompt splash
+  |-ModemManager,880
+  |   |-{ModemManager},915
+  |   `-{ModemManager},925
+  |-NetworkManager,788 --no-daemon
+  |   |-{NetworkManager},816
+  |   `-{NetworkManager},820
+  |-VGAuthService,635
+  |-accounts-daemon,760
+  |   |-{accounts-daemon},775
+  |   `-{accounts-daemon},800
+  |-acpid,761
+  |-anacron,764 -d -q -s
+  |-avahi-daemon,768,avahi
+  |   `-avahi-daemon,874
+  |-bluetoothd,770
+  |-colord,1580,colord
+  |   |-{colord},1581
+  |   `-{colord},1583
+  |-cron,777 -f -P
+  |-cups-browsed,1044
+  |   |-{cups-browsed},1117
+  |   `-{cups-browsed},1118
+  |-cupsd,992 -l
+  |-dbus-daemon,785,messagebus --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  |-gdm3,971
+  |   |-gdm-session-wor,1655
+  |   |   |-gdm-wayland-ses,1746,ahnchaehyeok env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
+  |   |   |   |-gnome-session-b,1749 --session=ubuntu
+  |   |   |   |   |-{gnome-session-b},1785
+  |   |   |   |   `-{gnome-session-b},1787
+  |   |   |   |-{gdm-wayland-ses},1747
+  |   |   |   `-{gdm-wayland-ses},1748
+  |   |   |-{gdm-session-wor},1656
+  |   |   `-{gdm-session-wor},1658
+  |   |-{gdm3},981
+  |   `-{gdm3},982
+  |-gnome-keyring-d,1686,ahnchaehyeok --daemonize --login
+  |   |-{gnome-keyring-d},1687
+  |   |-{gnome-keyring-d},1688
+  |   `-{gnome-keyring-d},1795
+  |-irqbalance,803 --foreground
+  |   `-{irqbalance},827
+  |-kerneloops,1081,kernoops --test
+  |-kerneloops,1103,kernoops
+  |-networkd-dispat,807 /usr/bin/networkd-dispatcher --run-startup-triggers
+  |-packagekitd,1409
+  |   |-{packagekitd},1410
+  |   `-{packagekitd},1411
+  |-polkitd,808 --no-debug
+  |   |-{polkitd},814
+  |   `-{polkitd},824
+  |-power-profiles-,819
+  |   |-{power-profiles-},842
+  |   `-{power-profiles-},847
+  |-rsyslogd,826,syslog -n -iNONE
+  |   |-{rsyslogd},875
+  |   |-{rsyslogd},876
+  |   `-{rsyslogd},877
+  |-rtkit-daemon,1179,rtkit
+  |   |-{rtkit-daemon},1180
+  |   `-{rtkit-daemon},1181
+  |-snapd,831
+  |   |-{snapd},1200
+  |   |-{snapd},1201
+  |   |-{snapd},1202
+  |   |-{snapd},1203
+  |   |-{snapd},1204
+  |   |-{snapd},1233
+  |   |-{snapd},1254
+  |   |-{snapd},1260
+  |   |-{snapd},1377
+  |   |-{snapd},1604
+  |   |-{snapd},2649
+  |   `-{snapd},2653
+  |-switcheroo-cont,832
+  |   |-{switcheroo-cont},857
+  |   `-{switcheroo-cont},860
+  |-systemd,1668,ahnchaehyeok --user
+  |   |-(sd-pam),1669
+  |   |-at-spi2-registr,2002 --use-gnome-session
+  |   |   |-{at-spi2-registr},2005
+  |   |   `-{at-spi2-registr},2006
+  |   |-dbus-daemon,1690 --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  |   |-dconf-service,1954
+  |   |   |-{dconf-service},1957
+  |   |   `-{dconf-service},1958
+  |   |-evolution-addre,1976
+  |   |   |-{evolution-addre},1979
+  |   |   |-{evolution-addre},1980
+  |   |   |-{evolution-addre},1982
+  |   |   |-{evolution-addre},1983
+  |   |   `-{evolution-addre},1985
+  |   |-evolution-calen,1966
+  |   |   |-{evolution-calen},1968
+  |   |   |-{evolution-calen},1969
+  |   |   |-{evolution-calen},1970
+  |   |   |-{evolution-calen},1971
+  |   |   |-{evolution-calen},1972
+  |   |   |-{evolution-calen},1974
+  |   |   |-{evolution-calen},1975
+  |   |   `-{evolution-calen},1978
+  |   |-evolution-sourc,1943
+  |   |   |-{evolution-sourc},1947
+  |   |   |-{evolution-sourc},1948
+  |   |   `-{evolution-sourc},1949
+  |   |-gjs,2003 /usr/share/gnome-shell/org.gnome.Shell.Notifications
+  |   |   |-{gjs},2009
+  |   |   |-{gjs},2011
+  |   |   |-{gjs},2025
+  |   |   `-{gjs},2026
+  |   |-gjs,2264 /usr/share/gnome-shell/org.gnome.ScreenSaver
+  |   |   |-{gjs},2272
+  |   |   |-{gjs},2273
+  |   |   |-{gjs},2274
+  |   |   `-{gjs},2275
+  |   |-gnome-session-b,1806 --systemd-service --session=ubuntu
+  |   |   |-at-spi-bus-laun,1839 --launch-immediately
+  |   |   |   |-dbus-daemon,1849 --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus
+  |   |   |   |-{at-spi-bus-laun},1843
+  |   |   |   |-{at-spi-bus-laun},1844
+  |   |   |   `-{at-spi-bus-laun},1846
+  |   |   |-evolution-alarm,2138
+  |   |   |   |-{evolution-alarm},2195
+  |   |   |   |-{evolution-alarm},2197
+  |   |   |   |-{evolution-alarm},2200
+  |   |   |   |-{evolution-alarm},2226
+  |   |   |   `-{evolution-alarm},2247
+  |   |   |-gsd-disk-utilit,2135
+  |   |   |   |-{gsd-disk-utilit},2168
+  |   |   |   `-{gsd-disk-utilit},2182
+  |   |   |-update-notifier,2439
+  |   |   |   |-{update-notifier},2441
+  |   |   |   |-{update-notifier},2443
+  |   |   |   `-{update-notifier},2444
+  |   |   |-{gnome-session-b},1809
+  |   |   |-{gnome-session-b},1810
+  |   |   `-{gnome-session-b},1812
+  |   |-gnome-session-c,1791 --monitor
+  |   |   `-{gnome-session-c},1798
+  |   |-gnome-shell,1842
+  |   |   |-Xwayland,2221 :0 -rootless -noreset -accessx -core -auth /run/user/1000/.mutter-Xwaylandauth.44KG61 -listen 4 -listen 5 -displayfd 6 -initfd 7
+  |   |   |-gjs,2293 /usr/share/gnome-shell/extensions/ding@rastersoft.com/ding.js -E -P /usr/share/gnome-shell/extensions/ding@rastersoft.com -M 0 -D 0:0:1718:878:1:27:0:74:0:0
+  |   |   |   |-{gjs},2300
+  |   |   |   |-{gjs},2301
+  |   |   |   |-{gjs},2304
+  |   |   |   |-{gjs},2305
+  |   |   |   `-{gjs},2323
+  |   |   |-{gnome-shell},1863
+  |   |   |-{gnome-shell},1873
+  |   |   |-{gnome-shell},1881
+  |   |   |-{gnome-shell},1895
+  |   |   |-{gnome-shell},1897
+  |   |   |-{gnome-shell},1898
+  |   |   |-{gnome-shell},2363
+  |   |   `-{gnome-shell},2930
+  |   |-gnome-shell-cal,1931
+  |   |   |-{gnome-shell-cal},1937
+  |   |   |-{gnome-shell-cal},1939
+  |   |   |-{gnome-shell-cal},1941
+  |   |   |-{gnome-shell-cal},1942
+  |   |   `-{gnome-shell-cal},1964
+  |   |-gnome-terminal-,2566
+  |   |   |-bash,2585
+  |   |   |   `-sudo,2991,root ./Forensic.bash
+  |   |   |       `-sudo,2992 ./Forensic.bash
+  |   |   |           `-Forensic.bash,2993 ./Forensic.bash
+  |   |   |               `-sudo,3009 ./Ubuntu_Forensic.bash
+  |   |   |                   `-sudo,3010 ./Ubuntu_Forensic.bash
+  |   |   |                       `-Ubuntu_Forensic,3011 ./Ubuntu_Forensic.bash
+  |   |   |                           `-d_processinfo_6,3097 ./Active_Scripts/d_processinfo_64.bash
+  |   |   |                               `-pstree,3107 -paul
+  |   |   |-{gnome-terminal-},2568
+  |   |   |-{gnome-terminal-},2570
+  |   |   `-{gnome-terminal-},2571
+  |   |-goa-daemon,1828
+  |   |   |-{goa-daemon},1850
+  |   |   |-{goa-daemon},1853
+  |   |   `-{goa-daemon},1854
+  |   |-goa-identity-se,1857
+  |   |   |-{goa-identity-se},1859
+  |   |   `-{goa-identity-se},1867
+  |   |-gsd-a11y-settin,2022
+  |   |   |-{gsd-a11y-settin},2023
+  |   |   |-{gsd-a11y-settin},2036
+  |   |   `-{gsd-a11y-settin},2043
+  |   |-gsd-color,2024
+  |   |   |-{gsd-color},2059
+  |   |   |-{gsd-color},2061
+  |   |   `-{gsd-color},2068
+  |   |-gsd-datetime,2033
+  |   |   |-{gsd-datetime},2065
+  |   |   |-{gsd-datetime},2069
+  |   |   `-{gsd-datetime},2155
+  |   |-gsd-housekeepin,2035
+  |   |   |-{gsd-housekeepin},2045
+  |   |   |-{gsd-housekeepin},2055
+  |   |   `-{gsd-housekeepin},2067
+  |   |-gsd-keyboard,2052
+  |   |   |-{gsd-keyboard},2062
+  |   |   |-{gsd-keyboard},2064
+  |   |   `-{gsd-keyboard},2071
+  |   |-gsd-media-keys,2054
+  |   |   |-{gsd-media-keys},2092
+  |   |   |-{gsd-media-keys},2101
+  |   |   `-{gsd-media-keys},2103
+  |   |-gsd-power,2058
+  |   |   |-{gsd-power},2096
+  |   |   |-{gsd-power},2102
+  |   |   `-{gsd-power},2104
+  |   |-gsd-print-notif,2066
+  |   |   |-{gsd-print-notif},2073
+  |   |   `-{gsd-print-notif},2085
+  |   |-gsd-printer,2165
+  |   |   |-{gsd-printer},2174
+  |   |   `-{gsd-printer},2175
+  |   |-gsd-rfkill,2070
+  |   |   |-{gsd-rfkill},2072
+  |   |   `-{gsd-rfkill},2079
+  |   |-gsd-screensaver,2074
+  |   |   |-{gsd-screensaver},2076
+  |   |   `-{gsd-screensaver},2081
+  |   |-gsd-sharing,2078
+  |   |   |-{gsd-sharing},2087
+  |   |   |-{gsd-sharing},2088
+  |   |   `-{gsd-sharing},2093
+  |   |-gsd-smartcard,2082
+  |   |   |-{gsd-smartcard},2084
+  |   |   |-{gsd-smartcard},2089
+  |   |   `-{gsd-smartcard},2154
+  |   |-gsd-sound,2083
+  |   |   |-{gsd-sound},2095
+  |   |   |-{gsd-sound},2110
+  |   |   `-{gsd-sound},2153
+  |   |-gsd-wacom,2091
+  |   |   |-{gsd-wacom},2111
+  |   |   |-{gsd-wacom},2115
+  |   |   `-{gsd-wacom},2121
+  |   |-gsd-xsettings,2290
+  |   |   |-{gsd-xsettings},2317
+  |   |   |-{gsd-xsettings},2318
+  |   |   `-{gsd-xsettings},2319
+  |   |-gvfs-afc-volume,1862
+  |   |   |-{gvfs-afc-volume},1864
+  |   |   |-{gvfs-afc-volume},1865
+  |   |   `-{gvfs-afc-volume},1869
+  |   |-gvfs-goa-volume,1823
+  |   |   |-{gvfs-goa-volume},1824
+  |   |   `-{gvfs-goa-volume},1825
+  |   |-gvfs-gphoto2-vo,1870
+  |   |   |-{gvfs-gphoto2-vo},1874
+  |   |   `-{gvfs-gphoto2-vo},1877
+  |   |-gvfs-mtp-volume,1817
+  |   |   |-{gvfs-mtp-volume},1818
+  |   |   `-{gvfs-mtp-volume},1820
+  |   |-gvfs-udisks2-vo,1792
+  |   |   |-{gvfs-udisks2-vo},1801
+  |   |   |-{gvfs-udisks2-vo},1804
+  |   |   `-{gvfs-udisks2-vo},1808
+  |   |-gvfsd,1692
+  |   |   |-gvfsd-trash,1991 --spawner :1.2 /org/gtk/gvfs/exec_spaw/0
+  |   |   |   |-{gvfsd-trash},1992
+  |   |   |   `-{gvfsd-trash},1993
+  |   |   |-{gvfsd},1693
+  |   |   `-{gvfsd},1697
+  |   |-gvfsd-fuse,1701 /run/user/1000/gvfs -f
+  |   |   |-{gvfsd-fuse},1711
+  |   |   |-{gvfsd-fuse},1712
+  |   |   |-{gvfsd-fuse},1713
+  |   |   |-{gvfsd-fuse},1715
+  |   |   `-{gvfsd-fuse},1719
+  |   |-gvfsd-metadata,2210
+  |   |   |-{gvfsd-metadata},2213
+  |   |   `-{gvfsd-metadata},2217
+  |   |-ibus-portal,2108
+  |   |   |-{ibus-portal},2125
+  |   |   `-{ibus-portal},2140
+  |   |-ibus-x11,2340
+  |   |   |-{ibus-x11},2342
+  |   |   `-{ibus-x11},2343
+  |   |-pipewire,1675
+  |   |   `-{pipewire},1777
+  |   |-pipewire-media-,1676
+  |   |   `-{pipewire-media-},1731
+  |   |-pulseaudio,1677 --daemonize=no --log-target=journal
+  |   |   |-{pulseaudio},1786
+  |   |   |-{pulseaudio},1821
+  |   |   `-{pulseaudio},1840
+  |   |-sh,2014 -c /usr/bin/ibus-daemon --panel disable $([ "$XDG_SESSION_TYPE" = "x11" ] && echo "--xim")
+  |   |   `-ibus-daemon,2020 --panel disable
+  |   |       |-ibus-dconf,2090
+  |   |       |   |-{ibus-dconf},2109
+  |   |       |   |-{ibus-dconf},2119
+  |   |       |   `-{ibus-dconf},2136
+  |   |       |-ibus-engine-sim,2203
+  |   |       |   |-{ibus-engine-sim},2204
+  |   |       |   `-{ibus-engine-sim},2205
+  |   |       |-ibus-extension-,2099
+  |   |       |   |-{ibus-extension-},2127
+  |   |       |   |-{ibus-extension-},2132
+  |   |       |   `-{ibus-extension-},2141
+  |   |       |-{ibus-daemon},2034
+  |   |       `-{ibus-daemon},2038
+  |   |-snapd-desktop-i,1678
+  |   |   `-snapd-desktop-i,1929
+  |   |       |-{snapd-desktop-i},1932
+  |   |       |-{snapd-desktop-i},1933
+  |   |       `-{snapd-desktop-i},1935
+  |   |-tracker-miner-f,1734
+  |   |   |-{tracker-miner-f},1741
+  |   |   |-{tracker-miner-f},1742
+  |   |   |-{tracker-miner-f},1743
+  |   |   |-{tracker-miner-f},1744
+  |   |   `-{tracker-miner-f},1880
+  |   |-vmtoolsd,2123 -n vmusr --blockFd 3 --uinputFd 4
+  |   |   |-{vmtoolsd},2361
+  |   |   |-{vmtoolsd},2362
+  |   |   `-{vmtoolsd},2381
+  |   |-xdg-desktop-por,1936
+  |   |   |-{xdg-desktop-por},1940
+  |   |   |-{xdg-desktop-por},1944
+  |   |   |-{xdg-desktop-por},2266
+  |   |   |-{xdg-desktop-por},2297
+  |   |   `-{xdg-desktop-por},2298
+  |   |-xdg-desktop-por,1946
+  |   |   |-{xdg-desktop-por},1952
+  |   |   |-{xdg-desktop-por},1959
+  |   |   `-{xdg-desktop-por},1960
+  |   |-xdg-desktop-por,2276
+  |   |   |-{xdg-desktop-por},2277
+  |   |   |-{xdg-desktop-por},2279
+  |   |   `-{xdg-desktop-por},2280
+  |   |-xdg-document-po,1717
+  |   |   |-fusermount3,1728,root -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+  |   |   |-{xdg-document-po},1718
+  |   |   |-{xdg-document-po},1720
+  |   |   |-{xdg-document-po},1727
+  |   |   |-{xdg-document-po},1729
+  |   |   `-{xdg-document-po},1730
+  |   `-xdg-permission-,1722
+  |       |-{xdg-permission-},1723
+  |       `-{xdg-permission-},1725
+  |-systemd-journal,363
+  |-systemd-logind,838
+  |-systemd-oomd,602,systemd-oom
+  |-systemd-resolve,603,systemd-resolve
+  |-systemd-timesyn,604,systemd-timesync
+  |   `-{systemd-timesyn},627
+  |-systemd-udevd,430
+  |-udisksd,848
+  |   |-{udisksd},867
+  |   |-{udisksd},869
+  |   |-{udisksd},913
+  |   `-{udisksd},989
+  |-unattended-upgr,945 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+  |   `-{unattended-upgr},1085
+  |-upowerd,1361
+  |   |-{upowerd},1368
+  |   `-{upowerd},1369
+  |-vmtoolsd,637
+  |   |-{vmtoolsd},693
+  |   |-{vmtoolsd},694
+  |   `-{vmtoolsd},699
+  |-vmware-vmblock-,399 /run/vmblock-fuse -o rw,subtype=vmware-vmblock,default_permissions,allow_other,dev,suid
+  |   |-{vmware-vmblock-},400
+  |   `-{vmware-vmblock-},401
+  `-wpa_supplicant,850 -u -s -O /run/wpa_supplicant

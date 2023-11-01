@@ -1,0 +1,103 @@
+Jun 18 15:29:03 ahnchaehyeok-virtual-machine systemd: pam_unix(systemd-user:session): session opened for user gdm(uid=128) by (uid=0)
+Jun 18 15:29:10 ahnchaehyeok-virtual-machine polkitd(authority=local): Registered Authentication Agent for unix-session:c1 (system bus name :1.41 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+Jun 18 15:30:06 ahnchaehyeok-virtual-machine CRON[1649]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Jun 18 15:30:06 ahnchaehyeok-virtual-machine CRON[1649]: pam_unix(cron:session): session closed for user root
+Jun 18 15:30:46 ahnchaehyeok-virtual-machine gdm-password]: gkr-pam: unable to locate daemon control file
+Jun 18 15:30:46 ahnchaehyeok-virtual-machine gdm-password]: gkr-pam: stashed password to try later in open session
+Jun 18 15:30:46 ahnchaehyeok-virtual-machine gdm-password]: pam_unix(gdm-password:session): session opened for user ahnchaehyeok(uid=1000) by (uid=0)
+Jun 18 15:30:46 ahnchaehyeok-virtual-machine systemd-logind[838]: New session 3 of user ahnchaehyeok.
+Jun 18 15:30:46 ahnchaehyeok-virtual-machine systemd: pam_unix(systemd-user:session): session opened for user ahnchaehyeok(uid=1000) by (uid=0)
+Jun 18 15:30:46 ahnchaehyeok-virtual-machine gdm-password]: gkr-pam: gnome-keyring-daemon started properly and unlocked keyring
+Jun 18 15:30:48 ahnchaehyeok-virtual-machine gnome-keyring-daemon[1686]: The PKCS#11 component was already initialized
+Jun 18 15:30:48 ahnchaehyeok-virtual-machine gnome-keyring-daemon[1686]: The SSH agent was already initialized
+Jun 18 15:30:48 ahnchaehyeok-virtual-machine gnome-keyring-daemon[1686]: The Secret Service was already initialized
+Jun 18 15:30:51 ahnchaehyeok-virtual-machine polkitd(authority=local): Registered Authentication Agent for unix-session:3 (system bus name :1.85 [/usr/bin/gnome-shell], object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8)
+Jun 18 15:30:57 ahnchaehyeok-virtual-machine gdm-launch-environment]: pam_unix(gdm-launch-environment:session): session closed for user gdm
+Jun 18 15:30:57 ahnchaehyeok-virtual-machine systemd-logind[838]: Session c1 logged out. Waiting for processes to exit.
+Jun 18 15:30:57 ahnchaehyeok-virtual-machine systemd-logind[838]: Removed session c1.
+Jun 18 15:30:57 ahnchaehyeok-virtual-machine polkitd(authority=local): Unregistered Authentication Agent for unix-session:c1 (system bus name :1.41, object path /org/freedesktop/PolicyKit1/AuthenticationAgent, locale en_US.UTF-8) (disconnected from bus)
+Jun 18 15:31:07 ahnchaehyeok-virtual-machine systemd: pam_unix(systemd-user:session): session closed for user gdm
+Jun 18 15:34:24 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/mount /dev/sdb1 /mnt1
+Jun 18 15:34:24 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:34:24 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:34:32 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/usr/bin/mount /dev/sdb2 /mnt2
+Jun 18 15:34:32 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:34:32 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:34:51 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Autorun/
+Jun 18 15:34:51 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:34:51 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:34:55 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Log
+Jun 18 15:34:55 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:34:55 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:34:59 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Logon
+Jun 18 15:34:59 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:34:59 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:02 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm Network/
+Jun 18 15:35:02 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:02 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:07 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Network/
+Jun 18 15:35:07 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:07 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:10 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r exstorage/
+Jun 18 15:35:10 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:10 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:14 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r shortcut/
+Jun 18 15:35:14 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:14 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:19 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r System/
+Jun 18 15:35:19 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:19 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:22 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r T
+Jun 18 15:35:22 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:22 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:27 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Trash
+Jun 18 15:35:27 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:27 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:31 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r TMP
+Jun 18 15:35:31 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:31 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:34 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Web/
+Jun 18 15:35:34 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:34 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:39 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Process/
+Jun 18 15:35:39 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:39 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:44 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r SysInfo_Inactive/
+Jun 18 15:35:44 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:44 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:46 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Virtual_memory/
+Jun 18 15:35:46 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:46 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:35:50 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt2 ; USER=root ; COMMAND=/usr/bin/rm -r Forensic_Info.txt
+Jun 18 15:35:50 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:35:50 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:03 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/chmod +x ./Forensic.bash
+Jun 18 15:36:03 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:36:03 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:06 ahnchaehyeok-virtual-machine sudo: ahnchaehyeok : TTY=pts/0 ; PWD=/mnt1 ; USER=root ; COMMAND=./Forensic.bash
+Jun 18 15:36:06 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/1 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/chmod +x Forensic.bash RedHat_Forensic.bash Ubuntu_Forensic.bash
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ahnchaehyeok(uid=0)
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/1 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/chmod +x Active_Scripts/a_virtual_memory_all_64.bash Active_Scripts/b_logon_64.bash Active_Scripts/c_network_64.bash Active_Scripts/d_processinfo_64.bash Active_Scripts/e_auto_64.bash Active_Scripts/f_sysinfo_64.bash
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ahnchaehyeok(uid=0)
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/1 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/chmod +x Inactive_Scripts/a_metadata_64.bash Inactive_Scripts/b_log_64.bash Inactive_Scripts/c_systeminfo_64.bash Inactive_Scripts/d_trash_64.bash Inactive_Scripts/e_webhistory_64.bash Inactive_Scripts/f_tmpfile_64.bash Inactive_Scripts/g_shortcut_64.bash Inactive_Scripts/h_ExStorage_64.bash
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ahnchaehyeok(uid=0)
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/1 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/chmod 777 hash.exe
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ahnchaehyeok(uid=0)
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/1 ; PWD=/mnt1 ; USER=root ; COMMAND=./Ubuntu_Forensic.bash
+Jun 18 15:36:11 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ahnchaehyeok(uid=0)
+Jun 18 15:36:19 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/2 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/lastb
+Jun 18 15:36:19 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by root(uid=0)
+Jun 18 15:36:19 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:39 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/2 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/sbin/service rsyslog start
+Jun 18 15:36:39 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by root(uid=0)
+Jun 18 15:36:40 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:36:40 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/2 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/grep error /var/log/syslog
+Jun 18 15:36:40 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by root(uid=0)
+Jun 18 15:36:40 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session closed for user root
+Jun 18 15:37:03 ahnchaehyeok-virtual-machine sudo:     root : TTY=pts/2 ; PWD=/mnt1 ; USER=root ; COMMAND=/usr/bin/cp -R /var/log/alternatives.log /var/log/apport.log /var/log/auth.log /var/log/boot.log /var/log/bootstrap.log /var/log/dpkg.log /var/log/fontconfig.log /var/log/gpu-manager.log /var/log/kern.log /var/log/ubuntu-advantage.log /var/log/ubuntu-advantage-timer.log /var/log/vmware-network.1.log /var/log/vmware-network.2.log /var/log/vmware-network.3.log /var/log/vmware-network.4.log /var/log/vmware-network.5.log /var/log/vmware-network.6.log /var/log/vmware-network.7.log /var/log/vmware-network.8.log /var/log/vmware-network.9.log /var/log/vmware-network.log /var/log/vmware-vmsvc-root.1.log /var/log/vmware-vmsvc-root.2.log /var/log/vmware-vmsvc-root.3.log /var/log/vmware-vmsvc-root.log /var/log/vmware-vmtoolsd-root.log ../mnt2/Log
+Jun 18 15:37:03 ahnchaehyeok-virtual-machine sudo: pam_unix(sudo:session): session opened for user root(uid=0) by root(uid=0)

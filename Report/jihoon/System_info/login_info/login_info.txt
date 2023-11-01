@@ -1,0 +1,2 @@
+사용자명	도메인	로그온 유형	로그온 한 시간			사용자의 SID		사용자가 속한 SID 그룹	사용자가 로그온한 IP주소	장치의 호스트명
+root	ahnchaehyeok-virtual-machine	N/A	  	0	 gid	192.168.44.129	ahnchaehyeok-virtual-machine

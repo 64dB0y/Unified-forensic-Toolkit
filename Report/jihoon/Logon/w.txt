@@ -1,0 +1,5 @@
+ 15:36:19 up 7 min,  3 users,  load average: 0.39, 0.84, 0.53
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+ahnchaeh tty2     tty2             15:30    7:52   0.03s  0.03s /usr/libexec/gnome-session-binary --session=ubuntu
+ahnchaeh pts/1    -                15:36   10.00s  0.00s  0.00s sudo ./Forensic.bash
+root     pts/2    -                15:36    0.00s  0.00s  0.00s w

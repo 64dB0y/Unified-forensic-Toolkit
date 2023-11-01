@@ -1,0 +1,32 @@
+[2023-06-08T06:05:37.217Z] [ message] [vmsvc] [703] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-08T06:05:37.217Z] [ message] [vmsvc] [703] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-08T06:05:37.217Z] [ message] [vmsvc] [703] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-08T06:05:37.217Z] [ message] [vmsvc] [703] Core dump limit set to -1
+[2023-06-08T06:05:37.294Z] [ message] [vmtoolsd] [703] Plugin 'hgfsServer' initialized.
+[2023-06-08T06:05:37.294Z] [ message] [vix] [703] QueryVGAuthConfig: vgauth usage is: 1
+[2023-06-08T06:05:37.294Z] [ message] [vmtoolsd] [703] Plugin 'vix' initialized.
+[2023-06-08T06:05:37.294Z] [ message] [vmtoolsd] [703] Plugin 'appInfo' initialized.
+[2023-06-08T06:05:37.294Z] [ message] [vmtoolsd] [703] Plugin 'componentMgr' initialized.
+[2023-06-08T06:05:37.294Z] [ message] [vmtoolsd] [703] Plugin 'guestInfo' initialized.
+[2023-06-08T06:05:37.294Z] [ message] [vmtoolsd] [703] Plugin 'powerops' initialized.
+[2023-06-08T06:05:37.294Z] [ message] [resolutionCommon] [703] resolutionCheckForKMS: dlopen succeeded.
+[2023-06-08T06:05:37.296Z] [ message] [resolutionCommon] [703] resolutionCheckForKMS: System support available for resolutionKMS.
+[2023-06-08T06:05:37.296Z] [ message] [vmtoolsd] [703] Plugin 'resolutionKMS' initialized.
+[2023-06-08T06:05:37.296Z] [ message] [vmtoolsd] [703] Plugin 'timeSync' initialized.
+[2023-06-08T06:05:37.296Z] [ message] [vmtoolsd] [703] Plugin 'vmbackup' initialized.
+[2023-06-08T06:05:37.303Z] [ message] [vix] [703] VixTools_ProcessVixCommand: command 62
+[2023-06-08T06:05:37.330Z] [ message] [vix] [703] VixTools_ProcessVixCommand: command 62
+[2023-06-08T06:05:37.330Z] [ message] [vix] [703] ToolsDaemonTcloReceiveVixCommand: command 62, additionalError = 17
+[2023-06-08T06:05:37.331Z] [ message] [vmsvc] [703] Executing script for state change 'OS_PowerOn'.
+[2023-06-08T06:05:37.331Z] [ message] [powerops] [703] Executing script: '/etc/vmware-tools/poweron-vm-default'
+[2023-06-08T06:05:39.270Z] [ message] [vmsvc] [703] Script exit code: 0, success = 1
+[2023-06-08T06:13:38.087Z] [ warning] [GLib-GObject] [703] g_object_get_is_valid_property: object class 'ToolsCoreService' has no property named 'tps_prop_gueststore'
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'vmbackup'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'timeSync'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'resolutionKMS'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'powerops'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'guestInfo'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'componentMgr'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'appInfo'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'vix'.
+[2023-06-08T06:13:38.127Z] [ message] [vmtoolsd] [703] Unloading plugin 'hgfsServer'.

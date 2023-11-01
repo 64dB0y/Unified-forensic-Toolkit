@@ -1,0 +1,38 @@
+log_file: /var/log/gpu-manager.log
+last_boot_file: /var/lib/ubuntu-drivers-common/last_gfx_boot
+new_boot_file: /var/lib/ubuntu-drivers-common/last_gfx_boot
+can't access /run/u-d-c-nvidia-was-loaded file
+can't access /opt/amdgpu-pro/bin/amdgpu-pro-px
+Looking for nvidia modules in /lib/modules/5.19.0-43-generic/kernel
+Looking for nvidia modules in /lib/modules/5.19.0-43-generic/updates/dkms
+Looking for amdgpu modules in /lib/modules/5.19.0-43-generic/kernel
+Looking for amdgpu modules in /lib/modules/5.19.0-43-generic/updates/dkms
+Is nvidia loaded? no
+Was nvidia unloaded? no
+Is nvidia blacklisted? no
+Is intel loaded? no
+Is radeon loaded? no
+Is radeon blacklisted? no
+Is amdgpu loaded? no
+Is amdgpu blacklisted? no
+Is amdgpu versioned? no
+Is amdgpu pro stack? no
+Is nouveau loaded? no
+Is nouveau blacklisted? no
+Is nvidia kernel module available? no
+Is amdgpu kernel module available? no
+Vendor/Device Id: 15ad:405
+BusID "PCI:0@0:15:0"
+Is boot vga? yes
+Skipping "/dev/dri/card0", driven by "vmwgfx"
+Skipping "/dev/dri/card0", driven by "vmwgfx"
+Skipping "/dev/dri/card0", driven by "vmwgfx"
+Skipping "/dev/dri/card0", driven by "vmwgfx"
+Does it require offloading? no
+last cards number = 1
+Has amd? no
+Has intel? no
+Has nvidia? no
+How many cards? 1
+Has the system changed? No
+Single card detected

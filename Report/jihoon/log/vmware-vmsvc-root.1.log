@@ -1,0 +1,22 @@
+[2023-06-08T07:40:53.111Z] [ message] [vmsvc] [700] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-08T07:40:53.111Z] [ message] [vmsvc] [700] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-43-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-08T07:40:53.111Z] [ message] [vmsvc] [700] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-08T07:40:53.111Z] [ message] [vmsvc] [700] Core dump limit set to -1
+[2023-06-08T07:40:53.164Z] [ message] [vmtoolsd] [700] Plugin 'hgfsServer' initialized.
+[2023-06-08T07:40:53.164Z] [ message] [vix] [700] QueryVGAuthConfig: vgauth usage is: 1
+[2023-06-08T07:40:53.164Z] [ message] [vmtoolsd] [700] Plugin 'vix' initialized.
+[2023-06-08T07:40:53.164Z] [ message] [vmtoolsd] [700] Plugin 'appInfo' initialized.
+[2023-06-08T07:40:53.164Z] [ message] [vmtoolsd] [700] Plugin 'componentMgr' initialized.
+[2023-06-08T07:40:53.164Z] [ message] [vmtoolsd] [700] Plugin 'guestInfo' initialized.
+[2023-06-08T07:40:53.164Z] [ message] [vmtoolsd] [700] Plugin 'powerops' initialized.
+[2023-06-08T07:40:53.164Z] [ message] [resolutionCommon] [700] resolutionCheckForKMS: dlopen succeeded.
+[2023-06-08T07:40:53.166Z] [ message] [resolutionCommon] [700] resolutionCheckForKMS: System support available for resolutionKMS.
+[2023-06-08T07:40:53.166Z] [ message] [vmtoolsd] [700] Plugin 'resolutionKMS' initialized.
+[2023-06-08T07:40:53.166Z] [ message] [vmtoolsd] [700] Plugin 'timeSync' initialized.
+[2023-06-08T07:40:53.166Z] [ message] [vmtoolsd] [700] Plugin 'vmbackup' initialized.
+[2023-06-08T07:40:53.169Z] [ message] [vix] [700] VixTools_ProcessVixCommand: command 62
+[2023-06-08T07:40:53.219Z] [ message] [vix] [700] VixTools_ProcessVixCommand: command 62
+[2023-06-08T07:40:53.219Z] [ message] [vix] [700] ToolsDaemonTcloReceiveVixCommand: command 62, additionalError = 17
+[2023-06-08T07:40:53.220Z] [ message] [vmsvc] [700] Executing script for state change 'OS_PowerOn'.
+[2023-06-08T07:40:53.220Z] [ message] [powerops] [700] Executing script: '/etc/vmware-tools/poweron-vm-default'
+[2023-06-08T07:40:55.512Z] [ message] [vmsvc] [700] Script exit code: 0, success = 1

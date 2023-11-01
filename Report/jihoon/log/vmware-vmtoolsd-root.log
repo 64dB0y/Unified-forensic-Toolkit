@@ -1,0 +1,262 @@
+[2023-03-23T10:51:39.522Z] [ message] [vmtoolsd] [760] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-03-23T10:51:39.522Z] [ message] [vmtoolsd] [760] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-35-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-03-23T10:51:39.522Z] [ message] [vmtoolsd] [760] Log caching is enabled with maxCacheEntries=4096.
+[2023-03-23T10:51:39.522Z] [ message] [vmtoolsd] [760] Core dump limit set to -1
+[2023-03-23T10:52:53.954Z] [ message] [vmtoolsd] [695] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-03-23T10:52:53.957Z] [ message] [vmtoolsd] [695] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-35-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-03-23T10:52:53.954Z] [ message] [vmtoolsd] [695] Log caching is enabled with maxCacheEntries=4096.
+[2023-03-23T10:52:53.957Z] [ message] [vmtoolsd] [695] Core dump limit set to -1
+[2023-03-28T06:52:40.545Z] [ message] [vmtoolsd] [696] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-03-28T06:52:40.546Z] [ message] [vmtoolsd] [696] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-35-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-03-28T06:52:40.545Z] [ message] [vmtoolsd] [696] Log caching is enabled with maxCacheEntries=4096.
+[2023-03-28T06:52:40.546Z] [ message] [vmtoolsd] [696] Core dump limit set to -1
+[2023-03-29T04:34:15.532Z] [ message] [vmtoolsd] [704] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-03-29T04:34:15.534Z] [ message] [vmtoolsd] [704] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-35-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-03-29T04:34:15.532Z] [ message] [vmtoolsd] [704] Log caching is enabled with maxCacheEntries=4096.
+[2023-03-29T04:34:15.534Z] [ message] [vmtoolsd] [704] Core dump limit set to -1
+[2023-03-30T07:28:57.118Z] [ message] [vmtoolsd] [670] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-03-30T07:28:57.119Z] [ message] [vmtoolsd] [670] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-03-30T07:28:57.118Z] [ message] [vmtoolsd] [670] Log caching is enabled with maxCacheEntries=4096.
+[2023-03-30T07:28:57.119Z] [ message] [vmtoolsd] [670] Core dump limit set to -1
+[2023-04-02T10:27:05.549Z] [ message] [vmtoolsd] [661] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-02T10:27:05.551Z] [ message] [vmtoolsd] [661] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-02T10:27:05.549Z] [ message] [vmtoolsd] [661] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-02T10:27:05.551Z] [ message] [vmtoolsd] [661] Core dump limit set to -1
+[2023-04-02T11:25:33.942Z] [ message] [vmtoolsd] [670] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-02T11:25:33.943Z] [ message] [vmtoolsd] [670] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-02T11:25:33.942Z] [ message] [vmtoolsd] [670] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-02T11:25:33.943Z] [ message] [vmtoolsd] [670] Core dump limit set to -1
+[2023-04-03T07:32:37.661Z] [ message] [vmtoolsd] [643] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-03T07:32:37.662Z] [ message] [vmtoolsd] [643] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-03T07:32:37.661Z] [ message] [vmtoolsd] [643] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-03T07:32:37.662Z] [ message] [vmtoolsd] [643] Core dump limit set to -1
+[2023-04-04T08:02:22.103Z] [ message] [vmtoolsd] [649] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:02:22.104Z] [ message] [vmtoolsd] [649] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:02:22.103Z] [ message] [vmtoolsd] [649] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:02:22.104Z] [ message] [vmtoolsd] [649] Core dump limit set to -1
+[2023-04-04T08:02:24.873Z] [ message] [vmtoolsd] [1111] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:02:24.873Z] [ message] [vmtoolsd] [1111] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:02:24.873Z] [ message] [vmtoolsd] [1111] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:02:24.873Z] [ message] [vmtoolsd] [1111] Core dump limit set to -1
+[2023-04-04T08:04:12.874Z] [ message] [vmtoolsd] [1344] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:04:12.874Z] [ message] [vmtoolsd] [1344] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:04:12.874Z] [ message] [vmtoolsd] [1344] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:04:12.874Z] [ message] [vmtoolsd] [1344] Core dump limit set to -1
+[2023-04-04T08:05:48.525Z] [ message] [vmtoolsd] [653] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:05:48.526Z] [ message] [vmtoolsd] [653] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:05:48.525Z] [ message] [vmtoolsd] [653] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:05:48.526Z] [ message] [vmtoolsd] [653] Core dump limit set to -1
+[2023-04-04T08:05:50.505Z] [ message] [vmtoolsd] [1056] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:05:50.505Z] [ message] [vmtoolsd] [1056] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:05:50.505Z] [ message] [vmtoolsd] [1056] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:05:50.505Z] [ message] [vmtoolsd] [1056] Core dump limit set to -1
+[2023-04-04T08:06:48.654Z] [ message] [vmtoolsd] [673] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:06:48.655Z] [ message] [vmtoolsd] [673] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:06:48.654Z] [ message] [vmtoolsd] [673] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:06:48.655Z] [ message] [vmtoolsd] [673] Core dump limit set to -1
+[2023-04-04T08:06:50.683Z] [ message] [vmtoolsd] [1054] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:06:50.683Z] [ message] [vmtoolsd] [1054] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:06:50.683Z] [ message] [vmtoolsd] [1054] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:06:50.683Z] [ message] [vmtoolsd] [1054] Core dump limit set to -1
+[2023-04-04T08:08:35.734Z] [ message] [vmtoolsd] [681] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08[2023-04-04T08:08:37.441Z] [ message] [vmtoolsd] [1056] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:08:37.442Z] [ message] [vmtoolsd] [1056] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:08:37.441Z] [ message] [vmtoolsd] [1056] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:08:37.442Z] [ message] [vmtoolsd] [1056] Core dump limit set to -1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             [2023-04-04T08:16:47.302Z] [ message] [vmtoolsd] [679] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:16:47.303Z] [ message] [vmtoolsd] [679] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:16:47.302Z] [ message] [vmtoolsd] [679] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:16:47.303Z] [ message] [vmtoolsd] [679] Core dump limit set to -1
+[2023-04-04T08:16:49.710Z] [ message] [vmtoolsd] [1020] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:16:49.710Z] [ message] [vmtoolsd] [1020] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:16:49.710Z] [ message] [vmtoolsd] [1020] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:16:49.710Z] [ message] [vmtoolsd] [1020] Core dump limit set to -1
+[2023-04-04T08:23:12.943Z] [ message] [vmtoolsd] [634] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:23:12.943Z] [ message] [vmtoolsd] [634] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:23:12.943Z] [ message] [vmtoolsd] [634] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:23:12.943Z] [ message] [vmtoolsd] [634] Core dump limit set to -1
+[2023-04-04T08:23:15.204Z] [ message] [vmtoolsd] [1055] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:23:15.204Z] [ message] [vmtoolsd] [1055] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:23:15.204Z] [ message] [vmtoolsd] [1055] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:23:15.204Z] [ message] [vmtoolsd] [1055] Core dump limit set to -1
+[2023-04-04T08:25:59.587Z] [ message] [vmtoolsd] [641] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:25:59.587Z] [ message] [vmtoolsd] [641] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-04T08:25:59.587Z] [ message] [vmtoolsd] [641] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-04T08:25:59.587Z] [ message] [vmtoolsd] [641] Core dump limit set to -1
+[2023-04-04T08:26:01.641Z] [ message] [vmtoolsd] [1054] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-04T08:26:01.641Z] [ message] [vmtoolsd] [1054] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' [2023-04-05T04:12:12.086Z] [ message] [vmtoolsd] [656] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:12:12.086Z] [ message] [vmtoolsd] [656] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:12:12.086Z] [ message] [vmtoolsd] [656] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:12:12.086Z] [ message] [vmtoolsd] [656] Core dump limit set to -1
+[2023-04-05T04:26:04.314Z] [ message] [vmtoolsd] [622] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:26:04.314Z] [ message] [vmtoolsd] [622] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:26:04.314Z] [ message] [vmtoolsd] [622] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:26:04.314Z] [ message] [vmtoolsd] [622] Core dump limit set to -1
+[2023-04-05T04:32:28.665Z] [ message] [vmtoolsd] [671] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:32:28.666Z] [ message] [vmtoolsd] [671] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:32:28.665Z] [ message] [vmtoolsd] [671] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:32:28.666Z] [ message] [vmtoolsd] [671] Core dump limit set to -1
+[2023-04-05T04:33:56.789Z] [ message] [vmtoolsd] [644] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:33:56.790Z] [ message] [vmtoolsd] [644] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:33:56.789Z] [ message] [vmtoolsd] [644] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:33:56.790Z] [ message] [vmtoolsd] [644] Core dump limit set to -1
+[2023-04-05T04:34:43.113Z] [ message] [vmtoolsd] [693] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:34:43.113Z] [ message] [vmtoolsd] [693] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:34:43.113Z] [ message] [vmtoolsd] [693] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:34:43.113Z] [ message] [vmtoolsd] [693] Core dump limit set to -1
+[2023-04-05T04:36:41.700Z] [ message] [vmtoolsd] [665] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:36:41.701Z] [ message] [vmtoolsd] [665] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:36:41.700Z] [ message] [vmtoolsd] [665] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:36:41.701Z] [ message] [vmtoolsd] [665] Core dump limit set to -1
+[2023-04-05T04:37:42.833Z] [ message] [vmtoolsd] [700] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:37:42.833Z] [ message] [vmtoolsd] [700] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:37:42.833Z] [ message] [vmtoolsd] [700] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:37:42.833Z] [ message] [vmtoolsd] [700] Core dump limit set to -1
+[2023-04-05T04:38:55.028Z] [ message] [vmtoolsd] [673] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:38:55.029Z] [ message] [vmtoolsd] [673] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:38:55.028Z] [ message] [vmtoolsd] [673] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:38:55.029Z] [ message] [vmtoolsd] [673] Core dump limit set to -1
+[2023-04-05T04:44:57.387Z] [ message] [vmtoolsd] [690] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:44:57.391Z] [ message] [vmtoolsd] [690] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:44:57.387Z] [ message] [vmtoolsd] [690] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:44:57.391Z] [ message] [vmtoolsd] [690] Core dump limit set to -1
+[2023-04-05T04:48:16.050Z] [ message] [vmtoolsd] [702] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:48:16.053Z] [ message] [vmtoolsd] [702] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:48:16.050Z] [ message] [vmtoolsd] [702] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:48:16.053Z] [ message] [vmtoolsd] [702] Core dump limit set to -1
+[2023-04-05T04:54:26.786Z] [ message] [vmtoolsd] [692] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:54:26.786Z] [ message] [vmtoolsd] [692] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:54:26.786Z] [ message] [vmtoolsd] [692] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:54:26.786Z] [ message] [vmtoolsd] [692] Core dump limit set to -1
+[2023-04-05T04:55:43.695Z] [ message] [vmtoolsd] [632] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:55:43.695Z] [ message] [vmtoolsd] [632] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:55:43.695Z] [ message] [vmtoolsd] [632] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:55:43.695Z] [ message] [vmtoolsd] [632] Core dump limit set to -1
+[2023-04-05T04:58:20.005Z] [ message] [vmtoolsd] [661] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T04:58:20.006Z] [ message] [vmtoolsd] [661] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T04:58:20.005Z] [ message] [vmtoolsd] [661] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T04:58:20.006Z] [ message] [vmtoolsd] [661] Core dump limit set to -1
+[2023-04-05T05:03:01.632Z] [ message] [vmtoolsd] [637] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T05:03:01.633Z] [ message] [vmtoolsd] [637] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T05:03:01.632Z] [ message] [vmtoolsd] [637] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T05:03:01.633Z] [ message] [vmtoolsd] [637] Core dump limit set to -1
+[2023-04-05T05:04:52.945Z] [ message] [vmtoolsd] [635] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T05:04:52.946Z] [ message] [vmtoolsd] [635] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T05:04:52.945Z] [ message] [vmtoolsd] [635] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T05:04:52.946Z] [ message] [vmtoolsd] [635] Core dump limit set to -1
+[2023-04-05T05:05:57.908Z] [ message] [vmtoolsd] [656] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T05:05:57.910Z] [ message] [vmtoolsd] [656] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T05:05:57.908Z] [ message] [vmtoolsd] [656] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T05:05:57.910Z] [ message] [vmtoolsd] [656] Core dump limit set to -1
+[2023-04-05T05:17:51.925Z] [ message] [vmtoolsd] [679] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-05T05:17:51.926Z] [ message] [vmtoolsd] [679] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-05T05:17:51.924Z] [ message] [vmtoolsd] [679] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-05T05:17:51.926Z] [ message] [vmtoolsd] [679] Core dump limit set to -1
+[2023-04-06T03:55:36.706Z] [ message] [vmtoolsd] [681] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-06T03:55:36.707Z] [ message] [vmtoolsd] [681] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-06T03:55:36.705Z] [ message] [vmtoolsd] [681] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-06T03:55:36.707Z] [ message] [vmtoolsd] [681] Core dump limit set to -1
+[2023-04-11T03:17:05.774Z] [ message] [vmtoolsd] [668] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T03:17:05.779Z] [ message] [vmtoolsd] [668] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T03:17:05.774Z] [ message] [vmtoolsd] [668] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T03:17:05.779Z] [ message] [vmtoolsd] [668] Core dump limit set to -1
+[2023-04-11T03:33:20.814Z] [ message] [vmtoolsd] [645] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T03:33:20.815Z] [ message] [vmtoolsd] [645] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T03:33:20.814Z] [ message] [vmtoolsd] [645] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T03:33:20.815Z] [ message] [vmtoolsd] [645] Core dump limit set to -1
+[2023-04-11T03:44:01.797Z] [ message] [vmtoolsd] [647] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T03:44:01.802Z] [ message] [vmtoolsd] [647] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T03:44:01.797Z] [ message] [vmtoolsd] [647] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T03:44:01.802Z] [ message] [vmtoolsd] [647] Core dump limit set to -1
+[2023-04-11T03:49:13.238Z] [ message] [vmtoolsd] [641] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T03:49:13.241Z] [ message] [vmtoolsd] [641] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T03:49:13.238Z] [ message] [vmtoolsd] [641] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T03:49:13.241Z] [ message] [vmtoolsd] [641] Core dump limit set to -1
+[2023-04-11T04:00:32.254Z] [ message] [vmtoolsd] [639] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T04:00:32.255Z] [ message] [vmtoolsd] [639] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T04:00:32.254Z] [ message] [vmtoolsd] [639] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T04:00:32.255Z] [ message] [vmtoolsd] [639] Core dump limit set to -1
+[2023-04-11T04:04:00.146Z] [ message] [vmtoolsd] [635] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T04:04:00.148Z] [ message] [vmtoolsd] [635] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T04:04:00.146Z] [ message] [vmtoolsd] [635] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T04:04:00.148Z] [ message] [vmtoolsd] [635] Core dump limit set to -1
+[2023-04-11T04:18:53.647Z] [ message] [vmtoolsd] [635] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T04:18:53.651Z] [ message] [vmtoolsd] [635] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T04:18:53.647Z] [ message] [vmtoolsd] [635] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T04:18:53.651Z] [ message] [vmtoolsd] [635] Core dump limit set to -1
+[2023-04-11T04:34:15.539Z] [ message] [vmtoolsd] [644] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-11T04:34:15.540Z] [ message] [vmtoolsd] [644] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-11T04:34:15.539Z] [ message] [vmtoolsd] [644] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-11T04:34:15.540Z] [ message] [vmtoolsd] [644] Core dump limit set to -1
+[2023-04-12T05:51:38.979Z] [ message] [vmtoolsd] [641] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-04-12T05:51:38.980Z] [ message] [vmtoolsd] [641] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-04-12T05:51:38.979Z] [ message] [vmtoolsd] [641] Log caching is enabled with maxCacheEntries=4096.
+[2023-04-12T05:51:38.980Z] [ message] [vmtoolsd] [641] Core dump limit set to -1
+[2023-05-09T03:53:09.976Z] [ message] [vmtoolsd] [631] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-09T03:53:09.979Z] [ message] [vmtoolsd] [631] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-09T03:53:09.976Z] [ message] [vmtoolsd] [631] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-09T03:53:09.979Z] [ message] [vmtoolsd] [631] Core dump limit set to -1
+[2023-05-09T07:57:45.780Z] [ message] [vmtoolsd] [645] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-09T07:57:45.781Z] [ message] [vmtoolsd] [645] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-09T07:57:45.780Z] [ message] [vmtoolsd] [645] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-09T07:57:45.781Z] [ message] [vmtoolsd] [645] Core dump limit set to -1
+[2023-05-11T07:37:50.534Z] [ message] [vmtoolsd] [633] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-11T07:37:50.536Z] [ message] [vmtoolsd] [633] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-38-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-11T07:37:50.534Z] [ message] [vmtoolsd] [633] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-11T07:37:50.536Z] [ message] [vmtoolsd] [633] Core dump limit set to -1
+[2023-05-18T08:39:20.408Z] [ message] [vmtoolsd] [667] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-18T08:39:20.410Z] [ message] [vmtoolsd] [667] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-41-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-18T08:39:20.408Z] [ message] [vmtoolsd] [667] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-18T08:39:20.410Z] [ message] [vmtoolsd] [667] Core dump limit set to -1
+[2023-05-20T05:25:37.436Z] [ message] [vmtoolsd] [675] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-20T05:25:37.437Z] [ message] [vmtoolsd] [675] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-41-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-20T05:25:37.436Z] [ message] [vmtoolsd] [675] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-20T05:25:37.437Z] [ message] [vmtoolsd] [675] Core dump limit set to -1
+[2023-05-21T06:50:02.070Z] [ message] [vmtoolsd] [656] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-21T06:50:02.071Z] [ message] [vmtoolsd] [656] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-41-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-21T06:50:02.070Z] [ message] [vmtoolsd] [656] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-21T06:50:02.071Z] [ message] [vmtoolsd] [656] Core dump limit set to -1
+[2023-05-23T04:27:35.195Z] [ message] [vmtoolsd] [683] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-23T04:27:35.197Z] [ message] [vmtoolsd] [683] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-41-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-23T04:27:35.195Z] [ message] [vmtoolsd] [683] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-23T04:27:35.197Z] [ message] [vmtoolsd] [683] Core dump limit set to -1
+[2023-05-23T06:54:40.440Z] [ message] [vmtoolsd] [694] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-23T06:54:40.441Z] [ message] [vmtoolsd] [694] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-23T06:54:40.440Z] [ message] [vmtoolsd] [694] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-23T06:54:40.441Z] [ message] [vmtoolsd] [694] Core dump limit set to -1
+[2023-05-23T08:00:52.263Z] [ message] [vmtoolsd] [680] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-23T08:00:52.264Z] [ message] [vmtoolsd] [680] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-23T08:00:52.263Z] [ message] [vmtoolsd] [680] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-23T08:00:52.264Z] [ message] [vmtoolsd] [680] Core dump limit set to -1
+[2023-05-31T04:08:01.093Z] [ message] [vmtoolsd] [676] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-31T04:08:01.101Z] [ message] [vmtoolsd] [676] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-31T04:08:01.093Z] [ message] [vmtoolsd] [676] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-31T04:08:01.101Z] [ message] [vmtoolsd] [676] Core dump limit set to -1
+[2023-05-31T04:56:59.567Z] [ message] [vmtoolsd] [667] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-05-31T04:56:59.568Z] [ message] [vmtoolsd] [667] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-05-31T04:56:59.567Z] [ message] [vmtoolsd] [667] Log caching is enabled with maxCacheEntries=4096.
+[2023-05-31T04:56:59.568Z] [ message] [vmtoolsd] [667] Core dump limit set to -1
+[2023-06-01T06:06:32.824Z] [ message] [vmtoolsd] [659] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-01T06:06:32.833Z] [ message] [vmtoolsd] [659] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-01T06:06:32.824Z] [ message] [vmtoolsd] [659] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-01T06:06:32.833Z] [ message] [vmtoolsd] [659] Core dump limit set to -1
+[2023-06-01T07:37:07.242Z] [ message] [vmtoolsd] [698] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-01T07:37:07.244Z] [ message] [vmtoolsd] [698] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-01T07:37:07.242Z] [ message] [vmtoolsd] [698] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-01T07:37:07.244Z] [ message] [vmtoolsd] [698] Core dump limit set to -1
+[2023-06-08T06:05:37.213Z] [ message] [vmtoolsd] [703] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-08T06:05:37.215Z] [ message] [vmtoolsd] [703] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-42-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-08T06:05:37.213Z] [ message] [vmtoolsd] [703] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-08T06:05:37.215Z] [ message] [vmtoolsd] [703] Core dump limit set to -1
+[2023-06-08T06:13:48.158Z] [ message] [vmtoolsd] [579] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-08T06:13:48.160Z] [ message] [vmtoolsd] [579] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-43-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-08T06:13:48.158Z] [ message] [vmtoolsd] [579] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-08T06:13:48.160Z] [ message] [vmtoolsd] [579] Core dump limit set to -1
+[2023-06-08T07:40:53.109Z] [ message] [vmtoolsd] [700] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-08T07:40:53.110Z] [ message] [vmtoolsd] [700] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-43-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-08T07:40:53.109Z] [ message] [vmtoolsd] [700] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-08T07:40:53.110Z] [ message] [vmtoolsd] [700] Core dump limit set to -1
+[2023-06-18T06:28:27.681Z] [ message] [vmtoolsd] [637] VMware Tools Version: 12.1.0.37487 (build-20219665)
+[2023-06-18T06:28:27.682Z] [ message] [vmtoolsd] [637] Guest OS details: architecture='X86' bitness='64' distroName='Ubuntu 22.04.2 LTS' distroVersion='22.04' familyName='Linux' kernelVersion='5.19.0-43-generic' prettyName='Ubuntu 22.04.2 LTS'
+[2023-06-18T06:28:27.681Z] [ message] [vmtoolsd] [637] Log caching is enabled with maxCacheEntries=4096.
+[2023-06-18T06:28:27.682Z] [ message] [vmtoolsd] [637] Core dump limit set to -1

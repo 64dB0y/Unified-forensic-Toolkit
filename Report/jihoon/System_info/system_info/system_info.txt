@@ -1,0 +1,5047 @@
+*** System Information ***
+
+--- CPU Info ---
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Address sizes:                   45 bits physical, 48 bits virtual
+Byte Order:                      Little Endian
+CPU(s):                          2
+On-line CPU(s) list:             0,1
+Vendor ID:                       AuthenticAMD
+Model name:                      AMD Ryzen 5 5500U with Radeon Graphics
+CPU family:                      23
+Model:                           104
+Thread(s) per core:              1
+Core(s) per socket:              1
+Socket(s):                       2
+Stepping:                        1
+BogoMIPS:                        4192.12
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero wbnoinvd arat umip rdpid overflow_recov succor
+Hypervisor vendor:               VMware
+Virtualization type:             full
+L1d cache:                       64 KiB (2 instances)
+L1i cache:                       64 KiB (2 instances)
+L2 cache:                        1 MiB (2 instances)
+L3 cache:                        8 MiB (2 instances)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0,1
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Mmio stale data:   Not affected
+Vulnerability Retbleed:          Mitigation; untrained return thunk; SMT disabled
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+
+--- Block Devices ---
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0  63.3M  1 loop /snap/core20/1879
+loop1    7:1    0     4K  1 loop /snap/bare/5
+loop2    7:2    0  63.5M  1 loop /snap/core20/1891
+loop3    7:3    0  73.1M  1 loop /snap/core22/634
+loop4    7:4    0  73.8M  1 loop /snap/core22/750
+loop5    7:5    0   242M  1 loop /snap/firefox/2667
+loop6    7:6    0 349.7M  1 loop /snap/gnome-3-38-2004/137
+loop7    7:7    0 239.9M  1 loop /snap/firefox/2487
+loop9    7:9    0 349.7M  1 loop /snap/gnome-3-38-2004/140
+loop10   7:10   0 460.7M  1 loop /snap/gnome-42-2204/105
+loop11   7:11   0  91.7M  1 loop /snap/gtk-common-themes/1535
+loop12   7:12   0  45.9M  1 loop /snap/snap-store/638
+loop13   7:13   0  12.3M  1 loop /snap/snap-store/959
+loop14   7:14   0  53.3M  1 loop /snap/snapd/19361
+loop15   7:15   0  53.2M  1 loop /snap/snapd/19122
+loop16   7:16   0   428K  1 loop /snap/snapd-desktop-integration/57
+loop17   7:17   0   452K  1 loop /snap/snapd-desktop-integration/83
+loop18   7:18   0 466.5M  1 loop /snap/gnome-42-2204/111
+sda      8:0    0    20G  0 disk 
+├─sda1   8:1    0     1M  0 part 
+├─sda2   8:2    0   513M  0 part /boot/efi
+└─sda3   8:3    0  19.5G  0 part /var/snap/firefox/common/host-hunspell
+                                 /
+sdb      8:16   1  14.6G  0 disk 
+├─sdb1   8:17   1   7.2G  0 part /mnt1
+└─sdb2   8:18   1   7.5G  0 part /mnt2
+sr0     11:0    1 144.5M  0 rom  /media/ahnchaehyeok/CDROM
+
+--- Hardware Info ---
+ahnchaehyeok-virtual-machine
+    description: Computer
+    product: VMware Virtual Platform
+    vendor: VMware, Inc.
+    version: None
+    serial: VMware-56 4d b8 3c a4 5c 4a 49-04 b5 de da 14 81 7b a0
+    width: 64 bits
+    capabilities: smbios-2.7 dmi-2.7 smp vsyscall32
+    configuration: administrator_password=enabled boot=normal frontpanel_password=unknown keyboard_password=unknown power-on_password=disabled uuid=3cb84d56-5ca4-494a-04b5-deda14817ba0
+  *-core
+       description: Motherboard
+       product: 440BX Desktop Reference Platform
+       vendor: Intel Corporation
+       physical id: 0
+       version: None
+       serial: None
+     *-firmware
+          description: BIOS
+          vendor: Phoenix Technologies LTD
+          physical id: 0
+          version: 6.00
+          date: 11/12/2020
+          size: 86KiB
+          capabilities: isa pci pcmcia pnp apm upgrade shadowing escd cdboot bootselect edd int5printscreen int9keyboard int14serial int17printer int10video acpi smartbattery biosbootspecification netboot
+     *-cpu:0
+          description: CPU
+          product: AMD Ryzen 5 5500U with Radeon Graphics
+          vendor: Advanced Micro Devices [AMD]
+          physical id: 1
+          bus info: cpu@0
+          version: 23.104.1
+          slot: CPU #000
+          size: 2100MHz
+          capacity: 4230MHz
+          width: 64 bits
+          capabilities: lm fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx mmxext fxsr_opt pdpe1gb rdtscp x86-64 constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero wbnoinvd arat umip rdpid overflow_recov succor
+          configuration: cores=1 enabledcores=1 microcode=140542211
+        *-cache:0
+             description: L1 cache
+             physical id: 0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L1 cache
+             physical id: 1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:2
+             description: L2 cache
+             physical id: 2
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+        *-cache:3
+             description: L2 cache
+             physical id: 3
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:1
+          description: CPU
+          product: AMD Ryzen 5 5500U with Radeon Graphics
+          vendor: Advanced Micro Devices [AMD]
+          physical id: 2
+          bus info: cpu@1
+          version: 23.104.1
+          slot: CPU #001
+          size: 2100MHz
+          capacity: 4230MHz
+          width: 64 bits
+          capabilities: lm fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx mmxext fxsr_opt pdpe1gb rdtscp x86-64 constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero wbnoinvd arat umip rdpid overflow_recov succor
+          configuration: cores=1 enabledcores=1 microcode=140542211
+     *-cpu:2 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5
+          bus info: cpu@2
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #002
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 95
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 115
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:3 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6
+          bus info: cpu@3
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #003
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 96
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 116
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:4 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7
+          bus info: cpu@4
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #004
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 97
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 117
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:5 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 8
+          bus info: cpu@5
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #005
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 98
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 118
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:6 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 9
+          bus info: cpu@6
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #006
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 99
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 119
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:7 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: a
+          bus info: cpu@7
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #007
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 9a
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 11a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:8 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: b
+          bus info: cpu@8
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #008
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 9b
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 11b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:9 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: c
+          bus info: cpu@9
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #009
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 9c
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 11c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:10 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: d
+          bus info: cpu@10
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #010
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 9d
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 11d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:11 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: e
+          bus info: cpu@11
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #011
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 9e
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 11e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:12 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: f
+          bus info: cpu@12
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #012
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 9f
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 11f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:13 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 10
+          bus info: cpu@13
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #013
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 120
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:14 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 11
+          bus info: cpu@14
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #014
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 121
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:15 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 12
+          bus info: cpu@15
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #015
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a2
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 122
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:16 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 13
+          bus info: cpu@16
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #016
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a3
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 123
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:17 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 14
+          bus info: cpu@17
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #017
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a4
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 124
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:18 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 15
+          bus info: cpu@18
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #018
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a5
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 125
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:19 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 16
+          bus info: cpu@19
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #019
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a6
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 126
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:20 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 17
+          bus info: cpu@20
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #020
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a7
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 127
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:21 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 18
+          bus info: cpu@21
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #021
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a8
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 128
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:22 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 19
+          bus info: cpu@22
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #022
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: a9
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 129
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:23 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 1a
+          bus info: cpu@23
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #023
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: aa
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:24 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 1b
+          bus info: cpu@24
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #024
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ab
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:25 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 1c
+          bus info: cpu@25
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #025
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ac
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:26 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 1d
+          bus info: cpu@26
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #026
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ad
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:27 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 1e
+          bus info: cpu@27
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #027
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ae
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:28 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 1f
+          bus info: cpu@28
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #028
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: af
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:29 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 20
+          bus info: cpu@29
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #029
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 130
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:30 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 21
+          bus info: cpu@30
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #030
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 131
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:31 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 22
+          bus info: cpu@31
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #031
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b2
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 132
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:32 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 23
+          bus info: cpu@32
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #032
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b3
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 133
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:33 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 24
+          bus info: cpu@33
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #033
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b4
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 134
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:34 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 25
+          bus info: cpu@34
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #034
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b5
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 135
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+        *-bank:0 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 0
+             slot: NVD #0
+             width: 32 bits
+        *-bank:1 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1
+             slot: NVD #1
+             width: 32 bits
+        *-bank:2 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2
+             slot: NVD #2
+             width: 32 bits
+        *-bank:3 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3
+             slot: NVD #3
+             width: 32 bits
+        *-bank:4 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 4
+             slot: NVD #4
+             width: 32 bits
+        *-bank:5 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 5
+             slot: NVD #5
+             width: 32 bits
+        *-bank:6 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 6
+             slot: NVD #6
+             width: 32 bits
+        *-bank:7 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 7
+             slot: NVD #7
+             width: 32 bits
+        *-bank:8 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 8
+             slot: NVD #8
+             width: 32 bits
+        *-bank:9 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 9
+             slot: NVD #9
+             width: 32 bits
+        *-bank:10 UNCLAIMED
+             description: DIMM [empty]
+             physical id: a
+             slot: NVD #10
+             width: 32 bits
+        *-bank:11 UNCLAIMED
+             description: DIMM [empty]
+             physical id: b
+             slot: NVD #11
+             width: 32 bits
+        *-bank:12 UNCLAIMED
+             description: DIMM [empty]
+             physical id: c
+             slot: NVD #12
+             width: 32 bits
+        *-bank:13 UNCLAIMED
+             description: DIMM [empty]
+             physical id: d
+             slot: NVD #13
+             width: 32 bits
+        *-bank:14 UNCLAIMED
+             description: DIMM [empty]
+             physical id: e
+             slot: NVD #14
+             width: 32 bits
+        *-bank:15 UNCLAIMED
+             description: DIMM [empty]
+             physical id: f
+             slot: NVD #15
+             width: 32 bits
+        *-bank:16 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 10
+             slot: NVD #16
+             width: 32 bits
+        *-bank:17 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 11
+             slot: NVD #17
+             width: 32 bits
+        *-bank:18 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 12
+             slot: NVD #18
+             width: 32 bits
+        *-bank:19 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 13
+             slot: NVD #19
+             width: 32 bits
+        *-bank:20 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 14
+             slot: NVD #20
+             width: 32 bits
+        *-bank:21 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 15
+             slot: NVD #21
+             width: 32 bits
+        *-bank:22 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 16
+             slot: NVD #22
+             width: 32 bits
+        *-bank:23 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 17
+             slot: NVD #23
+             width: 32 bits
+        *-bank:24 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 18
+             slot: NVD #24
+             width: 32 bits
+        *-bank:25 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 19
+             slot: NVD #25
+             width: 32 bits
+        *-bank:26 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1a
+             slot: NVD #26
+             width: 32 bits
+        *-bank:27 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1b
+             slot: NVD #27
+             width: 32 bits
+        *-bank:28 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1c
+             slot: NVD #28
+             width: 32 bits
+        *-bank:29 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1d
+             slot: NVD #29
+             width: 32 bits
+        *-bank:30 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1e
+             slot: NVD #30
+             width: 32 bits
+        *-bank:31 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 1f
+             slot: NVD #31
+             width: 32 bits
+        *-bank:32 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 20
+             slot: NVD #32
+             width: 32 bits
+        *-bank:33 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 21
+             slot: NVD #33
+             width: 32 bits
+        *-bank:34 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 22
+             slot: NVD #34
+             width: 32 bits
+        *-bank:35 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 23
+             slot: NVD #35
+             width: 32 bits
+        *-bank:36 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 24
+             slot: NVD #36
+             width: 32 bits
+        *-bank:37 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 25
+             slot: NVD #37
+             width: 32 bits
+        *-bank:38 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 26
+             slot: NVD #38
+             width: 32 bits
+        *-bank:39 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 27
+             slot: NVD #39
+             width: 32 bits
+        *-bank:40 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 28
+             slot: NVD #40
+             width: 32 bits
+        *-bank:41 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 29
+             slot: NVD #41
+             width: 32 bits
+        *-bank:42 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2a
+             slot: NVD #42
+             width: 32 bits
+        *-bank:43 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2b
+             slot: NVD #43
+             width: 32 bits
+        *-bank:44 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2c
+             slot: NVD #44
+             width: 32 bits
+        *-bank:45 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2d
+             slot: NVD #45
+             width: 32 bits
+        *-bank:46 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2e
+             slot: NVD #46
+             width: 32 bits
+        *-bank:47 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 2f
+             slot: NVD #47
+             width: 32 bits
+        *-bank:48 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 30
+             slot: NVD #48
+             width: 32 bits
+        *-bank:49 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 31
+             slot: NVD #49
+             width: 32 bits
+        *-bank:50 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 32
+             slot: NVD #50
+             width: 32 bits
+        *-bank:51 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 33
+             slot: NVD #51
+             width: 32 bits
+        *-bank:52 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 34
+             slot: NVD #52
+             width: 32 bits
+        *-bank:53 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 35
+             slot: NVD #53
+             width: 32 bits
+        *-bank:54 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 36
+             slot: NVD #54
+             width: 32 bits
+        *-bank:55 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 37
+             slot: NVD #55
+             width: 32 bits
+        *-bank:56 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 38
+             slot: NVD #56
+             width: 32 bits
+        *-bank:57 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 39
+             slot: NVD #57
+             width: 32 bits
+        *-bank:58 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3a
+             slot: NVD #58
+             width: 32 bits
+        *-bank:59 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3b
+             slot: NVD #59
+             width: 32 bits
+        *-bank:60 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3c
+             slot: NVD #60
+             width: 32 bits
+        *-bank:61 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3d
+             slot: NVD #61
+             width: 32 bits
+        *-bank:62 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3e
+             slot: NVD #62
+             width: 32 bits
+        *-bank:63 UNCLAIMED
+             description: DIMM [empty]
+             physical id: 3f
+             slot: NVD #63
+             width: 32 bits
+     *-cpu:35 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 26
+          bus info: cpu@35
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #035
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b6
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 136
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:36 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 27
+          bus info: cpu@36
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #036
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b7
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 137
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:37 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 28
+          bus info: cpu@37
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #037
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b8
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 138
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:38 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 29
+          bus info: cpu@38
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #038
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: b9
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 139
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:39 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 2a
+          bus info: cpu@39
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #039
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ba
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 13a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:40 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 2b
+          bus info: cpu@40
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #040
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: bb
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 13b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:41 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 2c
+          bus info: cpu@41
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #041
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: bc
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 13c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:42 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 2d
+          bus info: cpu@42
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #042
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: bd
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 13d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:43 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 2e
+          bus info: cpu@43
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #043
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: be
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 13e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:44 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 2f
+          bus info: cpu@44
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #044
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: bf
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 13f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:45 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 30
+          bus info: cpu@45
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #045
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 140
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:46 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 31
+          bus info: cpu@46
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #046
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 141
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:47 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 32
+          bus info: cpu@47
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #047
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c2
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 142
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:48 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 33
+          bus info: cpu@48
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #048
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c3
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 143
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:49 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 34
+          bus info: cpu@49
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #049
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c4
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 144
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:50 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 35
+          bus info: cpu@50
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #050
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c5
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 145
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:51 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 36
+          bus info: cpu@51
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #051
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c6
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 146
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:52 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 37
+          bus info: cpu@52
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #052
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c7
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 147
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:53 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 38
+          bus info: cpu@53
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #053
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c8
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 148
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:54 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 39
+          bus info: cpu@54
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #054
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: c9
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 149
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:55 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 3a
+          bus info: cpu@55
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #055
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ca
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 14a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:56 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 3b
+          bus info: cpu@56
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #056
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: cb
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 14b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:57 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 3c
+          bus info: cpu@57
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #057
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: cc
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 14c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:58 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 3d
+          bus info: cpu@58
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #058
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: cd
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 14d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:59 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 3e
+          bus info: cpu@59
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #059
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ce
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 14e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:60 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 3f
+          bus info: cpu@60
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #060
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: cf
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 14f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:61 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 40
+          bus info: cpu@61
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #061
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 150
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:62 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 41
+          bus info: cpu@62
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #062
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 151
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:63 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 42
+          bus info: cpu@63
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #063
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d2
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 152
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:64 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 43
+          bus info: cpu@64
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #064
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d3
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 153
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:65 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 44
+          bus info: cpu@65
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #065
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d4
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 154
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:66 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 45
+          bus info: cpu@66
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #066
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d5
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 155
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:67 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 46
+          bus info: cpu@67
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #067
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d6
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 156
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:68 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 47
+          bus info: cpu@68
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #068
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d7
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 157
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:69 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 48
+          bus info: cpu@69
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #069
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d8
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 158
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:70 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 49
+          bus info: cpu@70
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #070
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: d9
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 159
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:71 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 4a
+          bus info: cpu@71
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #071
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: da
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 15a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:72 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 4b
+          bus info: cpu@72
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #072
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: db
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 15b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:73 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 4c
+          bus info: cpu@73
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #073
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: dc
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 15c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:74 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 4d
+          bus info: cpu@74
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #074
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: dd
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 15d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:75 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 4e
+          bus info: cpu@75
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #075
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: de
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 15e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:76 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 4f
+          bus info: cpu@76
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #076
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: df
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 15f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:77 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 50
+          bus info: cpu@77
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #077
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 160
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:78 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 51
+          bus info: cpu@78
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #078
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 161
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:79 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 52
+          bus info: cpu@79
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #079
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e2
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 162
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:80 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 53
+          bus info: cpu@80
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #080
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e3
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 163
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:81 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 54
+          bus info: cpu@81
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #081
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e4
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 164
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:82 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 55
+          bus info: cpu@82
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #082
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e5
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 165
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:83 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 56
+          bus info: cpu@83
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #083
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e6
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 166
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:84 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 57
+          bus info: cpu@84
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #084
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e7
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 167
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:85 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 58
+          bus info: cpu@85
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #085
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e8
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 168
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:86 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 59
+          bus info: cpu@86
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #086
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: e9
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 169
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:87 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5a
+          bus info: cpu@87
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #087
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ea
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 16a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:88 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5b
+          bus info: cpu@88
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #088
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: eb
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 16b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:89 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5c
+          bus info: cpu@89
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #089
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ec
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 16c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:90 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5d
+          bus info: cpu@90
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #090
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ed
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 16d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:91 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5e
+          bus info: cpu@91
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #091
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ee
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 16e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:92 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 5f
+          bus info: cpu@92
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #092
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ef
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 16f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:93 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 60
+          bus info: cpu@93
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #093
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f0
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 170
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:94 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 61
+          bus info: cpu@94
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #094
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f1
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 171
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:95 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 62
+          bus info: cpu@95
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #095
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f2
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 172
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:96 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 63
+          bus info: cpu@96
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #096
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f3
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 173
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:97 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 64
+          bus info: cpu@97
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #097
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f4
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 174
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:98 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 65
+          bus info: cpu@98
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #098
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f5
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 175
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:99 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 66
+          bus info: cpu@99
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #099
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f6
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 176
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:100 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 67
+          bus info: cpu@100
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #100
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f7
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 177
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:101 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 68
+          bus info: cpu@101
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #101
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f8
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 178
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:102 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 69
+          bus info: cpu@102
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #102
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: f9
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 179
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:103 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6a
+          bus info: cpu@103
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #103
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: fa
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 17a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:104 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6b
+          bus info: cpu@104
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #104
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: fb
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 17b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:105 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6c
+          bus info: cpu@105
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #105
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: fc
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 17c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:106 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6d
+          bus info: cpu@106
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #106
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: fd
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 17d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:107 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6e
+          bus info: cpu@107
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #107
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: fe
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 17e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:108 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 6f
+          bus info: cpu@108
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #108
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: ff
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 17f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:109 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 70
+          bus info: cpu@109
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #109
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 100
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 180
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:110 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 71
+          bus info: cpu@110
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #110
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 101
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 181
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:111 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 72
+          bus info: cpu@111
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #111
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 102
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 182
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:112 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 73
+          bus info: cpu@112
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #112
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 103
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 183
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:113 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 74
+          bus info: cpu@113
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #113
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 104
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 184
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:114 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 75
+          bus info: cpu@114
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #114
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 105
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 185
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:115 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 76
+          bus info: cpu@115
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #115
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 106
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 186
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:116 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 77
+          bus info: cpu@116
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #116
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 107
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 187
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:117 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 78
+          bus info: cpu@117
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #117
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 108
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 188
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:118 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 79
+          bus info: cpu@118
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #118
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 109
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 189
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:119 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7a
+          bus info: cpu@119
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #119
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 10a
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 18a
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:120 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7b
+          bus info: cpu@120
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #120
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 10b
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 18b
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:121 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7c
+          bus info: cpu@121
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #121
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 10c
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 18c
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:122 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7d
+          bus info: cpu@122
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #122
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 10d
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 18d
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:123 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7e
+          bus info: cpu@123
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #123
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 10e
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 18e
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:124 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 7f
+          bus info: cpu@124
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #124
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 10f
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 18f
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:125 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 80
+          bus info: cpu@125
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #125
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 110
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 190
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:126 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 81
+          bus info: cpu@126
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #126
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 111
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 191
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-cpu:127 DISABLED
+          description: CPU
+          vendor: AuthenticAMD
+          physical id: 82
+          bus info: cpu@127
+          version: AMD Ryzen 5 5500U with Radeon Graphics
+          slot: CPU #127
+          size: 2100MHz
+          capacity: 4230MHz
+          capabilities: lm
+          configuration: cores=1 enabledcores=1
+        *-cache:0
+             description: L1 cache
+             physical id: 112
+             slot: L1
+             size: 16KiB
+             capacity: 16KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 192
+             slot: L2
+             size: 512KiB
+             capacity: 24MiB
+             capabilities: burst external write-back
+             configuration: level=2
+     *-memory
+          description: System Memory
+          physical id: 1a2
+          slot: System board or motherboard
+          size: 4GiB
+        *-bank:0
+             description: DIMM DRAM EDO
+             physical id: 0
+             slot: RAM slot #0
+             size: 4GiB
+             width: 32 bits
+        *-bank:1
+             description: DIMM DRAM [empty]
+             physical id: 1
+             slot: RAM slot #1
+        *-bank:2
+             description: DIMM DRAM [empty]
+             physical id: 2
+             slot: RAM slot #2
+        *-bank:3
+             description: DIMM DRAM [empty]
+             physical id: 3
+             slot: RAM slot #3
+        *-bank:4
+             description: DIMM DRAM [empty]
+             physical id: 4
+             slot: RAM slot #4
+        *-bank:5
+             description: DIMM DRAM [empty]
+             physical id: 5
+             slot: RAM slot #5
+        *-bank:6
+             description: DIMM DRAM [empty]
+             physical id: 6
+             slot: RAM slot #6
+        *-bank:7
+             description: DIMM DRAM [empty]
+             physical id: 7
+             slot: RAM slot #7
+        *-bank:8
+             description: DIMM DRAM [empty]
+             physical id: 8
+             slot: RAM slot #8
+        *-bank:9
+             description: DIMM DRAM [empty]
+             physical id: 9
+             slot: RAM slot #9
+        *-bank:10
+             description: DIMM DRAM [empty]
+             physical id: a
+             slot: RAM slot #10
+        *-bank:11
+             description: DIMM DRAM [empty]
+             physical id: b
+             slot: RAM slot #11
+        *-bank:12
+             description: DIMM DRAM [empty]
+             physical id: c
+             slot: RAM slot #12
+        *-bank:13
+             description: DIMM DRAM [empty]
+             physical id: d
+             slot: RAM slot #13
+        *-bank:14
+             description: DIMM DRAM [empty]
+             physical id: e
+             slot: RAM slot #14
+        *-bank:15
+             description: DIMM DRAM [empty]
+             physical id: f
+             slot: RAM slot #15
+        *-bank:16
+             description: DIMM DRAM [empty]
+             physical id: 10
+             slot: RAM slot #16
+        *-bank:17
+             description: DIMM DRAM [empty]
+             physical id: 11
+             slot: RAM slot #17
+        *-bank:18
+             description: DIMM DRAM [empty]
+             physical id: 12
+             slot: RAM slot #18
+        *-bank:19
+             description: DIMM DRAM [empty]
+             physical id: 13
+             slot: RAM slot #19
+        *-bank:20
+             description: DIMM DRAM [empty]
+             physical id: 14
+             slot: RAM slot #20
+        *-bank:21
+             description: DIMM DRAM [empty]
+             physical id: 15
+             slot: RAM slot #21
+        *-bank:22
+             description: DIMM DRAM [empty]
+             physical id: 16
+             slot: RAM slot #22
+        *-bank:23
+             description: DIMM DRAM [empty]
+             physical id: 17
+             slot: RAM slot #23
+        *-bank:24
+             description: DIMM DRAM [empty]
+             physical id: 18
+             slot: RAM slot #24
+        *-bank:25
+             description: DIMM DRAM [empty]
+             physical id: 19
+             slot: RAM slot #25
+        *-bank:26
+             description: DIMM DRAM [empty]
+             physical id: 1a
+             slot: RAM slot #26
+        *-bank:27
+             description: DIMM DRAM [empty]
+             physical id: 1b
+             slot: RAM slot #27
+        *-bank:28
+             description: DIMM DRAM [empty]
+             physical id: 1c
+             slot: RAM slot #28
+        *-bank:29
+             description: DIMM DRAM [empty]
+             physical id: 1d
+             slot: RAM slot #29
+        *-bank:30
+             description: DIMM DRAM [empty]
+             physical id: 1e
+             slot: RAM slot #30
+        *-bank:31
+             description: DIMM DRAM [empty]
+             physical id: 1f
+             slot: RAM slot #31
+        *-bank:32
+             description: DIMM DRAM [empty]
+             physical id: 20
+             slot: RAM slot #32
+        *-bank:33
+             description: DIMM DRAM [empty]
+             physical id: 21
+             slot: RAM slot #33
+        *-bank:34
+             description: DIMM DRAM [empty]
+             physical id: 22
+             slot: RAM slot #34
+        *-bank:35
+             description: DIMM DRAM [empty]
+             physical id: 23
+             slot: RAM slot #35
+        *-bank:36
+             description: DIMM DRAM [empty]
+             physical id: 24
+             slot: RAM slot #36
+        *-bank:37
+             description: DIMM DRAM [empty]
+             physical id: 25
+             slot: RAM slot #37
+        *-bank:38
+             description: DIMM DRAM [empty]
+             physical id: 26
+             slot: RAM slot #38
+        *-bank:39
+             description: DIMM DRAM [empty]
+             physical id: 27
+             slot: RAM slot #39
+        *-bank:40
+             description: DIMM DRAM [empty]
+             physical id: 28
+             slot: RAM slot #40
+        *-bank:41
+             description: DIMM DRAM [empty]
+             physical id: 29
+             slot: RAM slot #41
+        *-bank:42
+             description: DIMM DRAM [empty]
+             physical id: 2a
+             slot: RAM slot #42
+        *-bank:43
+             description: DIMM DRAM [empty]
+             physical id: 2b
+             slot: RAM slot #43
+        *-bank:44
+             description: DIMM DRAM [empty]
+             physical id: 2c
+             slot: RAM slot #44
+        *-bank:45
+             description: DIMM DRAM [empty]
+             physical id: 2d
+             slot: RAM slot #45
+        *-bank:46
+             description: DIMM DRAM [empty]
+             physical id: 2e
+             slot: RAM slot #46
+        *-bank:47
+             description: DIMM DRAM [empty]
+             physical id: 2f
+             slot: RAM slot #47
+        *-bank:48
+             description: DIMM DRAM [empty]
+             physical id: 30
+             slot: RAM slot #48
+        *-bank:49
+             description: DIMM DRAM [empty]
+             physical id: 31
+             slot: RAM slot #49
+        *-bank:50
+             description: DIMM DRAM [empty]
+             physical id: 32
+             slot: RAM slot #50
+        *-bank:51
+             description: DIMM DRAM [empty]
+             physical id: 33
+             slot: RAM slot #51
+        *-bank:52
+             description: DIMM DRAM [empty]
+             physical id: 34
+             slot: RAM slot #52
+        *-bank:53
+             description: DIMM DRAM [empty]
+             physical id: 35
+             slot: RAM slot #53
+        *-bank:54
+             description: DIMM DRAM [empty]
+             physical id: 36
+             slot: RAM slot #54
+        *-bank:55
+             description: DIMM DRAM [empty]
+             physical id: 37
+             slot: RAM slot #55
+        *-bank:56
+             description: DIMM DRAM [empty]
+             physical id: 38
+             slot: RAM slot #56
+        *-bank:57
+             description: DIMM DRAM [empty]
+             physical id: 39
+             slot: RAM slot #57
+        *-bank:58
+             description: DIMM DRAM [empty]
+             physical id: 3a
+             slot: RAM slot #58
+        *-bank:59
+             description: DIMM DRAM [empty]
+             physical id: 3b
+             slot: RAM slot #59
+        *-bank:60
+             description: DIMM DRAM [empty]
+             physical id: 3c
+             slot: RAM slot #60
+        *-bank:61
+             description: DIMM DRAM [empty]
+             physical id: 3d
+             slot: RAM slot #61
+        *-bank:62
+             description: DIMM DRAM [empty]
+             physical id: 3e
+             slot: RAM slot #62
+        *-bank:63
+             description: DIMM DRAM [empty]
+             physical id: 3f
+             slot: RAM slot #63
+     *-pci
+          description: Host bridge
+          product: 440BX/ZX/DX - 82443BX/ZX/DX Host bridge
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 01
+          width: 32 bits
+          clock: 33MHz
+          configuration: driver=agpgart-intel
+          resources: irq:0
+        *-pci:0
+             description: PCI bridge
+             product: 440BX/ZX/DX - 82443BX/ZX/DX AGP bridge
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 01
+             width: 32 bits
+             clock: 66MHz
+             capabilities: pci normal_decode bus_master
+        *-isa
+             description: ISA bridge
+             product: 82371AB/EB/MB PIIX4 ISA
+             vendor: Intel Corporation
+             physical id: 7
+             bus info: pci@0000:00:07.0
+             version: 08
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master
+             configuration: latency=0
+           *-pnp00:00
+                product: PnP device PNP0c02
+                physical id: 0
+                capabilities: pnp
+                configuration: driver=system
+           *-pnp00:01
+                product: PnP device PNP0b00
+                physical id: 1
+                capabilities: pnp
+                configuration: driver=rtc_cmos
+           *-pnp00:02
+                product: PnP device PNP0303
+                physical id: 2
+                capabilities: pnp
+                configuration: driver=i8042 kbd
+           *-pnp00:03
+                product: PnP device VMW0003
+                physical id: 3
+                capabilities: pnp
+                configuration: driver=i8042 aux
+           *-pnp00:04
+                product: PnP device PNP0103
+                physical id: 4
+                capabilities: pnp
+                configuration: driver=system
+           *-pnp00:05
+                product: PnP device PNP0501
+                physical id: 5
+                capabilities: pnp
+                configuration: driver=serial
+           *-pnp00:06
+                product: PnP device PNP0c02
+                physical id: 6
+                capabilities: pnp
+                configuration: driver=system
+        *-ide
+             description: IDE interface
+             product: 82371AB/EB/MB PIIX4 IDE
+             vendor: Intel Corporation
+             physical id: 7.1
+             bus info: pci@0000:00:07.1
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: ide isa_compat_mode pci_native_mode bus_master
+             configuration: driver=ata_piix latency=64
+             resources: irq:0 ioport:1f0(size=8) ioport:3f6 ioport:170(size=8) ioport:376 ioport:1060(size=16)
+        *-bridge UNCLAIMED
+             description: Bridge
+             product: 82371AB/EB/MB PIIX4 ACPI
+             vendor: Intel Corporation
+             physical id: 7.3
+             bus info: pci@0000:00:07.3
+             version: 08
+             width: 32 bits
+             clock: 33MHz
+             capabilities: bridge
+             configuration: latency=0
+        *-generic
+             description: System peripheral
+             product: Virtual Machine Communication Interface
+             vendor: VMware
+             physical id: 7.7
+             bus info: pci@0000:00:07.7
+             version: 10
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msi msix bus_master cap_list
+             configuration: driver=vmw_vmci latency=64 maxlatency=255 mingnt=6
+             resources: irq:16 ioport:1080(size=64) memory:febfe000-febfffff
+        *-display
+             description: VGA compatible controller
+             product: SVGA II Adapter
+             vendor: VMware
+             physical id: f
+             bus info: pci@0000:00:0f.0
+             logical name: /dev/fb0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: vga_controller bus_master cap_list rom fb
+             configuration: depth=32 driver=vmwgfx latency=64 resolution=1176,885
+             resources: irq:16 ioport:1070(size=16) memory:e8000000-efffffff memory:fe000000-fe7fffff memory:c0000-dffff
+        *-scsi
+             description: SCSI storage controller
+             product: 53c1030 PCI-X Fusion-MPT Dual Ultra320 SCSI
+             vendor: Broadcom / LSI
+             physical id: 10
+             bus info: pci@0000:00:10.0
+             logical name: scsi32
+             version: 01
+             width: 64 bits
+             clock: 33MHz
+             capabilities: scsi bus_master cap_list rom scsi-host
+             configuration: driver=mptspi latency=64 maxlatency=255 mingnt=6
+             resources: irq:17 ioport:1400(size=256) memory:feba0000-febbffff memory:febc0000-febdffff memory:c0000000-c0003fff
+           *-disk
+                description: SCSI Disk
+                product: VMware Virtual S
+                vendor: VMware,
+                physical id: 0.0.0
+                bus info: scsi@32:0.0.0
+                logical name: /dev/sda
+                version: 1.0
+                size: 20GiB (21GB)
+                capabilities: 7200rpm gpt-1.00 partitioned partitioned:gpt
+                configuration: ansiversion=2 guid=c2da7178-38df-4dd8-b38a-7f94e8b8c9b6 logicalsectorsize=512 sectorsize=512
+              *-volume:0
+                   description: BIOS Boot partition
+                   vendor: EFI
+                   physical id: 1
+                   bus info: scsi@32:0.0.0,1
+                   logical name: /dev/sda1
+                   serial: 852ce176-63b2-46f8-a42c-0a84b25c0181
+                   capacity: 1023KiB
+                   capabilities: nofs
+              *-volume:1
+                   description: Windows FAT volume
+                   vendor: mkfs.fat
+                   physical id: 2
+                   bus info: scsi@32:0.0.0,2
+                   logical name: /dev/sda2
+                   logical name: /boot/efi
+                   version: FAT32
+                   serial: d48b-6859
+                   size: 510MiB
+                   capacity: 512MiB
+                   capabilities: boot fat initialized
+                   configuration: FATs=2 filesystem=fat mount.fstype=vfat mount.options=rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro name=EFI System Partition state=mounted
+              *-volume:2
+                   description: EXT4 volume
+                   vendor: Linux
+                   physical id: 3
+                   bus info: scsi@32:0.0.0,3
+                   logical name: /dev/sda3
+                   logical name: /
+                   logical name: /var/snap/firefox/common/host-hunspell
+                   version: 1.0
+                   serial: ee763391-d4c1-4dc1-bf4c-f8bded3de040
+                   size: 19GiB
+                   capabilities: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                   configuration: created=2023-03-23 19:43:20 filesystem=ext4 lastmountpoint=/ modified=2023-06-18 15:28:22 mount.fstype=ext4 mount.options=ro,noexec,noatime,errors=remount-ro mounted=2023-06-18 15:28:23 state=mounted
+        *-pci:1
+             description: PCI bridge
+             product: PCI bridge
+             vendor: VMware
+             physical id: 11
+             bus info: pci@0000:00:11.0
+             version: 02
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci subtractive_decode bus_master cap_list
+             resources: ioport:2000(size=8192) memory:fd500000-fdffffff ioport:e7b00000(size=5242880)
+           *-usb:0
+                description: USB controller
+                product: USB1.1 UHCI Controller
+                vendor: VMware
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                version: 00
+                width: 32 bits
+                clock: 33MHz
+                capabilities: uhci bus_master cap_list
+                configuration: driver=uhci_hcd latency=64
+                resources: irq:18 ioport:2080(size=32)
+              *-usbhost
+                   product: UHCI Host Controller
+                   vendor: Linux 5.19.0-43-generic uhci_hcd
+                   physical id: 1
+                   bus info: usb@2
+                   logical name: usb2
+                   version: 5.19
+                   capabilities: usb-1.10
+                   configuration: driver=hub slots=2 speed=12Mbit/s
+                 *-usb:0
+                      description: Mouse
+                      product: VMware VMware Virtual USB Mouse
+                      vendor: VMware
+                      physical id: 1
+                      bus info: usb@2:1
+                      logical name: input5
+                      logical name: /dev/input/event4
+                      logical name: /dev/input/mouse2
+                      version: 1.03
+                      capabilities: usb-1.10 usb
+                      configuration: driver=usbhid speed=12Mbit/s
+                 *-usb:1
+                      description: USB hub
+                      product: VMware Virtual USB Hub
+                      vendor: VMware, Inc.
+                      physical id: 2
+                      bus info: usb@2:2
+                      version: 1.00
+                      capabilities: usb-1.10
+                      configuration: driver=hub slots=7 speed=12Mbit/s
+                    *-usb
+                         description: Bluetooth wireless interface
+                         product: Virtual Bluetooth Adapter
+                         vendor: VMware
+                         physical id: 1
+                         bus info: usb@2:2.1
+                         version: 1.00
+                         serial: 000650268328
+                         capabilities: bluetooth usb-2.00
+                         configuration: driver=btusb speed=12Mbit/s
+           *-network
+                description: Ethernet interface
+                product: 82545EM Gigabit Ethernet Controller (Copper)
+                vendor: Intel Corporation
+                physical id: 1
+                bus info: pci@0000:02:01.0
+                logical name: ens33
+                version: 01
+                serial: 00:0c:29:81:7b:a0
+                size: 1Gbit/s
+                capacity: 1Gbit/s
+                width: 64 bits
+                clock: 66MHz
+                capabilities: pm pcix bus_master cap_list rom ethernet physical logical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+                configuration: autonegotiation=on broadcast=yes driver=e1000 driverversion=5.19.0-43-generic duplex=full ip=192.168.44.129 latency=0 link=yes mingnt=255 multicast=yes port=twisted pair speed=1Gbit/s
+                resources: irq:19 memory:fd5c0000-fd5dffff memory:fdff0000-fdffffff ioport:2000(size=64) memory:fd500000-fd50ffff
+           *-multimedia
+                description: Multimedia audio controller
+                product: ES1371/ES1373 / Creative Labs CT2518
+                vendor: Ensoniq
+                physical id: 2
+                bus info: pci@0000:02:02.0
+                logical name: card0
+                logical name: /dev/snd/controlC0
+                logical name: dmmidi
+                logical name: midi
+                logical name: /dev/snd/midiC0D0
+                logical name: /dev/snd/pcmC0D0c
+                logical name: /dev/snd/pcmC0D0p
+                logical name: /dev/snd/pcmC0D1p
+                version: 02
+                width: 32 bits
+                clock: 33MHz
+                capabilities: bus_master cap_list
+                configuration: driver=snd_ens1371 latency=64 maxlatency=255 mingnt=6
+                resources: irq:16 ioport:2040(size=64)
+           *-usb:1
+                description: USB controller
+                product: USB2 EHCI Controller
+                vendor: VMware
+                physical id: 3
+                bus info: pci@0000:02:03.0
+                version: 00
+                width: 32 bits
+                clock: 33MHz
+                capabilities: ehci bus_master cap_list
+                configuration: driver=ehci-pci latency=64 maxlatency=255 mingnt=6
+                resources: irq:17 memory:fd5ef000-fd5effff
+              *-usbhost
+                   product: EHCI Host Controller
+                   vendor: Linux 5.19.0-43-generic ehci_hcd
+                   physical id: 1
+                   bus info: usb@1
+                   logical name: usb1
+                   version: 5.19
+                   capabilities: usb-2.00
+                   configuration: driver=hub slots=6 speed=480Mbit/s
+                 *-usb
+                      description: Mass storage device
+                      product: USB DISK
+                      vendor: SMI Corporation
+                      physical id: 1
+                      bus info: usb@1:1
+                      logical name: scsi33
+                      version: 11.00
+                      capabilities: usb-2.00 scsi emulated scsi-host
+                      configuration: driver=usb-storage maxpower=500mA speed=480Mbit/s
+                    *-disk
+                         description: SCSI Disk
+                         product: USB DISK
+                         vendor: SMI
+                         physical id: 0.0.0
+                         bus info: scsi@33:0.0.0
+                         logical name: /dev/sdb
+                         version: 1100
+                         serial: AA00000000000489
+                         size: 14GiB (15GB)
+                         capabilities: removable
+                         configuration: ansiversion=4 logicalsectorsize=512 sectorsize=512
+                       *-medium
+                            physical id: 0
+                            logical name: /dev/sdb
+                            size: 14GiB (15GB)
+                            capabilities: partitioned partitioned:dos
+                            configuration: signature=0ffc80a6
+                          *-volume:0
+                               description: Windows FAT volume
+                               vendor: mkfs.fat
+                               physical id: 1
+                               logical name: /dev/sdb1
+                               logical name: /mnt1
+                               version: FAT32
+                               serial: 85de-d5e0
+                               size: 7322MiB
+                               capacity: 7323MiB
+                               capabilities: primary fat initialized
+                               configuration: FATs=2 filesystem=fat mount.fstype=vfat mount.options=rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro state=mounted
+                          *-volume:1
+                               description: Windows FAT volume
+                               vendor: mkfs.fat
+                               physical id: 2
+                               logical name: /dev/sdb2
+                               logical name: /mnt2
+                               version: FAT32
+                               serial: 864d-e03e
+                               size: 7645MiB
+                               capacity: 7675MiB
+                               capabilities: primary fat initialized
+                               configuration: FATs=2 filesystem=fat mount.fstype=vfat mount.options=rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro state=mounted
+           *-sata
+                description: SATA controller
+                product: SATA AHCI controller
+                vendor: VMware
+                physical id: 4
+                bus info: pci@0000:02:04.0
+                logical name: scsi2
+                version: 00
+                width: 32 bits
+                clock: 66MHz
+                capabilities: sata pm msi ahci_1.0 bus_master cap_list rom emulated
+                configuration: driver=ahci latency=64
+                resources: irq:56 memory:fd5ee000-fd5eefff memory:fd510000-fd51ffff
+              *-cdrom
+                   description: DVD-RAM writer
+                   product: VMware SATA CD00
+                   vendor: NECVMWar
+                   physical id: 0.0.0
+                   bus info: scsi@2:0.0.0
+                   logical name: /dev/cdrom
+                   logical name: /dev/sr0
+                   logical name: /media/ahnchaehyeok/CDROM
+                   version: 1.00
+                   capabilities: removable audio cd-r cd-rw dvd dvd-r dvd-ram
+                   configuration: ansiversion=5 mount.fstype=iso9660 mount.options=ro,nosuid,nodev,relatime,nojoliet,check=s,map=n,blocksize=2048,uid=1000,gid=1000,dmode=500,fmode=400,iocharset=utf8 state=mounted status=ready
+                 *-medium
+                      physical id: 0
+                      logical name: /dev/cdrom
+                      logical name: /media/ahnchaehyeok/CDROM
+                      configuration: mount.fstype=iso9660 mount.options=ro,nosuid,nodev,relatime,nojoliet,check=s,map=n,blocksize=2048,uid=1000,gid=1000,dmode=500,fmode=400,iocharset=utf8 state=mounted
+        *-pci:2
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15
+             bus info: pci@0000:00:15.0
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:24 ioport:4000(size=4096) memory:fd400000-fd4fffff ioport:e7a00000(size=1048576)
+        *-pci:3
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.1
+             bus info: pci@0000:00:15.1
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:25 ioport:8000(size=4096) memory:fd000000-fd0fffff ioport:e7600000(size=1048576)
+        *-pci:4
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.2
+             bus info: pci@0000:00:15.2
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:26 ioport:c000(size=4096) memory:fcc00000-fccfffff ioport:e7200000(size=1048576)
+        *-pci:5
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.3
+             bus info: pci@0000:00:15.3
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:27 memory:fc800000-fc8fffff ioport:e6e00000(size=1048576)
+        *-pci:6
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.4
+             bus info: pci@0000:00:15.4
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:28 memory:fc400000-fc4fffff ioport:e6a00000(size=1048576)
+        *-pci:7
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.5
+             bus info: pci@0000:00:15.5
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:29 memory:fc000000-fc0fffff ioport:e6600000(size=1048576)
+        *-pci:8
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.6
+             bus info: pci@0000:00:15.6
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:30 memory:fbc00000-fbcfffff ioport:e6200000(size=1048576)
+        *-pci:9
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 15.7
+             bus info: pci@0000:00:15.7
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:31 memory:fb800000-fb8fffff ioport:e5e00000(size=1048576)
+        *-pci:10
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:32 ioport:5000(size=4096) memory:fd300000-fd3fffff ioport:e7900000(size=1048576)
+        *-pci:11
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.1
+             bus info: pci@0000:00:16.1
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:33 ioport:9000(size=4096) memory:fcf00000-fcffffff ioport:e7500000(size=1048576)
+        *-pci:12
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.2
+             bus info: pci@0000:00:16.2
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:34 ioport:d000(size=4096) memory:fcb00000-fcbfffff ioport:e7100000(size=1048576)
+        *-pci:13
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.3
+             bus info: pci@0000:00:16.3
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:35 memory:fc700000-fc7fffff ioport:e6d00000(size=1048576)
+        *-pci:14
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.4
+             bus info: pci@0000:00:16.4
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:36 memory:fc300000-fc3fffff ioport:e6900000(size=1048576)
+        *-pci:15
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.5
+             bus info: pci@0000:00:16.5
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:37 memory:fbf00000-fbffffff ioport:e6500000(size=1048576)
+        *-pci:16
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.6
+             bus info: pci@0000:00:16.6
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:38 memory:fbb00000-fbbfffff ioport:e6100000(size=1048576)
+        *-pci:17
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 16.7
+             bus info: pci@0000:00:16.7
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:39 memory:fb700000-fb7fffff ioport:e5d00000(size=1048576)
+        *-pci:18
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17
+             bus info: pci@0000:00:17.0
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:40 ioport:6000(size=4096) memory:fd200000-fd2fffff ioport:e7800000(size=1048576)
+        *-pci:19
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.1
+             bus info: pci@0000:00:17.1
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:41 ioport:a000(size=4096) memory:fce00000-fcefffff ioport:e7400000(size=1048576)
+        *-pci:20
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.2
+             bus info: pci@0000:00:17.2
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:42 ioport:e000(size=4096) memory:fca00000-fcafffff ioport:e7000000(size=1048576)
+        *-pci:21
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.3
+             bus info: pci@0000:00:17.3
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:43 memory:fc600000-fc6fffff ioport:e6c00000(size=1048576)
+        *-pci:22
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.4
+             bus info: pci@0000:00:17.4
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:44 memory:fc200000-fc2fffff ioport:e6800000(size=1048576)
+        *-pci:23
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.5
+             bus info: pci@0000:00:17.5
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:45 memory:fbe00000-fbefffff ioport:e6400000(size=1048576)
+        *-pci:24
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.6
+             bus info: pci@0000:00:17.6
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:46 memory:fba00000-fbafffff ioport:e6000000(size=1048576)
+        *-pci:25
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 17.7
+             bus info: pci@0000:00:17.7
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:47 memory:fb600000-fb6fffff ioport:e5c00000(size=1048576)
+        *-pci:26
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18
+             bus info: pci@0000:00:18.0
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:48 ioport:7000(size=4096) memory:fd100000-fd1fffff ioport:e7700000(size=1048576)
+        *-pci:27
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.1
+             bus info: pci@0000:00:18.1
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:49 ioport:b000(size=4096) memory:fcd00000-fcdfffff ioport:e7300000(size=1048576)
+        *-pci:28
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.2
+             bus info: pci@0000:00:18.2
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:50 memory:fc900000-fc9fffff ioport:e6f00000(size=1048576)
+        *-pci:29
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.3
+             bus info: pci@0000:00:18.3
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:51 memory:fc500000-fc5fffff ioport:e6b00000(size=1048576)
+        *-pci:30
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.4
+             bus info: pci@0000:00:18.4
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:52 memory:fc100000-fc1fffff ioport:e6700000(size=1048576)
+        *-pci:31
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.5
+             bus info: pci@0000:00:18.5
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:53 memory:fbd00000-fbdfffff ioport:e6300000(size=1048576)
+        *-pci:32
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.6
+             bus info: pci@0000:00:18.6
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:54 memory:fb900000-fb9fffff ioport:e5f00000(size=1048576)
+        *-pci:33
+             description: PCI bridge
+             product: PCI Express Root Port
+             vendor: VMware
+             physical id: 18.7
+             bus info: pci@0000:00:18.7
+             version: 01
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:55 memory:fb500000-fb5fffff ioport:e5b00000(size=1048576)
+  *-remoteaccess UNCLAIMED
+       vendor: Intel
+       physical id: 1
+       capabilities: inbound
+  *-input:0
+       product: Power Button
+       physical id: 2
+       logical name: input0
+       logical name: /dev/input/event0
+       capabilities: platform
+  *-input:1
+       product: AT Translated Set 2 keyboard
+       physical id: 3
+       logical name: input1
+       logical name: /dev/input/event1
+       logical name: input1::capslock
+       logical name: input1::numlock
+       logical name: input1::scrolllock
+       capabilities: i8042
+  *-input:2
+       product: VirtualPS/2 VMware VMMouse
+       physical id: 4
+       logical name: input3
+       logical name: /dev/input/event3
+       logical name: /dev/input/mouse1
+       capabilities: i8042
+  *-input:3
+       product: VirtualPS/2 VMware VMMouse
+       physical id: 5
+       logical name: input4
+       logical name: /dev/input/event2
+       logical name: /dev/input/mouse0
+       capabilities: i8042
+  *-input:4
+       product: VMware DnD UInput pointer
+       physical id: 6
+       logical name: input6
+       logical name: /dev/input/event5
+       logical name: /dev/input/js0
+       logical name: /dev/input/mouse3
+
+--- USB Devices ---
+Bus 001 Device 002: ID 090c:2000 Silicon Motion, Inc. - Taiwan (formerly Feiya Technology Corp.) USB DISK
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 004: ID 0e0f:0008 VMware, Inc. Virtual Bluetooth Adapter
+Bus 002 Device 003: ID 0e0f:0002 VMware, Inc. Virtual USB Hub
+Bus 002 Device 002: ID 0e0f:0003 VMware, Inc. Virtual Mouse
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+
+--- Loaded Kernel Modules ---
+Module                  Size  Used by
+isofs                  53248  1
+bnep                   28672  2
+uas                    28672  0
+usb_storage            77824  3 uas
+intel_rapl_msr         20480  0
+intel_rapl_common      40960  1 intel_rapl_msr
+crct10dif_pclmul       16384  1
+ghash_clmulni_intel    16384  0
+vmw_balloon            28672  0
+aesni_intel           376832  0
+crypto_simd            16384  1 aesni_intel
+vsock_loopback         16384  0
+vmw_vsock_virtio_transport_common    45056  1 vsock_loopback
+vmw_vsock_vmci_transport    32768  2
+vsock                  49152  7 vmw_vsock_virtio_transport_common,vsock_loopback,vmw_vsock_vmci_transport
+binfmt_misc            24576  1
+cryptd                 24576  2 crypto_simd,ghash_clmulni_intel
+snd_ens1371            28672  2
+snd_ac97_codec        176128  1 snd_ens1371
+gameport               24576  1 snd_ens1371
+ac97_bus               16384  1 snd_ac97_codec
+snd_pcm               159744  2 snd_ac97_codec,snd_ens1371
+joydev                 32768  0
+snd_seq_midi           20480  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+input_leds             16384  0
+serio_raw              20480  0
+snd_rawmidi            45056  2 snd_seq_midi,snd_ens1371
+nls_iso8859_1          16384  3
+snd_seq                77824  2 snd_seq_midi,snd_seq_midi_event
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+btusb                  61440  0
+snd_timer              40960  2 snd_seq,snd_pcm
+btrtl                  24576  1 btusb
+btbcm                  24576  1 btusb
+btintel                40960  1 btusb
+btmtk                  16384  1 btusb
+snd                   114688  11 snd_seq,snd_seq_device,snd_timer,snd_ac97_codec,snd_pcm,snd_rawmidi,snd_ens1371
+bluetooth             827392  13 btrtl,btmtk,btintel,btbcm,bnep,btusb
+ecdh_generic           16384  1 bluetooth
+ecc                    40960  1 ecdh_generic
+soundcore              16384  1 snd
+vmw_vmci               90112  2 vmw_balloon,vmw_vsock_vmci_transport
+mac_hid                16384  0
+sch_fq_codel           24576  2
+vmwgfx                372736  5
+drm_ttm_helper         16384  1 vmwgfx
+ttm                    98304  2 vmwgfx,drm_ttm_helper
+drm_kms_helper        200704  1 vmwgfx
+fb_sys_fops            16384  1 drm_kms_helper
+syscopyarea            16384  1 drm_kms_helper
+sysfillrect            20480  1 drm_kms_helper
+sysimgblt              20480  1 drm_kms_helper
+msr                    16384  0
+parport_pc             53248  0
+ppdev                  24576  0
+lp                     28672  0
+parport                73728  3 parport_pc,lp,ppdev
+ramoops                32768  0
+pstore_blk             16384  0
+reed_solomon           28672  1 ramoops
+pstore_zone            32768  1 pstore_blk
+drm                   581632  9 vmwgfx,drm_kms_helper,drm_ttm_helper,ttm
+efi_pstore             16384  0
+ip_tables              32768  0
+x_tables               57344  1 ip_tables
+autofs4                45056  2
+hid_generic            16384  0
+crc32_pclmul           16384  0
+ahci                   49152  1
+e1000                 159744  0
+libahci                49152  1 ahci
+usbhid                 65536  0
+hid                   159744  2 usbhid,hid_generic
+psmouse               180224  0
+mptspi                 24576  2
+mptscsih               49152  1 mptspi
+mptbase               106496  2 mptspi,mptscsih
+scsi_transport_spi     32768  1 mptspi
+i2c_piix4              32768  0
+pata_acpi              16384  0
+
+--- Disk Space Info ---
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           389M  2.0M  387M   1% /run
+/dev/sda3        20G   14G  4.9G  74% /
+tmpfs           1.9G     0  1.9G   0% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+/dev/sda2       512M  6.1M  506M   2% /boot/efi
+tmpfs           389M  104K  389M   1% /run/user/1000
+/dev/sr0        145M  145M     0 100% /media/ahnchaehyeok/CDROM
+/dev/sdb1       7.2G  3.4G  3.8G  47% /mnt1
+/dev/sdb2       7.5G   27M  7.5G   1% /mnt2
+
+--- Memory Info ---
+               total        used        free      shared  buff/cache   available
+Mem:            3888        1763         114          36        2010        1856
+Swap:           2139           0        2139
+

@@ -1,0 +1,141 @@
+/usr/share/fonts: skipping, existing cache is valid: 0 fonts, 6 dirs
+/usr/share/fonts/X11: skipping, existing cache is valid: 0 fonts, 4 dirs
+/usr/share/fonts/X11/Type1: skipping, existing cache is valid: 8 fonts, 0 dirs
+/usr/share/fonts/X11/encodings: skipping, existing cache is valid: 0 fonts, 1 dirs
+/usr/share/fonts/X11/encodings/large: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/X11/misc: skipping, existing cache is valid: 89 fonts, 0 dirs
+/usr/share/fonts/X11/util: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cMap: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap: skipping, existing cache is valid: 0 fonts, 5 dirs
+/usr/share/fonts/cmap/adobe-cns1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-gb1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-japan1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-japan2: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-korea1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/opentype: skipping, existing cache is valid: 0 fonts, 3 dirs
+/usr/share/fonts/opentype/malayalam: skipping, existing cache is valid: 7 fonts, 0 dirs
+/usr/share/fonts/opentype/noto: skipping, existing cache is valid: 30 fonts, 0 dirs
+/usr/share/fonts/opentype/urw-base35: skipping, existing cache is valid: 35 fonts, 0 dirs
+/usr/share/fonts/truetype: skipping, existing cache is valid: 0 fonts, 48 dirs
+/usr/share/fonts/truetype/Gargi: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/Gubbi: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/Nakula: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/Navilu: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/Sahadeva: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/Sarai: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/abyssinica: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/arphic: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/truetype/dejavu: skipping, existing cache is valid: 6 fonts, 0 dirs
+/usr/share/fonts/truetype/droid: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-beng-extra: skipping, existing cache is valid: 6 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-deva-extra: skipping, existing cache is valid: 3 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-gujr-extra: skipping, existing cache is valid: 5 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-guru-extra: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-kalapi: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-orya-extra: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-telu-extra: skipping, existing cache is valid: 2 fonts, 0 dirs
+/usr/share/fonts/truetype/fonts-yrsa-rasa: skipping, existing cache is valid: 15 fonts, 0 dirs
+/usr/share/fonts/truetype/freefont: skipping, existing cache is valid: 12 fonts, 0 dirs
+/usr/share/fonts/truetype/kacst: skipping, existing cache is valid: 15 fonts, 0 dirs
+/usr/share/fonts/truetype/kacst-one: skipping, existing cache is valid: 2 fonts, 0 dirs
+/usr/share/fonts/truetype/lao: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/liberation: skipping, existing cache is valid: 16 fonts, 0 dirs
+/usr/share/fonts/truetype/liberation2: skipping, existing cache is valid: 12 fonts, 0 dirs
+/usr/share/fonts/truetype/libreoffice: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-assamese: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-bengali: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-devanagari: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-gujarati: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-kannada: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-malayalam: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-oriya: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-punjabi: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-tamil: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-tamil-classical: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/lohit-telugu: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/malayalam: skipping, existing cache is valid: 10 fonts, 0 dirs
+/usr/share/fonts/truetype/noto: skipping, existing cache is valid: 4 fonts, 0 dirs
+/usr/share/fonts/truetype/padauk: skipping, existing cache is valid: 4 fonts, 0 dirs
+/usr/share/fonts/truetype/pagul: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/samyak: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/samyak-fonts: skipping, existing cache is valid: 3 fonts, 0 dirs
+/usr/share/fonts/truetype/sinhala: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/teluguvijayam: skipping, existing cache is valid: 20 fonts, 0 dirs
+/usr/share/fonts/truetype/tibetan-machine: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/tlwg: skipping, existing cache is valid: 58 fonts, 0 dirs
+/usr/share/fonts/truetype/ttf-khmeros-core: skipping, existing cache is valid: 2 fonts, 0 dirs
+/usr/share/fonts/truetype/ubuntu: skipping, existing cache is valid: 14 fonts, 0 dirs
+/usr/share/fonts/type1: skipping, existing cache is valid: 0 fonts, 1 dirs
+/usr/share/fonts/type1/urw-base35: skipping, existing cache is valid: 35 fonts, 0 dirs
+/usr/local/share/fonts: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/X11: skipping, looped directory detected
+/usr/share/fonts/cMap: skipping, looped directory detected
+/usr/share/fonts/cmap: skipping, looped directory detected
+/usr/share/fonts/opentype: skipping, looped directory detected
+/usr/share/fonts/truetype: skipping, looped directory detected
+/usr/share/fonts/type1: skipping, looped directory detected
+/usr/share/fonts/X11/Type1: skipping, looped directory detected
+/usr/share/fonts/X11/encodings: skipping, looped directory detected
+/usr/share/fonts/X11/misc: skipping, looped directory detected
+/usr/share/fonts/X11/util: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-cns1: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-gb1: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-japan1: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-japan2: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-korea1: skipping, looped directory detected
+/usr/share/fonts/opentype/malayalam: skipping, looped directory detected
+/usr/share/fonts/opentype/noto: skipping, looped directory detected
+/usr/share/fonts/opentype/urw-base35: skipping, looped directory detected
+/usr/share/fonts/truetype/Gargi: skipping, looped directory detected
+/usr/share/fonts/truetype/Gubbi: skipping, looped directory detected
+/usr/share/fonts/truetype/Nakula: skipping, looped directory detected
+/usr/share/fonts/truetype/Navilu: skipping, looped directory detected
+/usr/share/fonts/truetype/Sahadeva: skipping, looped directory detected
+/usr/share/fonts/truetype/Sarai: skipping, looped directory detected
+/usr/share/fonts/truetype/abyssinica: skipping, looped directory detected
+/usr/share/fonts/truetype/arphic: skipping, looped directory detected
+/usr/share/fonts/truetype/dejavu: skipping, looped directory detected
+/usr/share/fonts/truetype/droid: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-beng-extra: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-deva-extra: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-gujr-extra: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-guru-extra: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-kalapi: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-orya-extra: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-telu-extra: skipping, looped directory detected
+/usr/share/fonts/truetype/fonts-yrsa-rasa: skipping, looped directory detected
+/usr/share/fonts/truetype/freefont: skipping, looped directory detected
+/usr/share/fonts/truetype/kacst: skipping, looped directory detected
+/usr/share/fonts/truetype/kacst-one: skipping, looped directory detected
+/usr/share/fonts/truetype/lao: skipping, looped directory detected
+/usr/share/fonts/truetype/liberation: skipping, looped directory detected
+/usr/share/fonts/truetype/liberation2: skipping, looped directory detected
+/usr/share/fonts/truetype/libreoffice: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-assamese: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-bengali: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-devanagari: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-gujarati: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-kannada: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-malayalam: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-oriya: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-punjabi: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-tamil: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-tamil-classical: skipping, looped directory detected
+/usr/share/fonts/truetype/lohit-telugu: skipping, looped directory detected
+/usr/share/fonts/truetype/malayalam: skipping, looped directory detected
+/usr/share/fonts/truetype/noto: skipping, looped directory detected
+/usr/share/fonts/truetype/padauk: skipping, looped directory detected
+/usr/share/fonts/truetype/pagul: skipping, looped directory detected
+/usr/share/fonts/truetype/samyak: skipping, looped directory detected
+/usr/share/fonts/truetype/samyak-fonts: skipping, looped directory detected
+/usr/share/fonts/truetype/sinhala: skipping, looped directory detected
+/usr/share/fonts/truetype/teluguvijayam: skipping, looped directory detected
+/usr/share/fonts/truetype/tibetan-machine: skipping, looped directory detected
+/usr/share/fonts/truetype/tlwg: skipping, looped directory detected
+/usr/share/fonts/truetype/ttf-khmeros-core: skipping, looped directory detected
+/usr/share/fonts/truetype/ubuntu: skipping, looped directory detected
+/usr/share/fonts/type1/urw-base35: skipping, looped directory detected
+/usr/share/fonts/X11/encodings/large: skipping, looped directory detected
+/var/cache/fontconfig: cleaning cache directory
+/var/cache/fontconfig: invalid cache file: da43223dd54fb3bb4243ae19d4b583b2-le64.cache-7
+fc-cache: succeeded
