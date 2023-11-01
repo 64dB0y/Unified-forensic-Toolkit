@@ -1,0 +1,9 @@
+2023-06-01 17:46:17,770 - system.py:(362) [DEBUG]: Reading file: /etc/os-release
+2023-06-01 17:46:17,779 - system.py:(362) [DEBUG]: Reading file: /proc/version_signature
+2023-06-01 17:46:17,781 - system.py:(362) [DEBUG]: Reading file: /var/lib/ubuntu-advantage/private/machine-token.json
+2023-06-01 17:46:17,781 - files.py:(56) [DEBUG]: File does not exist: /var/lib/ubuntu-advantage/private/machine-token.json
+2023-06-01 17:46:17,810 - system.py:(362) [DEBUG]: Reading file: /var/lib/ubuntu-advantage/private/machine-token.json
+2023-06-01 17:46:17,810 - files.py:(56) [DEBUG]: File does not exist: /var/lib/ubuntu-advantage/private/machine-token.json
+2023-06-01 17:46:19,379 - system.py:(362) [DEBUG]: Reading file: /run/ubuntu-advantage//aptnews.json
+2023-06-01 17:46:19,386 - apt_news.py:(151) [DEBUG]: msg dates don't apply: AptNewsMessage{'begin': datetime.datetime(2023, 2, 7, 0, 0, tzinfo=datetime.timezone.utc), 'end': None, 'selectors': None, 'lines': ['"Phased updates" allow careful rollout of deb package changes at scale.', 'You may see these as packages that have been "kept back". Learn more at', 'https://ubuntu.com/server/docs/about-apt-upgrade-and-phased-updates']}
+2023-06-01 17:46:19,387 - apt_news.py:(178) [DEBUG]: using msg: None

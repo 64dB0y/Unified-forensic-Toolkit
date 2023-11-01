@@ -1,0 +1,106 @@
+../mnt2/Log/alternatives.log
+MD5 hash: d41d8cd98f00b204e9800998ecf8427e
+SHA1 hash: da39a3ee5e6b4b0d3255bfef95601890afd80709
+
+../mnt2/Log/apport.log
+MD5 hash: d41d8cd98f00b204e9800998ecf8427e
+SHA1 hash: da39a3ee5e6b4b0d3255bfef95601890afd80709
+
+../mnt2/Log/auth.log
+MD5 hash: 55623508a786b256af042ee9c1ede386
+SHA1 hash: b4a71256eed2127c67ddb8cc9d8f1e89f08ab5d5
+
+../mnt2/Log/boot.log
+MD5 hash: 95b6f1968029d79e7be44e50eb389fbd
+SHA1 hash: 1c5a5c25bfeea466991006962ef5cf98be96f2d0
+
+../mnt2/Log/bootstrap.log
+MD5 hash: af2abdfbab955a3f007cde9710450276
+SHA1 hash: ba0b8eeaa83f53b5a25b731ff8c42f4a505de4ad
+
+../mnt2/Log/dpkg.log
+MD5 hash: 0f5f963c7eb6d405f2850a44ae91fcb3
+SHA1 hash: 35300bd8d241190643676aeca3a7626eec94d366
+
+../mnt2/Log/fontconfig.log
+MD5 hash: c3e0519f57782b42d15d93b48b022c8f
+SHA1 hash: ee507f086ede33a555357fd1043c4ffa9fd1d1a8
+
+../mnt2/Log/gpu-manager.log
+MD5 hash: 95f30bc7bbb04d5de292aac48bd133da
+SHA1 hash: e6861a6bf8f9d74d214e5afadda3e27c2cf69717
+
+../mnt2/Log/kern.log
+MD5 hash: b8ff99ac72460346f089b94fa01b655d
+SHA1 hash: ebfb07876cd25a3289e4a7fdebeb7e29b83cfba3
+
+../mnt2/Log/ubuntu-advantage.log
+MD5 hash: c2863d1e9663d5e7874127c77c909025
+SHA1 hash: 886736763a0ff60722fc26e40635953eca7e7d98
+
+../mnt2/Log/ubuntu-advantage-timer.log
+MD5 hash: 0e409ddd77e02932894d6fd4c1df6b57
+SHA1 hash: 4f76388576b28a18cd9e2f54bae1006f63cd0e66
+
+../mnt2/Log/vmware-network.1.log
+MD5 hash: d7e75ddb1f5f96bc875552f49b6a9597
+SHA1 hash: 2a606ad415e0ecba6c5b2636dd02e3f4ad2d1072
+
+../mnt2/Log/vmware-network.2.log
+MD5 hash: cb96f5127e46395077c10d7251e6bbba
+SHA1 hash: b2e82fc2fcd8bbbf960b51a2cf9a895af184363a
+
+../mnt2/Log/vmware-network.3.log
+MD5 hash: 70c32786eb804c42b951cdcbd5c0b465
+SHA1 hash: 506766325044c0a3e042153d0289ee54d50baad2
+
+../mnt2/Log/vmware-network.4.log
+MD5 hash: a51210c7eae20d2572d7e3dc31a28465
+SHA1 hash: e380f966b77db1db53c6c42908937b3470f8228e
+
+../mnt2/Log/vmware-network.5.log
+MD5 hash: abfdcdb14ee1d7704064bcec7b800dc2
+SHA1 hash: 59c2a9621d211f7c8bbb76b29d18d6b18ff288c6
+
+../mnt2/Log/vmware-network.6.log
+MD5 hash: c342648ca88c9c109d060a974315be1d
+SHA1 hash: cac632732fb10da3454e8cbaa70df7608cae2691
+
+../mnt2/Log/vmware-network.7.log
+MD5 hash: afc41838cea9bed7854b121d5e4f2993
+SHA1 hash: aadd33782d723005e3c03418f9099b9e5d66dbc2
+
+../mnt2/Log/vmware-network.8.log
+MD5 hash: f54c7659e60ecc37dd16713bc5e49425
+SHA1 hash: 2ac929c5df54c76c268d290206e3d4803da52b9c
+
+../mnt2/Log/vmware-network.9.log
+MD5 hash: 046d3f5a46811b46b69acf22adb1eefe
+SHA1 hash: 19e539e189f2f158b690eff1b365a24ec033a0d6
+
+../mnt2/Log/vmware-network.log
+MD5 hash: ccb26f8a6e73e29e770f597a1f69acd0
+SHA1 hash: bcf029bb43e2488369c1226e82f4f3a69c83d445
+
+../mnt2/Log/vmware-vmsvc-root.1.log
+MD5 hash: b90e4808471a224f542b78f9fba6d7c0
+SHA1 hash: 5806ee165d1fd23ed336fa4b27fdb902365c604e
+
+../mnt2/Log/vmware-vmsvc-root.2.log
+MD5 hash: 5b032b82be532a0df8f64b5798d615aa
+SHA1 hash: 858005226780627ab66dabfc5d723bc1c53e9ce3
+
+../mnt2/Log/vmware-vmsvc-root.3.log
+MD5 hash: 01091d5e970cc0653888419ba48bebe9
+SHA1 hash: bbbda02f11d5f5f2bdfde0d01c0de655e8990bf6
+
+../mnt2/Log/vmware-vmsvc-root.log
+MD5 hash: c555c226ebd296e6f8368e194c5ffb32
+SHA1 hash: 1cae589c477b00c273d0ac5d52240cad52d0359b
+
+../mnt2/Log/vmware-vmtoolsd-root.log
+MD5 hash: ceac84a7697b10e9dab71031313b08a0
+SHA1 hash: 60e53a3d805998498ad9d379cdf2dae4ed36eb06
+
+2023. 06. 18. (일) 15:37:03 KST
+

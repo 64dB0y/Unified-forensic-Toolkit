@@ -1,0 +1,201 @@
+Jun 18 15:29:06 ahnchaehyeok-virtual-machine kernel: [   14.610602] loop18: detected capacity change from 0 to 8
+Jun 18 15:29:07 ahnchaehyeok-virtual-machine kernel: [   15.588241] kauditd_printk_skb: 37 callbacks suppressed
+Jun 18 15:29:07 ahnchaehyeok-virtual-machine kernel: [   15.588246] audit: type=1400 audit(1687069747.447:49): apparmor="DENIED" operation="capable" class="cap" profile="/snap/snapd/19361/usr/lib/snapd/snap-confine" pid=1175 comm="snap-confine" capability=12  capname="net_admin"
+Jun 18 15:29:07 ahnchaehyeok-virtual-machine kernel: [   15.589718] audit: type=1400 audit(1687069747.451:50): apparmor="DENIED" operation="capable" class="cap" profile="/snap/snapd/19361/usr/lib/snapd/snap-confine" pid=1175 comm="snap-confine" capability=38  capname="perfmon"
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462213] ------------[ cut here ]------------
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462221] refcount_t: addition on 0; use-after-free.
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462250] WARNING: CPU: 1 PID: 1222 at lib/refcount.c:25 refcount_warn_saturate+0xa3/0x150
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462261] Modules linked in: bnep uas usb_storage intel_rapl_msr intel_rapl_common crct10dif_pclmul ghash_clmulni_intel vmw_balloon aesni_intel crypto_simd vsock_loopback vmw_vsock_virtio_transport_common vmw_vsock_vmci_transport vsock binfmt_misc cryptd snd_ens1371 snd_ac97_codec gameport ac97_bus snd_pcm joydev snd_seq_midi snd_seq_midi_event input_leds serio_raw snd_rawmidi nls_iso8859_1 snd_seq snd_seq_device btusb snd_timer btrtl btbcm btintel btmtk snd bluetooth ecdh_generic ecc soundcore vmw_vmci mac_hid sch_fq_codel vmwgfx drm_ttm_helper ttm drm_kms_helper fb_sys_fops syscopyarea sysfillrect sysimgblt msr parport_pc ppdev lp parport ramoops pstore_blk reed_solomon pstore_zone drm efi_pstore ip_tables x_tables autofs4 hid_generic crc32_pclmul ahci e1000 libahci usbhid hid psmouse mptspi mptscsih mptbase scsi_transport_spi i2c_piix4 pata_acpi
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462327] CPU: 1 PID: 1222 Comm: gnome-shell Not tainted 5.19.0-43-generic #44~22.04.1-Ubuntu
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462330] Hardware name: VMware, Inc. VMware Virtual Platform/440BX Desktop Reference Platform, BIOS 6.00 11/12/2020
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462332] RIP: 0010:refcount_warn_saturate+0xa3/0x150
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462335] Code: b1 00 0f b6 1d cd d8 cb 01 80 fb 01 0f 87 bd ed 7a 00 83 e3 01 75 dd 48 c7 c7 38 67 a6 b2 c6 05 b1 d8 cb 01 01 e8 49 e6 76 00 <0f> 0b eb c6 0f b6 1d a3 d8 cb 01 80 fb 01 0f 87 7d ed 7a 00 83 e3
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462359] RSP: 0018:ffffaa8ba5ee3960 EFLAGS: 00010246
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462361] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462363] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462364] RBP: ffffaa8ba5ee3968 R08: 0000000000000000 R09: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462365] R10: 0000000000000000 R11: 0000000000000000 R12: ffffaa8ba5ee39c4
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462366] R13: ffffaa8ba5ee39c8 R14: 0000000000000000 R15: 0000000000000001
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462367] FS:  00007fd5db0725c0(0000) GS:ffff8f8179e40000(0000) knlGS:0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462369] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462370] CR2: 00007fd5d820c000 CR3: 000000001186e000 CR4: 0000000000350ee0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462394] Call Trace:
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462398]  <TASK>
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462403]  objects_lookup+0x88/0xf0 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462458]  drm_gem_object_lookup+0x39/0x60 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462480]  vmw_user_bo_noref_lookup+0x15/0x100 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462494]  vmw_translate_mob_ptr.constprop.0+0x37/0x140 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462503]  vmw_cmd_dx_bind_query+0x30/0x80 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462511]  ? vmw_cmd_dx_define_query+0x3a/0x80 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462520]  vmw_cmd_check+0xea/0x2c0 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462529]  ? vmw_execbuf_res_noref_val_add+0x1d9/0x2a0 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462549]  vmw_execbuf_process+0x529/0xf40 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462560]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462569]  vmw_execbuf_ioctl+0xfb/0x170 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462578]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462586]  drm_ioctl_kernel+0xc3/0x160 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462608]  drm_ioctl+0x279/0x4c0 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462627]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462648]  ? set_next_entity+0xef/0x180
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462653]  vmw_generic_ioctl+0xc0/0x190 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462662]  vmw_unlocked_ioctl+0x15/0x30 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462671]  __x64_sys_ioctl+0x9d/0xe0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462685]  do_syscall_64+0x5c/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462689]  ? do_futex+0xd7/0x230
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462692]  ? __x64_sys_futex+0x78/0x1f0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462693]  ? __task_pid_nr_ns+0x6c/0xc0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462696]  ? exit_to_user_mode_prepare+0x3b/0xd0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462698]  ? syscall_exit_to_user_mode+0x2a/0x50
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462701]  ? do_syscall_64+0x69/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462702]  ? do_syscall_64+0x69/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462704]  ? irqentry_exit+0x43/0x50
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462706]  ? sysvec_apic_timer_interrupt+0x4e/0xb0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462708]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462711] RIP: 0033:0x7fd5de31aaff
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462713] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462714] RSP: 002b:00007ffc4450b470 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462716] RAX: ffffffffffffffda RBX: 00007ffc4450b530 RCX: 00007fd5de31aaff
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462717] RDX: 00007ffc4450b530 RSI: 000000004028644c RDI: 000000000000000d
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462718] RBP: 000000004028644c R08: 0000000000001248 R09: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462719] R10: 0000000000000001 R11: 0000000000000246 R12: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462720] R13: 000000000000000d R14: 000055ca1310d4f0 R15: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462723]  </TASK>
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462724] ---[ end trace 0000000000000000 ]---
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462726] ------------[ cut here ]------------
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462727] refcount_t: underflow; use-after-free.
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462732] WARNING: CPU: 1 PID: 1222 at lib/refcount.c:28 refcount_warn_saturate+0xfb/0x150
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462735] Modules linked in: bnep uas usb_storage intel_rapl_msr intel_rapl_common crct10dif_pclmul ghash_clmulni_intel vmw_balloon aesni_intel crypto_simd vsock_loopback vmw_vsock_virtio_transport_common vmw_vsock_vmci_transport vsock binfmt_misc cryptd snd_ens1371 snd_ac97_codec gameport ac97_bus snd_pcm joydev snd_seq_midi snd_seq_midi_event input_leds serio_raw snd_rawmidi nls_iso8859_1 snd_seq snd_seq_device btusb snd_timer btrtl btbcm btintel btmtk snd bluetooth ecdh_generic ecc soundcore vmw_vmci mac_hid sch_fq_codel vmwgfx drm_ttm_helper ttm drm_kms_helper fb_sys_fops syscopyarea sysfillrect sysimgblt msr parport_pc ppdev lp parport ramoops pstore_blk reed_solomon pstore_zone drm efi_pstore ip_tables x_tables autofs4 hid_generic crc32_pclmul ahci e1000 libahci usbhid hid psmouse mptspi mptscsih mptbase scsi_transport_spi i2c_piix4 pata_acpi
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462782] CPU: 1 PID: 1222 Comm: gnome-shell Tainted: G        W         5.19.0-43-generic #44~22.04.1-Ubuntu
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462784] Hardware name: VMware, Inc. VMware Virtual Platform/440BX Desktop Reference Platform, BIOS 6.00 11/12/2020
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462785] RIP: 0010:refcount_warn_saturate+0xfb/0x150
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462787] Code: eb 9a 0f b6 1d 74 d8 cb 01 80 fb 01 0f 87 8d ed 7a 00 83 e3 01 75 85 48 c7 c7 68 67 a6 b2 c6 05 58 d8 cb 01 01 e8 f1 e5 76 00 <0f> 0b e9 6b ff ff ff 0f b6 1d 43 d8 cb 01 80 fb 01 0f 87 4a ed 7a
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462788] RSP: 0018:ffffaa8ba5ee39d0 EFLAGS: 00010246
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462799] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462800] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462801] RBP: ffffaa8ba5ee39d8 R08: 0000000000000000 R09: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462802] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8f806a21a800
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462803] R13: ffff8f806a21a800 R14: ffffaa8ba5ee3a48 R15: 0000000000000002
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462804] FS:  00007fd5db0725c0(0000) GS:ffff8f8179e40000(0000) knlGS:0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462805] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462806] CR2: 00007fd5d820c000 CR3: 000000001186e000 CR4: 0000000000350ee0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462826] Call Trace:
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462827]  <TASK>
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462828]  vmw_user_bo_noref_lookup+0xd1/0x100 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462838]  vmw_translate_mob_ptr.constprop.0+0x37/0x140 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462847]  vmw_cmd_dx_bind_query+0x30/0x80 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462856]  ? vmw_cmd_dx_define_query+0x3a/0x80 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462864]  vmw_cmd_check+0xea/0x2c0 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462873]  ? vmw_execbuf_res_noref_val_add+0x1d9/0x2a0 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462882]  vmw_execbuf_process+0x529/0xf40 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462904]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462913]  vmw_execbuf_ioctl+0xfb/0x170 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462922]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462930]  drm_ioctl_kernel+0xc3/0x160 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462951]  drm_ioctl+0x279/0x4c0 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462981]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462991]  ? set_next_entity+0xef/0x180
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.462994]  vmw_generic_ioctl+0xc0/0x190 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463003]  vmw_unlocked_ioctl+0x15/0x30 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463011]  __x64_sys_ioctl+0x9d/0xe0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463014]  do_syscall_64+0x5c/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463015]  ? do_futex+0xd7/0x230
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463017]  ? __x64_sys_futex+0x78/0x1f0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463019]  ? __task_pid_nr_ns+0x6c/0xc0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463020]  ? exit_to_user_mode_prepare+0x3b/0xd0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463022]  ? syscall_exit_to_user_mode+0x2a/0x50
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463024]  ? do_syscall_64+0x69/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463025]  ? do_syscall_64+0x69/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463027]  ? irqentry_exit+0x43/0x50
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463029]  ? sysvec_apic_timer_interrupt+0x4e/0xb0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463031]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463032] RIP: 0033:0x7fd5de31aaff
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463034] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463035] RSP: 002b:00007ffc4450b470 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463036] RAX: ffffffffffffffda RBX: 00007ffc4450b530 RCX: 00007fd5de31aaff
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463037] RDX: 00007ffc4450b530 RSI: 000000004028644c RDI: 000000000000000d
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463038] RBP: 000000004028644c R08: 0000000000001248 R09: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463039] R10: 0000000000000001 R11: 0000000000000246 R12: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463040] R13: 000000000000000d R14: 000055ca1310d4f0 R15: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463042]  </TASK>
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463043] ---[ end trace 0000000000000000 ]---
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463045] ------------[ cut here ]------------
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463046] refcount_t: saturated; leaking memory.
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463050] WARNING: CPU: 1 PID: 1222 at lib/refcount.c:22 refcount_warn_saturate+0x148/0x150
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463052] Modules linked in: bnep uas usb_storage intel_rapl_msr intel_rapl_common crct10dif_pclmul ghash_clmulni_intel vmw_balloon aesni_intel crypto_simd vsock_loopback vmw_vsock_virtio_transport_common vmw_vsock_vmci_transport vsock binfmt_misc cryptd snd_ens1371 snd_ac97_codec gameport ac97_bus snd_pcm joydev snd_seq_midi snd_seq_midi_event input_leds serio_raw snd_rawmidi nls_iso8859_1 snd_seq snd_seq_device btusb snd_timer btrtl btbcm btintel btmtk snd bluetooth ecdh_generic ecc soundcore vmw_vmci mac_hid sch_fq_codel vmwgfx drm_ttm_helper ttm drm_kms_helper fb_sys_fops syscopyarea sysfillrect sysimgblt msr parport_pc ppdev lp parport ramoops pstore_blk reed_solomon pstore_zone drm efi_pstore ip_tables x_tables autofs4 hid_generic crc32_pclmul ahci e1000 libahci usbhid hid psmouse mptspi mptscsih mptbase scsi_transport_spi i2c_piix4 pata_acpi
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463098] CPU: 1 PID: 1222 Comm: gnome-shell Tainted: G        W         5.19.0-43-generic #44~22.04.1-Ubuntu
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463100] Hardware name: VMware, Inc. VMware Virtual Platform/440BX Desktop Reference Platform, BIOS 6.00 11/12/2020
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463101] RIP: 0010:refcount_warn_saturate+0x148/0x150
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463103] Code: c0 67 a6 b2 c6 05 23 d8 cb 01 01 e8 be e5 76 00 0f 0b e9 38 ff ff ff 48 c7 c7 10 67 a6 b2 c6 05 0d d8 cb 01 01 e8 a4 e5 76 00 <0f> 0b e9 1e ff ff ff 90 8b 07 3d 00 00 00 c0 74 12 83 f8 01 74 1d
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463104] RSP: 0018:ffffaa8ba5ee3960 EFLAGS: 00010246
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463105] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463106] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463106] RBP: ffffaa8ba5ee3968 R08: 0000000000000000 R09: 0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463107] R10: 0000000000000000 R11: 0000000000000000 R12: ffffaa8ba5ee39c4
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463108] R13: ffffaa8ba5ee39c8 R14: 0000000000000000 R15: 0000000000000001
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463109] FS:  00007fd5db0725c0(0000) GS:ffff8f8179e40000(0000) knlGS:0000000000000000
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463110] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463111] CR2: 00007fd5d820c000 CR3: 000000001186e000 CR4: 0000000000350ee0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463143] Call Trace:
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463144]  <TASK>
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463145]  objects_lookup+0xd5/0xf0 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463165]  drm_gem_object_lookup+0x39/0x60 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463185]  vmw_user_bo_noref_lookup+0x15/0x100 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463194]  vmw_translate_mob_ptr.constprop.0+0x37/0x140 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463203]  vmw_cmd_dx_bind_query+0x30/0x80 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463212]  ? vmw_cmd_dx_define_query+0x3a/0x80 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463220]  vmw_cmd_check+0xea/0x2c0 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463229]  ? vmw_execbuf_res_noref_val_add+0x1d9/0x2a0 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463238]  vmw_execbuf_process+0x529/0xf40 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463249]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463257]  vmw_execbuf_ioctl+0xfb/0x170 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463266]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463275]  drm_ioctl_kernel+0xc3/0x160 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463295]  drm_ioctl+0x279/0x4c0 [drm]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463314]  ? vmw_execbuf_release_pinned_bo+0x70/0x70 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463346]  ? set_next_entity+0xef/0x180
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463349]  vmw_generic_ioctl+0xc0/0x190 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463359]  vmw_unlocked_ioctl+0x15/0x30 [vmwgfx]
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463386]  __x64_sys_ioctl+0x9d/0xe0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463389]  do_syscall_64+0x5c/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463390]  ? do_futex+0xd7/0x230
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463392]  ? __x64_sys_futex+0x78/0x1f0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463394]  ? __task_pid_nr_ns+0x6c/0xc0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463395]  ? exit_to_user_mode_prepare+0x3b/0xd0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463397]  ? syscall_exit_to_user_mode+0x2a/0x50
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463409]  ? do_syscall_64+0x69/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463411]  ? do_syscall_64+0x69/0x90
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463412]  ? irqentry_exit+0x43/0x50
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463414]  ? sysvec_apic_timer_interrupt+0x4e/0xb0
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463416]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463418] RIP: 0033:0x7fd5de31aaff
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463419] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463420] RSP: 002b:00007ffc4450b470 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463422] RAX: ffffffffffffffda RBX: 00007ffc4450b530 RCX: 00007fd5de31aaff
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463423] RDX: 00007ffc4450b530 RSI: 000000004028644c RDI: 000000000000000d
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463423] RBP: 000000004028644c R08: 0000000000001248 R09: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463424] R10: 0000000000000001 R11: 0000000000000246 R12: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463425] R13: 000000000000000d R14: 000055ca1310d4f0 R15: 00007ffc4450b5b8
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463428]  </TASK>
+Jun 18 15:29:08 ahnchaehyeok-virtual-machine kernel: [   16.463428] ---[ end trace 0000000000000000 ]---
+Jun 18 15:29:10 ahnchaehyeok-virtual-machine kernel: [   18.944166] rfkill: input handler disabled
+Jun 18 15:29:12 ahnchaehyeok-virtual-machine kernel: [   20.304445] vmwgfx 0000:00:0f.0: [drm] Using CursorMob mobid 35, max dimension 2048
+Jun 18 15:29:12 ahnchaehyeok-virtual-machine kernel: [   20.393303] vmwgfx 0000:00:0f.0: [drm] Using CursorMob mobid 1, max dimension 2048
+Jun 18 15:30:47 ahnchaehyeok-virtual-machine kernel: [  110.597103] audit: type=1400 audit(1687069847.116:51): apparmor="DENIED" operation="capable" class="cap" profile="/snap/snapd/19361/usr/lib/snapd/snap-confine" pid=1678 comm="snap-confine" capability=12  capname="net_admin"
+Jun 18 15:30:47 ahnchaehyeok-virtual-machine kernel: [  110.598546] audit: type=1400 audit(1687069847.120:52): apparmor="DENIED" operation="capable" class="cap" profile="/snap/snapd/19361/usr/lib/snapd/snap-confine" pid=1678 comm="snap-confine" capability=38  capname="perfmon"
+Jun 18 15:30:47 ahnchaehyeok-virtual-machine kernel: [  110.682370] rfkill: input handler enabled
+Jun 18 15:30:50 ahnchaehyeok-virtual-machine kernel: [  114.436684] audit: type=1326 audit(1687069850.971:53): auid=1000 uid=1000 gid=1000 ses=4 subj=snap.snapd-desktop-integration.snapd-desktop-integration pid=1929 comm="snapd-desktop-i" exe="/snap/snapd-desktop-integration/83/usr/bin/snapd-desktop-integration" sig=0 arch=c000003e syscall=314 compat=0 ip=0x7fd989730a3d code=0x50000
+Jun 18 15:30:52 ahnchaehyeok-virtual-machine kernel: [  115.585648] FAT-fs (sdb2): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+Jun 18 15:30:52 ahnchaehyeok-virtual-machine kernel: [  115.619634] FAT-fs (sdb1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+Jun 18 15:30:53 ahnchaehyeok-virtual-machine kernel: [  116.811325] rfkill: input handler disabled
+Jun 18 15:30:58 ahnchaehyeok-virtual-machine kernel: [  121.892689] input: VMware DnD UInput pointer as /devices/virtual/input/input6
+Jun 18 15:34:24 ahnchaehyeok-virtual-machine kernel: [  327.605142] FAT-fs (sdb1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+Jun 18 15:34:32 ahnchaehyeok-virtual-machine kernel: [  336.328653] FAT-fs (sdb2): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+Jun 18 15:34:49 ahnchaehyeok-virtual-machine kernel: [  352.432982] loop18: detected capacity change from 0 to 955472
+Jun 18 15:34:51 ahnchaehyeok-virtual-machine kernel: [  354.459327] audit: type=1400 audit(1687070091.025:54): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.snap-store" pid=2785 comm="apparmor_parser"
+Jun 18 15:34:51 ahnchaehyeok-virtual-machine kernel: [  354.804754] audit: type=1400 audit(1687070091.373:55): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.hook.configure" pid=2817 comm="apparmor_parser"
+Jun 18 15:34:52 ahnchaehyeok-virtual-machine kernel: [  355.670493] audit: type=1400 audit(1687070092.241:56): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.snap-store" pid=2821 comm="apparmor_parser"
+Jun 18 15:34:53 ahnchaehyeok-virtual-machine kernel: [  356.472365] audit: type=1400 audit(1687070093.033:57): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.ubuntu-software" pid=2850 comm="apparmor_parser"
+Jun 18 15:34:53 ahnchaehyeok-virtual-machine kernel: [  357.332444] audit: type=1400 audit(1687070093.897:58): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snap-store.ubuntu-software-local-file" pid=2851 comm="apparmor_parser"
+Jun 18 15:34:55 ahnchaehyeok-virtual-machine kernel: [  358.704751] audit: type=1400 audit(1687070095.266:59): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="snap-update-ns.snapd-desktop-integration" pid=2858 comm="apparmor_parser"
+Jun 18 15:34:55 ahnchaehyeok-virtual-machine kernel: [  358.998306] audit: type=1400 audit(1687070095.566:60): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snapd-desktop-integration.hook.configure" pid=2859 comm="apparmor_parser"
+Jun 18 15:34:56 ahnchaehyeok-virtual-machine kernel: [  359.681155] audit: type=1400 audit(1687070096.250:61): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="snap.snapd-desktop-integration.snapd-desktop-integration" pid=2860 comm="apparmor_parser"
