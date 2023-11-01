@@ -870,21 +870,27 @@ echo ACQUIRING BLUESCREEN INFORMATION
 echo [!timestamp!]ACQUIRING BLUESCREEN INFORMATION >> %_TimeStamp%
 
 :: --------------------
+:: systeminfo hash
+:: --------------------
+%hashdeep% "%SYSTEM_INFO_Dir%\systeminfo.txt" > "%SYSTEM_INFO_HASH%\systeminfo_HASH.txt"
+echo [!timestamp!] systeminfo HASH >> %_TimeStamp%
+
+:: --------------------
 :: system log hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\system_log.evtx" > "%SYSTEM_INFO_HASH%\system_log_event.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\system_log.evtx" > "%SYSTEM_INFO_HASH%\system_log_HASH.txt"
 echo [!timestamp!] wevtutil system HASH >> %_TimeStamp%
 
 :: --------------------
 :: security log hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\security_log.evtx" > "%SYSTEM_INFO_HASH%\security_log_event.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\security_log.evtx" > "%SYSTEM_INFO_HASH%\security_log_HASH.txt"
 echo [!timestamp!] wevtutil security HASH >> %_TimeStamp%
 
 :: --------------------
 :: application log hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\application_log.evtx" > "%SYSTEM_INFO_HASH%\application_log_event.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\application_log.evtx" > "%SYSTEM_INFO_HASH%\application_log_HASH.txt"
 echo [!timestamp!] wevtutil application HASH >> %_TimeStamp%
 
 :: --------------------
@@ -896,8 +902,8 @@ echo [!timestamp!] SAM HASH >> %_TimeStamp%
 :: --------------------
 :: SOFTWARE FILE HASH
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\SOFTWARE.hiv" > "%SYSTEM_INFO_HASH%\SOFTWARE_HASH.txt"
-echo [!timestamp!] SOFTWARE HASH >> %_TimeStamp%
+%hashdeep% "%SYSTEM_INFO_Dir%\HKLM-Software.hiv" > "%SYSTEM_INFO_HASH%\HKLM-Software_HASH.txt"
+echo [!timestamp!] HKLM-Software HASH >> %_TimeStamp%
 
 :: --------------------
 :: SYSTEM FILE HASH
@@ -936,6 +942,10 @@ echo.
 set Autoruns_Dir=%volatile_dir%\Autoruns_Information
 mkdir %Autoruns_Dir%
 echo [!timestamp!] CREATE Autoruns DIRECTORY >> %_TimeStamp%
+
+set Autoruns_HASH=%Autoruns_Dir%\HASH
+echo [!timestamp!] Autoruns HASH DIRECTORY CREATE >> %_TimeStamp%
+mkdir %Autoruns_HASH%
 echo ----------------------------------
 echo CREATE Autoruns DIRECTORY
 echo.
@@ -952,7 +962,7 @@ REM Collect event forwarding subscriptions
 wecutil es > "%Autoruns_Dir%\wecutil-es.txt"
 
 :: AutoRunsc 실행 (Sysinternals)
-%autorunsc% /accepteula -a * -c -ct csv -nobanner > "%SYSTEM_INFO_Dir%\AutoRuns.csv"
+%autorunsc% /accepteula -a * -c -ct csv -nobanner > "%Autoruns_Dir%\AutoRuns.csv"
 
 :: ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 경로의 파일 나열
 dir /b /a "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp" > "%Autoruns_Dir%\Startup_ProgramData.txt"
@@ -965,6 +975,21 @@ for /d %%A in (C:\Users\*) do (
         dir /b /a "!user_startup_path!" >> "%Autoruns_Dir%\Startup_UserPaths.txt"
     )
 )
+
+%hashdeep% "%Autoruns_Dir%\HKLM-Run.reg" > "%Autoruns_HASH%\HKLM-Run_HASH.txt"
+echo [!timestamp!] HKLM-Run HASH >> %_TimeStamp%
+%hashdeep% "%Autoruns_Dir%\HKCU-Run.reg" > "%Autoruns_HASH%\HKCU-Run_HASH.txt"
+echo [!timestamp!] HKCU-Run HASH >> %_TimeStamp%
+%hashdeep% "%Autoruns_Dir%\services.txt" > "%Autoruns_HASH%\services_HASH.txt"
+echo [!timestamp!] services HASH >> %_TimeStamp%
+%hashdeep% "%Autoruns_Dir%\wecutil-es.txt" > "%Autoruns_HASH%\wecutil-es_HASH.txt"
+echo [!timestamp!] wecutil-es HASH >> %_TimeStamp%
+%hashdeep% "%Autoruns_Dir%\AutoRuns.csv" > "%Autoruns_HASH%\AutoRuns_HASH.txt"
+echo [!timestamp!] AutoRuns HASH >> %_TimeStamp%
+%hashdeep% "%Autoruns_Dir%\Startup_ProgramData.txt" > "%Autoruns_HASH%\Startup_ProgramData_HASH.txt"
+echo [!timestamp!] Startup_ProgramData HASH >> %_TimeStamp%
+%hashdeep% "%Autoruns_Dir%\Startup_UserPaths.txt" > "%Autoruns_Dir%\Startup_UserPaths_HASH.txt"
+echo [!timestamp!] Startup_UserPaths HASH >> %_TimeStamp%
 echo Step completed: %choice%
 exit /b
 
@@ -980,6 +1005,10 @@ echo.
 set TSCB_Dir=%volatile_dir%\TSCB_Information
 mkdir %TSCB_Dir%
 echo [!timestamp!] CREATE TSCB DIRECTORY >> %_TimeStamp%
+
+set TSCB_HASH=%TSCB_Dir%\HASH
+echo [!timestamp!] TSCB HASH DIRECTORY CREATE >> %_TimeStamp%
+mkdir %TSCB_HASH%
 echo -------------------------------
 echo CREATE TSCB DIRECTORY
 echo.
@@ -991,6 +1020,12 @@ REM Collect scheduled tasks information using schtasks
 echo Collecting scheduled tasks information...
 schtasks /query /fo CSV /v > "%TSCB_Dir%\ScheduledTasks.csv"
 echo Scheduled tasks information collected successfully.
+
+%hashdeep% "%TSCB_Dir%\clipboard.txt" > "%TSCB_HASH%\clipboard_HASH.txt"
+echo [!timestamp!] clipboard HASH >> %_TimeStamp%
+%hashdeep% "%TSCB_Dir%\ScheduledTasks.csv" > "%TSCB_HASH%\ScheduledTasks_HASH.txt"
+echo [!timestamp!] ScheduledTasks HASH >> %_TimeStamp%
+
 echo.
 echo Step completed: %choice%
 exit /b
