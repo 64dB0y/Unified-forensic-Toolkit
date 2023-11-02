@@ -224,7 +224,7 @@ call :GetTimestamp
     echo.
     echo CREATE FileSystem HASH DIRECTORY
     echo [!timestamp!] CREATE FileSystem HASH Directory >> %_TimeStamp%
-    %hashdeep% -e -r %_FileSystem% > "%_FileSystem_Hash%\FileSystem_Hash.txt"
+    %hashdeep% -e -r %_FileSystem% >> "%_FileSystem_Hash%\hash.txt"
     echo.
     echo Acquring FileSystem Hash
     echo [!timestamp!] Acquring FileSystem Hash >> %_TimeStamp%
@@ -279,7 +279,7 @@ call :GetTimestamp
     echo.
     echo Create Registry Hash Directory 
     echo [!timestamp!] Create Registry Hash Directory >> %_TimeStamp%
-    %hashdeep% -e -r %Registry%  > %REGISTRY_HASH%\REGISTRY_Hash.txt  
+    %hashdeep% -e -r %Registry%  >> %REGISTRY_HASH%\hash.txt  
     echo.
     echo Calculate Registry Hash...
     echo [!timestamp!] Calculate Registry Hash... >> %_TimeStamp%
@@ -348,7 +348,7 @@ call :GetTimestamp
     echo Create Prefetch Hash Directory
     echo [!timestamp!] Create Prefetch Hash Directory >> %_TimeStamp%
     echo.
-    %hashdeep% -e -r %_Prefetch% > %Prefetch_Hash%\Prefetch_Hash.txt
+    %hashdeep% -e -r %_Prefetch% >> %Prefetch_Hash%\hash.txt
     echo Calculate Prefetch Hash...
     echo [!timestamp!] Calculate Prefetch Hash... >> %_TimeStamp%
     echo.
@@ -447,7 +447,7 @@ call :GetTimestamp
     echo.
     echo Calculate Event Hash...
     echo [!timestamp!] Calculate Event Hash... >> %_TimeStamp%
-    %hashdeep% -e -r %_eventLog% > %eventHash%\EventLog_Hash.txt
+    %hashdeep% -e -r %_eventLog% >> %eventHash%\hash.txt
     goto RUN_STEP_4_Clear
 
 :RUN_STEP_4_Clear
@@ -522,7 +522,7 @@ call :GetTimestamp
     echo [!timestamp!] Create RecycleBin Hash Directory >> %_TimeStamp%
     echo.
     echo Calculate RecycleBin Hash...
-    %hashdeep% -e -r %recycleBin% > %recycleBinHash%\RecycleBin_Hash.txt
+    %hashdeep% -e -r %recycleBin% >> %recycleBinHash%\hash.txt
     echo [!timestamp!] Calculate RecycleBin Hash... >> %_TimeStamp%
 
     echo RUN_STEP_5 CLEAR
@@ -627,7 +627,7 @@ call :GetTimestamp
 
 :Browser_KAPE
     %kape%\kape.exe --tsource %SystemDrive% --target Chrome --tdest %_Chrome% >NUL
-    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NUL
+    %kape%\kape.exe --tsource %SystemDrive% --target ChromeExtensions --tdest %_Chrome% >NULtxthash
     %kape%\kape.exe --tsource %SystemDrive% --target ChromeFileSystem --tdest %_Chrome% >NUL
     echo [!timestamp!] Acquring Chrome Data... >> %_TimeStamp% 
     
@@ -653,37 +653,37 @@ call :GetTimestamp
     echo [!timestamp!] Create Chrome Hash Directory >> %_TimeStamp%
     echo Calculate Chrome Hash
     echo [!timestamp!] Calculate Chrome Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Chrome% > %_Chrome_Hash%\Chrome_Hash.txt
+    %hashdeep% -e -r %_Chrome% >> %_Chrome_Hash%\hash.txt
 
     mkdir %_Firefox_Hash%
     echo [!timestamp!] Create Firefox Hash Directory >> %_TimeStamp%
     echo Calculate Firefox Hash
     echo [!timestamp!] Calculate Firefox Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Firefox% > %_Firefox_Hash%\Firefox_Hash.txt 
+    %hashdeep% -e -r %_Firefox% >> %_Firefox_Hash%\hash.txt 
 
     mkdir %_Edge_Hash%
     echo [!timestamp!] Create Edge Hash Directory >> %_TimeStamp%
     echo Calculate Edge Hash
     echo [!timestamp!] Calculate Edge Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Edge% > %_Edge_Hash%\Edge_Hash.txt 
+    %hashdeep% -e -r %_Edge% >> %_Edge_Hash%\hash.txt 
     
     mkdir %_IE_Hash%
     echo [!timestamp!] Create IE Hash Directory >> %_TimeStamp%
     echo Calculate IE Hash
     echo [!timestamp!] Calculate IE Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_IE% > %_IE_Hash%\IE_Hash.txt 
+    %hashdeep% -e -r %_IE% >> %_IE_Hash%\hash.txt 
     
     mkdir %_Chromium_Hash%
     echo [!timestamp!] Create Chromium Hash Directory >> %_TimeStamp%
     echo Calculate Whale Hash
     echo [!timestamp!] Calculate Chromium Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_Chromium% > %_Chromium_Hash%\Chromium_Hash.txt 
+    %hashdeep% -e -r %_Chromium% >> %_Chromium_Hash%\hash.txt 
 
     mkdir %_WebCache_Hash%
     echo [!timestamp!] Create WebCache Hash Directory >> %_TimeStamp%
     echo Calcultae WebCache Hash
     echo [!timestamp!] Calculate WebCache Hash >> %_TimeStamp%
-    %hashdeep% -e -r %_WebCache% > %_WebCache_Hash%\WebCache_Hash.txt
+    %hashdeep% -e -r %_WebCache% >> %_WebCache_Hash%\hash.txt
 
     echo RUN_STEP_6 CLEAR
     echo [!timestamp!] RUN_STEP_6 CLEAR>> %_TimeStamp%
@@ -693,6 +693,7 @@ call :GetTimestamp
 call :LogStep
 call :GetTimestamp
     set _restore=%NONVOLATILE_DIR%\Restore
+    set _restore_Hash=%_restore%\Hash
     mkdir %_restore%
     echo.
     echo Create Restore Directory
@@ -701,7 +702,9 @@ call :GetTimestamp
     xcopy /E /H /I "%SYSTEMROOT%\system32\Restore" "%_restore%"
     echo [!timestamp!] Restore File >> %_TimeStamp%
     ::forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
-
+    
+    mkdir %_restore_Hash%
+    %hashdeep% -e -r %_restore% >> %_USBDetective_Hash%\hash.txt
     echo RUN_STEP_7 CLEAR
     exit /b
 
@@ -749,7 +752,7 @@ call :GetTimestamp
     echo Create USBDetect Hash Directory
     echo [!timestamp!] Create Driver Hash Direcotry >> %_TimeStamp%
     
-    %hashdeep% -e -r %_USBDetective% > %_USBDetective_Hash%\USB_Hash.txt
+    %hashdeep% -e -r %_USBDetective% >> %_USBDetective_Hash%\hash.txt
 
     echo.
     echo Calculate USBDetective Hash...
@@ -817,7 +820,7 @@ call :GetTimestamp
     echo Create Recent Hash Directory
     echo [!timestamp!] Create Recent Hash Directory
     echo.
-    %hashdeep% -e -r %_Recent% > %_Recent_Hash%\Recent_Hash.txt
+    %hashdeep% -e -r %_Recent% >> %_Recent_Hash%\hash.txt
     echo Calculate Recent Hash...
     echo [!timestamp!] Calculate Recent Hash...
     echo.

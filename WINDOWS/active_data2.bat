@@ -260,7 +260,7 @@ echo.
 "%psexec%" -accepteula -i -s cmd.exe /c "call cd %Memory_Dump_dir% & %RamCapture%"
 echo [!timestamp!] RamCapture Finished >> %_TimeStamp%
 echo Please wait, this may take some time - Calculating the hash values for the recently created dump file
-%hashdeep% "%Memory_Dump_dir%\%current_date%.mem" > "%PHYSICAL_MEMORY_HASH%\RamCapture_hash.txt"
+%hashdeep% "%Memory_Dump_dir%\%current_date%.mem" >> "%PHYSICAL_MEMORY_HASH%\hash.txt"
 echo [!timestamp!] RamCapture HASH >> %_TimeStamp%
 timeout /t 10
 goto ram_dump_loop
@@ -274,7 +274,7 @@ if not defined user_pw (
     "%psexec%" -u %user_id% -p %user_pw% -accepteula -i -s cmd.exe /c "call %Winpmem% %Memory_Dump_dir%\physmem.raw"
 )
 echo [!timestamp!] Winpmem Finished >> %_TimeStamp%
-%hashdeep% "%Memory_Dump_dir%\physmem.raw" > "%PHYSICAL_MEMORY_HASH%\physmem_hash.txt"
+%hashdeep% "%Memory_Dump_dir%\physmem.raw" >> "%PHYSICAL_MEMORY_HASH%\hash.txt"
 echo [!timestamp!] Winpmem HASH >> %_TimeStamp%
 timeout /t 10
 goto ram_dump_loop
@@ -321,7 +321,7 @@ if "!confirm_password!"=="!result_password!" (
 )
 "%psexec%" -accepteula -i -s cmd.exe /c "call %CyLR% --usnjrnl -od %Memory_Dump_dir% -of memory_dump.zip -zp !result_password! -zl 9"
 echo [!timestamp!] CyLR Finished >> %_TimeStamp%
-%hashdeep% "%Memory_Dump_dir%\memory_dump.zip" > "%PHYSICAL_MEMORY_HASH%\memory_dump_hash.txt"
+%hashdeep% "%Memory_Dump_dir%\memory_dump.zip" >> "%PHYSICAL_MEMORY_HASH%\hash.txt"
 echo [!timestamp!] CyLR HASH >> %_TimeStamp%
 timeout /t 10
 goto ram_dump_loop
@@ -441,49 +441,49 @@ mkdir %NETWORK_HASH%
 echo [!timestamp!] CREATE NETWORK HASH DIRECTORY >> %_TimeStamp%
 ::Hash 
 ::--------------------------------------------------------------
-%hashdeep% "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+%hashdeep% "%Network_dir%\arp.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] ARP HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\route.txt" > "%NETWORK_HASH%\route_hash.txt"
+%hashdeep% "%Network_dir%\route.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] ROUTE HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\netstat.txt" > "%NETWORK_HASH%\netstat_hash.txt"
+%hashdeep% "%Network_dir%\netstat.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] NETSTAT HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\net_sessions.txt" > "%NETWORK_HASH%\net_sessions_hash.txt"
+%hashdeep% "%Network_dir%\net_sessions.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] NETSESSION HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\net_file.txt" > "%NETWORK_HASH%\net_file_hash.txt"
+%hashdeep% "%Network_dir%\net_file.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] NET FILE HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\net_share.txt" > "%NETWORK_HASH%\net_share_hash.txt"
+%hashdeep% "%Network_dir%\net_share.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] NET SHARE HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\arp.txt" > "%NETWORK_HASH%\arp_hash.txt"
+%hashdeep% "%Network_dir%\arp.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] ARP HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\nbtstat_c.txt" > "%NETWORK_HASH%\nbtstat_c_hash.txt"
+%hashdeep% "%Network_dir%\nbtstat_c.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] NBTSTAT_C HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\nbtstat_s.txt" > "%NETWORK_HASH%\nbtstat_s_hash.txt"
+%hashdeep% "%Network_dir%\nbtstat_s.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] NBTSTAT_S HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\ipconfig.txt" > "%NETWORK_HASH%\ipconfig_hash.txt"
+%hashdeep% "%Network_dir%\ipconfig.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] IPCONFIG HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\urlprotocolview.txt" > "%NETWORK_HASH%\urlprotocolview_hash.txt"
+%hashdeep% "%Network_dir%\urlprotocolview.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] URLPROTOCOLVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\cports.txt" > "%NETWORK_HASH%\cports_hash.txt"
+%hashdeep% "%Network_dir%\cports.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] CPORTS HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\tcplogview.txt" > "%NETWORK_HASH%\tcplogview_hash.txt"
+%hashdeep% "%Network_dir%\tcplogview.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] TCPLOGVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\wifiInfoView.txt" > "%NETWORK_HASH%\wifiInfoView_hash.txt"
+%hashdeep% "%Network_dir%\wifiInfoView.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] WIFIINFOVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%Network_dir%\WirelessNetView.txt" > "%NETWORK_HASH%\WirelessNetView_hash.txt"
+%hashdeep% "%Network_dir%\WirelessNetView.txt" >> "%NETWORK_HASH%\hash.txt"
 echo [!timestamp!] WIRELESSNETVIEW HASH >> %_TimeStamp%
 
 ::--------------------------------------------------------------
@@ -612,7 +612,7 @@ if exist "%CHROME_COOKIES%" (
   xcopy /y /v "%CHROME_COOKIES%" "%CHROME_DESTINATION%\"
   echo [!timestamp!] CHROME COOKIE >> %_TimeStamp%
   echo Chrome cookies backed up.
-  %hashdeep% "%CHROME_DESTINATION%\Cookies" > "%PROCESS_HASH%\Chrome_Cookies_hash.txt"
+  %hashdeep% "%CHROME_DESTINATION%\Cookies" >> "%PROCESS_HASH%\hash.txt"
   echo [!timestamp!] Chrome Cookie HASH >> %_TimeStamp%
 ) else (
   echo Chrome cookies not found.
@@ -623,7 +623,7 @@ for /D %%i in ("%FIREFOX_PROFILE%\*") do (
     xcopy /y /v "%%i\%FIREFOX_COOKIES%" "%FIREFOX_DESTINATION%\"
     echo [!timestamp!] FIREFOX COOKIE >> %_TimeStamp%
     echo Firefox cookies backed up.
-    %hashdeep% "%FIREFOX_DESTINATION%\cookies.sqlite" > "%PROCESS_HASH%\FIREFOX_Cookies_hash.txt"
+    %hashdeep% "%FIREFOX_DESTINATION%\cookies.sqlite" >> "%PROCESS_HASH%\hash.txt"
     echo [!timestamp!] FIREFOX Cookie HASH >> %_TimeStamp%
   ) else (
     echo Firefox cookies not found.
@@ -634,7 +634,7 @@ if exist "%EDGE_COOKIES%" (
   xcopy /y /v "%EDGE_COOKIES%" "%EDGE_DESTINATION%\"
   echo [!timestamp!] EDGE COOKIE >> %_TimeStamp%
   echo Edge cookies backed up.
-  %hashdeep% "%EDGE_DESTINATION%\Cookies" > "%PROCESS_HASH%\EDGE_Cookies_hash.txt"
+  %hashdeep% "%EDGE_DESTINATION%\Cookies" >> "%PROCESS_HASH%\hash.txt"
   echo [!timestamp!] EDGE Cookie HASH >> %_TimeStamp%
 ) else (
   echo Edge cookies not found.
@@ -644,7 +644,7 @@ if exist "%IE_COOKIES%" (
   xcopy /y /v /s "%IE_COOKIES%\*.*" "%IE_DESTINATION%\"
   echo [!timestamp!] IE COOKIE >> %_TimeStamp%
   echo Internet Explorer cookies backed up.
-  %hashdeep% -r "%IE_DESTINATION%" > "%PROCESS_HASH%\IE_Cookies_hash.txt"
+  %hashdeep% -r "%IE_DESTINATION%" >> "%PROCESS_HASH%\hash.txt"
   echo [!timestamp!] IE Cookie HASH >> %_TimeStamp%
 ) else (
   echo Internet Explorer cookies not found.
@@ -654,7 +654,7 @@ if exist "%OPERA_COOKIES%" (
   xcopy /y /v "%OPERA_COOKIES%" "%OPERA_DESTINATION%\"
   echo [!timestamp!] OPERA COOKIE >> %_TimeStamp%
   echo Opera cookies backed up.
-  %hashdeep% "%OPERA_DESTINATION%\Cookies" > "%PROCESS_HASH%\OPERA_Cookies_hash.txt"
+  %hashdeep% "%OPERA_DESTINATION%\Cookies" >> "%PROCESS_HASH%\hash.txt"
   echo [!timestamp!] OPERA Cookie HASH >> %_TimeStamp%
 ) else (
   echo Opera cookies not found.
@@ -665,57 +665,57 @@ if exist "%OPERA_COOKIES%" (
 ::echo Make Hash File
 
 
-%hashdeep% "%PROCESS_Dir%\psloglist.txt" > "%PROCESS_HASH%\psloglist_hash.txt"
+%hashdeep% "%PROCESS_Dir%\psloglist.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] PSLOGLIST HASH >> %_TimeStamp%
-%hashdeep% "%PROCESS_Dir%\tasklist.txt" > "%PROCESS_HASH%\tasklist_hash.txt"
+%hashdeep% "%PROCESS_Dir%\tasklist.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] TASKLIST HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\pslist.txt" > "%PROCESS_HASH%\pslist_hash.txt"
+%hashdeep% "%PROCESS_Dir%\pslist.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] PSLIST HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\listdll.txt" > "%PROCESS_HASH%\listdll_hash.txt"
+%hashdeep% "%PROCESS_Dir%\listdll.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] LISTDLL HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\handle.txt" > "%PROCESS_HASH%\handle_hash.txt"
+%hashdeep% "%PROCESS_Dir%\handle.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] HANDLE HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\regdllview.txt" > "%PROCESS_HASH%\regdllview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\regdllview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] REGDLLVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\loadeddllsview.txt" > "%PROCESS_HASH%\loadeddllsview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\loadeddllsview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] LOADEDDLLSVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\driveview.txt" > "%PROCESS_HASH%\driveview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\driveview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] DRIVEVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\cprocess.txt" > "%PROCESS_HASH%\cprocess_hash.txt"
+%hashdeep% "%PROCESS_Dir%\cprocess.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] CPROCESS HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\openedfilesview.txt" > "%PROCESS_HASH%\openedfilesview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\openedfilesview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] OPENEDFILESVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\opensavefilesview.txt" > "%PROCESS_HASH%\opensavefilesview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\opensavefilesview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] OPENSAVEFILESVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\executedprogramslist.txt" > "%PROCESS_HASH%\executedprogramslist_hash.txt"
+%hashdeep% "%PROCESS_Dir%\executedprogramslist.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] EXECUTEDPROGRAMSLIST HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\installedpackagesview.txt" > "%PROCESS_HASH%\installedpackagesview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\installedpackagesview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] INSTALLEDPACKAGESVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\uninstallview.txt" > "%PROCESS_HASH%\uninstallview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\uninstallview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] UNINSTALLVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\mylastsearch.txt" > "%PROCESS_HASH%\mylastsearch_hash.txt"
+%hashdeep% "%PROCESS_Dir%\mylastsearch.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] MYLASTSEARCH HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\browseraddonsview.txt" > "%PROCESS_HASH%\browseraddonsview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\browseraddonsview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] BROWSERADDONSVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\browserdownloadsview.txt" > "%PROCESS_HASH%\browserdownloadsview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\browserdownloadsview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] BROWSERDOWNLOADSVIEW HASH >> %_TimeStamp%
 
-%hashdeep% "%PROCESS_Dir%\browsinghistoryview.txt" > "%PROCESS_HASH%\browsinghistoryview_hash.txt"
+%hashdeep% "%PROCESS_Dir%\browsinghistoryview.txt" >> "%PROCESS_HASH%\hash.txt"
 echo [!timestamp!] BROWSINGHISTORYVIEW HASH >> %_TimeStamp%
 
 echo PROCESS INFORMATION CLEAR
@@ -767,16 +767,16 @@ set LOGON_HASH=%Logon_Dir%\HASH
 mkdir %LOGON_HASH%
 echo [!timestamp!] CREATE LOGON HASH DIRECTORY >> %_TimeStamp%
 
-%hashdeep% "%Logon_Dir%\psloggedon.txt" > "%LOGON_HASH%\psloggedon_hash.txt"
+%hashdeep% "%Logon_Dir%\psloggedon.txt" >> "%LOGON_HASH%\hash.txt"
 echo [!timestamp!] PSLOGGEDON HASH >> %_TimeStamp%
 
-%hashdeep% "%Logon_Dir%\logonsessions.txt" > "%LOGON_HASH%\logonsessions_hash.txt"
+%hashdeep% "%Logon_Dir%\logonsessions.txt" >> "%LOGON_HASH%\hash.txt"
 echo [!timestamp!] LOGONSESSIONS HASH >> %_TimeStamp%
 
-%hashdeep% "%Logon_Dir%\net_user.txt" > "%LOGON_HASH%\net_user_hash.txt"
+%hashdeep% "%Logon_Dir%\net_user.txt" >> "%LOGON_HASH%\hash.txt"
 echo [!timestamp!] NET USER HASH >> %_TimeStamp%
 
-%hashdeep% "%Logon_Dir%\winlogonview.txt" > "%LOGON_HASH%\winlogonview_hash.txt"
+%hashdeep% "%Logon_Dir%\winlogonview.txt" >> "%LOGON_HASH%\hash.txt"
 echo [!timestamp!] WINLOGONVIEW HASH >> %_TimeStamp%
 
 echo LOGON INFORMATION CLEAR
@@ -872,55 +872,55 @@ echo [!timestamp!]ACQUIRING BLUESCREEN INFORMATION >> %_TimeStamp%
 :: --------------------
 :: systeminfo hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\systeminfo.txt" > "%SYSTEM_INFO_HASH%\systeminfo_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\systeminfo.txt" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] systeminfo HASH >> %_TimeStamp%
 
 :: --------------------
 :: system log hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\system_log.evtx" > "%SYSTEM_INFO_HASH%\system_log_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\system_log.evtx" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] wevtutil system HASH >> %_TimeStamp%
 
 :: --------------------
 :: security log hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\security_log.evtx" > "%SYSTEM_INFO_HASH%\security_log_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\security_log.evtx" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] wevtutil security HASH >> %_TimeStamp%
 
 :: --------------------
 :: application log hash
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\application_log.evtx" > "%SYSTEM_INFO_HASH%\application_log_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\application_log.evtx" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] wevtutil application HASH >> %_TimeStamp%
 
 :: --------------------
 :: SAM FILE HASH
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\SAM.hiv" > "%SYSTEM_INFO_HASH%\SAM_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\SAM.hiv" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] SAM HASH >> %_TimeStamp%
 
 :: --------------------
 :: SOFTWARE FILE HASH
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\HKLM-Software.hiv" > "%SYSTEM_INFO_HASH%\HKLM-Software_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\HKLM-Software.hiv" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] HKLM-Software HASH >> %_TimeStamp%
 
 :: --------------------
 :: SYSTEM FILE HASH
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\SYSTEM.hiv" > "%SYSTEM_INFO_HASH%\SYSTEM_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\SYSTEM.hiv" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] SYSTEM HASH >> %_TimeStamp%
 
 :: --------------------
 :: SECURITY FILE HASH
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\SECURITY.hiv" > "%SYSTEM_INFO_HASH%\SECURITY_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\SECURITY.hiv" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] SECURITY HASH >> %_TimeStamp%
 
 :: --------------------
 :: BLUESCREENVIEW_HASH
 :: --------------------
-%hashdeep% "%SYSTEM_INFO_Dir%\bluescreenview.txt" > "%SYSTEM_INFO_HASH%\BLUESCREENVIEW_HASH.txt"
+%hashdeep% "%SYSTEM_INFO_Dir%\bluescreenview.txt" >> "%SYSTEM_INFO_HASH%\hash.txt"
 echo [!timestamp!] BLUESCREENVIEW HASH >> %_TimeStamp%
 
 echo SYSTEM INFORMATION CLEAR 
@@ -976,19 +976,19 @@ for /d %%A in (C:\Users\*) do (
     )
 )
 
-%hashdeep% "%Autoruns_Dir%\HKLM-Run.reg" > "%Autoruns_HASH%\HKLM-Run_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\HKLM-Run.reg" >> "%Autoruns_HASH%\hash.txt"
 echo [!timestamp!] HKLM-Run HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\HKCU-Run.reg" > "%Autoruns_HASH%\HKCU-Run_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\HKCU-Run.reg" >> "%Autoruns_HASH%\hash.txt"
 echo [!timestamp!] HKCU-Run HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\services.txt" > "%Autoruns_HASH%\services_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\services.txt" >> "%Autoruns_HASH%\hash.txt"
 echo [!timestamp!] services HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\wecutil-es.txt" > "%Autoruns_HASH%\wecutil-es_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\wecutil-es.txt" >> "%Autoruns_HASH%\hash.txt"
 echo [!timestamp!] wecutil-es HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\AutoRuns.csv" > "%Autoruns_HASH%\AutoRuns_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\AutoRuns.csv" >> "%Autoruns_HASH%\hash.txt"
 echo [!timestamp!] AutoRuns HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\Startup_ProgramData.txt" > "%Autoruns_HASH%\Startup_ProgramData_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\Startup_ProgramData.txt" >> "%Autoruns_HASH%\hash.txt"
 echo [!timestamp!] Startup_ProgramData HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\Startup_UserPaths.txt" > "%Autoruns_Dir%\Startup_UserPaths_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\Startup_UserPaths.txt" >> "%Autoruns_Dir%\hash.txt"
 echo [!timestamp!] Startup_UserPaths HASH >> %_TimeStamp%
 echo Step completed: %choice%
 exit /b
@@ -1021,9 +1021,9 @@ echo Collecting scheduled tasks information...
 schtasks /query /fo CSV /v > "%TSCB_Dir%\ScheduledTasks.csv"
 echo Scheduled tasks information collected successfully.
 
-%hashdeep% "%TSCB_Dir%\clipboard.txt" > "%TSCB_HASH%\clipboard_HASH.txt"
+%hashdeep% "%TSCB_Dir%\clipboard.txt" >> "%TSCB_HASH%\hash.txt"
 echo [!timestamp!] clipboard HASH >> %_TimeStamp%
-%hashdeep% "%TSCB_Dir%\ScheduledTasks.csv" > "%TSCB_HASH%\ScheduledTasks_HASH.txt"
+%hashdeep% "%TSCB_Dir%\ScheduledTasks.csv" >> "%TSCB_HASH%\hash.txt"
 echo [!timestamp!] ScheduledTasks HASH >> %_TimeStamp%
 
 echo.

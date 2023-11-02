@@ -30,7 +30,7 @@ for /f "tokens=2" %%a in ('tasklist ^| findstr /r /b "[A-Za-z]"') do (
         "!sysinternals!\%procdump%" -ma "%%a" "%Virtual_Memory_dir%\full_memory\%%a_memory_dump.dmp"
         echo [!timestamp!] Finished procdump for process: %%a >> %_TimeStamp%
         echo Calculating hash for process: %%a
-        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\full_memory\%%a_memory_dump.dmp" > "%Virtual_Memory_dir%\full_memory\hash\%%a_memory_dump_hash.txt"
+        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\full_memory\%%a_memory_dump.dmp" >> "%Virtual_Memory_dir%\full_memory\hash\hash.txt"
         echo [!timestamp!] HASH for process %%a >> %_TimeStamp%
     ) else if %dumpType%==2 (
         echo [!timestamp!] Starting procdump for process: %%a >> %_TimeStamp%
@@ -40,7 +40,7 @@ for /f "tokens=2" %%a in ('tasklist ^| findstr /r /b "[A-Za-z]"') do (
         "!sysinternals!\%procdump%" -mk "%%a" "%Virtual_Memory_dir%\kernel_memory\%%a_kernel_memory_dump.dmp"
         echo [!timestamp!] Finished procdump for process: %%a >> %_TimeStamp%
         echo Calculating hash for process: %%a
-        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\kernel_memory\%%a_kernel_memory_dump.dmp" > "%Virtual_Memory_dir%\kernel_memory\hash\%%a_kernel_memory_dump_hash.txt"
+        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\kernel_memory\%%a_kernel_memory_dump.dmp" >> "%Virtual_Memory_dir%\kernel_memory\hash\hash.txt"
         echo [!timestamp!] HASH for process %%a >> %_TimeStamp%
     ) else if %dumpType%==3 (
         echo [!timestamp!] Starting procdump for process: %%a >> %_TimeStamp%
@@ -50,7 +50,7 @@ for /f "tokens=2" %%a in ('tasklist ^| findstr /r /b "[A-Za-z]"') do (
         "!sysinternals!\%procdump%" -ma "%%a" "%Virtual_Memory_dir%\full_memory\%%a_memory_dump.dmp"
         echo [!timestamp!] Finished procdump for process: %%a >> %_TimeStamp%
         echo Calculating hash for process: %%a
-        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\full_memory\%%a_memory_dump.dmp" > "%Virtual_Memory_dir%\full_memory\hash\%%a_memory_dump_hash.txt"
+        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\full_memory\%%a_memory_dump.dmp" >> "%Virtual_Memory_dir%\full_memory\hash\hash.txt"
         echo [!timestamp!] HASH for process %%a >> %_TimeStamp%
 
         echo [!timestamp!] Starting procdump for process: %%a >> %_TimeStamp%
@@ -60,7 +60,7 @@ for /f "tokens=2" %%a in ('tasklist ^| findstr /r /b "[A-Za-z]"') do (
         "!sysinternals!\%procdump%" -mk "%%a" "%Virtual_Memory_dir%\kernel_memory\%%a_kernel_memory_dump.dmp"
         echo [!timestamp!] Finished procdump for process: %%a >> %_TimeStamp%
         echo Calculating hash for process: %%a
-        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\kernel_memory\%%a_kernel_memory_dump.dmp" > "%Virtual_Memory_dir%\kernel_memory\hash\%%a_kernel_memory_dump_hash.txt"
+        "!hash!\%hashdeep%" "%Virtual_Memory_dir%\kernel_memory\%%a_kernel_memory_dump.dmp" >> "%Virtual_Memory_dir%\kernel_memory\hash\hash.txt"
         echo [!timestamp!] HASH for process %%a >> %_TimeStamp%
     )
 )
