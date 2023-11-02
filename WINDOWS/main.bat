@@ -76,11 +76,11 @@ if "%choice%"=="1" (
     call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 	REM call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Active_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="2" (
-	call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+	call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 	REM call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Inactive_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="3" (
 	call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
-	call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+	call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 ) else (
     echo Invalid choice, please try again.
     goto choice

@@ -725,7 +725,7 @@ set choice=
     echo Acquring Recent Data ...
     echo [%timestamp%] Acquring Recent Data... >> %_Timestamp%
     forecopy_handy -r "%userprofile%\Desktop" %_Recent%
-    forecopy_handy -r "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
+    forecopy_handy -r "%userprofile%\AppData\Roaming\Microsoft\Windows\Recent" %_Recent%
     forecopy_handy -r "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" %_Recent%
     forecopy_handy -r "%userprofile%\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch"
     goto RUN_STEP_9_Hash

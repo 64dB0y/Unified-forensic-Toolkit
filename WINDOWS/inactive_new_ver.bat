@@ -693,6 +693,7 @@ call :GetTimestamp
 call :LogStep
 call :GetTimestamp
     set _restore=%NONVOLATILE_DIR%\Restore
+    set _restore_Hash=%_restore%\hash
     mkdir %_restore%
     echo.
     echo Create Restore Directory
@@ -702,6 +703,9 @@ call :GetTimestamp
     echo [!timestamp!] Restore File >> %_TimeStamp%
     ::forecopy_handy -dr %HOMEDRIVE%\System Volume Information\_restore{guid} %_restore%
 
+    mkdir %_restore_Hash%
+    echo [%timestamp%] Create Restore Hash Directory >> %_TimeStamp%
+    %hashdeep% -e -r %_restore% > %_restore_Hash%\Restore_Hash.txt
     echo RUN_STEP_7 CLEAR
     exit /b
 
