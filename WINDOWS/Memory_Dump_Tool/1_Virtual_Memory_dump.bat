@@ -23,7 +23,7 @@ if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
 for /f "tokens=2" %%a in ('tasklist ^| findstr /r /b "[A-Za-z]"') do (
     set "timestamp=!date! !time!"
     if %dumpType%==1 (
-        echo [%_TimeStamp%] Starting procdump for process: %%a >> %_TimeStamp%
+        echo [!timestamp!] Starting procdump for process: %%a >> %_TimeStamp%
         echo Creating full memory dump for process: %%a
         if not exist "%Virtual_Memory_dir%\full_memory" mkdir "%Virtual_Memory_dir%\full_memory"
         if not exist "%Virtual_Memory_dir%\full_memory\hash" mkdir "%Virtual_Memory_dir%\full_memory\hash"
