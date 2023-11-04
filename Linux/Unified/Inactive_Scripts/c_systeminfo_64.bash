@@ -16,47 +16,33 @@ echo "System Information(Inactive) Hash Directory Timtestamp : $timestamp" >> ..
 echo "*** System Information ***" > ../mnt2/SysInfo_Inactive/system_info.txt
 echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- CPU Info ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-lscpu >> ../mnt2/SysInfo_Inactive/system_info.txt
+lscpu >> ../mnt2/SysInfo_Inactive/lscpu.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "lscpu(CPU Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- Block Devices ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-lsblk >> ../mnt2/SysInfo_Inactive/system_info.txt
+lsblk >> ../mnt2/SysInfo_Inactive/lsblk.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "lsblk(Block Devices) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- Hardware Info ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-lshw >> ../mnt2/SysInfo_Inactive/system_info.txt
+lshw >> ../mnt2/SysInfo_Inactive/lshw.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "lshw(Hardware Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- USB Devices ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-lsusb >> ../mnt2/SysInfo_Inactive/system_info.txt
+lsusb >> ../mnt2/SysInfo_Inactive/lsusb.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "lsusb(USB Devices) copy Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- Loaded Kernel Modules ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-lsmod >> ../mnt2/SysInfo_Inactive/system_info.txt
+lsmod >> ../mnt2/SysInfo_Inactive/lsmod.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "lsmod(Loaded Kernel Modules) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- Disk Space Info ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-df -h >> ../mnt2/SysInfo_Inactive/system_info.txt
+df -h >> ../mnt2/SysInfo_Inactive/df_h.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "df -h(Disk Space Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
-echo "--- Memory Info ---" >> ../mnt2/SysInfo_Inactive/system_info.txt
-free -m >> ../mnt2/SysInfo_Inactive/system_info.txt
+free -m >> ../mnt2/SysInfo_Inactive/free_m.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "free -m(Memory Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
 # Get login information
 login_info=$(lastlog -u $(whoami) -t 1)
@@ -88,9 +74,6 @@ printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "$(whoami)", "$domain", "${login_type
 printf "사용자명\t도메인\t로그온 유형\t로그온 한 시간\t\t\t사용자의 SID\t\t사용자가 속한 SID 그룹\t사용자가 로그온한 IP주소\t장치의 호스트명\n%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" "$(whoami)" "$domain" "${login_type:-N/A}" "${login_time:-N/A}" "${user_sid:-N/A}" "${user_group_sid:-N/A}" "${ip_address:-N/A}" "${hostname:-N/A}" > ../mnt2/SysInfo_Inactive/login_info.txt
 timestamp=$(date +"%Y-%m-%d %T")
 echo "login_info.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-
-# Display the content of the file
-cat ../mnt2/SysInfo_Inactive/system_info.txt
 
 #각 명령어의 실행 결과를 변수에 저장하고, 해당 변수를 이용하여 결과를 출력합니다. 위의 예제 코드를 실행하면 CPU 정보, 블록 디바이스 정보, 하드웨어 정보, USB 디바이스 정보, 로드된 커널 모듈 정보, 디스크 사용량 정보, 메모리 사용량 정보를 모두 출력합니다.
 
