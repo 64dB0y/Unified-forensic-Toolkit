@@ -4,9 +4,8 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib import colors
 import pandas as pd
-import numpy as np
-import matplotlib
 import os
+import idx
 
 # 현재 작업 디렉토리를 얻습니다.
 current_directory = os.getcwd()
