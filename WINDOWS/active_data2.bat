@@ -533,7 +533,7 @@ echo [!timestamp!] PSLIST >> %_TimeStamp%
 
 :: listdlls - ok
 %Listdlls% /accepteula > %PROCESS_Dir%\listdll.txt 
-echo [!timestamp!] LISTDLLS >> %_TimeStamp%
+echo [!timestamp!] LISTDLL >> %_TimeStamp%
 
 ::handle - ok 
 %handle% /accepteula > %PROCESS_Dir%\handle.txt
@@ -800,7 +800,7 @@ echo [!timestamp!] CREATE SYTEM Information Directory >> %_TimeStamp%
 
 :: echo Make Hash File
 set SYSTEM_INFO_HASH=%SYSTEM_INFO_Dir%\HASH
-echo [!timestamp!]REGISTRY HASH DIRECTORY CREATE >> %_TimeStamp%
+echo [!timestamp!] REGISTRY HASH DIRECTORY CREATE >> %_TimeStamp%
 mkdir %SYSTEM_INFO_HASH%
 echo ------------------------------------------
 echo CREATE SYTEM Information Directory
@@ -809,6 +809,7 @@ echo ACQUIRING INFORMATION
 echo ------------------------------------------
 REM Collect system information
 systeminfo > "%SYSTEM_INFO_Dir%\systeminfo.txt"
+echo [!timestamp!] systeminfo >> %_TimeStamp%
 echo.
 echo.
 echo.
@@ -839,27 +840,27 @@ echo.
 
 REM Collect system log
 wevtutil epl System "%SYSTEM_INFO_Dir%\system_log.evtx" 
-echo [!timestamp!] wevtutil system log >> %_TimeStamp%
+echo [!timestamp!] wevtutil_system_log >> %_TimeStamp%
 
 REM Collect security log
 wevtutil epl Security "%SYSTEM_INFO_Dir%\security_log.evtx"
-echo [!timestamp!] wevtutil security log >> %_TimeStamp%
+echo [!timestamp!] wevtutil_security_log >> %_TimeStamp%
 
 REM Collect application log
 wevtutil epl Application "%SYSTEM_INFO_Dir%\application_log.evtx"
-echo [!timestamp!] wevtutil application log >> %_TimeStamp%
+echo [!timestamp!] wevtutil_application_log >> %_TimeStamp%
 
 echo Collecting important registry information
 
 REM Collect registry information
 reg save HKEY_LOCAL_MACHINE\SAM "%SYSTEM_INFO_Dir%\SAM.hiv" && echo SAM registry file dumped to : "%SYSTEM_INFO_Dir%"
-echo [!timestamp!] REG SAVE SAM >> %_TimeStamp%
+echo [!timestamp!] REG_SAVE_SAM >> %_TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SOFTWARE "%SYSTEM_INFO_Dir%\HKLM-Software.hiv" && echo SOFTWARE registry file dumped to : "%SYSTEM_INFO_Dir%"
-echo [!timestamp!] REG SAVE SOFTWARE >> %_TimeStamp%
+echo [!timestamp!] REG_SAVE_SOFTWARE >> %_TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SYSTEM "%SYSTEM_INFO_Dir%\SYSTEM.hiv" && echo SYSTEM registry file dumped to : "%SYSTEM_INFO_Dir%"
-echo [!timestamp!] REG SAVE SYSTEM >> %_TimeStamp%
+echo [!timestamp!] REG_SAVE_SYSTEM >> %_TimeStamp%
 reg save HKEY_LOCAL_MACHINE\SECURITY "%SYSTEM_INFO_Dir%\SECURITY.hiv" &&  echo SECURITY registry file dumped to : "%SYSTEM_INFO_Dir%"
-echo [!timestamp!] REG SAVE SECURITY >> %_TimeStamp%
+echo [!timestamp!] REG_SAVE_SECURITY >> %_TimeStamp%
 echo Starting HKEY_USERS Batch Script...
 call :GetTimestamp
 call .\HKEY_USERS.bat
@@ -867,7 +868,7 @@ call .\HKEY_USERS.bat
 REM BLUESCREENVIEW
 echo ACQUIRING BLUESCREEN INFORMATION
 %bluescreenview%\BlueScreenView.exe /stext %SYSTEM_INFO_Dir%\bluescreenview.txt
-echo [!timestamp!]ACQUIRING BLUESCREEN INFORMATION >> %_TimeStamp%
+echo [!timestamp!] BlueScreenView >> %_TimeStamp%
 
 :: --------------------
 :: systeminfo hash
@@ -957,16 +958,17 @@ reg save HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Autor
 
 REM Collect auto start services
 sc query type= service state= all > "%Autoruns_Dir%\services.txt"
-
+echo [!timestamp!] services >> %_TimeStamp%
 REM Collect event forwarding subscriptions
 wecutil es > "%Autoruns_Dir%\wecutil-es.txt"
+echo [!timestamp!] wecutil-es >> %_TimeStamp%
 
 :: AutoRunsc 실행 (Sysinternals)
 %autorunsc% /accepteula -a * -c -ct csv -nobanner > "%Autoruns_Dir%\AutoRuns.csv"
 
 :: ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp 경로의 파일 나열
 dir /b /a "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp" > "%Autoruns_Dir%\Startup_ProgramData.txt"
-
+echo [!timestamp!] Startup_ProgramData >> %_TimeStamp%
 :: 사용자별 Startup 경로의 파일 나열
 for /d %%A in (C:\Users\*) do (
     set "user_startup_path=%%A\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
@@ -975,6 +977,7 @@ for /d %%A in (C:\Users\*) do (
         dir /b /a "!user_startup_path!" >> "%Autoruns_Dir%\Startup_UserPaths.txt"
     )
 )
+echo [!timestamp!] Startup_UserPaths >> %_TimeStamp%
 
 %hashdeep% "%Autoruns_Dir%\HKLM-Run.reg" > "%Autoruns_HASH%\HKLM-Run_HASH.txt"
 echo [!timestamp!] HKLM-Run HASH >> %_TimeStamp%
@@ -988,7 +991,7 @@ echo [!timestamp!] wecutil-es HASH >> %_TimeStamp%
 echo [!timestamp!] AutoRuns HASH >> %_TimeStamp%
 %hashdeep% "%Autoruns_Dir%\Startup_ProgramData.txt" > "%Autoruns_HASH%\Startup_ProgramData_HASH.txt"
 echo [!timestamp!] Startup_ProgramData HASH >> %_TimeStamp%
-%hashdeep% "%Autoruns_Dir%\Startup_UserPaths.txt" > "%Autoruns_Dir%\Startup_UserPaths_HASH.txt"
+%hashdeep% "%Autoruns_Dir%\Startup_UserPaths.txt" > "%Autoruns_HASH%\Startup_UserPaths_HASH.txt"
 echo [!timestamp!] Startup_UserPaths HASH >> %_TimeStamp%
 echo Step completed: %choice%
 exit /b
@@ -1016,6 +1019,7 @@ echo ACQUIRING INFORMATION
 echo -------------------------------
 REM Collect clipboard information
 %etc%\pclip.exe > "%TSCB_Dir%\clipboard.txt"
+echo [!timestamp!] clipboard >> %_TimeStamp%
 REM Collect scheduled tasks information using schtasks
 echo Collecting scheduled tasks information...
 schtasks /query /fo CSV /v > "%TSCB_Dir%\ScheduledTasks.csv"
