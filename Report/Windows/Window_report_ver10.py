@@ -181,7 +181,6 @@ def main():
 
             # 디버깅 로그 추가: 파일과 매핑되는 타임스탬프 출력
             print(f"File: {file}, Timestamp: {timestamp}")
-            # 사용자 선택에 따라 해시 값 가져오기
             if hash_option == 1:
                 hash_md5, hash_sha1 = get_file_hashes(hash_directory, file, root, hash_option)
                 data.append([file_display, timestamp, hash_md5, hash_sha1])
