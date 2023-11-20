@@ -4,18 +4,23 @@ from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
+from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER
 
-def first_page(canvas, doc, Info_path):
-    canvas.saveState()
-    canvas.setFont('Helvetica-Bold', 38)
-    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2, "WINDOWS LIVE FORENSIC RESULT")
 
-    case, name, active_start_time = extract_case_name_start_time(Info_path)
-    canvas.setFont('Helvetica-Bold', 16)
-    canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 140, f"CASE NAME: {case}")
-    canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 180, f"ANALYST NAME: {name}")
-    canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 220, f"ACTIVE SCRIPT START TIME: {active_start_time}")
-    canvas.restoreState()
+directory_order = [
+    "Memory_Dump", "Virtual_Memory", "Network_Information",
+    "Process_Information", "Logon_Information", "System_Information",
+    "Autoruns_Information", "TSCB_Information"
+]
+
+def get_volatile_info_directories(volatile_info_path):
+    # Volatile_Information 디렉토리 내의 하위 디렉토리 목록을 가져옵니다.
+    if not os.path.exists(volatile_info_path):
+        print(f"Volatile_Information directory not found in {volatile_info_path}")
+        return []
+
+    directories = next(os.walk(volatile_info_path))[1]
+    return directories
 
 def abbreviate_filename(filename, max_length=30, start=15, end=15):
     """Abbreviate the filename if it exceeds the max_length."""
@@ -67,6 +72,23 @@ def get_file_hashes(hash_directory, filename, current_directory, hash_option):
         return "Hash File Not Found" if hash_option == 2 else ("Hash File Not Found", "Hash File Not Found")
     return "N/A" if hash_option == 2 else ("N/A", "N/A")
 
+def create_index_page(story, volatile_directories, title_style, index_style):
+    # INDEX 페이지 생성 (중앙 정렬, 글자 크기 조절)
+    story.append(Spacer(1, 0.4 * inch))  
+    story.append(Paragraph("INDEX", title_style))
+    story.append(Spacer(1, 0.8 * inch))
+
+    # 지정된 순서에 따라 디렉토리를 나열합니다.
+    for dir_name in directory_order:
+        if dir_name in volatile_directories:
+            story.append(Paragraph(f"-> {dir_name}", index_style))
+            story.append(Spacer(1, 0.35 * inch))
+        else:
+            story.append(Paragraph(f"-> {dir_name} (Not Collected!!)", index_style))
+            story.append(Spacer(1, 0.35 * inch))
+
+    #story.append(PageBreak())
+
 def main():
     user_input = input("Enter the directory path for parsing: ")
     base_directory = r"{}".format(user_input)
@@ -77,13 +99,36 @@ def main():
         print("TimeStamp.log file not found in the given path.")
         return
 
-    # Volatile_Information 폴더 경로 설정
+    # Set the path for the Volatile_Information folder
     volatile_info_path = os.path.join(base_directory, 'Volatile_Information')
 
-    # PDF 파일 생성 설정
     pdf_filename = 'Forensic_Windows_Report.pdf'
     doc = SimpleDocTemplate(pdf_filename, pagesize=landscape(letter))
     story = []
+
+    # Add content to the first page (center alignment, adjust font size, set font style)
+    title_style = ParagraphStyle('TitleStyle', alignment=TA_CENTER, fontSize=36, fontName='Helvetica-Bold')
+    normal_style = ParagraphStyle('NormalStyle', alignment=TA_CENTER, fontSize=22, fontName='Helvetica-Bold')
+
+    # Add Spacer to center the content on the first page
+    story.append(Spacer(1, 1.3 * inch))  
+    story.append(Paragraph("WINDOWS LIVE FORENSIC RESULT", title_style))
+    story.append(Spacer(1, 1.3 * inch))  
+    case, name, active_start_time = extract_case_name_start_time(Info_path)
+    story.append(Paragraph(f"CASE NAME: {case}", normal_style))
+    story.append(Spacer(1, 0.4 * inch))  
+    story.append(Paragraph(f"ANALYST NAME: {name}", normal_style))
+    story.append(Spacer(1, 0.4 * inch))  # Add spacer
+    story.append(Paragraph(f"ACTIVE SCRIPT START TIME: {active_start_time}", normal_style))
+    story.append(PageBreak())
+
+    # Code to retrieve the list of subdirectories within the Volatile_Information directory
+    volatile_directories = get_volatile_info_directories(volatile_info_path)
+
+    # Add the INDEX page (center alignment, adjust font size, set font style)
+    index_style = ParagraphStyle('IndexStyle', alignment=TA_JUSTIFY, fontSize=24,
+                                 fontName='Helvetica-Bold')  # Maintain font size at 24
+    create_index_page(story, volatile_directories, title_style, index_style)
 
     while True:
         hash_option = input(
@@ -94,7 +139,7 @@ def main():
         else:
             print("Invalid choice. Please enter 1 or 2.")
 
-    # 페이지 구분 추가
+    # Add page separation
     story.append(PageBreak())
 
     # Timestamp regex pattern
@@ -113,9 +158,9 @@ def main():
                 if match:
                     timestamp, file_or_action = match.groups()
                     timestamp_dict[file_or_action.lower()] = timestamp  # Convert to lowercase
-                    print(f"Timestamp found: {file_or_action.lower()} - {timestamp}")  # 디버깅 로그 추가
+                    print(f"Timestamp found: {file_or_action.lower()} - {timestamp}")  # Added debugging log
 
-    # os.walk 수정: Volatile_Information 폴더 내부만 순회
+    # Modified os.walk: Only traverses inside the Volatile_Information folder
     for root, dirs, files in os.walk(volatile_info_path):
         if "HASH" in root:
             continue
@@ -125,7 +170,7 @@ def main():
 
         display_path = root.replace(base_directory, '').lstrip('\\')
 
-        # 디렉토리 경로의 글자 크기를 키우기 위한 스타일 설정
+        # Set style to increase the font size of the directory path
         directory_style = ParagraphStyle(
             'DirectoryStyle',
             parent=getSampleStyleSheet()['Normal'],
@@ -134,7 +179,7 @@ def main():
         )
 
         story.append(Paragraph(f"{display_path}", directory_style))
-        story.append(Spacer(1, 5))  # 여기서 5는 간격의 높이를 나타냄 (단위: 포인트)
+        story.append(Spacer(1, 5))  # Here, 5 represents the height of the space (in points)
 
         if hash_option == 1:
             data = [["File Name", "Timestamp", "MD5 Hash", "SHA1 Hash"]]
@@ -149,9 +194,9 @@ def main():
 
             file_display = abbreviate_filename(file)
             file_lower = file.lower()
-            timestamp = timestamp_dict.get(file_lower, "N/A")  # 각 파일에 대한 타임스탬프 초기화
+            timestamp = timestamp_dict.get(file_lower, "N/A")  # Initialize the timestamp for each file
 
-            # 해시 디렉토리 경로 결정
+            # Determine the path for the hash directory
             hash_directory = os.path.join(root, 'HASH')
 
             # Match the filename with the timestamp
@@ -202,7 +247,7 @@ def main():
         story.append(table)
         story.append(Spacer(1, 0.25 * inch))
 
-    doc.build(story, onFirstPage=lambda canvas, doc: first_page(canvas, doc, Info_path))
+    doc.build(story)
     print(f"PDF report has been created: {pdf_filename}")
 
 if __name__ == "__main__":
