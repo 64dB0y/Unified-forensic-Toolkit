@@ -955,7 +955,9 @@ echo ACQUIRING INFORMATION
 echo ----------------------------------
 REM Collect startup programs
 reg save HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Autoruns_Dir%\HKLM-Run.reg"
+echo [!timestamp!] HKLM-Run >> %_TimeStamp%
 reg save HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Autoruns_Dir%\HKCU-Run.reg"
+echo [!timestamp!] HKCU-Run >> %_TimeStamp%
 
 REM Collect auto start services
 sc query type= service state= all > "%Autoruns_Dir%\services.txt"
