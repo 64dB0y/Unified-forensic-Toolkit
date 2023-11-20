@@ -17,7 +17,6 @@ def first_page(canvas, doc, Info_path):
     canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 220, f"ACTIVE SCRIPT START TIME: {active_start_time}")
     canvas.restoreState()
 
-
 def abbreviate_filename(filename, max_length=30, start=15, end=15):
     """Abbreviate the filename if it exceeds the max_length."""
     if len(filename) > max_length:
