@@ -60,6 +60,9 @@ echo.
 echo Your Current Working Directory is %~dp0
 set /p Target_drive=Your Target Drive: 
 
+:: If the last character of the entered drive string is not '\', add '\'
+if not "%Target_drive:~-1%"=="\" set Target_drive=%Target_drive%\
+
 echo.
 echo.
 
