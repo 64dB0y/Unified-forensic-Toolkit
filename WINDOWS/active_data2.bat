@@ -187,6 +187,7 @@ if not defined choice (
     for %%x in (%choice%) do (
         if /i "%%x"=="q" (
             echo %CASE% - %NAME% Active Data Collection finished >> %_TimeStamp%
+            call :LogStep
             exit /b
         ) else if /i "%%x"=="a" (
             for /l %%i in (0, 1, %final_step%) do (

@@ -8,16 +8,16 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, 
 # 첫 페이지 디자인 함수
 def first_page(canvas, doc):
     canvas.saveState()
-    canvas.setFont('Helvetica-Bold', 30)
+    canvas.setFont('Helvetica-Bold', 38)
     # 페이지 중앙에 문자열을 그리기 위해 좌표 수정
-    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2 + 100, "WINDOWS LIVE FORENSIC RESULT")
+    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2, "WINDOWS LIVE FORENSIC RESULT")
 
-    case, name, start_time = extract_case_name_start_time(Info_path)
+    case, name, active_start_time = extract_case_name_start_time(Info_path)
     canvas.setFont('Helvetica-Bold', 16)
     # 각 텍스트의 위치를 조정
-    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2, f"CASE: {case}")
-    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2 - 30, f"NAME: {name}")
-    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2 - 60, f"START TIME: {start_time}")
+    canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 140, f"CASE NAME: {case}")
+    canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 180, f"ANALYST NAME: {name}")
+    canvas.drawCentredString(landscape(letter)[0] / 2 + 20, landscape(letter)[1] / 2 - 220, f"ACTIVE SCRIPT START TIME: {active_start_time}")
     canvas.restoreState()
 
 
@@ -28,15 +28,16 @@ def abbreviate_filename(filename, max_length=30, start=17, end=17):
     return filename
 
 def extract_case_name_start_time(log_path):
-    case, name, start_time = "N/A", "N/A", "N/A"
+    case, name, active_start_time = "N/A", "N/A", "N/A"
     with open(log_path, 'r') as file:
         for line in file:
             if 'CASE:' in line:
                 case = line.split('CASE:')[1].strip()
-                start_time = line.split(']')[0].strip('[')
             elif 'NAME:' in line:
                 name = line.split('NAME:')[1].strip()
-    return case, name, start_time
+            elif 'Active Script START TIME' in line:
+                active_start_time = line.split(']')[0].strip('[')
+    return case, name, active_start_time
 
 def get_sha256_hash(hash_directory, filename, current_directory):
     """Retrieve the SHA256 hash for a given file from its hash file."""
