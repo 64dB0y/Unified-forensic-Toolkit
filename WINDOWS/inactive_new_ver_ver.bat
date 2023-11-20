@@ -28,17 +28,17 @@ mkdir "%foldername%"
 echo CREATE %foldername% DIRECTORY 
 
 set _TimeStamp=%foldername%\TimeStamp.log
-echo [%timestamp%] START TIME >> %_TimeStamp%
+echo [%timestamp%] Inactive Script START TIME >> %_TimeStamp%
 
 set NONVOLATILE_DIR=%foldername%\NONVOLATILE
 mkdir %NONVOLATILE_DIR%
 echo [%timestamp%] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :INPUT_CASE
-    echo [%timestamp%]%CASE% >> %_TimeStamp%
+    echo [%timestamp%] CASE: %CASE% >> %_TimeStamp%
 
 :INPUT_NAME
-    echo [%timestamp%]%NAME% >> %_TimeStamp%
+    echo [%timestamp%] NAME: %NAME% >> %_TimeStamp%
 
 :: Check .NET Framework4 or 6
 reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" >nul 2>&1

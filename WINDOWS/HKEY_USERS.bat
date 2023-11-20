@@ -5,7 +5,7 @@ echo Enumerating HKEY_USERS subkeys...
 echo Saving HKEY_USERS\.DEFAULT...
 reg save "HKEY_USERS\.DEFAULT" ".\DEFAULT_backup.reg" /y
 echo [!timestamp!] REG SAVE HKEY_USERS\.DEFAULT >> %_TimeStamp%
-%hash%\hashdeep64.exe ".\DEFAULT_backup.reg" > "%SYSTEM_INFO_HASH%\DEFAULT_backup_HASH.txt"
+%hash%\hashdeep64.exe -c sha1,md5,sha256 ".\DEFAULT_backup.reg" > "%SYSTEM_INFO_HASH%\DEFAULT_backup_HASH.txt"
 echo [!timestamp!] DEFAULT HASH >> %_TimeStamp%
 
 for /f "tokens=1*" %%a in ('reg query HKU ^| findstr /r /b "HKEY_USERS\\S-1-5"') do (
@@ -13,7 +13,7 @@ for /f "tokens=1*" %%a in ('reg query HKU ^| findstr /r /b "HKEY_USERS\\S-1-5"')
     echo Saving !subkey!...
     reg save "!subkey!" ".\!subkey:~11!_backup.reg" /y
     echo [!timestamp!] REG SAVE !subkey! >> %_TimeStamp%
-    %hash%\hashdeep64.exe ".\!subkey:~11!_backup.reg" > "%SYSTEM_INFO_HASH%\!subkey:~11!_backup_HASH.txt"
+    %hash%\hashdeep64.exe -c sha1,md5,sha256 ".\!subkey:~11!_backup.reg" > "%SYSTEM_INFO_HASH%\!subkey:~11!_backup_HASH.txt"
     echo [!timestamp!] !subkey:~11! HASH >> %_TimeStamp%
 )
 

@@ -1,10 +1,25 @@
 import os
 import re
 from reportlab.lib.pagesizes import letter, landscape
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
-from reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
+
+# 첫 페이지 디자인 함수
+def first_page(canvas, doc):
+    canvas.saveState()
+    canvas.setFont('Helvetica-Bold', 30)
+    # 페이지 중앙에 문자열을 그리기 위해 좌표 수정
+    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2 + 100, "WINDOWS LIVE FORENSIC RESULT")
+
+    case, name, start_time = extract_case_name_start_time(Info_path)
+    canvas.setFont('Helvetica-Bold', 16)
+    # 각 텍스트의 위치를 조정
+    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2, f"CASE: {case}")
+    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2 - 30, f"NAME: {name}")
+    canvas.drawCentredString(landscape(letter)[0] / 2, landscape(letter)[1] / 2 - 60, f"START TIME: {start_time}")
+    canvas.restoreState()
+
 
 def abbreviate_filename(filename, max_length=30, start=17, end=17):
     """Abbreviate the filename if it exceeds the max_length."""
@@ -12,12 +27,21 @@ def abbreviate_filename(filename, max_length=30, start=17, end=17):
         return f"{filename[:start]}...{filename[-end:]}"
     return filename
 
+def extract_case_name_start_time(log_path):
+    case, name, start_time = "N/A", "N/A", "N/A"
+    with open(log_path, 'r') as file:
+        for line in file:
+            if 'CASE:' in line:
+                case = line.split('CASE:')[1].strip()
+                start_time = line.split(']')[0].strip('[')
+            elif 'NAME:' in line:
+                name = line.split('NAME:')[1].strip()
+    return case, name, start_time
+
 def get_sha256_hash(hash_directory, filename, current_directory):
     """Retrieve the SHA256 hash for a given file from its hash file."""
-    # 확장자를 제외한 파일명 추출
     base_filename = os.path.splitext(filename)[0]
 
-    # 특정 패턴에 해당하는 경우 파일명 수정
     if '.Kernel.dmp' in filename:
         hash_file_name = filename.replace('.Kernel.dmp', '_kernel_hash.txt')
     elif filename.endswith('.mem'):
@@ -25,24 +49,27 @@ def get_sha256_hash(hash_directory, filename, current_directory):
     else:
         hash_file_name = f"{base_filename}_HASH.txt"
 
-    # System_Information\HKEY_USERS 디렉토리 내의 파일에 대한 예외 처리
     if 'System_Information\\HKEY_USERS' in current_directory:
-        # 상위 디렉토리로 이동 후 HASH 디렉토리로 경로 설정
         hash_directory = os.path.normpath(os.path.join(current_directory, '..', 'HASH'))
 
     hash_file_path = os.path.join(hash_directory, hash_file_name)
 
-    print(f"Checking hash for {filename} in {hash_file_path}")  # 디버깅 메시지 추가
+    print(f"Checking hash for {filename} in {hash_file_path}")
 
     try:
         with open(hash_file_path, 'r') as file:
             for line in file:
+                # 주석 라인 무시
+                if line.startswith('##'):
+                    continue
+
                 if base_filename in line and ',' in line:
+                    # SHA-256 해시 값 추출
                     hash_value = line.strip().split(',')[-2]
-                    print(f"Found hash for {filename}: {hash_value}")  # 디버깅 메시지 추가
+                    print(f"Found hash for {filename}: {hash_value}")
                     return hash_value
     except FileNotFoundError:
-        print(f"Hash file not found for {filename}")  # 디버깅 메시지 추가
+        print(f"Hash file not found for {filename}")
         return "Hash File Not Found"
     return "N/A"
 
@@ -51,8 +78,12 @@ pdf_filename = 'Forensic_Windows_Report.pdf'
 doc = SimpleDocTemplate(pdf_filename, pagesize=landscape(letter))
 story = []
 
+
+# 페이지 구분 추가
+story.append(PageBreak())
+
 # Target directory
-base_directory = 'D:\\for_rep_result\\DESKTOP-2PH1IF1_2023-11-20_02-52-11'
+base_directory = 'D:\\for_rep_result\\DESKTOP-2PH1IF1_2023-11-20_16-47-57'
 
 # Info_path setup
 Info_path = os.path.join(base_directory, 'TimeStamp.log')
@@ -154,5 +185,5 @@ for root, dirs, files in os.walk(base_directory):
     story.append(Spacer(1, 0.25 * inch))
 
 # Save the PDF document
-doc.build(story)
+doc.build(story, onFirstPage=first_page)
 print(f"PDF report has been created: {pdf_filename}")

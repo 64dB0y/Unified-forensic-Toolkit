@@ -43,10 +43,10 @@ echo [!timestamp!] CREATE NONVOLATILE DIRECTORY >> %_TimeStamp%
 
 :: INPUT CASE, NAME
 :INPUT_CASE
-    echo [!timestamp!]%CASE% >> %_TimeStamp%
+    echo [!timestamp!] CASE: %CASE% >> %_TimeStamp%
 
 :INPUT_NAME
-    echo [!timestamp!]%NAME% >> %_TimeStamp%
+    echo [!timestamp!] NAME: %NAME% >> %_TimeStamp%
 
 :START
 echo %CASE% - %NAME% Inactive Data Collection Begins >> %_TimeStamp%
