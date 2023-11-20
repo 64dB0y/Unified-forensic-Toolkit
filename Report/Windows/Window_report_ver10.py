@@ -69,9 +69,7 @@ def get_file_hashes(hash_directory, filename, current_directory, hash_option):
     return "N/A" if hash_option == 2 else ("N/A", "N/A")
 
 def main():
-    # 사용자로부터 디렉토리 경로 입력받기
     user_input = input("Enter the directory path for parsing: ")
-    # 사용자 입력 경로의 '\'를 '\\'로 변환하지 않고, 원시 문자열로 처리
     base_directory = r"{}".format(user_input)
 
     # TimeStamp.log 파일 경로 설정 (Volatile_Information 디렉토리가 아닌 사용자가 제공한 디렉토리 내)
@@ -88,7 +86,6 @@ def main():
     doc = SimpleDocTemplate(pdf_filename, pagesize=landscape(letter))
     story = []
 
-    # 사용자에게 해시 알고리즘 선택 요청
     while True:
         hash_option = input(
             "Choose the hash algorithm for the report:\n1) Display MD5, SHA1\n2) Display SHA256\nEnter 1 or 2: ")
@@ -140,7 +137,6 @@ def main():
         story.append(Paragraph(f"{display_path}", directory_style))
         story.append(Spacer(1, 5))  # 여기서 5는 간격의 높이를 나타냄 (단위: 포인트)
 
-        # 테이블 헤더 조정
         if hash_option == 1:
             data = [["File Name", "Timestamp", "MD5 Hash", "SHA1 Hash"]]
             col_widths = [2.45 * inch, 1.5 * inch, 2.85 * inch, 3.2 * inch]
@@ -180,7 +176,7 @@ def main():
                 for key in timestamp_dict:
                     if key in file_lower:
                         timestamp = timestamp_dict[key]
-                        print(f"Matching {file_lower} with timestamp {timestamp} for key {key}")  # 디버깅 로그 추가
+                        print(f"Matching {file_lower} with timestamp {timestamp} for key {key}")  # added for debugging log
                         break
 
             # 디버깅 로그 추가: 파일과 매핑되는 타임스탬프 출력
