@@ -10,7 +10,7 @@ echo "Trash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 mkdir ../mnt2/Trash/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Trash Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Trash Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # 출력 파일 설정
 OUTPUT_FILE="../mnt2/Trash/trash_info.txt"
@@ -46,7 +46,7 @@ do
 	echo >> ../mnt2/Trash/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Trash hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Trash hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Trash/hash/hash.txt
 echo    >> ../mnt2/Trash/hash/hash.txt
 

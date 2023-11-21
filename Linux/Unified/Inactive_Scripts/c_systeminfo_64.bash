@@ -10,7 +10,7 @@ echo "System Information(Inactive) Directory Timestamp : $timestamp" >> ../mnt2/
 
 mkdir ../mnt2/SysInfo_Inactive/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "System Information(Inactive) Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "System Information(Inactive) Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # Get system information and save to txt file
 echo "*** System Information ***" > ../mnt2/SysInfo_Inactive/system_info.txt
@@ -18,31 +18,31 @@ echo "" >> ../mnt2/SysInfo_Inactive/system_info.txt
 
 lscpu >> ../mnt2/SysInfo_Inactive/lscpu.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "lscpu(CPU Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "lscpu.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 lsblk >> ../mnt2/SysInfo_Inactive/lsblk.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "lsblk(Block Devices) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "lsblk.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 lshw >> ../mnt2/SysInfo_Inactive/lshw.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "lshw(Hardware Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "lshw.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 lsusb >> ../mnt2/SysInfo_Inactive/lsusb.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "lsusb(USB Devices) copy Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "lsusb.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 lsmod >> ../mnt2/SysInfo_Inactive/lsmod.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "lsmod(Loaded Kernel Modules) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "lsmod.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 df -h >> ../mnt2/SysInfo_Inactive/df_h.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "df -h(Disk Space Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "df_h.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 free -m >> ../mnt2/SysInfo_Inactive/free_m.txt
 timestamp=$(date +"%Y-%m-%d %T")
-echo "free -m(Memory Info) Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "free_m.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # Get login information
 login_info=$(lastlog -u $(whoami) -t 1)
@@ -84,6 +84,6 @@ do
 	echo >> ../mnt2/SysInfo_Inactive/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Inactive SysInfo hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Inactive SysInfo hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/SysInfo_Inactive/hash/hash.txt
 echo    >> ../mnt2/SysInfo_Inactive/hash/hash.txt

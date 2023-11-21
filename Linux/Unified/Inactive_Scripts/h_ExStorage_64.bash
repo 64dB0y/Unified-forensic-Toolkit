@@ -10,7 +10,7 @@ echo "Exstorage file Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.
 
 mkdir ../mnt2/exstorage/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Exstorage Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Exstorage Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 RAW_LOG_FILE="../mnt2/exstorage/usb_raw_logs.txt"
 FORMATTED_LOG_FILE="../mnt2/exstorage/usb_formatted_logs.txt"
@@ -33,7 +33,7 @@ do
 	echo >> ../mnt2/exstorage/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "ExStorage hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "ExStorage hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/exstorage/hash/hash.txt
 echo    >> ../mnt2/exstorage/hash/hash.txt
 

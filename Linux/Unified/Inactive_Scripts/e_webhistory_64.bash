@@ -1,4 +1,4 @@
-#!/bin/bash
+	#!/bin/bash
 
 echo "Timestamp for Web History files" >> ../mnt2/Forensic_Info.txt
 timestamp=$(date +"%Y-%m-%d %T")
@@ -10,7 +10,7 @@ echo "LogonWeb History Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Inf
 
 mkdir ../mnt2/Web/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Web History Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Web History Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # 크롬의 기록을 저장할 경로
 chrome_output_path="../mnt2/Web/chrome_history.txt"
@@ -33,7 +33,7 @@ do
 	    sqlite3 "$chrome_history_file" "SELECT datetime(last_visit_time/1000000-11644473600, 'unixepoch'), title, url FROM urls ORDER BY last_visit_time DESC" > "$chrome_output_path"
 	    echo "Chrome history saved to $chrome_output_path"
 	    timestamp=$(date +"%Y-%m-%d %T")
-	    echo "Chrome history Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+	    echo "chrome_history Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 	fi
 
 	# 파이어폭스의 프로필 디렉토리 찾기
@@ -56,7 +56,7 @@ do
 		sqlite3 "$firefox_history_file" "SELECT datetime(visit_date/1000000,'unixepoch'), title, url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id ORDER BY visit_date DESC" > "$firefox_output_path"
 		echo "Firefox history saved to $firefox_output_path"
 		timestamp=$(date +"%Y-%m-%d %T")
-		echo "Firefox history Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+		echo "firefox_history.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 	    fi
 	fi
   fi
@@ -73,6 +73,6 @@ do
 	echo >> ../mnt2/Web/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Web hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Web hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Web/hash/hash.txt
 echo    >> ../mnt2/Web/hash/hash.txt
