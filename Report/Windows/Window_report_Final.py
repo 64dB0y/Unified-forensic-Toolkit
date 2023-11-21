@@ -74,7 +74,7 @@ def get_file_hashes(hash_directory, filename, current_directory, hash_option):
 
 def create_index_page(story, volatile_directories, title_style, index_style):
     # INDEX 페이지 생성 (중앙 정렬, 글자 크기 조절)
-    story.append(Spacer(1, 0.4 * inch))  
+    story.append(Spacer(1, 0.4 * inch))
     story.append(Paragraph("INDEX", title_style))
     story.append(Spacer(1, 0.8 * inch))
 
@@ -111,12 +111,12 @@ def main():
     normal_style = ParagraphStyle('NormalStyle', alignment=TA_CENTER, fontSize=22, fontName='Helvetica-Bold')
 
     # Add Spacer to center the content on the first page
-    story.append(Spacer(1, 1.3 * inch))  
+    story.append(Spacer(1, 1.3 * inch))
     story.append(Paragraph("WINDOWS LIVE FORENSIC RESULT", title_style))
-    story.append(Spacer(1, 1.3 * inch))  
+    story.append(Spacer(1, 1.3 * inch))
     case, name, active_start_time = extract_case_name_start_time(Info_path)
     story.append(Paragraph(f"CASE NAME: {case}", normal_style))
-    story.append(Spacer(1, 0.4 * inch))  
+    story.append(Spacer(1, 0.4 * inch))
     story.append(Paragraph(f"ANALYST NAME: {name}", normal_style))
     story.append(Spacer(1, 0.4 * inch))  # Add spacer
     story.append(Paragraph(f"ACTIVE SCRIPT START TIME: {active_start_time}", normal_style))
