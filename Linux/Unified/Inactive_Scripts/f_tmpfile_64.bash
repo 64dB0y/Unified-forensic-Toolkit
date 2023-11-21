@@ -14,7 +14,7 @@ echo "Temporary file metadata Directory Timestamp : $timestamp" >> ../mnt2/Foren
 
 mkdir ../mnt2/TMP/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Temporary Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Temporary Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # Collect all files in the /tmp directory
 echo "Collecting temporary files in /tmp directory..."
@@ -57,7 +57,7 @@ do
 done
 
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Temporary hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Temporary hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/TMP/hash/hash.txt
 echo    >> ../mnt2/TMP/hash/hash.txt
 

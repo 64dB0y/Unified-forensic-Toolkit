@@ -34,7 +34,7 @@ do
 	echo >> ../mnt2/System/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "System hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "System hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/System/hash/hash.txt
 echo    >> ../mnt2/System/hash/hash.txt
 

@@ -10,7 +10,7 @@ echo "Metadata Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 mkdir ../mnt2/Metadata/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Metadata Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Metadata Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # 수집할 디렉토리 경로
 DIR="/"
@@ -35,14 +35,14 @@ awk '{
 timestamp=$(date +"%Y-%m-%d %T")
 echo "formatted_metadata.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
-for file in ../mnt2/Logon/*.txt					# Obtain the hash value for each result file
+for file in ../mnt2/Metadata/*.txt					# Obtain the hash value for each result file
 do
 	echo "$file" >> ../mnt2/Metadata/hash/hash.txt
 	./hash.exe "$file" >> ../mnt2/Metadata/hash/hash.txt
 	echo >> ../mnt2/Metadata/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Metadata hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Metadata hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Metadata/hash/hash.txt
 echo    >> ../mnt2/Metadata/hash/hash.txt
 

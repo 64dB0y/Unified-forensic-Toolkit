@@ -11,7 +11,7 @@ echo "Logon Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 mkdir ../mnt2/Logon/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Logon Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Logon Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # Recently logged in user information
 lastlog > ../mnt2/Logon/lastlog.txt
@@ -50,7 +50,7 @@ do
 	echo >> ../mnt2/Logon/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Logon hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Logon hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Logon/hash/hash.txt
 echo    >> ../mnt2/Logon/hash/hash.txt
 

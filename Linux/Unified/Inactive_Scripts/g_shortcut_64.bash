@@ -14,7 +14,7 @@ echo "Shortcut file metadata Directory Timestamp : $timestamp" >> ../mnt2/Forens
 
 mkdir ../mnt2/shortcut/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Shortcut Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Shortcut Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 grep /bin/bash /etc/passwd | cut -f1 -d: >> userlist.txt	# Save user list
 
@@ -69,7 +69,7 @@ do
 done
 
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Temporary hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Shortcut hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/shortcut/hash/hash.txt
 echo    >> ../mnt2/shortcut/hash/hash.txt
 

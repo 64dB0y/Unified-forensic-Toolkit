@@ -10,7 +10,7 @@ echo "Log Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 mkdir ../mnt2/Log/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Log Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Log Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 # 로그 파일이 저장되어 있는 디렉토리
 log_dir="/var/log"
@@ -35,7 +35,7 @@ do
 	echo >> ../mnt2/Log/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Log hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Log hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Log/hash/hash.txt
 echo    >> ../mnt2/Log/hash/hash.txt
 
