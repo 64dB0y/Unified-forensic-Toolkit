@@ -10,15 +10,14 @@ echo "Virtual Memory Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.
 
 mkdir ../mnt2/Virtual_memory/hash
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Virtual_memory Hash Directory Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Virtual_memory Hash Directory Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 cd ./Active_Scripts/avml
 sudo ./target/x86_64-unknown-linux-musl/release/avml --compress output.lime.compressed
 timestamp=$(date +"%Y-%m-%d %T")
+cd ..
+cd ..
 echo "Avml Dump Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
-
-cd ..
-cd ..
 
 sudo cp ./Active_Scripts/avml/output.lime.compressed ../mnt2/Virtual_memory
 timestamp=$(date +"%Y-%m-%d %T")
@@ -31,7 +30,7 @@ do
 	echo >> ../mnt2/Virtual_memory/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Avml Dump hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Avml Dump hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Virtual_memory/hash/hash.txt
 
 # 가상 메모리 덤프 파일을 저장할 폴더를 생성합니다.
@@ -62,6 +61,6 @@ do
 	echo >> ../mnt2/Virtual_memory/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Virtual Memory Dump hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Virtual Memory Dump hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 date >> ../mnt2/Virtual_memory/hash/hash.txt
 echo    >> ../mnt2/Virtual_memory/hash/hash.txt

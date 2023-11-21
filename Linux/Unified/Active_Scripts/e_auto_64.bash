@@ -29,7 +29,7 @@ do
 	echo >> ../mnt2/Autorun/hash/hash.txt
 done
 timestamp=$(date +"%Y-%m-%d %T")
-echo "Autorun hash.txt Timtestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
+echo "Autorun hash.txt Timestamp : $timestamp" >> ../mnt2/Forensic_Info.txt
 
 date >> ../mnt2/Autorun/hash/hash.txt
 echo    >> ../mnt2/Autorun/hash/hash.txt
