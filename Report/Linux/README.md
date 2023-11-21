@@ -14,3 +14,5 @@ Report Creating Program for Collected Files from Linux Forensic
   
 Download Link
 https://drive.google.com/file/d/1OCibtjOtP8c1wfdwPdzDXEpZDdjflVGQ/view?usp=sharing
+
+Result.zip은 본 프로그램 테스트용 포렌식 생성물임
