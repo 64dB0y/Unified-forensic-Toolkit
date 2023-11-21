@@ -112,7 +112,7 @@ with open(Info_path, 'r') as file:
             story.append(PageBreak())
             line = file.readline()
 
-        if 'Virtual_memory' in line:
+        if 'Virtual Memory' in line or category == 'Virtual_memory':
             if 'files' in line:
                 print("Virtual Memory 생성 중 . . .")
                 Title('Virtual Memory', story)
@@ -124,10 +124,11 @@ with open(Info_path, 'r') as file:
             elif 'hash.txt' in line:
                 Line(line, story, hash_path)
                 story.append(Spacer(1,12))
-
                 dump_path = os.path.join(current_directory, 'Virtual_memory', 'core-dumps')
-                subdir = [f.path for f in os.scandir(dump_path) if f.is_dir()]
-                dump_dir_count = len(subdir) - 1
+                print(dump_path)
+                subdir = [f.path for f in os.scandir(dump_path) if f.is_file()]
+                dump_dir_count = len(subdir)
+                print(dump_dir_count)
                 text = f"{'Collected Dump files : ' + str(dump_dir_count)}"
                 p = Paragraph(text, style)
                 story.append(p)
@@ -391,7 +392,7 @@ while(1):
         autoinfo.autoinfo()
         autorunning.autorunning()
     elif(choose == 5):  # 웹 히스토리
-        #web.WebHis() <--- 조금 더 수정하고 완성
+        web.WebHis(current_directory)
         continue
     elif(choose == 6):  # 종료
         print("보고서 생성 프로그램을 종료합니다")

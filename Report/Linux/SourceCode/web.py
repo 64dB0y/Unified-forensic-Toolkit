@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 from datetime import datetime
 from collections import Counter
+import os
 
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Spacer, PageBreak, Table, TableStyle
 from reportlab.lib import colors
 from reportlab.platypus import Image
 from io import BytesIO
@@ -106,8 +106,22 @@ def create_pdf(filename, sorted_dates, date_counts, sorted_hours, hour_counts):
     # Build the PDF
     doc.build(elements)
 
-def WebHis():
-    data = read_data('aa.txt')
-    sorted_dates, date_counts, sorted_hours, hour_counts = process_data(data)
-    create_pdf('analysis_report.pdf', sorted_dates, date_counts, sorted_hours, hour_counts)
-    print("Web History pdf 생성 완료")
+def WebHis(root_path):
+    firefox_path = os.path.join(root_path, 'Web', 'firefox_history.txt')
+    chrome_path = os.path.join(root_path, 'Web', 'chrome_history.txt')
+
+    if (os.path.exists(chrome_path)):
+        data = read_data(chrome_path)
+        sorted_dates, date_counts, sorted_hours, hour_counts = process_data(data)
+        create_pdf('chrome_report.pdf', sorted_dates, date_counts, sorted_hours, hour_counts)
+        print("chrome_report.pdf 생성 완료")
+    else:
+        print("Chrome History가 존재하지 않습니다")
+
+    if (os.path.exists(firefox_path)):
+        data = read_data(firefox_path)
+        sorted_dates, date_counts, sorted_hours, hour_counts = process_data(data)
+        create_pdf('firefox_report.pdf', sorted_dates, date_counts, sorted_hours, hour_counts)
+        print("firefox_report.pdf 생성 완료")
+    else:
+        print("Firefox History가 존재하지 않습니다")
