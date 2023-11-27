@@ -106,7 +106,7 @@ echo.
 set /p choice="Enter your choice: "
 
 if "%run_procmon%"=="1" (
-    %psexec% -d %Procmon% /accepteula /Quiet /Minimized /BackingFile %foldername%\log.pml
+    %psexec% -d %Procmon% /accepteula /Quiet /Minimized /BackingFile %foldername%\procmon_log.pml
 )
 
 if "%choice%"=="1" (
