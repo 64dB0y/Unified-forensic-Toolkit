@@ -31,6 +31,20 @@ set NAME=""
 set "CASE=%CASE: =_%"
 set "NAME=%NAME: =_%"
 
+set Procmon=
+set kill_Procmon=
+set psexec=
+set "sysinternals=%~dp0sysinternalsSuite"
+
+if %PROCESSOR_ARCHITECTURE%==AMD64 (
+	set Procmon=%sysinternals%\Procmon64.exe
+	set kill_Procmon=Procmon64.exe
+	set psexec=%sysinternals%\PsExec64.exe
+) else (
+	set Procmon=%sysinternals%\Procmon.exe
+	set kill_Procmon=Procmon.exe
+	set psexec=%sysinternals%\PsExec.exe
+)
 :START
 echo.
 echo **********************************
@@ -63,8 +77,24 @@ set /p Target_drive=Your Target Drive:
 :: If the last character of the entered drive string is not '\', add '\'
 if not "%Target_drive:~-1%"=="\" set Target_drive=%Target_drive%\
 
+set foldername=%Target_drive%%computername%_%timestamp%
+mkdir "%foldername%"
+echo "created %foldername%"
+
 echo.
 echo.
+
+:ask_procmon
+echo Do you want to track file creation activities using Procmon? (Y/N)
+set /p track_files="Enter your choice (Y/N): "
+if /I "%track_files%"=="Y" (
+    set run_procmon=1
+) else if /I "%track_files%"=="N" (
+    set run_procmon=0
+) else (
+    echo Invalid choice, please try again.
+    goto ask_procmon
+)
 
 :choice
 echo Which Task do you want to execute?
@@ -75,16 +105,24 @@ echo.
 echo.
 set /p choice="Enter your choice: "
 
+if "%run_procmon%"=="1" (
+    %psexec% -d %Procmon% /accepteula /Quiet /Minimized /BackingFile %foldername%\log.pml
+)
+
 if "%choice%"=="1" (
     call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
-	REM call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Active_Data_Collection_Command_Log.txt
+    REM call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Active_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="2" (
-	call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
-	REM call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Inactive_Data_Collection_Command_Log.txt
+    call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+    REM call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Inactive_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="3" (
-	call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
-	call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+    call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+    call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
 ) else (
     echo Invalid choice, please try again.
     goto choice
+)
+
+if "%run_procmon%"=="1" (
+    %Procmon% /Terminate
 )
