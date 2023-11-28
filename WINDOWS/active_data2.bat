@@ -1,13 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Initial settings
-echo -------------
-echo PATH Settings
-echo -------------
-echo.
-echo.
-
 set "CASE=%~1"
 set "NAME=%~2"
 set final_step=7
