@@ -141,7 +141,9 @@ Specify the target directory you wish to parse and the type of hash value you wa
 If you're uncertain about which directory to specify,<br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/10c8a06b-d354-4232-ba89-217ccb29ce0b)<br/>
 simply select the directory under the target directory defined in main.bat, which is named after the computer name and timestamp.<br/><br/>
-
+If executed correctly, you should be able to see the results as follows:<br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/06fc153b-49ec-47b1-83e7-b5339f229202)<br/>
+The table in the image above represents a portion of the results from the generated report<br/><br/>
 ## Requirements
 
 For Windows - you need to execute the terminal with Administrator privileges.
