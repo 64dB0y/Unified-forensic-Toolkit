@@ -95,6 +95,13 @@ Once the compression password has been entered, you can see CyLR functioning as 
 The virtual memory dump is supported through the sysinternals procdump tool, and there are two main types that can be collected. One is a full memory dump, and the other is a kernel memory dump.<br/><br/>
 ![vm2](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/976fed1d-d24e-4c0d-8684-62d0ae93020a)<br/>
 You might notice several errors quickly appearing at the beginning of a virtual memory dump using procdump, but then the dump proceeds normally after a moment. These initial errors are presumed to be related to permission issues.<br/><br/>
+
+(Note - Since the virtual memory dump generates a large amount of data, during development and testing, the process was briefly run and then stopped to move on.)<br/>
+
+Once all the script executions are complete, the menu will reappear, and you can exit by pressing 'q'. However, if you selected the option to run both active and inactive scripts by pressing 3 in main.bat, the Inactive script will start executing immediately.<br/><br/>
+### **5) Executing Inactive Script**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/9148edfe-7ce5-488b-8abb-db7f5b451275)<br/>
+The Inactive Script also supports various options, as seen in the image. The difference from the active script is that the execution of the Inactive Script depends on whether the .NET FRAMEWORK is installed. If the .NET FRAMEWORK is installed, it utilizes kape to use tools appropriately for each stage. On the other hand, if the .NET FRAMEWORK is not installed, it primarily uses forecopy_handy for data collection and occasionally employs xcopy, a built-in command provided by Windows, for data gathering.<br/><br/>
 ## **2-2 How To Use Linux Version**
 
 1. Go to root directory
