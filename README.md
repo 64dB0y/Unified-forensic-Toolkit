@@ -23,9 +23,9 @@ For optimal functionality, the USB drive should be prepared with two distinct pa
 
 In addition to the fundamental concept of live forensics, our scripts are meticulously designed to collect both active and inactive data from the target system. The specific types of data gathered by our scripts are as follows:
 
-- Active Data Collection
+**- Active Data Collection**
 
-For active data, our scripts are capable of:
+*For active data, our scripts are capable of:*
 
 1. Creating Memory and Virtual Memory dumps. <br/>
 2. Collecting network configuration and connection status. <br/>
@@ -35,9 +35,9 @@ For active data, our scripts are capable of:
 6. Listing programs configured to start automatically during boot. <br/>
 7. Collecting information about scheduled tasks and clipboard history. <br/>
 
-- Inactive Data Collection
+**- Inactive Data Collection**
 
-For inactive data, our scripts focus on:
+*For inactive data, our scripts focus on:*
 
 1. Collecting file system metadata including MFT, Boot, Amcache. <br/>
 2. Retrieving registry files like SAM, SYSTEM, SOFTWARE, SECURITY. <br/>
