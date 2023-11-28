@@ -26,10 +26,17 @@ set NAME=""
 :ENTER_NAME
 	set /p NAME=Please enter the your name : || GOTO:ENTER_NAME
 
+:REPLACE_SPACES_CASE
+if "%CASE: =_%" neq "%CASE%" (
+    set "CASE=%CASE: =_%"
+    goto REPLACE_SPACES_CASE
+)
 
-:: Replace spaces with underscores
-set "CASE=%CASE: =_%"
-set "NAME=%NAME: =_%"
+:REPLACE_SPACES_NAME
+if "%NAME: =_%" neq "%NAME%" (
+    set "NAME=%NAME: =_%"
+    goto REPLACE_SPACES_NAME
+)
 
 set Procmon=
 set kill_Procmon=
@@ -110,14 +117,14 @@ if "%run_procmon%"=="1" (
 )
 
 if "%choice%"=="1" (
-    call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+    call %~dp0\active_data2.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
     REM call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Active_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="2" (
-    call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+    call %~dp0\inactive_new_ver_ver.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
     REM call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Inactive_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="3" (
-    call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
-    call %~dp0\inactive_new_ver_ver.bat %CASE% %NAME% %Target_drive%%computername%_%timestamp%
+    call %~dp0\active_data2.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
+    call %~dp0\inactive_new_ver_ver.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
 ) else (
     echo Invalid choice, please try again.
     goto choice
