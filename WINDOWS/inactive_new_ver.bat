@@ -11,8 +11,8 @@ set "dump=%~dp0Memory_Dump_Tool"
 set "kape=%~dp0kape"
 SET "PATH=%curDir%;%ETC%;%sysinternals%;%HASH%;%dump%;%kape%;%PATH%"
 
-set CASE=%1
-set NAME=%2
+set "CASE=%~1"
+set "NAME=%~2"
 set "_System_Drive=%systemdrive%"
 set "_FirstCharacter=%_System_Drive:~0,1%"
 

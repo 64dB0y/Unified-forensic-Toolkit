@@ -9,8 +9,8 @@ set "dump=%~dp0Memory_Dump_Tool"
 set "kape=%~dp0kape"
 SET "PATH=%curDir%;%ETC%;%sysinternals%;%HASH%;%dump%;%kape%;%PATH%"
 
-set CASE=%1
-set NAME=%2
+set "CASE=%~1"
+set "NAME=%~2"
 
 :: SET DATE AND TIME
 set year=%date:~0,4%
