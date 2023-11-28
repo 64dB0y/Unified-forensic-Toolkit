@@ -128,6 +128,9 @@ sudo chmod +x ./Forensic.bash
 5. Run the script!
 sudo ./Forensic.bash
 
+## **3. Report**
+After data collection, we support the creation of a separate report (Note, this report generation task should be carried out on a computer unrelated to the one affected by the security incident. After all, the goal of digital forensics is to minimize changes to the system). Our report briefly outlines what data has been collected, when (timestamp) it was collected, where it is located, and what its hash value is.<br/><br/>
+
 ## Requirements
 
 For Windows - you need to execute the terminal with Administrator privileges.
