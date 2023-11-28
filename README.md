@@ -56,7 +56,8 @@ Furthermore, our script suite is divided into three main components. The main sc
 All demonstrations presented from this point forward are performed with administrative privileges. This means that our project's scripts are designed to be executed on the premise that they are granted administrator-level permissions
 
 ## **2-1 How To Use Windows Version**
-
+###**1) First, prepare the USB with two partitions.**<br/><br/>
+One side should be smaller and the other larger. Ensure that the smaller partition has at least 4GB of capacity, and allocate as much space as possible for the other partition. In my case, when I tested with a single desktop, I secured about 70GB of data.<br/>
 ![diskmgmt](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/f318596a-6030-4b27-9031-e6164740c697)<br/>
 As can be seen from the result screen of diskmgmt.msc in the image, the USB is currently attached with the scripts stored in the E:\ drive, and a partition designated for storing the results of script execution appearing in the F:\ drive.<br/><br/>
 
