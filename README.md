@@ -99,9 +99,12 @@ You might notice several errors quickly appearing at the beginning of a virtual 
 (Note - Since the virtual memory dump generates a large amount of data, during development and testing, the process was briefly run and then stopped to move on.)<br/>
 
 Once all the script executions are complete, the menu will reappear, and you can exit by pressing 'q'. However, if you selected the option to run both active and inactive scripts by pressing 3 in main.bat, the Inactive script will start executing immediately.<br/><br/>
-### **5) Executing Inactive Script**<br/><br/>
+### **5) Fifth, Treating with Inactive Script**<br/><br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/b3386869-170d-4bbb-b8b7-0c7bc938bb8b)<br/>
 The Inactive Script also supports various options, as seen in the image. The difference from the active script is that the execution of the Inactive Script depends on whether the .NET FRAMEWORK is installed. If the .NET FRAMEWORK is installed, it utilizes kape to use tools appropriately for each stage. On the other hand, if the .NET FRAMEWORK is not installed, it primarily uses forecopy_handy for data collection and occasionally employs xcopy, a built-in command provided by Windows, for data gathering.<br/><br/>
+### **5-1) Collecting Filesystem Metadata**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/99f0d519-8ccd-4750-bfe2-1574a278764f)<br/>
+As you can see in the image above, the current system utilizes .NET FRAMEWORK version 4, which allows for the collection of Filesystem Metadata via kape.<br/><br/>
 ## **2-2 How To Use Linux Version**
 
 1. Go to root directory
