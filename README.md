@@ -9,15 +9,15 @@ This repository is dedicated to developing automated tools for live digital fore
 Assuming our scripts are stored on a USB drive, this drive is then attached to the system under investigation, be it compromised or under analysis. Our scripts are designed to run directly from the USB, facilitating a streamlined process in live forensic scenarios.
 
 +---------------------+---------------------+
-|                     |                     |
-|    <span style="color:red"> Script Storage   |   <span style="color:red"> Data Storage      |
+| <span style="color:red">   Script Storage   </span> | <span style="color:blue">  Data Storage     </span> |
 |      Partition      |     Partition       |
 |                     |                     |
 +---------------------+---------------------+
-|                                           |------|
-|                USB Drive                  |      |
-|                                           |------|
+|                                           |
+|                USB Drive                  |
+|                                           |
 +-------------------------------------------+
+
 
 For optimal functionality, the USB drive should be prepared with two distinct partitions. The first partition contains all our scripts along with the necessary programs required for their execution. The second partition is reserved for storing the data gathered by these scripts during the forensic process. This dual-partition setup ensures a clear separation between tools and collected data, enhancing both organization and efficiency in the live forensic investigation.
 
