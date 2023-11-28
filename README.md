@@ -143,4 +143,4 @@ Currently, our project is licensed under the MIT License.
 
 ## Contributing
 
-Contributions are what make the Open Source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated.** For detailed guidelines, please refer to ou [CONTRIBUTING.md](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/blob/main/CONTRIBUTING.md).
+Contributions are what make the Open Source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. For detailed guidelines, please refer to ou [CONTRIBUTING.md](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/blob/main/CONTRIBUTING.md).
