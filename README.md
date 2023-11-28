@@ -127,3 +127,14 @@ sudo chmod +x ./Forensic.bash
 
 5. Run the script!
 sudo ./Forensic.bash
+
+## Usage
+
+Ensure that the steps are clearly numbered or bulleted for easy following.
+Check for any technical jargon that might be unclear to a general audience and clarify or simplify as needed.
+
+## License
+Currently, Our Project uses MIT License
+
+## Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. For detailed guidelines, please refer to our [[CONTRIBUTING.md](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/blob/main/CONTRIBUTING.md)].
