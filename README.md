@@ -128,13 +128,19 @@ sudo chmod +x ./Forensic.bash
 5. Run the script!
 sudo ./Forensic.bash
 
+## Requirements
+
+For Windows - you need to execute the terminal with Administrator privileges.
+For Linux - 
+
 ## Usage
 
-Ensure that the steps are clearly numbered or bulleted for easy following.
-Check for any technical jargon that might be unclear to a general audience and clarify or simplify as needed.
+[Note: This section will contain numbered or bulleted steps to ensure clarity and ease of understanding for users. Technical jargon will be avoided or explained where necessary.]
 
 ## License
-Currently, Our Project uses MIT License
+
+Currently, our project is licensed under the MIT License.
 
 ## Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. For detailed guidelines, please refer to our [CONTRIBUTING.md](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/blob/main/CONTRIBUTING.md).
+
+Contributions are what make the Open Source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated.** For detailed guidelines, please refer to ou [CONTRIBUTING.md](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/blob/main/CONTRIBUTING.md).
