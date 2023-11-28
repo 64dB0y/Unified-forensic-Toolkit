@@ -141,6 +141,11 @@ if "%run_procmon%"=="1" (
     GOTO :eof
 )
 
+REM If the Procmon's Driver unload error is resolved, remove this conditional statement
+if "%run_procmon%"=="0" (
+    GOTO :eof
+)
+
 :CheckProcmonDrivers
 echo.
 echo Checking for PROCMON23 or PROCMON24 filter drivers...
