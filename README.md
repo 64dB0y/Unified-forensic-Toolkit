@@ -49,7 +49,7 @@ In addition to the fundamental concept of live forensics, our scripts are meticu
 8. Gathering Portable Device Information. <br/>
 9. Retrieving Link File and JumpLists data. <br/>
 
-[*] It's important to note that the data available for collection can vary between different operating systems, hence some differences in the information gathered from Linux and Windows systems.
+**[*] It's important to note that the data available for collection can vary between different operating systems, hence some differences in the information gathered from Linux and Windows systems.**
 
 Furthermore, our script suite is divided into three main components. The main script allows users to choose whether to collect only active data, only inactive data, or both. This flexibility ensures that investigators can tailor the data collection process to the specific requirements of each forensic examination.
 
