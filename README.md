@@ -144,6 +144,8 @@ simply select the directory under the target directory defined in main.bat, whic
 If executed correctly, you should be able to see the results as follows:<br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/06fc153b-49ec-47b1-83e7-b5339f229202)<br/>
 The table in the image above represents a portion of the results from the generated report<br/><br/>
+## Planned Improvements
+
 ## Requirements
 
 For Windows - you need to execute the terminal with Administrator privileges.
