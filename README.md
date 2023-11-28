@@ -27,27 +27,27 @@ In addition to the fundamental concept of live forensics, our scripts are meticu
 
 For active data, our scripts are capable of:
 
-Creating Memory and Virtual Memory dumps. <br/>
-Collecting network configuration and connection status. <br/>
-Gathering information about running processes and their resource usage. <br/>
-Retrieving details about the currently logged-in user. <br/>
-Compiling system event logs and registry information. <br/>
-Listing programs configured to start automatically during boot. <br/>
-Collecting information about scheduled tasks and clipboard history. <br/>
+1. Creating Memory and Virtual Memory dumps. <br/>
+2. Collecting network configuration and connection status. <br/>
+3. Gathering information about running processes and their resource usage. <br/>
+4. Retrieving details about the currently logged-in user. <br/>
+5. Compiling system event logs and registry information. <br/>
+6. Listing programs configured to start automatically during boot. <br/>
+7. Collecting information about scheduled tasks and clipboard history. <br/>
 
 - Inactive Data Collection
 
 For inactive data, our scripts focus on:
 
-Collecting file system metadata including MFT, Boot, Amcache. <br/>
-Retrieving registry files like SAM, SYSTEM, SOFTWARE, SECURITY. <br/>
-Gathering Prefetch and Superfetch data. <br/>
-Compiling Event Log files for the target host. <br/>
-Collecting Recycle Bin information. <br/>
-Retrieving browser artifacts including cache, cookies, history, and download history. <br/>
-Collecting System Restore Points (or System Volume Information). <br/>
-Gathering Portable Device Information. <br/>
-Retrieving Link File and JumpLists data. <br/>
+1. Collecting file system metadata including MFT, Boot, Amcache. <br/>
+2. Retrieving registry files like SAM, SYSTEM, SOFTWARE, SECURITY. <br/>
+3. Gathering Prefetch and Superfetch data. <br/>
+4. Compiling Event Log files for the target host. <br/>
+5. Collecting Recycle Bin information. <br/>
+6. Retrieving browser artifacts including cache, cookies, history, and download history. <br/>
+7. Collecting System Restore Points (or System Volume Information). <br/>
+8. Gathering Portable Device Information. <br/>
+9. Retrieving Link File and JumpLists data. <br/>
 
 [*] It's important to note that the data available for collection can vary between different operating systems, hence some differences in the information gathered from Linux and Windows systems.
 
