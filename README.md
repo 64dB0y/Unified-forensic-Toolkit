@@ -70,6 +70,31 @@ At this stage, a root directory named after the computer name and timestamp is c
 ### **4) Fourth, Treating with Active Script**<br/><br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/d46f8cfd-ea12-42e2-822e-bba534a94905)<br/>
 This is a script for collecting active data. As seen in the image, the script can perform various options. You can select the options in your preferred order, such as 2, 7, 3, or enter option 'a' to execute all options at once.<br/><br/>
+
+From now on, I will introduce only the notable contents within the active data script<br/>
+### **4-1) Memory Dump Explanation - Choice**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/7c2d912f-385f-4a9a-9a8a-2292ad4a89da)<br/>
+We support a total of three memory dump tools: first is RamCapture, second is Winpmem, and third is CyLR<br/><br/>
+### **4-2) Memory Dump Explanation - RamCapture**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/4e615650-8dcb-426b-b9a2-86f3a8e36589)<br/>
+When you enter the 'R' option to execute RamCapture, a path will appear in the cmd. Insert this path into the space provided for RamCapture's location and press the 'Capture!' button to run it<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/6728c0ce-65f8-45eb-99ec-08838bf17799)<br/>
+If it has been completed, press 'Close'<br/><br/>
+### **4-3) Memory Dump Explanation - Winpmem**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/31e84026-0feb-460d-8c79-0ab60b77a21a)<br/>
+To execute Winpmem, it is mandatory to enter the username and password. (As a note, it is recommended to enter the user account with SID 1001 if possible. This is to run it with administrative privileges.)<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/0e0520a6-4ab6-4201-9ec0-cbe8010ebf3e)<br/>
+Continuing, if the account name and password have been entered successfully, a memory dump will be performed through Winpmem as illustrated in the figure.<br/><br/>
+### **4-4) Memory Dump Explanation - CyLR**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/db17f460-d45a-4588-a419-dee1d4715463)<br/>
+Since CyLR compresses the results of the memory dump, the password for the compressed file must be specified in advance.<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/9f7a9290-9f73-4421-bc2d-caac4e50672a)<br/>
+Once the compression password has been entered, you can see CyLR functioning as shown in the picture above.<br/><br/>
+### **4-5) Virtual Memory Dump Explanation - Choice**<br/><br/>
+![vm1](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/e33f3ec8-f724-4569-826a-f53733f0069e)<br/>
+The virtual memory dump is supported through the sysinternals procdump tool, and there are two main types that can be collected. One is a full memory dump, and the other is a kernel memory dump.<br/><br/>
+![vm2](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/976fed1d-d24e-4c0d-8684-62d0ae93020a)<br/>
+You might notice several errors quickly appearing at the beginning of a virtual memory dump using procdump, but then the dump proceeds normally after a moment. These initial errors are presumed to be related to permission issues.<br/><br/>
 ## **2-2 How To Use Linux Version**
 
 1. Go to root directory
