@@ -60,7 +60,9 @@ All demonstrations presented from this point forward are performed with administ
 One side should be smaller and the other larger. Ensure that the smaller partition has at least 4GB of capacity, and allocate as much space as possible for the other partition. In my case, when I tested with a single desktop, I secured about 70GB of data.<br/><br/>
 ![diskmgmt](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/f318596a-6030-4b27-9031-e6164740c697)<br/>
 As can be seen from the result screen of diskmgmt.msc in the image, the USB is currently attached with the scripts stored in the E:\ drive, and a partition designated for storing the results of script execution appearing in the F:\ drive.<br/><br/>
-
+### **2) Second, Navigate to the Windows Script Directory and Execute main.bat**<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/85e6a06f-0588-46e4-ac2f-284ebc0ee75e)
+Attention! You must execute the script with Administrator Permissions!
 ## **2-2 How To Use Linux Version**
 
 1. Go to root directory
