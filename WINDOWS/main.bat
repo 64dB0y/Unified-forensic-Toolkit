@@ -136,76 +136,89 @@ if "%run_procmon%"=="1" (
     %Procmon% /Terminate
     timeout /t 5 /nobreak >nul
 
-    echo Checking for PROCMON23 or PROCMON24 filter drivers...
-    echo Note: Unloading or deleting a driver is a sensitive operation. 
-    echo It's recommended only if you're experiencing issues with the driver.
-    echo A system reboot will automatically unload drivers.
+    REM The "GOTO CheckProcmonDrivers" line is commented out because there have been issues with properly unloading the Procmon Driver or with insufficient permissions preventing the deletion of the Procmon.sys file. This line has been commented out for now. Once these issues are resolved, the comment can be removed from "GOTO CheckProcmonDrivers" and added to the line immediately below it, "GOTO :eof".
+    REM GOTO CheckProcmonDrivers
+    GOTO :eof
+)
 
+:CheckProcmonDrivers
+echo.
+echo Checking for PROCMON23 or PROCMON24 filter drivers...
+echo Note: Unloading or deleting a driver is a sensitive operation. 
+echo It's recommended only if you're experiencing issues with the driver.
+echo A system reboot will automatically unload drivers.
+echo.
+echo.
+set /p confirmProceed="Proceed with unloading/deleting drivers? (Y/N): "
+if /I "!confirmProceed!"=="Y" (
     :: Check the list of filter drivers and automatically unload PROCMON23 or PROCMON24
     set unloadSuccess=0
     for /f "tokens=1" %%i in ('fltmc') do (
         if "%%i"=="PROCMON23" (
-            set /p confirmUnload="Unload PROCMON23 driver? (Y/N): "
-            if /I "%confirmUnload%"=="Y" (
-                fltmc unload PROCMON23
-                if errorlevel 1 (
-                    echo Failed to unload PROCMON23.
-                    set /p confirmDelete="Delete PROCMON23.sys from C:\Windows\System32\drivers? (Y/N): "
-                    if /I "%confirmDelete%"=="Y" (
-                        del /F C:\Windows\System32\drivers\PROCMON23.sys
+            fltmc unload PROCMON23
+            if errorlevel 1 (
+                echo Failed to unload PROCMON23.
+                set /p confirmDelete="Delete PROCMON23.sys from C:\Windows\System32\drivers? (Y/N): "
+                if /I "!confirmDelete!"=="Y" (
+                    if exist C:\Windows\System32\drivers\PROCMON23.sys (
+                        del /F /A:H C:\Windows\System32\drivers\PROCMON23.sys
                         echo PROCMON23.sys has been deleted.
                     ) else (
-                        echo File deletion cancelled.
+                        echo PROCMON23.sys not found.
                     )
                 ) else (
-                    set unloadSuccess=1
-                    echo Unloaded PROCMON23.
+                    echo File deletion cancelled.
                 )
+            ) else (
+                set unloadSuccess=1
+                echo Unloaded PROCMON23.
             )
         )
         if "%%i"=="PROCMON24" (
-            set /p confirmUnload="Unload PROCMON24 driver? (Y/N): "
-            if /I "%confirmUnload%"=="Y" (
-                fltmc unload PROCMON24
-                if errorlevel 1 (
-                    echo Failed to unload PROCMON24.
-                    set /p confirmDelete="Delete PROCMON24.sys from C:\Windows\System32\drivers? (Y/N): "
-                    if /I "%confirmDelete%"=="Y" (
-                        del /F C:\Windows\System32\drivers\PROCMON24.sys
+            fltmc unload PROCMON24
+            if errorlevel 1 (
+                echo Failed to unload PROCMON24.
+                set /p confirmDelete="Delete PROCMON24.sys from C:\Windows\System32\drivers? (Y/N): "
+                if /I "!confirmDelete!"=="Y" (
+                    if exist C:\Windows\System32\drivers\PROCMON24.sys (
+                        del /F /A:H C:\Windows\System32\drivers\PROCMON24.sys
                         echo PROCMON24.sys has been deleted.
                     ) else (
-                        echo File deletion cancelled.
+                        echo PROCMON24.sys not found.
                     )
                 ) else (
-                    set unloadSuccess=1
-                    echo Unloaded PROCMON24.
+                    echo File deletion cancelled.
                 )
+            ) else (
+                set unloadSuccess=1
+                echo Unloaded PROCMON24.
             )
         )
     )
-
-    :: If PROCMON23 or PROCMON24 is not found, prompt the user for input
     if "%unloadSuccess%"=="0" (
         echo PROCMON23 or PROCMON24 not found.
         echo Current loaded filter drivers:
         fltmc
         set /p driverName="Enter the name of the filter driver to unload: "
-        set /p confirmUnload="Unload %driverName% driver? (Y/N): "
-        if /I "%confirmUnload%"=="Y" (
-            fltmc unload %driverName%
-            if errorlevel 1 (
-                echo Failed to unload %driverName%.
-                echo Error 0x801f0010: The filter driver is still in use or cannot be safely unloaded.
-                set /p confirmDelete="Delete %driverName%.sys from C:\Windows\System32\drivers? (Y/N): "
-                if /I "%confirmDelete%"=="Y" (
-                    del /F C:\Windows\System32\drivers\%driverName%.sys
-                    echo %driverName%.sys has been deleted.
+        fltmc unload !driverName!
+        if errorlevel 1 (
+            echo Failed to unload !driverName!.
+            echo Error 0x801f0010: The filter driver is still in use or cannot be safely unloaded.
+            set /p confirmDelete="Delete !driverName!.sys from C:\Windows\System32\drivers? (Y/N): "
+            if /I "!confirmDelete!"=="Y" (
+                if exist C:\Windows\System32\drivers\!driverName!.sys (
+                    del /F /A:H C:\Windows\System32\drivers\!driverName!.sys
+                    echo !driverName!.sys has been deleted.
                 ) else (
-                    echo File deletion cancelled.
+                    echo !driverName!.sys not found.
                 )
             ) else (
-                echo Unloaded %driverName%.
+                echo File deletion cancelled.
             )
+        ) else (
+            echo Unloaded !driverName!.
         )
     )
+) else (
+    echo Unloading / deleting drivers cancelled.
 )

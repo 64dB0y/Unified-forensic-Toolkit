@@ -747,9 +747,48 @@ echo.
 echo.
 echo Start the necessary services required for executing subsequent commands
 echo.
-net start "Windows Event Collector"
-net start "Windows Event Log"
-net start "Windows Management Instrumentation"
+
+:: Windows Event Collector Service
+sc query wecsvc | find "RUNNING"
+if %errorlevel% == 0 (
+    echo Windows Event Collector Service is already running.
+) else (
+    echo Starting Windows Event Collector Service...
+    net start wecsvc
+    if not errorlevel 1 (
+        echo Windows Event Collector Service started successfully.
+    ) else (
+        echo Failed to start Windows Event Collector Service.
+    )
+)
+
+:: Windows Event Log Service
+sc query eventlog | find "RUNNING"
+if %errorlevel% == 0 (
+    echo Windows Event Log Service is already running.
+) else (
+    echo Starting Windows Event Log Service...
+    net start eventlog
+    if not errorlevel 1 (
+        echo Windows Event Log Service started successfully.
+    ) else (
+        echo Failed to start Windows Event Log Service.
+    )
+)
+
+:: Windows Management Instrumentation Service
+sc query winmgmt | find "RUNNING"
+if %errorlevel% == 0 (
+    echo Windows Management Instrumentation Service is already running.
+) else (
+    echo Starting Windows Management Instrumentation Service...
+    net start winmgmt
+    if not errorlevel 1 (
+        echo Windows Management Instrumentation Service started successfully.
+    ) else (
+        echo Failed to start Windows Management Instrumentation Service.
+    )
+)
 
 echo Now, we will collect information from Windows Event Log
 REM Check if "Windows Event Log" service is running
@@ -889,6 +928,19 @@ reg save HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Auto
 echo [!timestamp!] HKLM-Run >> %_TimeStamp%
 reg save HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "%Autoruns_Dir%\HKCU-Run.reg"
 echo [!timestamp!] HKCU-Run >> %_TimeStamp%
+
+sc query wecsvc | find "RUNNING"
+if %errorlevel% == 0 (
+    echo Windows Event Collector Service is already running.
+) else (
+    echo Starting Windows Event Collector Service...
+    net start wecsvc
+    if not errorlevel 1 (
+        echo Windows Event Collector Service started successfully.
+    ) else (
+        echo Failed to start Windows Event Collector Service.
+    )
+)
 
 REM Collect auto start services
 sc query type= service state= all > "%Autoruns_Dir%\services.txt"
