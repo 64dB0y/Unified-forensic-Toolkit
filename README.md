@@ -131,6 +131,17 @@ sudo ./Forensic.bash
 ## **3. Report**
 After data collection, we support the creation of a separate report (Note, this report generation task should be carried out on a computer unrelated to the one affected by the security incident. After all, the goal of digital forensics is to minimize changes to the system). Our report briefly outlines what data has been collected, when (timestamp) it was collected, where it is located, and what its hash value is.<br/><br/>
 
+### **3-1) Report for Windows**
+Unlike Linux, Windows currently generates reports only for active data because inactive data already provides ample information through kape.<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/9211ddac-afcd-4b9b-a4e1-a93d23c2396f)<br/>
+Inside the I_HATE_LIVE_FORENSIC\Report\Windows directory, there is a file named Window_report_Final.py. You can use this program to generate the report.<br/><br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/9e7fcd88-ecf3-4b16-b041-49fe115cea79)<br/>
+Specify the target directory you wish to parse and the type of hash value you want to output.<br/><br/>
+
+If you're uncertain about which directory to specify,<br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/10c8a06b-d354-4232-ba89-217ccb29ce0b)<br/>
+simply select the directory under the target directory defined in main.bat, which is named after the computer name and timestamp.<br/><br/>
+
 ## Requirements
 
 For Windows - you need to execute the terminal with Administrator privileges.
