@@ -23,11 +23,11 @@ if "%~3"=="" (
 ) else (
     set foldername=%3
 )
-if not exist "%foldername%" (
-    mkdir "%foldername%"
-    echo "created %foldername%"
+if not exist %foldername% (
+    mkdir %foldername%
+    echo created %foldername%
 ) else (
-    echo Folder "%foldername%" already exists. Skipping creation.
+    echo Folder %foldername% already exists. Skipping creation.
 )
 echo CREATE %foldername% DIRECTORY 
 

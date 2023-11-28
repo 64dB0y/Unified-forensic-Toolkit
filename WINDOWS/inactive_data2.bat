@@ -26,7 +26,7 @@ set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
 
 :: FOLDER SET
 set foldername=%3%computername%_%timestamp%
-mkdir "%foldername%"
+mkdir %foldername%
 echo CREATE %foldername% DIRECTORY 
 
 :: LOG TIMESTAMP

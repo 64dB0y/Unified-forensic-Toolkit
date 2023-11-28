@@ -92,7 +92,8 @@ echo.
 echo.
 
 :ask_procmon
-echo Do you want to track file creation activities using Procmon? (Y/N)
+echo Do you want to track file creation activities using Procmon?
+echo Warning: Procmon loads a system driver to monitor activities. Safely unloading this driver may require a system reboot.
 set /p track_files="Enter your choice (Y/N): "
 if /I "%track_files%"=="Y" (
     set run_procmon=1
@@ -113,18 +114,19 @@ echo.
 set /p choice="Enter your choice: "
 
 if "%run_procmon%"=="1" (
-    %psexec% -d %Procmon% /accepteula /Quiet /Minimized /BackingFile %foldername%\procmon_log.pml
+    REM %psexec% -d %Procmon% /accepteula /Quiet /Minimized /BackingFile %foldername%\procmon_log.pml
+    START /B /MIN %Procmon% /accepteula /Quiet /Minimized /BackingFile %foldername%\procmon_log.pml
 )
 
 if "%choice%"=="1" (
-    call %~dp0\active_data2.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
+    call %~dp0\active_data2.bat "%CASE%" "%NAME%" %Target_drive%%computername%_%timestamp%
     REM call %~dp0\active_data2.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Active_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="2" (
-    call %~dp0\inactive_new_ver_ver.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
+    call %~dp0\inactive_new_ver_ver.bat "%CASE%" "%NAME%" %Target_drive%%computername%_%timestamp%
     REM call %~dp0\inactive_new_ver.bat %CASE% %NAME% %Target_drive% | .\etc\Tee.exe -a %Target_drive%Inactive_Data_Collection_Command_Log.txt
 ) else if "%choice%"=="3" (
-    call %~dp0\active_data2.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
-    call %~dp0\inactive_new_ver_ver.bat "%CASE%" "%NAME%" "%Target_drive%%computername%_%timestamp%"
+    call %~dp0\active_data2.bat "%CASE%" "%NAME%" %Target_drive%%computername%_%timestamp%
+    call %~dp0\inactive_new_ver_ver.bat "%CASE%" "%NAME%" %Target_drive%%computername%_%timestamp%
 ) else (
     echo Invalid choice, please try again.
     goto choice
@@ -132,4 +134,78 @@ if "%choice%"=="1" (
 
 if "%run_procmon%"=="1" (
     %Procmon% /Terminate
+    timeout /t 5 /nobreak >nul
+
+    echo Checking for PROCMON23 or PROCMON24 filter drivers...
+    echo Note: Unloading or deleting a driver is a sensitive operation. 
+    echo It's recommended only if you're experiencing issues with the driver.
+    echo A system reboot will automatically unload drivers.
+
+    :: Check the list of filter drivers and automatically unload PROCMON23 or PROCMON24
+    set unloadSuccess=0
+    for /f "tokens=1" %%i in ('fltmc') do (
+        if "%%i"=="PROCMON23" (
+            set /p confirmUnload="Unload PROCMON23 driver? (Y/N): "
+            if /I "%confirmUnload%"=="Y" (
+                fltmc unload PROCMON23
+                if errorlevel 1 (
+                    echo Failed to unload PROCMON23.
+                    set /p confirmDelete="Delete PROCMON23.sys from C:\Windows\System32\drivers? (Y/N): "
+                    if /I "%confirmDelete%"=="Y" (
+                        del /F C:\Windows\System32\drivers\PROCMON23.sys
+                        echo PROCMON23.sys has been deleted.
+                    ) else (
+                        echo File deletion cancelled.
+                    )
+                ) else (
+                    set unloadSuccess=1
+                    echo Unloaded PROCMON23.
+                )
+            )
+        )
+        if "%%i"=="PROCMON24" (
+            set /p confirmUnload="Unload PROCMON24 driver? (Y/N): "
+            if /I "%confirmUnload%"=="Y" (
+                fltmc unload PROCMON24
+                if errorlevel 1 (
+                    echo Failed to unload PROCMON24.
+                    set /p confirmDelete="Delete PROCMON24.sys from C:\Windows\System32\drivers? (Y/N): "
+                    if /I "%confirmDelete%"=="Y" (
+                        del /F C:\Windows\System32\drivers\PROCMON24.sys
+                        echo PROCMON24.sys has been deleted.
+                    ) else (
+                        echo File deletion cancelled.
+                    )
+                ) else (
+                    set unloadSuccess=1
+                    echo Unloaded PROCMON24.
+                )
+            )
+        )
+    )
+
+    :: If PROCMON23 or PROCMON24 is not found, prompt the user for input
+    if "%unloadSuccess%"=="0" (
+        echo PROCMON23 or PROCMON24 not found.
+        echo Current loaded filter drivers:
+        fltmc
+        set /p driverName="Enter the name of the filter driver to unload: "
+        set /p confirmUnload="Unload %driverName% driver? (Y/N): "
+        if /I "%confirmUnload%"=="Y" (
+            fltmc unload %driverName%
+            if errorlevel 1 (
+                echo Failed to unload %driverName%.
+                echo Error 0x801f0010: The filter driver is still in use or cannot be safely unloaded.
+                set /p confirmDelete="Delete %driverName%.sys from C:\Windows\System32\drivers? (Y/N): "
+                if /I "%confirmDelete%"=="Y" (
+                    del /F C:\Windows\System32\drivers\%driverName%.sys
+                    echo %driverName%.sys has been deleted.
+                ) else (
+                    echo File deletion cancelled.
+                )
+            ) else (
+                echo Unloaded %driverName%.
+            )
+        )
+    )
 )
