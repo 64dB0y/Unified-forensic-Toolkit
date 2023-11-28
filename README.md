@@ -8,7 +8,6 @@ This repository is dedicated to developing automated tools for live digital fore
 
 Assuming our scripts are stored on a USB drive, this drive is then attached to the system under investigation, be it compromised or under analysis. Our scripts are designed to run directly from the USB, facilitating a streamlined process in live forensic scenarios.
 
-```md
 +---------------------+---------------------+<br/>
 |                     |                     |<br/>
 |    Script Storage   |   Data Storage      |<br/>
@@ -19,7 +18,6 @@ Assuming our scripts are stored on a USB drive, this drive is then attached to t
 |                USB Drive                  |<br/>
 |                                           |<br/>
 +-------------------------------------------+<br/>
-```
 
 For optimal functionality, the USB drive should be prepared with two distinct partitions. The first partition contains all our scripts along with the necessary programs required for their execution. The second partition is reserved for storing the data gathered by these scripts during the forensic process. This dual-partition setup ensures a clear separation between tools and collected data, enhancing both organization and efficiency in the live forensic investigation.
 
@@ -53,7 +51,13 @@ Retrieving Link File and JumpLists data.
 
 Furthermore, our script suite is divided into three main components. The main script allows users to choose whether to collect only active data, only inactive data, or both. This flexibility ensures that investigators can tailor the data collection process to the specific requirements of each forensic examination.
 
-## **2-1 How To Use Linux Version**
+All demonstrations presented from this point forward are performed with administrative privileges. This means that our project's scripts are designed to be executed on the premise that they are granted administrator-level permissions
+
+## **2-1 How To Use Windows Version**
+
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/9f3e960e-bc78-4eed-a59c-d088f78e15b3)<br/>
+As can be seen from the result screen of diskmgmt.msc in the image, the USB is currently attached with the scripts stored in the E:\ drive, and a partition designated for storing the results of script execution appearing in the F:\ drive.<br/><br/>
+
 ## **2-2 How To Use Linux Version**
 
 1. Go to root directory
