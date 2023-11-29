@@ -158,6 +158,8 @@ Windows:
 
 6) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
 
+7) On main.bat, there's a Procmon warning content. I will change the color of this warning string to emphasize it, aiming to make it more noticeable so that users can read and make informed decisions based on it.
+
 Linux:
 
 ## Requirements
