@@ -56,7 +56,7 @@ echo [!timestamp!] NAME: %NAME% >> %_TimeStamp%
 
 :START
 echo %CASE% - %NAME% Active Data Collection Begins >> %_TimeStamp%
-echo .
+echo.
 
 
 :: Prepare to collect Active Data
