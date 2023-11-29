@@ -68,7 +68,7 @@ Attention! You must execute the script with Administrator Permissions!<br/><br/>
 Begin by inputting the case name and analyst's name, then designate the directory where the results will be stored. As shown in the image, you will be prompted to decide if you want to run ProcMon. This feature has been added to trace how information gathering is conducted later on. For simplicity in this demonstration, we've skipped this step by selecting the 'N' option.<br/><br/>
 At this stage, a root directory named after the computer name and timestamp is created in the target directory specified by the user. Within this root directory, all forthcoming active data will be stored in the 'Volatile_Information' directory, while inactive data will be saved in the 'NONVOLATILE' directory. Additionally, the timestamp will also be saved directly under the aforementioned computer name_timestamp directory as 'TimeStamp.log'. Furthermore, if 'main.bat' is set to utilize Procmon, the 'procmon_log.pml' file will be stored in this directory as well.<br/>
 ### **4) Fourth, Treating with Active Script**<br/><br/>
-![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/d46f8cfd-ea12-42e2-822e-bba534a94905)<br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/84cb1b76-a742-4ccf-949e-f5e452174b5e)<br/>
 This is a script for collecting active data. As seen in the image, the script can perform various options. You can select the options in your preferred order, such as 2, 7, 3, or enter option 'a' to execute all options at once.<br/><br/>
 
 From now on, I will introduce only the notable contents within the active data script<br/>
