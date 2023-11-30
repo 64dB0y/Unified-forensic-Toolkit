@@ -260,7 +260,7 @@ Both:
 
    1) Support GUI (with imgui or qtdesigner) - this will be considered if time permits
 
-(* The priority for improvements is to first address issues in each operating system as much as possible. Among these, instead of starting with scripts that support the execution of other scripts like main.bat and Forensic.bash, we aim to prioritize the enhancement of scripts that collect active and inactive data)
+(*The priority for improvements is to first address issues in each operating system as much as possible. Among these, instead of starting with scripts that support the execution of other scripts like main.bat and Forensic.bash, we aim to prioritize the enhancement of scripts that collect active and inactive data*)
 
 ## Requirements
 
