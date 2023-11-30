@@ -188,8 +188,7 @@ sudo chmod +x ./Forensic.bash
 sudo ./Forensic.bash
 ```
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/9f822000-5c03-4219-a9e4-8392c33b861e)<br/>
-You can enter your name and summary of case
-
+You can enter your name and summary of case<br/><br/>
 ![image1](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/3a32405a-9e12-425c-883d-17a1d132dba4)<br/>
 (Linux's Active Data Collection Script)<br/><br/>
 ![image2](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/1fe58ec0-6fd2-4655-b009-4b21085d2e1e)<br/>
