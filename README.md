@@ -49,6 +49,8 @@ In addition to the fundamental concept of live forensics, our scripts are meticu
 8. Gathering Portable Device Information. <br/>
 9. Retrieving Link File and JumpLists data. <br/>
 
+(The above content lists what a script operating on Windows collects)
+
 **[*] It's important to note that the data available for collection can vary between different operating systems, hence some differences in the information gathered from Linux and Windows systems.**
 
 Furthermore, our script suite is divided into three main components. The main script allows users to choose whether to collect only active data, only inactive data, or both. This flexibility ensures that investigators can tailor the data collection process to the specific requirements of each forensic examination.
@@ -257,7 +259,9 @@ Linux:
 Both:
 
    1) Support GUI (with imgui or qtdesigner) - this will be considered if time permits
-   
+
+(* The priority for improvements is to first address issues in each operating system as much as possible. Among these, instead of starting with scripts that support the execution of other scripts like main.bat and Forensic.bash, we aim to prioritize the enhancement of scripts that collect active and inactive data)
+
 ## Requirements
 
 For Windows - you need to execute the terminal with Administrator privileges.
