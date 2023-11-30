@@ -118,7 +118,7 @@ If you can use Windows, just partion it in Windows
 It also works at Linux too
 But, If you cannot use Windows, you have to follow these steps:
 
-1. Search USB drive
+### **1. Search USB drive**<br/><br/>
 ```
 lsblk
 ```
@@ -126,18 +126,19 @@ You can check the list of connected disks
 Identify USB to be used for forensics
 For example, it might be named as '/dev/sdb'
 
-2. Partitioning USB
+### **2. Partitioning USB**<br/><br/>
 ```
 sudo fdisk /dev/sdb
 
-n #Creating new partition
-p #Select default partition type
+n   # Creating new partition
+p   # Select default partition type
 # Enter Partition Number 1's Name #
 # Starting Sector (To set it as default, press Enter Key) #
 # End Sector (Enter capacity value as you want. For example, 2GB -> +2G)#
+# We recommand 10GB for Partition Number 1
 
-n #Creating new partition
-p #Select default partition type
+n   # Creating new partition
+p   # Select default partition type
 # Enter Partition Number 2's Name #
 # Starting Sector (Enter to set the next exit sector of the previous partition) #
 # End Sector (To set it as default, press Enter Key)#
@@ -145,34 +146,45 @@ p #Select default partition type
 w #Save changes and exit
 ```
 
-3. Apply your changes
+### **3. Apply your changes**<br/><br/>
 ```
 sudo partprobe
 ```
-
 Now there will be two partitions named as '/dev/sdb1' and '/dev/sdb2'
 
-1. Go to root directory
-'cd /' or 'cd ..' twice
+### **1-3) Download Scripts**<br/><br/>
+Download all the scripts and files in /Linux/Unifed directory
+And put it int the partition no.1
 
-2. Make directory mnt1 & mnt2
+### **2) Mount the USB**<br/><br/>
+### **2-1) Go to root directory**<br/><br/>
+```
+cd /
+```
+### **2-2) Make directory mnt1 & mnt2**<br/><br/>
 These directories are for mounting each partition of Forensic USB
-'mkdir mnt1', 'mkdir mnt2'
-
-3. Mount the USB
+```
+mkdir mnt1
+mkdir mnt2
+```
+### **2-3) Mount the USB**<br/><br/>
 Check which directory your USB has been connected
 If the directory is /dev/sdb1 and /dev/sdb2, mount each of it to mnt1 and mnt2
-ex)
+```
 sudo mount /dev/sdb1 /mnt1
 sudo mount /dev/sdb2 /mnt2
+```
 
-4. Give permission to Forensic.bash script
+### **3) Run the Script**<br/><br/>
+### **3-1) Give permission to Forensic.bash script**<br/><br/>
 All the other script's permission wil be given by Forensic.bash
+```
 sudo chmod +x ./Forensic.bash
-
-5. Run the script!
+```
+### **3-2) Run the Script!**<br/><br/>
+```
 sudo ./Forensic.bash
-
+```
 ## **3. Report**
 After data collection, we support the creation of a separate report (Note, this report generation task should be carried out on a computer unrelated to the one affected by the security incident. After all, the goal of digital forensics is to minimize changes to the system). Our report briefly outlines what data has been collected, when (timestamp) it was collected, where it is located, and what its hash value is.<br/><br/>
 
