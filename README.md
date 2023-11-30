@@ -191,7 +191,9 @@ sudo ./Forensic.bash
 You can enter your name and summary of case
 
 ![image1](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/3a32405a-9e12-425c-883d-17a1d132dba4)<br/>
+(Linux's Active Data Collection Script)<br/><br/>
 ![image2](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/1fe58ec0-6fd2-4655-b009-4b21085d2e1e)<br/>
+(Linux's Inactive Data Collection Script)<br/><br/>
 Run all the scripts or you can select category you want to forensic
 
 ![image (1)](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/25df3e27-d7ee-420f-8669-5bbbe79dd90b)<br/>
