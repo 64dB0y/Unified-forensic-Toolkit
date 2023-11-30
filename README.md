@@ -117,10 +117,40 @@ There is no need to partition in Linux
 If you can use Windows, just partion it in Windows
 It also works at Linux too
 But, If you cannot use Windows, you have to follow these steps:
+
 1. Search USB drive
 ```
 lsblk
 ```
+You can check the list of connected disks
+Identify USB to be used for forensics
+For example, it might be named as '/dev/sdb'
+
+2. Partitioning USB
+```
+sudo fdisk /dev/sdb
+
+n #Creating new partition
+p #Select default partition type
+# Enter Partition Number 1's Name #
+# Starting Sector (To set it as default, press Enter Key) #
+# End Sector (Enter capacity value as you want. For example, 2GB -> +2G)#
+
+n #Creating new partition
+p #Select default partition type
+# Enter Partition Number 2's Name #
+# Starting Sector (Enter to set the next exit sector of the previous partition) #
+# End Sector (To set it as default, press Enter Key)#
+
+w #Save changes and exit
+```
+
+3. Apply your changes
+```
+sudo partprobe
+```
+
+Now there will be two partitions named as '/dev/sdb1' and '/dev/sdb2'
 
 1. Go to root directory
 'cd /' or 'cd ..' twice
