@@ -254,6 +254,10 @@ Windows:
 
 Linux:
 
+Both:
+
+   Support GUI (with imgui or qtdesigner) - this will be considered if time permits
+   
 ## Requirements
 
 For Windows - you need to execute the terminal with Administrator privileges.
