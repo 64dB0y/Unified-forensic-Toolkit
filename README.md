@@ -107,6 +107,19 @@ The Inactive Script also supports various options, as seen in the image. The dif
 As you can see in the image above, the current system utilizes .NET FRAMEWORK version 4, which allows for the collection of Filesystem Metadata via kape.<br/><br/>
 ## **2-2 How To Use Linux Version**
 
+### **1) Prepare USB**<br/><br/>
+### **1-1) Recommanded USB capacity**<br/><br/>
+For dump virtual memory and copy metadata files, you need LOTS of capacity
+We recommand more than 64GB
+
+### **1-2) USB partitioning**<br/><br/>
+There is no need to partition in Linux
+If you can use Windows, just partion it in Windows
+It also works at Linux too
+But, If you cannot use Windows, you have to follow these steps:
+1. Search USB drive
+    lsblk
+
 1. Go to root directory
 'cd /' or 'cd ..' twice
 
