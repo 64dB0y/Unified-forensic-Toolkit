@@ -238,17 +238,17 @@ After default report has been created, you can select whether to generate additi
 Windows:
 1) In main.bat, after running ProcMon and later closing it, we provided commands for unloading the ProcMon driver and for deletion. However, the unload command still shows an error, and despite being in an administrator privilege terminal, the delete command fails due to insufficient permissions. This issue needs to be addressed.
 
-2) In the memory dump step, stage 0 of active_data2.bat, it shows a specific path for copying in RamCapture. It would be beneficial if this path could be highlighted or emphasized in color.
+2) On main.bat, there's a Procmon warning content. I will change the color of this warning string to emphasize it, aiming to make it more noticeable so that users can read and make informed decisions based on it.
+   
+3) In the memory dump step, stage 0 of active_data2.bat, it shows a specific path for copying in RamCapture. It would be beneficial if this path could be highlighted or emphasized in color.
 
-3) In the memory dump step, stage 0 of active_data2.bat, the fact that Winpmem reveals the user account name and password in clear text is problematic. The user’s input should be made invisible.
+4) In the memory dump step, stage 0 of active_data2.bat, the fact that Winpmem reveals the user account name and password in clear text is problematic. The user’s input should be made invisible.
 
-4) Both active_data2.bat and inactive_new_ver_ver.bat allow users to choose stages to execute by entering numbered stages or the 'a' option. The issue is that after performing each option, it only indicates the options selected by the user, not exactly up to which stage has been completed. There needs to be a clear indication of the stages that have been completed.
+5) Both active_data2.bat and inactive_new_ver_ver.bat allow users to choose stages to execute by entering numbered stages or the 'a' option. The issue is that after performing each option, it only indicates the options selected by the user, not exactly up to which stage has been completed. There needs to be a clear indication of the stages that have been completed.
 
-5) With the Windows Reporting feature, the tables are currently arranged alphabetically. They need to be reorganized according to the order of stages as listed in each script.
+6) With the Windows Reporting feature, the tables are currently arranged alphabetically. They need to be reorganized according to the order of stages as listed in each script.
 
-6) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
-
-7) On main.bat, there's a Procmon warning content. I will change the color of this warning string to emphasize it, aiming to make it more noticeable so that users can read and make informed decisions based on it.
+7) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
 
 Linux:
 
