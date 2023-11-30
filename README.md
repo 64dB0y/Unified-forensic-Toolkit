@@ -107,18 +107,18 @@ The Inactive Script also supports various options, as seen in the image. The dif
 As you can see in the image above, the current system utilizes .NET FRAMEWORK version 4, which allows for the collection of Filesystem Metadata via kape.<br/><br/>
 ## **2-2 How To Use Linux Version**
 
-### **1) Prepare USB**<br/><br/>
-### **1-1) Recommanded USB capacity**<br/><br/>
+### **1) Prepare USB**
+### **1-1) Recommanded USB capacity**
 For dump virtual memory and copy metadata files, you need LOTS of capacity
 We recommand more than 64GB
 
-### **1-2) USB partitioning**<br/><br/>
+### **1-2) USB partitioning**
 There is no need to partition in Linux
 If you can use Windows, just partion it in Windows
 It also works at Linux too
 But, If you cannot use Windows, you have to follow these steps:
 
-### **1. Search USB drive**<br/><br/>
+### **1. Search USB drive**
 ```
 lsblk
 ```
@@ -126,7 +126,7 @@ You can check the list of connected disks
 Identify USB to be used for forensics
 For example, it might be named as '/dev/sdb'
 
-### **2. Partitioning USB**<br/><br/>
+### **2. Partitioning USB**
 ```
 sudo fdisk /dev/sdb
 
@@ -146,28 +146,28 @@ p   # Select default partition type
 w #Save changes and exit
 ```
 
-### **3. Apply your changes**<br/><br/>
+### **3. Apply your changes**
 ```
 sudo partprobe
 ```
 Now there will be two partitions named as '/dev/sdb1' and '/dev/sdb2'
 
-### **1-3) Download Scripts**<br/><br/>
+### **1-3) Download Scripts**
 Download all the scripts and files in /Linux/Unifed directory
 And put it int the partition no.1
 
-### **2) Mount the USB**<br/><br/>
-### **2-1) Go to root directory**<br/><br/>
+### **2) Mount the USB**
+### **2-1) Go to root directory**
 ```
 cd /
 ```
-### **2-2) Make directory mnt1 & mnt2**<br/><br/>
+### **2-2) Make directory mnt1 & mnt2**
 These directories are for mounting each partition of Forensic USB
 ```
 mkdir mnt1
 mkdir mnt2
 ```
-### **2-3) Mount the USB**<br/><br/>
+### **2-3) Mount the USB**
 Check which directory your USB has been connected
 If the directory is /dev/sdb1 and /dev/sdb2, mount each of it to mnt1 and mnt2
 ```
@@ -175,13 +175,13 @@ sudo mount /dev/sdb1 /mnt1
 sudo mount /dev/sdb2 /mnt2
 ```
 
-### **3) Run the Script**<br/><br/>
-### **3-1) Give permission to Forensic.bash script**<br/><br/>
+### **3) Run the Script**
+### **3-1) Give permission to Forensic.bash script**
 All the other script's permission wil be given by Forensic.bash
 ```
 sudo chmod +x ./Forensic.bash
 ```
-### **3-2) Run the Script!**<br/><br/>
+### **3-2) Run the Script!**
 ```
 sudo ./Forensic.bash
 ```
