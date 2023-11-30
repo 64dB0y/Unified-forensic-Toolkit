@@ -118,6 +118,7 @@ If you can use Windows, just partion it in Windows
 It also works at Linux too
 But, If you cannot use Windows, you have to follow these steps:
 1. Search USB drive
+   
     lsblk
 
 1. Go to root directory
