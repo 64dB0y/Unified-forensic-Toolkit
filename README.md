@@ -256,7 +256,7 @@ Linux:
 
 Both:
 
-   Support GUI (with imgui or qtdesigner) - this will be considered if time permits
+   1) Support GUI (with imgui or qtdesigner) - this will be considered if time permits
    
 ## Requirements
 
