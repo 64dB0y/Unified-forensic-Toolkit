@@ -118,7 +118,7 @@ If you can use Windows, just partion it in Windows
 It also works at Linux too
 But, If you cannot use Windows, you have to follow these steps:
 
-### **1. Search USB drive**
+First, search USB drive
 ```
 lsblk
 ```
@@ -126,7 +126,7 @@ You can check the list of connected disks
 Identify USB to be used for forensics
 For example, it might be named as '/dev/sdb'
 
-### **2. Partitioning USB**
+If you find your USB drive, you have to partition your USB
 ```
 sudo fdisk /dev/sdb
 
@@ -145,6 +145,8 @@ p   # Select default partition type
 
 w #Save changes and exit
 ```
+Now your USB has two partitions
+Partiton 1 for Forensic Scripts and Partition 2 for saving Forensic Results
 
 ### **3. Apply your changes**
 ```
@@ -185,6 +187,16 @@ sudo chmod +x ./Forensic.bash
 ```
 sudo ./Forensic.bash
 ```
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/9f822000-5c03-4219-a9e4-8392c33b861e)
+You can enter your name and summary of case
+
+![image1](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/3a32405a-9e12-425c-883d-17a1d132dba4)
+![image2](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/1fe58ec0-6fd2-4655-b009-4b21085d2e1e)
+Run all the scripts or you can select category you want to forensic
+
+![image (1)](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/25df3e27-d7ee-420f-8669-5bbbe79dd90b)
+All the results will be save in '/mnt2' directory, which is second partition of your USB
+
 ## **3. Report**
 After data collection, we support the creation of a separate report (Note, this report generation task should be carried out on a computer unrelated to the one affected by the security incident. After all, the goal of digital forensics is to minimize changes to the system). Our report briefly outlines what data has been collected, when (timestamp) it was collected, where it is located, and what its hash value is.<br/><br/>
 
