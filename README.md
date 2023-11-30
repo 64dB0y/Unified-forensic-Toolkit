@@ -214,6 +214,26 @@ simply select the directory under the target directory defined in main.bat, whic
 If executed correctly, you should be able to see the results as follows:<br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/06fc153b-49ec-47b1-83e7-b5339f229202)<br/>
 The table in the image above represents a portion of the results from the generated report<br/><br/>
+### **3-2) Report for Linux**
+There are two reporting programs for Linux forensic results as Linux ver and Windows ver
+You can download it from the link below
+Download Link https://drive.google.com/file/d/1OCibtjOtP8c1wfdwPdzDXEpZDdjflVGQ/view?usp=sharing
+
+1. How to run it in Linux
+1) Put 'Linux_Reporting_Tool_Linux' exe file to '/mnt2' directory
+2) Autorize and Run it
+```
+sudo chmod +x ./Linux_Reporting_Tool_Linux
+sudo ./Linux_Reporting_Tool_Linux
+```
+
+2. How to run it in Windows
+1) Put 'Linux_Reporting_Tool_Win.exe' file to '/mnt2' directory
+2) Run as administrator
+
+All programs will create 'Forensic_Info.pdf' by default
+After default report has been created, you can select whether to generate additional reports
+
 ## Planned Improvements
 Windows:
 1) In main.bat, after running ProcMon and later closing it, we provided commands for unloading the ProcMon driver and for deletion. However, the unload command still shows an error, and despite being in an administrator privilege terminal, the delete command fails due to insufficient permissions. This issue needs to be addressed.
