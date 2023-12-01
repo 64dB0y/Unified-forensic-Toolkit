@@ -61,16 +61,17 @@ STEP 1: prepare git terminal
 download git terminal from https://git-scm.com/downloads
 
 STEP 2: your account info
+```git
 git config --global user.name "yourname"
 git config --global user.email "youraccount@domain.com"
-
+```
 Repository Specific Preparation =>
 STEP 1: Clone I_HATE_LIVE_FORENSIC Repository
 ```git
 git clone https://github.com/64dB0y/I_HATE_LIVE_FORENSIC.git
 ```
 
-**STEP 2: Setup Git LFS**
+**STEP 2: Setup Git LFS**<br/>
 If this is your first time cloning the repository (because we use Git LFS), please follow these steps:
 ```git
 git lfs install
