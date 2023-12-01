@@ -285,10 +285,12 @@ Windows:
 5) Both active_data2.bat and inactive_new_ver_ver.bat allow users to choose stages to execute by entering numbered stages or the 'a' option. The issue is that after performing each option, it only indicates the options selected by the user, not exactly up to which stage has been completed. There needs to be a clear indication of the stages that have been completed.
 
 6) Both active_data2.bat and inactive_new_ver_ver.bat scripts currently employ a timestamping method that is challenging to track accurately. Consequently, the timestamps recorded in the TimeStamp.log file may not be precise. We are actively exploring solutions to improve the accuracy of these timestamps (at the very least, we hope to achieve accurate timestamping in active_data2.bat soon)
-   
-7) With the Windows Reporting feature, the tables are currently arranged alphabetically. They need to be reorganized according to the order of stages as listed in each script.
 
-8) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
+7) Both active_data2.bat and inactive_new_ver_ver.bat scripts support HMAC.
+   
+8) With the Windows Reporting feature, the tables are currently arranged alphabetically. They need to be reorganized according to the order of stages as listed in each script.
+
+9) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
 
 Linux:
 
