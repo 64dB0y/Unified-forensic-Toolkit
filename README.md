@@ -158,7 +158,7 @@ Now there will be two partitions named as '/dev/sdb1' and '/dev/sdb2'
 
 ### **1-4) Download Scripts**
 Download all the scripts and files in /Linux/Unified directory
-And put it int the partition no.1
+And put it into the partition no.1
 
 ### **2) Mount the USB**
 ### **2-1) Go to root directory**
