@@ -74,7 +74,7 @@ git config --global user.email "youraccount@domain.com"
 ```git
 git clone https://github.com/64dB0y/I_HATE_LIVE_FORENSIC.git
 ```
-<br/> 
+ 
 **STEP 2: Setup Git LFS**
 
 If this is your first time cloning the repository (because we use Git LFS), please follow these steps:
