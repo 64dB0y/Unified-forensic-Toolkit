@@ -49,6 +49,8 @@ In addition to the fundamental concept of live forensics, our scripts are meticu
 8. Gathering Portable Device Information. <br/>
 9. Retrieving Link File and JumpLists data. <br/>
 
+(The above content lists what a script operating on Windows collects)
+
 **[*] It's important to note that the data available for collection can vary between different operating systems, hence some differences in the information gathered from Linux and Windows systems.**
 
 Furthermore, our script suite is divided into three main components. The main script allows users to choose whether to collect only active data, only inactive data, or both. This flexibility ensures that investigators can tailor the data collection process to the specific requirements of each forensic examination.
@@ -68,7 +70,7 @@ Attention! You must execute the script with Administrator Permissions!<br/><br/>
 Begin by inputting the case name and analyst's name, then designate the directory where the results will be stored. As shown in the image, you will be prompted to decide if you want to run ProcMon. This feature has been added to trace how information gathering is conducted later on. For simplicity in this demonstration, we've skipped this step by selecting the 'N' option.<br/><br/>
 At this stage, a root directory named after the computer name and timestamp is created in the target directory specified by the user. Within this root directory, all forthcoming active data will be stored in the 'Volatile_Information' directory, while inactive data will be saved in the 'NONVOLATILE' directory. Additionally, the timestamp will also be saved directly under the aforementioned computer name_timestamp directory as 'TimeStamp.log'. Furthermore, if 'main.bat' is set to utilize Procmon, the 'procmon_log.pml' file will be stored in this directory as well.<br/>
 ### **4) Fourth, Treating with Active Script**<br/><br/>
-![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/d46f8cfd-ea12-42e2-822e-bba534a94905)<br/>
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/84cb1b76-a742-4ccf-949e-f5e452174b5e)<br/>
 This is a script for collecting active data. As seen in the image, the script can perform various options. You can select the options in your preferred order, such as 2, 7, 3, or enter option 'a' to execute all options at once.<br/><br/>
 
 From now on, I will introduce only the notable contents within the active data script<br/>
@@ -107,26 +109,96 @@ The Inactive Script also supports various options, as seen in the image. The dif
 As you can see in the image above, the current system utilizes .NET FRAMEWORK version 4, which allows for the collection of Filesystem Metadata via kape.<br/><br/>
 ## **2-2 How To Use Linux Version**
 
-1. Go to root directory
-'cd /' or 'cd ..' twice
+### **1) Prepare USB**
+### **1-1) Recommanded USB capacity**
+For dump virtual memory and copy metadata files, you need LOTS of capacity
+We recommand more than 64GB
 
-2. Make directory mnt1 & mnt2
+### **1-2) USB partitioning**
+There is no need to partition in Linux
+If you can use Windows, just partion it in Windows
+It also works at Linux too
+But, If you cannot use Windows, you have to follow these steps:
+
+First, search USB drive
+```
+lsblk
+```
+You can check the list of connected disks
+Identify USB to be used for forensics
+For example, it might be named as '/dev/sdb'
+
+If you find your USB drive, you have to partition your USB
+```
+sudo fdisk /dev/sdb
+
+n   # Creating new partition
+p   # Select default partition type
+# Enter Partition Number 1's Name #
+# Starting Sector (To set it as default, press Enter Key) #
+# End Sector (Enter capacity value as you want. For example, 2GB -> +2G)#
+# We recommand 10GB for Partition Number 1
+
+n   # Creating new partition
+p   # Select default partition type
+# Enter Partition Number 2's Name #
+# Starting Sector (Enter to set the next exit sector of the previous partition) #
+# End Sector (To set it as default, press Enter Key)#
+
+w #Save changes and exit
+```
+Now your USB has two partitions
+Partiton 1 for Forensic Scripts and Partition 2 for saving Forensic Results
+
+### **1-3) Apply your changes**
+```
+sudo partprobe
+```
+Now there will be two partitions named as '/dev/sdb1' and '/dev/sdb2'
+
+### **1-4) Download Scripts**
+Download all the scripts and files in /Linux/Unified directory
+And put it into the partition no.1
+
+### **2) Mount the USB**
+### **2-1) Go to root directory**
+```
+cd /
+```
+### **2-2) Make directory mnt1 & mnt2**
 These directories are for mounting each partition of Forensic USB
-'mkdir mnt1', 'mkdir mnt2'
-
-3. Mount the USB
+```
+mkdir mnt1
+mkdir mnt2
+```
+### **2-3) Mount the USB**
 Check which directory your USB has been connected
 If the directory is /dev/sdb1 and /dev/sdb2, mount each of it to mnt1 and mnt2
-ex)
+```
 sudo mount /dev/sdb1 /mnt1
 sudo mount /dev/sdb2 /mnt2
+```
 
-4. Give permission to Forensic.bash script
+### **3) Run the Script**
+### **3-1) Give permission to Forensic.bash script**
 All the other script's permission wil be given by Forensic.bash
+```
 sudo chmod +x ./Forensic.bash
-
-5. Run the script!
+```
+### **3-2) Run the Script!**
+```
 sudo ./Forensic.bash
+```
+![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/9f822000-5c03-4219-a9e4-8392c33b861e)<br/>
+You can enter your name and summary of case<br/><br/>
+![image1](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/3a32405a-9e12-425c-883d-17a1d132dba4)<br/>
+(Linux's Active Data Collection Script)<br/><br/>
+![image2](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/1fe58ec0-6fd2-4655-b009-4b21085d2e1e)<br/>
+(Linux's Inactive Data Collection Script)<br/><br/>
+Run all the scripts or you can select category you want to forensic
+
+![image (1)](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/88471313/25df3e27-d7ee-420f-8669-5bbbe79dd90b)<br/>
+All the results will be save in '/mnt2' directory, which is second partition of your USB
 
 ## **3. Report**
 After data collection, we support the creation of a separate report (Note, this report generation task should be carried out on a computer unrelated to the one affected by the security incident. After all, the goal of digital forensics is to minimize changes to the system). Our report briefly outlines what data has been collected, when (timestamp) it was collected, where it is located, and what its hash value is.<br/><br/>
@@ -144,21 +216,51 @@ simply select the directory under the target directory defined in main.bat, whic
 If executed correctly, you should be able to see the results as follows:<br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/06fc153b-49ec-47b1-83e7-b5339f229202)<br/>
 The table in the image above represents a portion of the results from the generated report<br/><br/>
+### **3-2) Report for Linux**
+There are two reporting programs for Linux forensic results as Linux ver and Windows ver
+You can download it from the link below
+Download Link https://drive.google.com/file/d/1OCibtjOtP8c1wfdwPdzDXEpZDdjflVGQ/view?usp=sharing
+
+1. How to run it in Linux
+1) Put 'Linux_Reporting_Tool_Linux' exe file to '/mnt2' directory
+2) Autorize and Run it
+```
+sudo chmod +x ./Linux_Reporting_Tool_Linux
+sudo ./Linux_Reporting_Tool_Linux
+```
+
+2. How to run it in Windows
+1) Put 'Linux_Reporting_Tool_Win.exe' file to '/mnt2' directory
+2) Run as administrator
+
+All programs will create 'Forensic_Info.pdf' by default
+After default report has been created, you can select whether to generate additional reports
+
 ## Planned Improvements
 Windows:
 1) In main.bat, after running ProcMon and later closing it, we provided commands for unloading the ProcMon driver and for deletion. However, the unload command still shows an error, and despite being in an administrator privilege terminal, the delete command fails due to insufficient permissions. This issue needs to be addressed.
 
-2) In the memory dump step, stage 0 of active_data2.bat, it shows a specific path for copying in RamCapture. It would be beneficial if this path could be highlighted or emphasized in color.
+2) On main.bat, there's a Procmon warning content. I will change the color of this warning string to emphasize it, aiming to make it more noticeable so that users can read and make informed decisions based on it.
+   
+3) In the memory dump step, stage 0 of active_data2.bat, it shows a specific path for copying in RamCapture. It would be beneficial if this path could be highlighted or emphasized in color.
 
-3) In the memory dump step, stage 0 of active_data2.bat, the fact that Winpmem reveals the user account name and password in clear text is problematic. The user’s input should be made invisible.
+4) In the memory dump step, stage 0 of active_data2.bat, the fact that Winpmem reveals the user account name and password in clear text is problematic. The user’s input should be made invisible.
 
-4) Both active_data2.bat and inactive_new_ver_ver.bat allow users to choose stages to execute by entering numbered stages or the 'a' option. The issue is that after performing each option, it only indicates the options selected by the user, not exactly up to which stage has been completed. There needs to be a clear indication of the stages that have been completed.
+5) Both active_data2.bat and inactive_new_ver_ver.bat allow users to choose stages to execute by entering numbered stages or the 'a' option. The issue is that after performing each option, it only indicates the options selected by the user, not exactly up to which stage has been completed. There needs to be a clear indication of the stages that have been completed.
 
-5) With the Windows Reporting feature, the tables are currently arranged alphabetically. They need to be reorganized according to the order of stages as listed in each script.
+6) Both active_data2.bat and inactive_new_ver_ver.bat scripts currently employ a timestamping method that is challenging to track accurately. Consequently, the timestamps recorded in the TimeStamp.log file may not be precise. We are actively exploring solutions to improve the accuracy of these timestamps (at the very least, we hope to achieve accurate timestamping in active_data2.bat soon)
+   
+7) With the Windows Reporting feature, the tables are currently arranged alphabetically. They need to be reorganized according to the order of stages as listed in each script.
 
-6) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
+8) The Windows Reporting feature should be able to indicate the page number from the "second page" onwards at the bottom of each page, for example, - 2 - or - 3 -.
 
 Linux:
+
+Both:
+
+   1) Support GUI (with imgui or qtdesigner) - this will be considered if time permits
+
+(*The priority for improvements is to first address issues in each operating system as much as possible. Among these, instead of starting with scripts that support the execution of other scripts like main.bat and Forensic.bash, we aim to prioritize the enhancement of scripts that collect active and inactive data*)
 
 ## Requirements
 
