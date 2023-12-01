@@ -150,13 +150,13 @@ w #Save changes and exit
 Now your USB has two partitions
 Partiton 1 for Forensic Scripts and Partition 2 for saving Forensic Results
 
-### **3. Apply your changes**
+### **1-3) Apply your changes**
 ```
 sudo partprobe
 ```
 Now there will be two partitions named as '/dev/sdb1' and '/dev/sdb2'
 
-### **1-3) Download Scripts**
+### **1-4) Download Scripts**
 Download all the scripts and files in /Linux/Unified directory
 And put it int the partition no.1
 
