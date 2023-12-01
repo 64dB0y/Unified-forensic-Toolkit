@@ -55,6 +55,32 @@ In addition to the fundamental concept of live forensics, our scripts are meticu
 
 Furthermore, our script suite is divided into three main components. The main script allows users to choose whether to collect only active data, only inactive data, or both. This flexibility ensures that investigators can tailor the data collection process to the specific requirements of each forensic examination.
 
+### **git preparation**
+**BASIC PREPARATION** =>
+STEP 1: prepare git terminal 
+download git terminal from https://git-scm.com/downloads
+
+STEP 2: your account info
+git config --global user.name "yourname"
+git config --global user.email "youraccount@domain.com"
+
+Repository Specific Preparation =>
+STEP 1: Clone I_HATE_LIVE_FORENSIC Repository
+```git
+git clone https://github.com/64dB0y/I_HATE_LIVE_FORENSIC.git
+```
+
+**STEP 2: Setup Git LFS**
+If this is your first time cloning the repository (because we use Git LFS), please follow these steps:
+```git
+git lfs install
+```
+
+If you have already cloned our repository (and we use Git LFS), please follow these steps:
+```git
+git lfs pull
+```
+
 All demonstrations presented from this point forward are performed with administrative privileges. This means that our project's scripts are designed to be executed on the premise that they are granted administrator-level permissions
 
 ## **2-1 How To Use Windows Version**
