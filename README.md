@@ -65,6 +65,7 @@ download git terminal from https://git-scm.com/downloads
 git config --global user.name "yourname"
 git config --global user.email "youraccount@domain.com"
 ```
+<br/> 
 **Repository Specific Preparation** =><br/><br/> 
 **STEP 1: Clone I_HATE_LIVE_FORENSIC Repository**
 ```git
