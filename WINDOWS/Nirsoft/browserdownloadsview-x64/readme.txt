@@ -1,8 +1,8 @@
 
 
 
-BrowserDownloadsView v1.43
-Copyright (c) 2019 - 2022 Nir Sofer
+BrowserDownloadsView v1.45
+Copyright (c) 2019 - 2023 Nir Sofer
 Web site: https://www.nirsoft.net/utils/web_browser_downloads_view.html
 
 
@@ -41,6 +41,15 @@ saved to the database.
 Versions History
 ================
 
+
+* Version 1.45
+  o Added 'Black Background' option (Under the View menu). When it's
+    turned on, the main table is displayed in black background and white
+    text, instead of default system colors.
+  o Added 'Full Screen' mode (View -> Full Screen or F11 key).
+
+* Version 1.44
+  o Added 'Sort By' dropdown to the toolbar.
 
 * Version 1.43
   o Added 'Server Modified Time' column, which displays the timestamp
