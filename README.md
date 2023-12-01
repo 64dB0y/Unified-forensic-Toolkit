@@ -57,7 +57,7 @@ Furthermore, our script suite is divided into three main components. The main sc
 
 ### **git preparation**
 **BASIC PREPARATION** =><br/>
-STEP 1: prepare git terminal <br/> 
+STEP 1: prepare git terminal <br/><br/> 
 download git terminal from https://git-scm.com/downloads
 
 STEP 2: your account info
