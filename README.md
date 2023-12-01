@@ -56,7 +56,7 @@ In addition to the fundamental concept of live forensics, our scripts are meticu
 Furthermore, our script suite is divided into three main components. The main script allows users to choose whether to collect only active data, only inactive data, or both. This flexibility ensures that investigators can tailor the data collection process to the specific requirements of each forensic examination.
 
 ### **git preparation**
-**BASIC PREPARATION** =>
+**BASIC PREPARATION** =><br/>
 STEP 1: prepare git terminal 
 download git terminal from https://git-scm.com/downloads
 
