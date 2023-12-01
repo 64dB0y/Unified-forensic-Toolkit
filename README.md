@@ -65,7 +65,7 @@ STEP 2: your account info
 git config --global user.name "yourname"
 git config --global user.email "youraccount@domain.com"
 ```
-**Repository Specific Preparation** =>
+**Repository Specific Preparation** =><br/> 
 STEP 1: Clone I_HATE_LIVE_FORENSIC Repository
 ```git
 git clone https://github.com/64dB0y/I_HATE_LIVE_FORENSIC.git
