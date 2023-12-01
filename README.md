@@ -82,7 +82,7 @@ If this is your first time cloning the repository (because we use Git LFS), plea
 ```git
 git lfs install
 ```
-
+     or
 If you have already cloned our repository (and we use Git LFS), please follow these steps:
 
 ```git
