@@ -22,6 +22,18 @@ A good branch name would be (where issue #10 is the ticket you're working on):
 git checkout -b 010-add-calculator-function
 ```
 
+### Setup Git LFS for Large Files
+
+This repository uses Git Large File Storage (LFS) to handle large files. Before you start working with the repository, please ensure you have Git LFS installed:
+```git
+git lfs install
+```
+When you clone the repository for the first time or work with large files, make sure to pull the LFS-tracked files:
+```git
+git lfs pull
+```
+If your contributions involve large files, please use Git LFS to track them.
+
 ### Get the test suite running
 
 you can check this content on README.md
@@ -74,10 +86,11 @@ has changed, and that you need to update your branch so it's easier to merge.
 To learn more about rebasing in Git, there are a lot of [good][git rebasing]
 [resources][interactive rebase] but here's the suggested workflow:
 
-```sh
+```git
 git checkout 001-add-WINDOWS_LIVE_FORENSIC-function
 git pull --rebase upstream master
-git push --force-with-lease 001-add-WINDOWS_LIVE_FORENSIC-function ```
+git push --force-with-lease 001-add-WINDOWS_LIVE_FORENSIC-function
+```
 
 ### Merging a PR (maintainers only)
 
