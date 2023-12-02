@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 # 감시할 디렉토리 경로
-watched_directory = '/path/to/watched/directory'
+watched_directory = '/mnt2'
 
 # 감시 이벤트 종류
 mask = pyinotify.IN_CREATE | pyinotify.IN_ACCESS | pyinotify.IN_MODIFY
