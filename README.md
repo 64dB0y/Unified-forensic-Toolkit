@@ -99,7 +99,7 @@ One side should be smaller and the other larger. Ensure that the smaller partiti
 ![diskmgmt](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/f318596a-6030-4b27-9031-e6164740c697)<br/>
 As can be seen from the result screen of diskmgmt.msc in the image, the USB is currently attached with the scripts stored in the E:\ drive, and a partition designated for storing the results of script execution appearing in the F:\ drive.<br/><br/>
 ### **2) Second, Navigate to the Windows Script Directory and Execute main.bat**<br/><br/>
-![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/85e6a06f-0588-46e4-ac2f-284ebc0ee75e)<br/>
+![image](https://github.com/64dB0y/Unified-forensic-Toolkit/assets/55012702/9ca2ed44-e480-4ee5-89f7-4f22cbae66f6)<br/>
 Attention! You must execute the script with Administrator Permissions!<br/><br/>
 ### **3) Third, Entering Specific Information in main.bat**<br/><br/>
 ![image](https://github.com/S3xyG4y/I_HATE_LIVE_FORENSIC/assets/55012702/d5770272-08c0-4153-b0bd-e63a8e4b177a)<br/>
