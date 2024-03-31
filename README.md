@@ -69,10 +69,10 @@ git config --global user.email "youraccount@domain.com"
 ```
 
 **Repository Specific Preparation** =><br/><br/> 
-**STEP 1: Clone I_HATE_LIVE_FORENSIC Repository**
+**STEP 1: Clone Unified-forensic-Toolkit**
 
 ```git
-git clone https://github.com/64dB0y/I_HATE_LIVE_FORENSIC.git
+git clone https://github.com/64dB0y/Unified-forensic-Toolkit.git
 ```
  
 **STEP 2: Setup Git LFS**
